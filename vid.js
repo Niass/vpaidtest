@@ -100,6 +100,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.attributes_['desiredBitrate'] = desiredBitrate;
   this.slot_ = environmentVars.slot;
   this.videoSlot_ = environmentVars.videoSlot;
+  console.log('environmentVars**', environmentVars);
 
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
