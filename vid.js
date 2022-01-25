@@ -23,7 +23,7 @@
    * @type {Object}
    * @private
    */
-  this.videoTest = null;
+  this.videoSlot_ = null;
 
   /**
    * An object containing all registered events.  These events are all
@@ -107,19 +107,21 @@ VpaidVideoPlayer.prototype.initAd = function(
   this.attributes_['viewMode'] = viewMode;
   this.attributes_['desiredBitrate'] = desiredBitrate;
   this.slot_ = environmentVars.slot;
-  this.videoTest = environmentVars.videoSlot;
+  this.videoSlot_ = environmentVars.videoSlot;
+  console.log('***environmentVars***', environmentVars);
+  console.log('***creativeData***', creativeData);
 
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
   this.log('initAd ' + width + 'x' + height +
       ' ' + viewMode + ' ' + desiredBitrate);
-  this.updatevideoTest();
-  this.videoTest.addEventListener(
+  this.updateVideoSlot_();
+  this.videoSlot_.addEventListener(
       'timeupdate',
       this.timeUpdateHandler_.bind(this),
       false);
-  this.videoTest.addEventListener(
+  this.videoSlot_.addEventListener(
       'ended',
       this.stopAd.bind(this),
       false);
@@ -145,7 +147,7 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
     return;
   }
   var percentPlayed =
-      this.videoTest.currentTime * 100.0 / this.videoTest.duration;
+      this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
   if (percentPlayed >= this.quartileEvents_[this.lastQuartileIndex_].value) {
     var lastQuartileEvent = this.quartileEvents_[this.lastQuartileIndex_].event;
     this.eventsCallbacks_[lastQuartileEvent]();
@@ -157,19 +159,19 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
 /**
  * @private
  */
-VpaidVideoPlayer.prototype.updatevideoTest = function() {
-  if (this.videoTest == null) {
-    this.videoTest = document.createElement('video');
+VpaidVideoPlayer.prototype.updateVideoSlot_ = function() {
+  if (this.videoSlot_ == null) {
+    this.videoSlot_ = document.createElement('video');
     this.log('Warning: No video element passed to ad, creating element.');
-    this.slot_.appendChild(this.videoTest);
+    this.slot_.appendChild(this.videoSlot_);
   }
   this.updateVideoPlayerSize_();
   var foundSource = false;
   var videos = this.parameters_.videos || [];
   for (var i = 0; i < videos.length; i++) {
     // Choose the first video with a supported mimetype.
-    if (this.videoTest.canPlayType(videos[i].mimetype) != '') {
-      this.videoTest.setAttribute('src', videos[i].url);
+    if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
+      this.videoSlot_.setAttribute('src', videos[i].url);
       foundSource = true;
       break;
     }
@@ -186,8 +188,8 @@ VpaidVideoPlayer.prototype.updatevideoTest = function() {
  * @private
  */
 VpaidVideoPlayer.prototype.updateVideoPlayerSize_ = function() {
-  this.videoTest.setAttribute('width', this.attributes_['width']);
-  this.videoTest.setAttribute('height', this.attributes_['height']);
+  this.videoSlot_.setAttribute('width', this.attributes_['width']);
+  this.videoSlot_.setAttribute('height', this.attributes_['height']);
 };
 
 
@@ -206,7 +208,7 @@ VpaidVideoPlayer.prototype.handshakeVersion = function(version) {
  */
 VpaidVideoPlayer.prototype.startAd = function() {
   this.log('Starting ad');
-  this.videoTest.play();
+  this.videoSlot_.play();
   var img = document.createElement('img');
   img.src = this.parameters_.overlay || '';
   this.slot_.appendChild(img);
@@ -277,7 +279,7 @@ VpaidVideoPlayer.prototype.resizeAd = function(width, height, viewMode) {
  */
 VpaidVideoPlayer.prototype.pauseAd = function() {
   this.log('pauseAd');
-  this.videoTest.pause();
+  this.videoSlot_.pause();
   this.callEvent_('AdPaused');
 };
 
@@ -287,7 +289,7 @@ VpaidVideoPlayer.prototype.pauseAd = function() {
  */
 VpaidVideoPlayer.prototype.resumeAd = function() {
   this.log('resumeAd');
-  this.videoTest.play();
+  this.videoSlot_.play();
   this.callEvent_('AdResumed');
 };
 
@@ -469,7 +471,7 @@ VpaidVideoPlayer.prototype.muteButtonOnClick_ = function() {
  * Main function called by wrapper to get the vpaid ad.
  * @return {Object} The vpaid compliant ad.
  */
-var getVPAIDAd = function() {
+const getVPAIDAd = function() {
   return new VpaidVideoPlayer();
 };
 
