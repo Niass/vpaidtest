@@ -108,8 +108,6 @@ VpaidVideoPlayer.prototype.initAd = function(
   this.attributes_['desiredBitrate'] = desiredBitrate;
   this.slot_ = environmentVars.slot;
   this.videoSlot_ = environmentVars.videoSlot;
-  console.log('***environmentVars***', environmentVars);
-  console.log('***creativeData***', creativeData);
 
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
@@ -471,7 +469,7 @@ VpaidVideoPlayer.prototype.muteButtonOnClick_ = function() {
  * Main function called by wrapper to get the vpaid ad.
  * @return {Object} The vpaid compliant ad.
  */
-const getVPAIDAd = function() {
+var getVPAIDAd = function() {
   return new VpaidVideoPlayer();
 };
 
