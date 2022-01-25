@@ -469,7 +469,7 @@ VpaidVideoPlayer.prototype.muteButtonOnClick_ = function() {
  * Main function called by wrapper to get the vpaid ad.
  * @return {Object} The vpaid compliant ad.
  */
-var getVPAIDAd = function() {
+const getVPAIDAd = function() {
   return new VpaidVideoPlayer();
 };
 
