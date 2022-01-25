@@ -23,7 +23,7 @@
    * @type {Object}
    * @private
    */
-  this.videoSlot_ = null;
+  this.videoTest = null;
 
   /**
    * An object containing all registered events.  These events are all
@@ -107,19 +107,19 @@ VpaidVideoPlayer.prototype.initAd = function(
   this.attributes_['viewMode'] = viewMode;
   this.attributes_['desiredBitrate'] = desiredBitrate;
   this.slot_ = environmentVars.slot;
-  this.videoSlot_ = environmentVars.videoSlot;
+  this.videoTest = environmentVars.videoSlot;
 
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
   this.log('initAd ' + width + 'x' + height +
       ' ' + viewMode + ' ' + desiredBitrate);
-  this.updateVideoSlot_();
-  this.videoSlot_.addEventListener(
+  this.updatevideoTest();
+  this.videoTest.addEventListener(
       'timeupdate',
       this.timeUpdateHandler_.bind(this),
       false);
-  this.videoSlot_.addEventListener(
+  this.videoTest.addEventListener(
       'ended',
       this.stopAd.bind(this),
       false);
@@ -145,7 +145,7 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
     return;
   }
   var percentPlayed =
-      this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
+      this.videoTest.currentTime * 100.0 / this.videoTest.duration;
   if (percentPlayed >= this.quartileEvents_[this.lastQuartileIndex_].value) {
     var lastQuartileEvent = this.quartileEvents_[this.lastQuartileIndex_].event;
     this.eventsCallbacks_[lastQuartileEvent]();
@@ -157,19 +157,19 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
 /**
  * @private
  */
-VpaidVideoPlayer.prototype.updateVideoSlot_ = function() {
-  if (this.videoSlot_ == null) {
-    this.videoSlot_ = document.createElement('video');
+VpaidVideoPlayer.prototype.updatevideoTest = function() {
+  if (this.videoTest == null) {
+    this.videoTest = document.createElement('video');
     this.log('Warning: No video element passed to ad, creating element.');
-    this.slot_.appendChild(this.videoSlot_);
+    this.slot_.appendChild(this.videoTest);
   }
   this.updateVideoPlayerSize_();
   var foundSource = false;
   var videos = this.parameters_.videos || [];
   for (var i = 0; i < videos.length; i++) {
     // Choose the first video with a supported mimetype.
-    if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
-      this.videoSlot_.setAttribute('src', videos[i].url);
+    if (this.videoTest.canPlayType(videos[i].mimetype) != '') {
+      this.videoTest.setAttribute('src', videos[i].url);
       foundSource = true;
       break;
     }
@@ -186,8 +186,8 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function() {
  * @private
  */
 VpaidVideoPlayer.prototype.updateVideoPlayerSize_ = function() {
-  this.videoSlot_.setAttribute('width', this.attributes_['width']);
-  this.videoSlot_.setAttribute('height', this.attributes_['height']);
+  this.videoTest.setAttribute('width', this.attributes_['width']);
+  this.videoTest.setAttribute('height', this.attributes_['height']);
 };
 
 
@@ -206,7 +206,7 @@ VpaidVideoPlayer.prototype.handshakeVersion = function(version) {
  */
 VpaidVideoPlayer.prototype.startAd = function() {
   this.log('Starting ad');
-  this.videoSlot_.play();
+  this.videoTest.play();
   var img = document.createElement('img');
   img.src = this.parameters_.overlay || '';
   this.slot_.appendChild(img);
@@ -277,7 +277,7 @@ VpaidVideoPlayer.prototype.resizeAd = function(width, height, viewMode) {
  */
 VpaidVideoPlayer.prototype.pauseAd = function() {
   this.log('pauseAd');
-  this.videoSlot_.pause();
+  this.videoTest.pause();
   this.callEvent_('AdPaused');
 };
 
@@ -287,7 +287,7 @@ VpaidVideoPlayer.prototype.pauseAd = function() {
  */
 VpaidVideoPlayer.prototype.resumeAd = function() {
   this.log('resumeAd');
-  this.videoSlot_.play();
+  this.videoTest.play();
   this.callEvent_('AdResumed');
 };
 
