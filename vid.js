@@ -473,4 +473,4 @@ var getVPAIDAd = function() {
   return new VpaidVideoPlayer();
 };
 
-console.log('js loaded....');
+console.log('js loaded....***');
