@@ -191,6 +191,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
   this.videoSlot_.play();
   var img = document.createElement('img');
   img.src = this.parameters_.overlay || '';
+  console.log('this.parameters_.overlay', this.parameters_.overlay);
   this.slot_.appendChild(img);
   img.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
