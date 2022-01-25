@@ -411,6 +411,7 @@ VpaidVideoPlayer.prototype.callEvent_ = function (eventType) {
  */
 VpaidVideoPlayer.prototype.muteButtonOnClick_ = function () {
   console.log("this.attributes_['volume']", this.attributes_);
+  console.log('typeof', typeof this.attributes_['volume']);
   this.attributes_['volume'] === 0 ? 1.0 : 0.0;
   this.callEvent_('AdVolumeChange');
 };
