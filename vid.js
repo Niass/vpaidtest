@@ -205,12 +205,12 @@ VpaidVideoPlayer.prototype.startAd = function () {
   img.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
   //add a test mute button
-  var muteButton = document.createElement('input');
-  muteButton.setAttribute('type', 'button');
-  muteButton.setAttribute('value', 'mute/unMute');
+  // var muteButton = document.createElement('input');
+  // muteButton.setAttribute('type', 'button');
+  // muteButton.setAttribute('value', 'mute/unMute');
 
-  muteButton.addEventListener('click', this.muteButtonOnClick_.bind(this), false);
-  this.slot_.appendChild(muteButton);
+  // muteButton.addEventListener('click', this.muteButtonOnClick_.bind(this), false);
+  // this.slot_.appendChild(muteButton);
 
   this.callEvent_('AdStarted');
 };
