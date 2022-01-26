@@ -366,12 +366,7 @@ VpaidVideoPlayer.prototype.getAdDuration = function () {
   return this.attributes_['duration'];
 };
 
-/**
- * @return {string} List of companions in vast xml.
- */
-VpaidVideoPlayer.prototype.getAdCompanions = function () {
-  return this.attributes_['companions'];
-};
+
 
 /**
  * @return {string} A list of icons.
