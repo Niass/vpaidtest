@@ -128,6 +128,7 @@ VpaidVideoPlayer.prototype.overlayOnClick_ = function () {
  * @private
  */
 VpaidVideoPlayer.prototype.timeUpdateHandler_ = function () {
+  console.log('timeUpdateHandler_ called!!!');
   if (this.lastQuartileIndex_ >= this.quartileEvents_.length) {
     return;
   }
@@ -323,7 +324,6 @@ VpaidVideoPlayer.prototype.skipAd = function () {
  * @param {Object} aContext The context for the callback.
  */
 VpaidVideoPlayer.prototype.subscribe = function (aCallback, eventName, aContext) {
-  this.log('Subscribe ' + aCallback);
   this.log(`$$$Subscribe ${eventName} ${aCallback}`);
   var callBack = aCallback.bind(aContext);
   this.eventsCallbacks_[eventName] = callBack;
