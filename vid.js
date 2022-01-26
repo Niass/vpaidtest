@@ -105,7 +105,6 @@ VpaidVideoPlayer.prototype.initAd = function (
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
-  console.log('$**creativeData', creativeData);
   console.log('**width', width);
   console.log('**height', height);
   console.log('$**this.parameters_', this.parameters_);
@@ -241,6 +240,7 @@ VpaidVideoPlayer.prototype.getAdVolume = function () {
  * @param {string} viewMode A new view mode.
  */
 VpaidVideoPlayer.prototype.resizeAd = function (width, height, viewMode) {
+  console.log('resizeAd called !!!');
   this.log('resizeAd ' + width + 'x' + height + ' ' + viewMode);
   this.attributes_['width'] = width;
   this.attributes_['height'] = height;
