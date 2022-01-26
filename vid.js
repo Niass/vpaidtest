@@ -197,7 +197,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
   div.style.width = "30px";
   div.style.height = "30px";
   div.style.border = '1px solid red';
-  div.style.backgroundColor = parameters_.color || ''
+  div.style.backgroundColor = this.parameters_.color || ''
   img.src = this.parameters_.overlay || '';
   console.log('this.parameters_.overlay', this.parameters_.overlay);
   this.slot_.appendChild(div);
