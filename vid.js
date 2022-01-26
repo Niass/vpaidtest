@@ -7,7 +7,7 @@
 /**
  * @constructor
  */
-var VpaidVideoPlayer = function () {
+ var VpaidVideoPlayer = function () {
   this.slot_ = null;
 
   /**
@@ -151,11 +151,11 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
   }
   this.updateVideoPlayerSize_();
   var foundSource = false;
-  var videos = this.parameters_.mediaFiles || [];
+  var videos = this.parameters_.videos || [];
   for (var i = 0; i < videos.length; i++) {
     // Choose the first video with a supported mimetype.
-    if (this.videoSlot_.canPlayType(videos[i].type) != '') {
-      this.videoSlot_.setAttribute('src', videos[i].uri);
+    if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
+      this.videoSlot_.setAttribute('src', videos[i].url);
       foundSource = true;
       break;
     }
