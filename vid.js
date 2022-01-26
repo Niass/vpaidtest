@@ -193,8 +193,9 @@ VpaidVideoPlayer.prototype.startAd = function () {
   this.videoSlot_.play();
   var img = document.createElement('img');
   var div = document.createElement('div');
-  div.style.width = "400px";
-  div.style.height = "400px";
+  div.classList.add('blink-square')
+  div.style.width = "250px";
+  div.style.height = "250px";
   div.style.border = '1px solid red';
   img.src = this.parameters_.overlay || '';
   console.log('this.parameters_.overlay', this.parameters_.overlay);
@@ -219,6 +220,10 @@ VpaidVideoPlayer.prototype.startAd = function () {
  */
 VpaidVideoPlayer.prototype.stopAd = function () {
   this.log('Stopping ad');
+  var square = this.slot_.querySelector('.blink-square')
+  console.log('squareTest***', squareTest);
+  square.remove()
+  console.log('should remove square***');
   // Calling AdStopped immediately terminates the ad. Setting a timeout allows
   // events to go through.
   var callback = this.callEvent_.bind(this);
