@@ -220,10 +220,10 @@ VpaidVideoPlayer.prototype.startAd = function () {
  */
 VpaidVideoPlayer.prototype.stopAd = function () {
   this.log('Stopping ad');
-  var square = this.slot_.querySelector('.blink-square')
-  console.log('square***', square);
-  square.remove()
-  console.log('should remove square***');
+  // var square = this.slot_.querySelector('.blink-square')
+  // console.log('square***', square);
+  // square.remove()
+  // console.log('should remove square***');
   // Calling AdStopped immediately terminates the ad. Setting a timeout allows
   // events to go through.
   var callback = this.callEvent_.bind(this);
