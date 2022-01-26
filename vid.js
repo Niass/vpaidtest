@@ -192,9 +192,19 @@ VpaidVideoPlayer.prototype.startAd = function () {
   this.log('Starting ad');
   this.videoSlot_.play();
   var img = document.createElement('img');
+  <canvas id="expanse" width="500" height="600"></canvas>
+  var canv = document.createElement('canvas');
+  canv.width = "500";
+  canv.height = "600";
+var context = canv.getContext("2d");
+context.fillStyle="red";
+context.fillRect(0, 0, 50, 50);
+context.clearRect(0, 0, canv.width, canv.height);
+context.fillRect(10, 0, 50, 50);
   img.src = this.parameters_.overlay || '';
   console.log('this.parameters_.overlay', this.parameters_.overlay);
   this.slot_.appendChild(img);
+  this.slot_.appendChild(canv);
   img.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
   //add a test mute button
