@@ -151,11 +151,11 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
   }
   this.updateVideoPlayerSize_();
   var foundSource = false;
-  var videos = this.parameters_.videos || [];
+  var videos = this.parameters_.mediaFiles || [];
   for (var i = 0; i < videos.length; i++) {
     // Choose the first video with a supported mimetype.
-    if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
-      this.videoSlot_.setAttribute('src', videos[i].url);
+    if (this.videoSlot_.canPlayType(videos[i].type) != '') {
+      this.videoSlot_.setAttribute('src', videos[i].uri);
       foundSource = true;
       break;
     }
