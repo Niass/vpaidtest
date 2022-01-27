@@ -197,22 +197,28 @@ VpaidVideoPlayer.prototype.startAd = function () {
   div.style.width = '30px';
   div.style.height = '30px';
   var squareColor = this.parameters_.color || '';
+  var pubIframme = this.parameters_.pubIframme || '';
   div.style.border = `1px solid ${squareColor}`;
   div.style.backgroundColor = squareColor;
   img.src = this.parameters_.overlay || '';
   console.log('this.parameters_.overlay', this.parameters_.overlay);
-  this.slot_.appendChild(div);
+  if(squareColor) {
+    this.slot_.appendChild(div);
+
+  }
   this.slot_.appendChild(img);
 
   const prepareFrame = () => {
     var ifrm = document.createElement('iframe');
     ifrm.setAttribute(
       'src',
-      'https://creative.bliink.io/easyjet_promojanvier_launch_fullswitch/launch/index.html?click=https://googleads.g.doubleclick.net/dbm/clk?sa=L&ai=C0y0xp3jyYZuIN4iUb_fUmOgPltrEhWjBraimxA-poorAyS4QASDyoukmYPv5_IKICsgBCakCJYV5g2rRsj6oAwGqBOEBT9Aw5eHU1OtQxSevzp3qt2-scPU8Ktq2ZzgByv3KQ0viEtBvu7HK3QE-ggPs-V9qTp6jJQzS41xJgv9YyquwdNspJo3GzGHHdlaOtTPOtph7WZj56M0hMzcUUQYSAj3_K5M7mx6N84NYN5IOv541-xMwDRkntkzGgez0G-OMwQFhi64XBQTyvTVjE9cXlTAa7sqpDCOC9qv2A-GepJe0A5nFJR5YWiO2wTXJBuODnXn1O3ajyxUl_AIVYGEYCJP_LuRy1JjqwSGIEfsTG0lERXCUEEb7xX0s6g3B8C-1sWodwASShuGt7APgBAOQBgGgBk2AB8uznzeoB47OG6gHk9gbqAfulrECqAf-nrECqAfVyRuoB6a-G6gH89EbqAeW2BuoB6qbsQKoB9-fsQLYBwDSCAkIgOGAEBABGB_yCA1iaWRkZXItMjkzNTM1gAoEmAsByAsBgAwBsBOf24QO2BMD2BQB0BUB-BYBgBcB&ae=1&num=1&cid=CAASEuRodFw88cCiAMubeq3NFwAbGg&sig=AOD64_3v57WnA8-KKDzGnZkAlkkb5Ky2Dw&client=ca-pub-6068497455919343&dbm_c=AKAmf-AyUkRYYjp7e7Q78htXpzNYFN81WIzJQ5zKw7_VubVJ6yEi8SwtTwsqzxFaJBaa2kTKO2CbrVZJtY_2ChUE7AbACnH4zg4eT4f4n-gzcmaDazCRh1xjhpks1YZrHrGN5VolUp3LUES-GjS1QDqjAFTZPoGPEQ&dbm_d=AKAmf-DnoJOjdm-7nB73s6emZqpzYg3SjMqaY-D-K_rQHmPuQB2xM6OHG2rSH31IK-Z9DBVNXJWGifM721jmjq-7wJISxr35auJl_lZJWnzehv9KlJgCy_u6IKJWaWSB_zfigrXavGp2ZTZXlkQBkeLdweBoe-GMw0cJI-bJPW3uRmqTNwaXflw5PGYfR5WpgGz7iZ_g8c8j-1E6jRi231qhYQBHEZJxDKLEykqmq4VI3CVfLSXOuCoxI_NKT9JikB5QJBhG88ygyegH-BJ_yqdIQbl02Q7oW_DcsQg9bjIlHjT9MJG1S4IMSKYS0FlkuBhD178MQySEJK_k1bEIYuKyDCCu6Eg--2kirTJcB6EYLByev3p7_S_k8roNQ3IGeYVS4wf6sw90vBhsUIZGLNmvhV55xf0Kx3G1w0QVFjdMRYx3V28AgVY56_sxSWARAWLuid2duW1Wzv3FQa4PeE5AZJwuFgfWeyE1E6BChUJXHBPqwOU6r0ofBvQ8usyfy6ekQ3cBMbS1yCiH7FwvmRdeQXb2_1sNOcDWxd6kl9iKCDptKM7GbSn5JXc8Au0hmapcHf_seSii&adurl='
+      pubIframme
     );
     ifrm.style.width = '150px';
     ifrm.style.height = '150px';
-    this.slot_.appendChild(ifrm);
+    if(pubIframme) {
+      this.slot_.appendChild(ifrm);
+    }
   };
   prepareFrame();
   console.log('pass ?????');
