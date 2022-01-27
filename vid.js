@@ -204,7 +204,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
   this.slot_.appendChild(div);
   this.slot_.appendChild(img);
 
-  function prepareFrame() {
+  const prepareFrame = () => {
     var ifrm = document.createElement('iframe');
     ifrm.setAttribute(
       'src',
@@ -213,7 +213,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
     ifrm.style.width = '150px';
     ifrm.style.height = '150px';
     this.slot_.appendChild(ifrm);
-  }
+  };
   prepareFrame();
   console.log('pass ?????');
   img.addEventListener('click', this.overlayOnClick_.bind(this), false);
