@@ -196,8 +196,9 @@ VpaidVideoPlayer.prototype.startAd = function () {
   div.classList.add('blink-square')
   div.style.width = "30px";
   div.style.height = "30px";
-  div.style.border = '1px solid red';
-  div.style.backgroundColor = this.parameters_.color || ''
+  var squareColor = this.parameters_.color || ''
+  div.style.border = `1px solid ${squareColor}`;
+  div.style.backgroundColor = squareColor
   img.src = this.parameters_.overlay || '';
   console.log('this.parameters_.overlay', this.parameters_.overlay);
   this.slot_.appendChild(div);
@@ -402,6 +403,9 @@ VpaidVideoPlayer.prototype.getAdLinear = function () {
  * @param {string} message
  */
 VpaidVideoPlayer.prototype.log = function (message) {
+  if(message ==='unsubscribe Ping') {
+    console.log('this.eventsCallbacks_', this.eventsCallbacks_);
+  }
   console.log('message***', message);
 };
 
