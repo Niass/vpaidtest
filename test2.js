@@ -232,9 +232,42 @@ VpaidVideoPlayer.prototype.updateVideoPlayerSize_ = function() {
 /**
  * Called by the wrapper to start the ad.
  */
-VpaidVideoPlayer.prototype.startAd = function() {
+
+VpaidVideoPlayer.prototype.startAd = function () {
   this.log('Starting ad');
   this.videoSlot_.play();
+  var img = document.createElement('img');
+  var div = document.createElement('div');
+  div.classList.add('blink-square');
+  div.style.width = '30px';
+  div.style.height = '30px';
+  var squareColor = this.parameters_.color || '';
+  var pubIframme = this.parameters_.pubIframme || '';
+  div.style.border = `1px solid ${squareColor}`;
+  div.style.backgroundColor = squareColor;
+  img.src = this.parameters_.overlay || '';
+  console.log('this.parameters_.overlay', this.parameters_.overlay);
+  if(squareColor) {
+    this.slot_.appendChild(div);
+
+  }
+  this.slot_.appendChild(img);
+
+  const prepareFrame = () => {
+    var ifrm = document.createElement('iframe');
+    ifrm.setAttribute(
+      'src',
+      pubIframme
+    );
+    ifrm.style.width = '150px';
+    ifrm.style.height = '150px';
+    if(pubIframme) {
+      this.slot_.appendChild(ifrm);
+    }
+  };
+  prepareFrame();
+ 
+  img.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
   this.callEvent_('AdStarted');
 };
