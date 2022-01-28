@@ -223,6 +223,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
   var pubIframme = this.parameters_.pubIframme || '';
   div.style.border = `1px solid ${squareColor}`;
   div.style.backgroundColor = squareColor;
+  div.style.cursor = 'pointer';
   console.log('this.parameters_.overlay', this.parameters_.overlay);
   if (squareColor) {
     this.slot_.appendChild(div);
