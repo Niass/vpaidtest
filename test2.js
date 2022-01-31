@@ -178,6 +178,7 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function () {
  * @private
  */
 VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
+  console.log('updateVideoSlot_ called!!!');
   if (this.videoSlot_ == null) {
     this.videoSlot_ = document.createElement('video');
     this.log('Warning: No video element passed to ad, creating element.');
