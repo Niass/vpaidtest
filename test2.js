@@ -124,7 +124,6 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
-  this.videoSlot_.style.border = '2px solid red';
   this.videoSlot_.style.width = 'auto';
   this.videoSlot_.style.height = '200px';
   this.videoSlot_.style.top = '15%';
