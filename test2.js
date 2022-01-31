@@ -285,7 +285,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
 `;
   };
 
-  bgSetting();
+  // bgSetting();
   imageOne();
   prepareFrame();
 
