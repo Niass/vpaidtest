@@ -246,12 +246,12 @@ VpaidVideoPlayer.prototype.startAd = function () {
       position: absolute;
       background: url(https://creative.bliink.io/61e9934208e3290017764661/grq3ccH.png) center center / contain no-repeat;
       position: absolute;
-      width: 58vh;
+      width: 30%;
       height: 32%;
       top: 69%;
-      bottom: -1%;
+      bottom: 0%;
       left: inherit;
-      right: -1%;
+      right: 0%;
       z-index: 1;
       cursor: pointer;
   }
