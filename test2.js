@@ -280,6 +280,24 @@ VpaidVideoPlayer.prototype.startAd = function () {
 `;
     this.slot_.appendChild(div);
   };
+  const imageTwo = (elt, styles) => {
+    const div = document.createElement('div');
+    div.style.cssText = `
+    url("https://creative.bliink.io/61e99ac108e3290017764fe4/3EPh0Bl.png") center center / contain no-repeat;
+    position: absolute;
+    width: 60vh;
+    height: 7%;
+    top: 14%;
+    bottom: 79%;
+    left: 11%;
+    right: inherit;
+    z-index: 3;
+    cursor: pointer;
+  }
+`;
+    this.slot_.appendChild(div);
+  };
+  imageTwo()
   const buttonOne = (elt, styles) => {
     const div = document.createElement('div');
     div.style.cssText = `
