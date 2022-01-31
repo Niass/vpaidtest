@@ -130,6 +130,8 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.videoSlot_.style.border = '2px solid red';
   // var parent = videoSlot_.getVPAIDAd;
   // console.log('parent......', parent);
+  var vid = document.querySelector('video');
+  console.log('vid********', vid);
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
@@ -232,7 +234,6 @@ VpaidVideoPlayer.prototype.startAd = function () {
   div.style.border = `1px solid ${squareColor}`;
   div.style.backgroundColor = squareColor;
   div.style.cursor = 'pointer';
-  console.log('this.parameters_.overlay', this.parameters_.overlay);
   if (squareColor) {
     this.slot_.appendChild(div);
   }
