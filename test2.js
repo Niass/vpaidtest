@@ -137,8 +137,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   var parent = this.videoSlot_.parentElement.parentElement;
   // parent.style.backgroundColor = 'yellow';
   parent.style.cssText = `
-  background: url(https://creative.bliink.io/61e99ac…/Wh4Mqpa.png) center center / cover no-repeat;
-  position: absolute;
+  background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png) center center / cover no-repeat;
   width: 150%;
   inset: 0% -27% 0% -23%;
   z-index: 0;
