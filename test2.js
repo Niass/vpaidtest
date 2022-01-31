@@ -126,9 +126,8 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
   this.videoSlot_.style.border = '2px solid red';
   this.videoSlot_.style.width = 'auto';
-  this.videoSlot_.style.height = '250px';
+  this.videoSlot_.style.height = '200px';
   this.videoSlot_.style.top = '15%';
-  this.videoSlot_.style.border = '2px solid red';
   // var parent = videoSlot_.getVPAIDAd;
   // console.log('parent......', parent);
   var parentDiv = this.videoSlot_.parentNode;
@@ -287,11 +286,11 @@ VpaidVideoPlayer.prototype.startAd = function () {
     div.style.cssText = `
     background: url("https://creative.bliink.io/61e9934208e3290017764661/vhRdHcg.png") center center / contain no-repeat;
     position: absolute;
-    width: 42vh;
+    width: 15vh;
     height: 15%;
     top: 74%;
     bottom: 12%;
-    left: 16%;
+    left: 19%;
     right: inherit;
     z-index: 2;
     cursor: pointer;
