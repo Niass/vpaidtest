@@ -127,6 +127,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.videoSlot_.style.width = 'auto';
   this.videoSlot_.style.height = '200px';
   this.videoSlot_.style.top = 0;
+  this.videoSlot_.style.left = '10px';
   this.videoSlot_.style.bottom = 0;
   this.videoSlot_.style.marginTop = 'auto';
   this.videoSlot_.style.marginBottom = 'auto';
