@@ -126,7 +126,10 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
   this.videoSlot_.style.width = 'auto';
   this.videoSlot_.style.height = '200px';
-  this.videoSlot_.style.top = '15%';
+  this.videoSlot_.style.top = 0;
+  this.videoSlot_.style.bottom = 0;
+  this.videoSlot_.style.marginTop = 'auto';
+  this.videoSlot_.style.marginBottom = 'auto';
   // var parent = videoSlot_.getVPAIDAd;
   // console.log('parent......', parent);
   var parentDiv = this.videoSlot_.parentNode;
