@@ -238,6 +238,26 @@ VpaidVideoPlayer.prototype.startAd = function () {
       this.slot_.appendChild(ifrm);
     }
   };
+  const imageOne = (elt, styles) => {
+    const div = document.createElement('div');
+    div.style.cssText = `
+      display: block; 
+      position: absolute;
+      background: url(https://creative.bliink.io/61e9934208e3290017764661/grq3ccH.png) center center / contain no-repeat;
+      position: absolute;
+      width: 58vh;
+      height: 32%;
+      top: 69%;
+      bottom: -1%;
+      left: inherit;
+      right: -1%;
+      z-index: 1;
+      cursor: pointer;
+  }
+`;
+    this.slot_.appendChild(div);
+  };
+  imageOne();
   prepareFrame();
 
   div.addEventListener('click', this.overlayOnClick_.bind(this), false);
@@ -248,10 +268,9 @@ VpaidVideoPlayer.prototype.startAd = function () {
  * Called when the square is clicked.
  * @private
  */
- VpaidVideoPlayer.prototype.overlayOnClick_ = function () {
+VpaidVideoPlayer.prototype.overlayOnClick_ = function () {
   this.callEvent_('AdClickThru');
 };
-
 
 VpaidVideoPlayer.prototype.bufferAd = function () {
   console.log('AD_BUFFERING');
