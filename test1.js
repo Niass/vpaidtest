@@ -308,8 +308,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
     position: absolute;
     width: 15vh;
     height: 15%;
-    top: 74%;
-    bottom: 12%;
+    bottom: 5%;
     left: 19%;
     right: inherit;
     z-index: 2;
