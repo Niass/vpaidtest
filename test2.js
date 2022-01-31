@@ -283,7 +283,8 @@ VpaidVideoPlayer.prototype.startAd = function () {
   const imageTwo = (elt, styles) => {
     const div = document.createElement('div');
     div.style.cssText = `
-    url("https://creative.bliink.io/61e99ac108e3290017764fe4/3EPh0Bl.png") center center / contain no-repeat;
+    background: url("https://creative.bliink.io/61e99ac108e3290017764fe4/3EPh0Bl.png") center center / contain no-repeat;
+    
     position: absolute;
     width: 60vh;
     height: 7%;
