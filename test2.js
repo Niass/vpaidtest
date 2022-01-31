@@ -134,17 +134,17 @@ VpaidVideoPlayer.prototype.initAd = function (
 
   console.log('parentDiv********', parentDiv);
   console.log('goood???');
-  var parent = this.videoSlot_.parentElement.parentElement;
+  var parent = this.videoSlot_.parentElement.parentElement.parentElement;
   // parent.style.backgroundColor = 'yellow';
-//   parent.style.cssText = `
-//   background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png) center center / cover no-repeat;
-//   width: 100%;
-//   inset: 0% -27% 0% -23%;
-//   z-index: 0;
-//   height: auto !important;
-//   cursor: pointer;
-// }
-// `;
+  parent.style.cssText = `
+      background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png) center center / cover no-repeat;
+    position: absolute;
+    inset: 0% -27% 0% -23%;
+    z-index: 0;
+    height: auto !important;
+    cursor: pointer;
+}
+`;
   console.log('parent....', parent);
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
