@@ -128,6 +128,8 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.videoSlot_.style.width = 'auto';
   this.videoSlot_.style.height = '250px';
   this.videoSlot_.style.border = '2px solid red';
+  var parent = videoSlot_?.parentElement?.parentElement;
+  console.log('parent....', parent);
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
