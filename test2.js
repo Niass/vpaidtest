@@ -110,8 +110,8 @@ VpaidVideoPlayer.prototype.initAd = function (
   creativeData,
   environmentVars
 ) {
-  this.attributes_['width'] = width;
-  this.attributes_['height'] = height;
+  this.attributes_['width'] = 'auto';
+  this.attributes_['height'] = '255px';
   this.attributes_['viewMode'] = viewMode;
   this.attributes_['desiredBitrate'] = desiredBitrate;
 
@@ -125,6 +125,7 @@ VpaidVideoPlayer.prototype.initAd = function (
 
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
   this.updateVideoSlot_();
+  this.videoSlot_.style.border = '2px solid red';
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
   this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
@@ -178,7 +179,7 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function () {
  * @private
  */
 VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
-  console.log('updateVideoSlot_ called!!!');
+  console.log('updateVideoSlot_ called this.videoSlot_!!!', this.videoSlot_);
   if (this.videoSlot_ == null) {
     this.videoSlot_ = document.createElement('video');
     this.log('Warning: No video element passed to ad, creating element.');
