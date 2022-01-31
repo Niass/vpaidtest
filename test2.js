@@ -139,7 +139,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   parent.style.cssText = `
       background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png) center center / cover no-repeat;
     position: absolute;
-    inset: 0% -27% 0% -23%;
+    inset: 0% 0% 0% 0%;
     z-index: 0;
     height: auto !important;
     cursor: pointer;
