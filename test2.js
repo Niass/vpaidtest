@@ -118,7 +118,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   // slot and videoSlot are passed as part of the environmentVars
   this.slot_ = environmentVars.slot;
   this.videoSlot_ = environmentVars.videoSlot;
-  console.log('this.videoSlot_', this.videoSlot_);
+  console.log('this.videoSlot_', JSON.stringify(this.videoSlot_));
 
   // Parse the incoming ad parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
