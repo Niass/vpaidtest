@@ -135,6 +135,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   console.log('parentDiv********', parentDiv);
   console.log('goood???');
   var parent = this.videoSlot_.parentElement.parentElement;
+  parent.style.backgroundColor = "yellow"
   console.log('parent....', parent);
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
