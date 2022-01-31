@@ -126,7 +126,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
   this.videoSlot_.style.border = '2px solid red';
   this.videoSlot_.style.width = 'auto';
-  this.videoSlot_.style.height = '250';
+  this.videoSlot_.style.height = '250px';
   this.videoSlot_.style.border = '2px solid red';
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
