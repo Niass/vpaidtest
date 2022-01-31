@@ -110,8 +110,8 @@ VpaidVideoPlayer.prototype.initAd = function (
   creativeData,
   environmentVars
 ) {
-  this.attributes_['width'] = 'auto';
-  this.attributes_['height'] = '255px';
+  this.attributes_['width'] = width;
+  this.attributes_['height'] = height;
   this.attributes_['viewMode'] = viewMode;
   this.attributes_['desiredBitrate'] = desiredBitrate;
 
@@ -124,8 +124,11 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
-  this.updateVideoSlot_();
   this.videoSlot_.style.border = '2px solid red';
+  this.videoSlot_.style.width = 'auto';
+  this.videoSlot_.style.height = '250';
+  this.videoSlot_.style.border = '2px solid red';
+  this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
   this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
