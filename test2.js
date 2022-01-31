@@ -134,9 +134,8 @@ VpaidVideoPlayer.prototype.initAd = function (
   
   console.log('parentDiv********', parentDiv);
   console.log('goood???');
-  var parent = this.videoSlot_.parentElement;
+  var parent = this.videoSlot_.parentElement.parentElement;
   console.log('parent....', parent);
-  someVariable && someVariable.nodeType === Node.ELEMENT_NODE
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
@@ -192,8 +191,7 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function () {
  */
 VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
   console.log('updateVideoSlot_ called this.videoSlot_!!!', this.videoSlot_);
-  var vid2 = document.querySelector('video');
-  console.log('vid********2', vid2);
+
   if (this.videoSlot_ == null) {
     this.videoSlot_ = document.createElement('video');
     this.log('Warning: No video element passed to ad, creating element.');
