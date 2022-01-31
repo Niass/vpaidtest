@@ -130,9 +130,13 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.videoSlot_.style.border = '2px solid red';
   // var parent = videoSlot_.getVPAIDAd;
   // console.log('parent......', parent);
-  var parentDiv = videoSlot_.parentNode;
+  var parentDiv = this.videoSlot_.parentNode;
   
   console.log('parentDiv********', parentDiv);
+  console.log('goood???');
+  var parent = this.videoSlot_.parentElement;
+  console.log('parent....', parent);
+  someVariable && someVariable.nodeType === Node.ELEMENT_NODE
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
