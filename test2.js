@@ -131,7 +131,9 @@ VpaidVideoPlayer.prototype.initAd = function (
   // var parent = videoSlot_.getVPAIDAd;
   // console.log('parent......', parent);
   var vid = document.querySelector('video');
+  var vidContainer = document.querySelector('#adcontainer');
   console.log('vid********', vid);
+  console.log('vidContainer********', vidContainer);
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
