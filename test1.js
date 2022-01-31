@@ -133,7 +133,7 @@ VpaidVideoPlayer.prototype.initAd = function (
 
   console.log('parentDiv********', parentDiv);
   console.log('goood???');
-  var parent = this.videoSlot_.parentElement.parentElement;
+  var parent = this.videoSlot_.parentElement;
   console.log('parent***', parent)
   parent.style.cssText = `
       background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png) center center / cover no-repeat;
