@@ -127,6 +127,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.videoSlot_.style.border = '2px solid red';
   this.videoSlot_.style.width = 'auto';
   this.videoSlot_.style.height = '250px';
+  this.videoSlot_.style.top = '15%';
   this.videoSlot_.style.border = '2px solid red';
   // var parent = videoSlot_.getVPAIDAd;
   // console.log('parent......', parent);
@@ -281,6 +282,24 @@ VpaidVideoPlayer.prototype.startAd = function () {
 `;
     this.slot_.appendChild(div);
   };
+  const buttonOne = (elt, styles) => {
+    const div = document.createElement('div');
+    div.style.cssText = `
+    background: url("https://creative.bliink.io/61e9934208e3290017764661/vhRdHcg.png") center center / contain no-repeat;
+    position: absolute;
+    width: 42vh;
+    height: 15%;
+    top: 74%;
+    bottom: 12%;
+    left: 16%;
+    right: inherit;
+    z-index: 2;
+    cursor: pointer;
+  }
+`;
+    this.slot_.appendChild(div);
+  };
+  buttonOne();
   const bgSetting = (elt, styles) => {
     this.slot_.style.cssText = `
     background: url(https://creative.bliink.io/61e99ac…/Wh4Mqpa.png) center center / cover no-repeat;
