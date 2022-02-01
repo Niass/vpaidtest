@@ -213,6 +213,8 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
   }
   if(this.parameters_images) {
     console.log('youpiiii', this.parameters_images);
+  } else {
+    console.log('no luck****', this.parameters_);
   }
   if (!foundSource) {
     // Unable to find a source video.
