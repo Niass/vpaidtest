@@ -139,6 +139,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   console.log('goood???');
   var parent = this.videoSlot_.parentElement;
   console.log('parent***', parent)
+  
   parent.style.cssText = `
       background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png) center center / cover no-repeat;
     position: absolute;
@@ -151,7 +152,8 @@ VpaidVideoPlayer.prototype.initAd = function (
     justify-content: space-around;
 }
 `;
-  console.log('parent....', parent);
+  const htmlVideo = parent.querySelector('video');
+  console.log('htmlVideo....', htmlVideo);
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
