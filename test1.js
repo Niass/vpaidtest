@@ -150,15 +150,11 @@ VpaidVideoPlayer.prototype.initAd = function (
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-position-x: center;
-    background-position-y: center;
+    background-position-x: inherit;
+    background-position-y: inherit;
     background-size: cover;
     background-repeat-x: no-repeat;
     background-repeat-y: no-repeat;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: initial;
 }
 `;
   const htmlVideo = parent.querySelector('video');
