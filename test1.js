@@ -135,30 +135,16 @@ VpaidVideoPlayer.prototype.initAd = function (
   // console.log('parent......', parent);
   var parentDiv = this.videoSlot_.parentNode;
 
-  console.log('parentDiv********', parentDiv);
-  console.log('goood???');
+ 
   var parent = this.videoSlot_.parentElement;
-  console.log('parent***', parent)
+  const bgImages = this.parameters_.images?.find(image => image.type === "backgroundImage")
+  console.log('bgImages****', bgImages);
   
   parent.style.cssText = `
-      background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png);
-    position: absolute;
-    inset: 0% 0% 0% 0%;
-    z-index: 0;
-    height: auto !important;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-position-x: inherit;
-    background-position-y: inherit;
-    background-size: cover;
-    background-repeat-x: no-repeat;
-    background-repeat-y: no-repeat;
+      background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png);position: absolute;inset: 0% 0% 0% 0%;z-index: 0;height:auto !important;cursor: pointer;display: flex;flex-direction: column;justify-content: space-around;background-position-x: inherit;background-position-y: inherit;background-size: cover;background-repeat-x: no-repeat;background-repeat-y: no-repeat;
 }
 `;
   const htmlVideo = parent.querySelector('video');
-  console.log('htmlVideo....', htmlVideo);
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
@@ -213,7 +199,6 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function () {
  * @private
  */
 VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
-  console.log('updateVideoSlot_ called this.videoSlot_!!!', this.videoSlot_);
 
   if (this.videoSlot_ == null) {
     this.videoSlot_ = document.createElement('video');
