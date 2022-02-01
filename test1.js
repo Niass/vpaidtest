@@ -139,11 +139,14 @@ VpaidVideoPlayer.prototype.initAd = function (
   var parent = this.videoSlot_.parentElement;
   const bgImages = this.parameters_.images?.find(image => image.type === "backgroundImage")
   console.log('bgImages****', bgImages);
-  
-  parent.style.cssText = `
-      background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png);position: absolute;inset: 0% 0% 0% 0%;z-index: 0;height:auto !important;cursor: pointer;display: flex;flex-direction: column;justify-content: space-around;background-position-x: inherit;background-position-y: inherit;background-size: cover;background-repeat-x: no-repeat;background-repeat-y: no-repeat;
-}
-`;
+  if(bgImages) {
+
+    parent.style.cssText = bgImages.styles
+  }
+//   parent.style.cssText = `
+//       background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png);position: absolute;inset: 0% 0% 0% 0%;z-index: 0;height:auto !important;cursor: pointer;display: flex;flex-direction: column;justify-content: space-around;background-position-x: inherit;background-position-y: inherit;background-size: cover;background-repeat-x: no-repeat;background-repeat-y: no-repeat;
+// }
+// `;
   const htmlVideo = parent.querySelector('video');
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
