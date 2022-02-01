@@ -255,7 +255,6 @@ VpaidVideoPlayer.prototype.startAd = function () {
   if (squareColor) {
     this.slot_.appendChild(div);
   }
-  this.slot_.style.border = '2px solid blue';
   const prepareFrame = () => {
     var ifrm = document.createElement('iframe');
     ifrm.setAttribute('src', pubIframme);
