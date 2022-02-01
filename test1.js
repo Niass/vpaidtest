@@ -293,20 +293,12 @@ VpaidVideoPlayer.prototype.startAd = function () {
   const buttonOne = (elt, styles) => {
     const div = document.createElement('div');
     div.style.cssText = `
-    background: url("https://creative.bliink.io/61e9934208e3290017764661/vhRdHcg.png") center center / contain no-repeat;
-    position: absolute;
-    width: 15vh;
-    height: 15%;
-    bottom: 5%;
-    left: 19%;
-    right: inherit;
-    z-index: 2;
-    cursor: pointer;
+    background: url(https://creative.bliink.io/61e9934208e3290017764661/vhRdHcg.png) center center / contain no-repeat;position: absolute;width: 15vh;height: 15%;bottom: 5%;left: 19%;right: inherit;z-index: 2;cursor: pointer;
   }
 `;
     this.slot_.appendChild(div);
   };
-  buttonOne();
+  // buttonOne();
 
   // imageOne();
   prepareFrame();
