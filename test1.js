@@ -141,7 +141,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   console.log('parent***', parent)
   
   parent.style.cssText = `
-      background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png) center center / cover no-repeat;
+      background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png);
     position: absolute;
     inset: 0% 0% 0% 0%;
     z-index: 0;
@@ -150,6 +150,15 @@ VpaidVideoPlayer.prototype.initAd = function (
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
 }
 `;
   const htmlVideo = parent.querySelector('video');
