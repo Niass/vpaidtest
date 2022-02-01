@@ -124,13 +124,13 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
-  this.videoSlot_.style.width = 'auto';
-  this.videoSlot_.style.height = '200px';
-  this.videoSlot_.style.top = 0;
-  this.videoSlot_.style.left = '10px';
-  this.videoSlot_.style.bottom = 0;
-  this.videoSlot_.style.marginTop = 'auto';
-  this.videoSlot_.style.marginBottom = 'auto';
+  // this.videoSlot_.style.width = 'auto';
+  // this.videoSlot_.style.height = '200px';
+  // this.videoSlot_.style.top = 0;
+  // this.videoSlot_.style.left = '10px';
+  // this.videoSlot_.style.bottom = 0;
+  // this.videoSlot_.style.marginTop = 'auto';
+  // this.videoSlot_.style.marginBottom = 'auto';
   // var parent = videoSlot_.getVPAIDAd;
   // console.log('parent......', parent);
   var parentDiv = this.videoSlot_.parentNode;
@@ -144,7 +144,7 @@ VpaidVideoPlayer.prototype.initAd = function (
     parent.style.cssText = bgImages.styles
   }
 //   parent.style.cssText = `
-//       background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png);position: absolute;inset: 0% 0% 0% 0%;z-index: 0;height:auto !important;cursor: pointer;display: flex;flex-direction: column;justify-content: space-around;background-position-x: inherit;background-position-y: inherit;background-size: cover;background-repeat-x: no-repeat;background-repeat-y: no-repeat;
+//   background-color: #000;position:absolute;width:auto;height: 200px;left:10px;top:0px;bottom:0px;margin-top:auto;margin-bottom:auto;
 // }
 // `;
   const htmlVideo = parent.querySelector('video');
@@ -216,6 +216,9 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
     if (this.videoSlot_.canPlayType(videos[i].type) != '') {
       this.videoSlot_.setAttribute('src', videos[i].uri);
       foundSource = true;
+      if(videos[i].styles) {
+        this.videoSlot_.style.cssText = videos[i].styles
+      }
       break;
     }
   }
