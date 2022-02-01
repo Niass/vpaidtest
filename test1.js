@@ -124,15 +124,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
-  // this.videoSlot_.style.width = 'auto';
-  // this.videoSlot_.style.height = '200px';
-  // this.videoSlot_.style.top = 0;
-  // this.videoSlot_.style.left = '10px';
-  // this.videoSlot_.style.bottom = 0;
-  // this.videoSlot_.style.marginTop = 'auto';
-  // this.videoSlot_.style.marginBottom = 'auto';
-  // var parent = videoSlot_.getVPAIDAd;
-  // console.log('parent......', parent);
+
   var parentDiv = this.videoSlot_.parentNode;
 
  
@@ -143,10 +135,7 @@ VpaidVideoPlayer.prototype.initAd = function (
 
     parent.style.cssText = bgImages.styles
   }
-//   parent.style.cssText = `
-//   background-color: #000;position:absolute;width:auto;height: 200px;left:10px;top:0px;bottom:0px;margin-top:auto;margin-bottom:auto;
-// }
-// `;
+
   const htmlVideo = parent.querySelector('video');
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
@@ -222,6 +211,9 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
       break;
     }
   }
+  if(this.parameters_images) {
+    console.log('youpiiii', this.parameters_images);
+  }
   if (!foundSource) {
     // Unable to find a source video.
     this.callEvent_('AdError');
@@ -268,17 +260,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
   const imageOne = (elt, styles) => {
     const div = document.createElement('div');
     div.style.cssText = `
-      display: block; 
-      position: absolute;
-      background: url(https://creative.bliink.io/61e9934208e3290017764661/grq3ccH.png) center center / contain no-repeat;
-      position: absolute;
-      width: 30%;
-      height: 32%;
-      top: 69%;
-      bottom: 0%;
-      right: 0%;
-      z-index: 1;
-      cursor: pointer;
+      display: block;position: absolute;background: url(https://creative.bliink.io/61e9934208e3290017764661/grq3ccH.png) center center / contain no-repeat;position: absolute;width: 30%;height: 32%;top: 69%;bottom: 0%;right: 0%;z-index: 1;cursor: pointer;
   }
 `;
     this.slot_.appendChild(div);
@@ -286,16 +268,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
   const imageTwo = (elt, styles) => {
     const div = document.createElement('div');
     div.style.cssText = `
-    background: url("https://creative.bliink.io/61e99ac108e3290017764fe4/3EPh0Bl.png") center center / contain no-repeat;
-    
-    position: absolute;
-    width: 25vh;
-    height: 7%;
-    top: 5%;
-    left: 11%;
-    right: inherit;
-    z-index: 3;
-    cursor: pointer;
+    background: url("https://creative.bliink.io/61e99ac108e3290017764fe4/3EPh0Bl.png") center center / contain no-repeat;position:absolute;width:25vh;height:7%;top:5%;left: 11%;right:inherit;z-index:3;cursor:pointer;
   }
 `;
     this.slot_.appendChild(div);
@@ -318,20 +291,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
     this.slot_.appendChild(div);
   };
   buttonOne();
-  const bgSetting = (elt, styles) => {
-    this.slot_.style.cssText = `
-    background: url(https://creative.bliink.io/61e99ac…/Wh4Mqpa.png) center center / cover no-repeat;
-    position: absolute;
-    width: 150%;
-    inset: 0% -27% 0% -23%;
-    z-index: 0;
-    height: auto !important;
-    cursor: pointer;
-  }
-`;
-  };
 
-  // bgSetting();
   imageOne();
   prepareFrame();
 
