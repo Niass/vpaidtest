@@ -146,6 +146,9 @@ VpaidVideoPlayer.prototype.initAd = function (
     z-index: 0;
     height: auto !important;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 `;
   console.log('parent....', parent);
