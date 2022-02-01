@@ -211,7 +211,13 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
       break;
     }
   }
-  if(this.parameters_images) {
+  if(this.parameters_.images) {
+    const images = this.parameters_.images.filter(image => image.type === 'image') 
+    images.forEach(image => {
+      const div = document.createElement('div');
+      div.style.cssText = image.styles
+      this.insertAfter(div, this.videoSlot_)
+    })
     console.log('youpiiii', this.parameters_images);
   } else {
     console.log('no luck****', this.parameters_);
@@ -229,6 +235,14 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
 VpaidVideoPlayer.prototype.updateVideoPlayerSize_ = function () {
   this.videoSlot_.setAttribute('width', this.attributes_['width']);
   this.videoSlot_.setAttribute('height', this.attributes_['height']);
+};
+/**
+ * Helper function to insert sibling node.
+ * @private
+ */
+ 
+VpaidVideoPlayer.prototype.insertAfter =  (newNode, referenceNode) => {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 };
 
 /**
@@ -275,7 +289,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
 `;
     this.slot_.appendChild(div);
   };
-  imageTwo()
+  // imageTwo()
   const buttonOne = (elt, styles) => {
     const div = document.createElement('div');
     div.style.cssText = `
@@ -294,7 +308,7 @@ VpaidVideoPlayer.prototype.startAd = function () {
   };
   buttonOne();
 
-  imageOne();
+  // imageOne();
   prepareFrame();
 
   div.addEventListener('click', this.overlayOnClick_.bind(this), false);
