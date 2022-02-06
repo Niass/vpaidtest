@@ -170,6 +170,7 @@ const VpaidNonLinear = class {
     adImg.src = overlays[0] || '';
     adImg.style.margin = 'auto';
     adImg.style.display = 'block';
+    adImg.style.marginBottom = '20px';
     adImg.addEventListener('click', this.adClick_.bind(this), false);
     container.appendChild(adImg);
 
