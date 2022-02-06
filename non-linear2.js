@@ -151,18 +151,18 @@ const VpaidNonLinear = class {
     this.slot_.appendChild(container);
 
     // Create a div to serve as a button to go from a non-linear ad to linear.
-    const linearButton = document.createElement('div');
-    linearButton.style.background = 'green';
-    linearButton.style.display = 'block';
-    linearButton.style.margin = 'auto';
-    linearButton.style.textAlign = 'center';
-    linearButton.style.color = 'white';
-    linearButton.style.width = '480px';
-    linearButton.style.fontFamily = 'sans-serif';
-    linearButton.innerHTML = 'Click here to switch to a linear ad';
-    linearButton.addEventListener(
-        'click', this.linearButtonClick_.bind(this), false);
-    container.appendChild(linearButton);
+    // const linearButton = document.createElement('div');
+    // linearButton.style.background = 'green';
+    // linearButton.style.display = 'block';
+    // linearButton.style.margin = 'auto';
+    // linearButton.style.textAlign = 'center';
+    // linearButton.style.color = 'white';
+    // linearButton.style.width = '480px';
+    // linearButton.style.fontFamily = 'sans-serif';
+    // linearButton.innerHTML = 'Click here to switch to a linear ad';
+    // linearButton.addEventListener(
+    //     'click', this.linearButtonClick_.bind(this), false);
+    // container.appendChild(linearButton);
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
