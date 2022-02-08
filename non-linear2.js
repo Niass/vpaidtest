@@ -108,7 +108,8 @@ const VpaidNonLinear = class {
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
     console.log('this.videoSlot_*', this.videoSlot_);
-    this.videoSlot_.setAttribute("style", "background-color: red;border: 2px solid red");
+    this.videoSlot_.setAttribute("style", "background-color: red;border: 5px solid red");
+    console.log('attribute set');
     // this.videoSlot_.style.border = '2px solid red'
     // this.videoSlot_.setAttribute('width', 250);
     // this.videoSlot_.setAttribute('height', 250);
