@@ -174,6 +174,7 @@ const VpaidNonLinear = class {
     container.style.width = '135%';
     container.style.bottom = '5%';
     this.slot_.appendChild(container);
+    this.slot_.appendChild(containerTwo);
 
 
     // Create an img tag and populate it with the image passed in to the ad
