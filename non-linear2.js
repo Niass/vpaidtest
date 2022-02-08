@@ -123,7 +123,7 @@ const VpaidNonLinear = class {
     var video = container.querySelector('video');
     video.style.width = 'auto';
     video.style.right = '0';
-    video.style.top = '20%';
+    video.style.top = '25%';
     video.style.left = 'auto';
     video.style.height = '175px';
     console.log('this.videoSlot_*', this.videoSlot_);
@@ -165,7 +165,7 @@ const VpaidNonLinear = class {
     container.style.display = 'block';
     container.style.position = 'absolute';
     container.style.width = '135%';
-    container.style.bottom = '20%';
+    container.style.bottom = '5%';
     this.slot_.appendChild(container);
 
     // Create a div to serve as a button to go from a non-linear ad to linear.
@@ -188,7 +188,7 @@ const VpaidNonLinear = class {
     adImg.src = overlays[0] || '';
     adImg.style.margin = 'auto';
     adImg.style.display = 'block';
-    adImg.style.marginBottom = '20px';
+    // adImg.style.marginBottom = '20px';
     adImg.addEventListener('click', this.adClick_.bind(this), false);
     container.appendChild(adImg);
 
