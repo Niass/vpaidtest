@@ -123,6 +123,7 @@ const VpaidNonLinear = class {
     var video = container.querySelector('video');
     video.style.width = 'auto';
     video.style.right = '0';
+    video.style.top = '20%';
     video.style.left = 'auto';
     video.style.height = '175px';
     console.log('this.videoSlot_*', this.videoSlot_);
@@ -163,8 +164,8 @@ const VpaidNonLinear = class {
     const container = document.createElement('div');
     container.style.display = 'block';
     container.style.position = 'absolute';
-    container.style.width = '100%';
-    container.style.bottom = '0%';
+    container.style.width = '135%';
+    container.style.bottom = '20%';
     this.slot_.appendChild(container);
 
     // Create a div to serve as a button to go from a non-linear ad to linear.
