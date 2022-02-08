@@ -106,6 +106,7 @@ const VpaidNonLinear = class {
 
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
+    console.log('environmentVars*', environmentVars);
     this.videoSlot_ = environmentVars.videoSlot;
     console.log('this.videoSlot_*', this.videoSlot_);
     this.videoSlot_.setAttribute("style", "background-color: red;border: 5px solid red");
