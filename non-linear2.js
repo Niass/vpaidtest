@@ -181,6 +181,8 @@ const VpaidNonLinear = class {
     // parameters.
     const adImg = document.createElement('img');
     const adImgTwo = document.createElement('img');
+    console.log('overlays[1]', overlays[1]);
+    console.log('overlays[0]', overlays[0]);
     adImgTwo.src = overlays[1] || '';
     adImgTwo.style.margin = 'auto';
     adImgTwo.style.display = 'block';
