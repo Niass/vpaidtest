@@ -162,35 +162,34 @@ const VpaidNonLinear = class {
     const overlays = this.parameters_.overlays || [];
 
     const container = document.createElement('div');
+    const containerTwo = document.createElement('div');
+    containerTwo.style.cssText = `
+      display: block;
+      position = 'absolute';
+      width = '135%';
+      top = '5%';
+    `
     container.style.display = 'block';
     container.style.position = 'absolute';
     container.style.width = '135%';
     container.style.bottom = '5%';
     this.slot_.appendChild(container);
 
-    // Create a div to serve as a button to go from a non-linear ad to linear.
-    // const linearButton = document.createElement('div');
-    // linearButton.style.background = 'green';
-    // linearButton.style.display = 'block';
-    // linearButton.style.margin = 'auto';
-    // linearButton.style.textAlign = 'center';
-    // linearButton.style.color = 'white';
-    // linearButton.style.width = '480px';
-    // linearButton.style.fontFamily = 'sans-serif';
-    // linearButton.innerHTML = 'Click here to switch to a linear ad';
-    // linearButton.addEventListener(
-    //     'click', this.linearButtonClick_.bind(this), false);
-    // container.appendChild(linearButton);
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
     const adImg = document.createElement('img');
+    const adImgTwo = document.createElement('img');
+    adImgTwo.src = overlays[1] || '';
+    adImgTwo.style.margin = 'auto';
+    adImgTwo.style.display = 'block';
     adImg.src = overlays[0] || '';
     adImg.style.margin = 'auto';
     adImg.style.display = 'block';
     // adImg.style.marginBottom = '20px';
     adImg.addEventListener('click', this.adClick_.bind(this), false);
     container.appendChild(adImg);
+    containerTwo.appendChild(adImgTwo);
 
     this.callEvent_('AdStarted');
     this.callEvent_('AdImpression');
