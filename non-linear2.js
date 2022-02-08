@@ -112,17 +112,16 @@ const VpaidNonLinear = class {
     var container = this.videoSlot_.parentElement.parentElement.parentElement.parentElement;
     container.style.cssText = `
     background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
-  position: absolute;
   inset: 0% 0% 0% 0%;
   z-index: 0;
-  height: auto !important;
   cursor: pointer;
 }
 `;
     // https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg
     var video = container.querySelector('video');
     video.style.width = 'auto';
-    video.style.height = '200px';
+    video.style.right = '0';
+    video.style.height = '160px';
     console.log('this.videoSlot_*', this.videoSlot_);
     video.style.border = '3px solid red';
     console.log('this.slot_ border set');
