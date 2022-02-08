@@ -111,6 +111,7 @@ const VpaidNonLinear = class {
     // this.videoSlot_.style.top = '15%';
     var container = this.videoSlot_.parentElement.parentElement.parentElement.parentElement;
     container.style.cssText = `
+    transition: background 1s;
     -webkit-transition: background-image 0.2s ease-in-out;
 transition: background-image 0.2s ease-in-out;
 }
