@@ -108,12 +108,12 @@ const VpaidNonLinear = class {
     this.slot_ = environmentVars.slot;
     console.log('environmentVars*', environmentVars);
     this.videoSlot_ = environmentVars.videoSlot;
-    this.videoSlot_.style.width = 'auto';
-    this.videoSlot_.style.height = '200px';
-    this.videoSlot_.style.top = '15%';
+    // this.videoSlot_.style.top = '15%';
+    var adContiner = this.videoSlot_.parentElement.parentElement.parentElement;
+    adContiner.style.width = 'auto';
+    adContiner.style.height = '200px';
     console.log('this.videoSlot_*', this.videoSlot_);
-    this.videoSlot_.setAttribute('style', 'background-color: red;border: 5px solid red');
-    this.videoSlot_.style.border = "3px solid red";
+    adContiner.style.border = "3px solid red";
     console.log('this.slot_ border set');
     // this.videoSlot_.style.border = '2px solid red'
     // this.videoSlot_.setAttribute('width', 250);
