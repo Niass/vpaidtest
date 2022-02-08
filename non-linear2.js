@@ -121,9 +121,9 @@ const VpaidNonLinear = class {
     var video = container.querySelector('video');
     video.style.width = 'auto';
     video.style.right = '0';
-    video.style.height = '160px';
+    video.style.left = 'auto';
+    video.style.height = '175px';
     console.log('this.videoSlot_*', this.videoSlot_);
-    video.style.border = '3px solid red';
     console.log('this.slot_ border set');
     // this.videoSlot_.style.border = '2px solid red'
     // this.videoSlot_.setAttribute('width', 250);
