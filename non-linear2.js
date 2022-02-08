@@ -111,6 +111,11 @@ const VpaidNonLinear = class {
     // this.videoSlot_.style.top = '15%';
     var container = this.videoSlot_.parentElement.parentElement.parentElement.parentElement;
     container.style.cssText = `
+    -webkit-transition: background-image 0.2s ease-in-out;
+transition: background-image 0.2s ease-in-out;
+}
+`;
+    container.style.cssText = `
     background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
   inset: 0% 0% 0% 0%;
   z-index: 0;
