@@ -201,8 +201,10 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
   var foundSource = false;
   var videos = this.parameters_.mediaFiles || [];
   for (var i = 0; i < videos.length; i++) {
+    console.log('src att', this.videoSlot_.src);
     // Choose the first video with a supported mimetype.
     if (this.videoSlot_.canPlayType(videos[i].type) != '') {
+      console.log('src att', this.videoSlot_.src);
       this.videoSlot_.setAttribute('src', videos[i].uri);
       foundSource = true;
       if(videos[i].styles) {
