@@ -165,9 +165,9 @@ const VpaidNonLinear = class {
     const containerTwo = document.createElement('div');
     containerTwo.style.cssText = `
       display: block;
-      position = 'absolute';
-      width = '135%';
-      top = '5%';
+      position: 'absolute';
+      width: '135%';
+      top:'5%';
     `
     container.style.display = 'block';
     container.style.position = 'absolute';
