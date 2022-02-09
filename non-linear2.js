@@ -110,7 +110,7 @@ const VpaidNonLinear = class {
     console.log('this.videoSlot_ src*$', this.videoSlot_.src);
     this.videoSlot_ = environmentVars.videoSlot;
     // this.videoSlot_.style.top = '15%';
-    var container = this.videoSlot_.parentElement.parentElement.parentElement.parentElement;
+    var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
 
     container.style.cssText = `
     transition: background 1s;
@@ -127,7 +127,7 @@ const VpaidNonLinear = class {
     video.style.top = '25%';
     video.style.left = 'auto';
     video.style.height = '175px';
-    console.log('this.videoSlot_ src*', this.videoSlot_.src);
+    // console.log('this.videoSlot_ src*', this.videoSlot_.src);
     console.log('this.slot_ border set');
     // this.videoSlot_.style.border = '2px solid red'
     // this.videoSlot_.setAttribute('width', 250);
