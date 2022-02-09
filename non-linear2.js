@@ -196,6 +196,7 @@ const VpaidNonLinear = class {
       containerTwo.appendChild(adImgTwo);
 
     } else {
+      console.log('type**', typeof this.videoSlot_);
       console.log('no instanceof element', this.videoSlot_);
     }
     console.log('overlays[1]', overlays[1]);
