@@ -131,12 +131,21 @@ const VpaidNonLinear = class {
     `;
   
     var video = container.querySelector('video');
+    video.style.cssText = `
+    width: auto;
+    right: 0;
+    top: 25%;
+    left :auto;
+    height: 175px;
+    position: absolute;
+
+`;
     console.log('video____', video);
-    video.style.width = 'auto';
-    video.style.right = '0';
-    video.style.top = '25%';
-    video.style.left = 'auto';
-    video.style.height = '175px';
+    // video.style.width = 'auto';
+    // video.style.right = '0';
+    // video.style.top = '25%';
+    // video.style.left = 'auto';
+    // video.style.height = '175px';
       }
       
     }
