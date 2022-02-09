@@ -128,7 +128,6 @@ const VpaidNonLinear = class {
     video.style.left = 'auto';
     video.style.height = '175px';
     // console.log('this.videoSlot_ src*', this.videoSlot_.src);
-    console.log('this.slot_ border set');
     // this.videoSlot_.style.border = '2px solid red'
     // this.videoSlot_.setAttribute('width', 250);
     // this.videoSlot_.setAttribute('height', 250);
@@ -259,6 +258,7 @@ const VpaidNonLinear = class {
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) {
       return;
     }
+    console.log('this.videoSlot_.src = ' + this.videoSlot_.src);
     const percentPlayed = (this.videoSlot_.currentTime * 100.0) / this.videoSlot_.duration;
     let nextQuartile = this.quartileEvents_[this.nextQuartileIndex_];
     if (percentPlayed >= nextQuartile.value) {
