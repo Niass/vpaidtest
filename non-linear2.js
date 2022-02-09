@@ -109,28 +109,26 @@ const VpaidNonLinear = class {
     console.log('environmentVars*', environmentVars);
     this.videoSlot_ = environmentVars.videoSlot;
     console.log('this.videoSlot_ src*$', this.videoSlot_.src);
+    console.log('this.videoSlot_ currentTime*$', this.videoSlot_.currentTime);
     // this.videoSlot_.style.top = '15%';
     var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+    if(container) {
+      container.style.cssText = `
+      transition: background 1s;
+      background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
+    inset: 0% 0% 0% 0%;
+    z-index: 0;
+    cursor: pointer;
+  }
+  `;
 
-    container.style.cssText = `
-    transition: background 1s;
-    background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
-  inset: 0% 0% 0% 0%;
-  z-index: 0;
-  cursor: pointer;
-}
-`;
-    // https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg
-    var video = container.querySelector('video');
-    video.style.width = 'auto';
-    video.style.right = '0';
-    video.style.top = '25%';
-    video.style.left = 'auto';
-    video.style.height = '175px';
-    // console.log('this.videoSlot_ src*', this.videoSlot_.src);
-    // this.videoSlot_.style.border = '2px solid red'
-    // this.videoSlot_.setAttribute('width', 250);
-    // this.videoSlot_.setAttribute('height', 250);
+  var video = container.querySelector('video');
+  video.style.width = 'auto';
+  video.style.right = '0';
+  video.style.top = '25%';
+  video.style.left = 'auto';
+  video.style.height = '175px';
+    }
 
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
