@@ -107,7 +107,7 @@ const VpaidNonLinear = class {
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
     console.log('environmentVars*', environmentVars);
-    console.log('this.videoSlot_ src*$', this.videoSlot_.src);
+    // console.log('this.videoSlot_ src*$', this.videoSlot_.src);
     this.videoSlot_ = environmentVars.videoSlot;
     // this.videoSlot_.style.top = '15%';
     var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
