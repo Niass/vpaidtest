@@ -117,6 +117,7 @@ const VpaidNonLinear = class {
 
     // this.videoSlot_.style.top = '15%';
     var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+    console.log('container***', container);
     if(container) {
       container.style.cssText = `
       transition: background 1s;
