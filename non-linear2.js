@@ -231,7 +231,7 @@ const VpaidNonLinear = class {
       // Choose the first video with a supported mimetype.
       if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
         this.videoSlot_.setAttribute('src', videos[i].url);
-        console.log('this.videoSlot_*', this.videoSlot_);
+        console.log('this.videoSlot_* src$', this.videoSlot_.src);
         // Set start time of linear ad to calculate remaining time.
         const date = new Date();
         this.startTime_ = date.getTime();
