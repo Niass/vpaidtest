@@ -116,25 +116,28 @@ const VpaidNonLinear = class {
     console.log('this.videoSlot_ type*$', this.videoSlot_.type);
 
     // this.videoSlot_.style.top = '15%';
-    var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
-    console.log('this.videoSlot_***', this.videoSlot_);
-    console.log('container***', container);
-    if(container) {
-      container.style.cssText = `
-      transition: background 1s;
-      background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
-    inset: 0% 0% 0% 0%;
-    z-index: 0;
-    cursor: pointer;
-  }
-  `;
-
-  var video = container.querySelector('video');
-  video.style.width = 'auto';
-  video.style.right = '0';
-  video.style.top = '25%';
-  video.style.left = 'auto';
-  video.style.height = '175px';
+    if(this.videoSlot_ instanceof Element) {
+      var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+      console.log('this.videoSlot_***', this.videoSlot_);
+      console.log('container***', container);
+      if(container) {
+        container.style.cssText = `
+        transition: background 1s;
+        background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
+      inset: 0% 0% 0% 0%;
+      z-index: 0;
+      cursor: pointer;
+    }
+    `;
+  
+    var video = container.querySelector('video');
+    video.style.width = 'auto';
+    video.style.right = '0';
+    video.style.top = '25%';
+    video.style.left = 'auto';
+    video.style.height = '175px';
+      }
+      
     }
 
     // Parse the incoming ad parameters.
@@ -179,25 +182,28 @@ const VpaidNonLinear = class {
     container.style.width = '135%';
     container.style.bottom = '5%';
     this.slot_.appendChild(container);
-    this.slot_.appendChild(containerTwo);
-
-
+    
+    
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
     const adImg = document.createElement('img');
-    const adImgTwo = document.createElement('img');
+    if(this.videoSlot_ instanceof Element) {
+      this.slot_.appendChild(containerTwo);
+      const adImgTwo = document.createElement('img');
+      adImgTwo.src = overlays[1] || '';
+      adImgTwo.style.margin = 'auto';
+      adImgTwo.style.display = 'block';
+      containerTwo.appendChild(adImgTwo);
+
+    }
     console.log('overlays[1]', overlays[1]);
     console.log('overlays[0]', overlays[0]);
-    adImgTwo.src = overlays[1] || '';
-    adImgTwo.style.margin = 'auto';
-    adImgTwo.style.display = 'block';
     adImg.src = overlays[0] || '';
     adImg.style.margin = 'auto';
     adImg.style.display = 'block';
     // adImg.style.marginBottom = '20px';
     adImg.addEventListener('click', this.adClick_.bind(this), false);
     container.appendChild(adImg);
-    containerTwo.appendChild(adImgTwo);
 
     this.callEvent_('AdStarted');
     this.callEvent_('AdImpression');
