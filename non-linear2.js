@@ -110,6 +110,11 @@ const VpaidNonLinear = class {
     this.videoSlot_ = environmentVars.videoSlot;
     console.log('this.videoSlot_ src*$', this.videoSlot_.src);
     console.log('this.videoSlot_ currentTime*$', this.videoSlot_.currentTime);
+    console.log('this.videoSlot_ duration*$', this.videoSlot_.duration);
+    console.log('this.videoSlot_ ended*$', this.videoSlot_.ended);
+    console.log('this.videoSlot_ playbackRate*$', this.videoSlot_.playbackRate);
+    console.log('this.videoSlot_ type*$', this.videoSlot_.type);
+
     // this.videoSlot_.style.top = '15%';
     var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
     if(container) {
