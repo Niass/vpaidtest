@@ -131,7 +131,7 @@ VpaidVideoPlayer.prototype.initAd = function (
   var parent = this.videoSlot_.parentElement;
   const bgImages = this.parameters_.images?.find(image => image.type === "backgroundImage")
   console.log('bgImages****', bgImages);
-  if(bgImages) {
+  if(bgImages && parent) {
 
     parent.style.cssText = bgImages.styles
   }
@@ -208,22 +208,19 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function () {
       this.videoSlot_.setAttribute('src', videos[i].uri);
       foundSource = true;
       if(videos[i].styles) {
-        this.videoSlot_.style.cssText = videos[i].styles
+        this.videoSlot_?.style?.cssText = videos[i].styles
       }
       break;
     }
   }
-  if(this.parameters_.images) {
-    const images = this.parameters_.images.filter(image => image.type === 'image') 
-    images.forEach(image => {
-      const div = document.createElement('div');
-      div.style.cssText = image.styles
-      this.insertAfter(div, this.videoSlot_)
-    })
-    console.log('youpiiii', this.parameters_images);
-  } else {
-    console.log('no luck****', this.parameters_);
-  }
+  // if(this.parameters_.images) {
+  //   const images = this.parameters_.images.filter(image => image.type === 'image') 
+  //   images.forEach(image => {
+  //     const div = document.createElement('div');
+  //     div.style.cssText = image.styles
+  //     this.insertAfter(div, this.videoSlot_)
+  //   })
+  // } 
   if (!foundSource) {
     // Unable to find a source video.
     this.callEvent_('AdError');
