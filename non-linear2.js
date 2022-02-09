@@ -131,6 +131,7 @@ const VpaidNonLinear = class {
     `;
   
     var video = container.querySelector('video');
+    console.log('video____', video);
     video.style.width = 'auto';
     video.style.right = '0';
     video.style.top = '25%';
