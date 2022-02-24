@@ -29,7 +29,7 @@
 <![CDATA[ {"overlays":["https://creative.bliink.io/61fa8ba94ab26d001895b529/OMXjOFR.png","https://creative.bliink.io/61fa8ba94ab26d001895b529/uebKmfe.png"], "videos":[ {"url":"https://googleads.github.io/googleads-ima-html5/media/LinearVPAIDCreative.mp4","mimetype":"video/mp4"}]} ]]>
 </AdParameters>
 <StaticResource creativeType="application/javascript">
-<![CDATA[ https://niass.github.io/vpaidtest/non-linear2.js ]]>
+<![CDATA[ https://niass.github.io/vpaidtest/non-linear1.js ]]>
 </StaticResource>
 <NonLinearClickThrough id="GDFP">
 <![CDATA[ http://google.com ]]>
