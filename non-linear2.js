@@ -221,6 +221,7 @@ const VpaidNonLinear = class {
     top: 25%;
     left :auto;
     height: 175px;
+    border: 2px solid yellow;
     // position: absolute;
 
 `;
