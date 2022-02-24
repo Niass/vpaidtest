@@ -214,14 +214,14 @@ const VpaidNonLinear = class {
     }
     `;
   
-    var video = container.querySelector('video');
-    video.style.cssText = `
+    // var video = container.querySelector('video');
+    this.videoSlot_.style.cssText = `
     width: auto;
     right: 0;
     top: 25%;
     left :auto;
     height: 175px;
-    position: absolute;
+    // position: absolute;
 
 `;
     console.log('video____', video);
