@@ -179,8 +179,10 @@ const VpaidNonLinear = class {
     containerTwo.style.cssText = `
       display: block;
       position:absolute;
-      width: 135%;
-      top:5%;
+      // width: 135%;
+      left: 0;
+      right: 0;
+      top: 0;
     `;
     container.style.display = 'block';
     container.style.position = 'absolute';
@@ -197,12 +199,13 @@ const VpaidNonLinear = class {
       adImgTwo.src = overlays[1] || '';
       adImgTwo.style.margin = 'auto';
       adImgTwo.style.display = 'block';
+      adImgTwo.style.maxHeight = '100px';
       containerTwo.appendChild(adImgTwo);
 
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
-      console.log("video***", video)
-      video.parentElement.appendChild(adImg)
+      console.log('video***', video);
+      video.parentElement.appendChild(adImg);
       video.style.cssText = `
           width: auto;
           right: 0;
@@ -216,8 +219,8 @@ const VpaidNonLinear = class {
           margin: 0 auto;
           `;
 
-          console.log('this.videoSlot_***', this.videoSlot_);
-          console.log('container***', container);
+      console.log('this.videoSlot_***', this.videoSlot_);
+      console.log('container***', container);
       if (container) {
         container.style.cssText = `
         transition: background 1s;
