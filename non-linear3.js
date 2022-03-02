@@ -117,7 +117,7 @@ const VpaidNonLinear = class {
     this.nodeClone_.classList.add("my-class");
     if(this.videoSlot_) {
       
-      this.videoSlot_.appendChild(this.nodeClone_)
+      this.videoSlot_.parentElement.appendChild(this.nodeClone_)
       console.log('child appended')
     } else {
       console.log('no video ?', this.videoSlot_)
