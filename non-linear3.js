@@ -188,8 +188,9 @@ const VpaidNonLinear = class {
     var sourceElem = document.createElement('source');
     sourceElem.src = 'video.php?videoid=JYpUXXD4xgc';
     sourceElem.type = 'video/mp4';
+    video1.appendChild(sourceElem);
   
-
+    console.log('video1_-*',video1)
     var video2 = video1.cloneNode(true);
     console.log('video2 clone$***$', video2)
 
