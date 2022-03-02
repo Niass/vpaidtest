@@ -124,7 +124,7 @@ const VpaidNonLinear = class {
   updateVideoPlayerSize_() {
     const width = this.attributes_['width'];
     const heigth = this.attributes_['height'];
-    console.log('updateVideoPlayerSize_ called*********', width, heigth)
+    console.log('updateVideoPlayerSize_ called*********$', width, heigth)
     this.videoSlot_.setAttribute('width', 200);
     this.videoSlot_.setAttribute('height', 200);
   }
