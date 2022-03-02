@@ -200,12 +200,13 @@ const VpaidNonLinear = class {
       adImgTwo.style.margin = 'auto';
       adImgTwo.style.display = 'block';
       adImgTwo.style.maxHeight = '100px';
-      containerTwo.appendChild(adImgTwo);
+      // containerTwo.appendChild(adImgTwo);
 
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
       console.log('video***', video);
       video.parentElement.appendChild(adImg);
+      video.parentElement.appendChild(adImgTwo);
       video.style.cssText = `
           width: auto;
           right: 0;
