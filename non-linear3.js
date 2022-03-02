@@ -274,6 +274,7 @@ const VpaidNonLinear = class {
       return;
     }
     const percentPlayed = (this.videoSlot_.currentTime * 100.0) / this.videoSlot_.duration;
+    console.log('timeUpdateHandler_ call', percentPlayed);
     let nextQuartile = this.quartileEvents_[this.nextQuartileIndex_];
     if (percentPlayed >= nextQuartile.value) {
       this.eventsCallbacks_[nextQuartile.event]();
