@@ -33,17 +33,17 @@ const VpaidNonLinear = class {
      * @private {Object}
      */
     this.attributes_ = {
-      'companions': '',
-      'desiredBitrate': 256,
-      'duration': 10,
-      'expanded': false,
-      'height': 0,
-      'icons': '',
-      'linear': false,
-      'skippableState': false,
-      'viewMode': 'normal',
-      'width': 0,
-      'volume': 1.0
+      companions: '',
+      desiredBitrate: 256,
+      duration: 10,
+      expanded: false,
+      height: 0,
+      icons: '',
+      linear: false,
+      skippableState: false,
+      viewMode: 'normal',
+      width: 0,
+      volume: 1.0,
     };
 
     /**
@@ -57,11 +57,12 @@ const VpaidNonLinear = class {
      * @private {Object}
      */
     this.quartileEvents_ = [
-      {event: 'AdImpression', value: 0}, {event: 'AdVideoStart', value: 0},
-      {event: 'AdVideoFirstQuartile', value: 25},
-      {event: 'AdVideoMidpoint', value: 50},
-      {event: 'AdVideoThirdQuartile', value: 75},
-      {event: 'AdVideoComplete', value: 100}
+      { event: 'AdImpression', value: 0 },
+      { event: 'AdVideoStart', value: 0 },
+      { event: 'AdVideoFirstQuartile', value: 25 },
+      { event: 'AdVideoMidpoint', value: 50 },
+      { event: 'AdVideoThirdQuartile', value: 75 },
+      { event: 'AdVideoComplete', value: 100 },
     ];
 
     /**
@@ -83,7 +84,7 @@ const VpaidNonLinear = class {
    * @return {string}
    */
   handshakeVersion(version) {
-    return ('2.0');
+    return '2.0';
   }
 
   /**
@@ -97,8 +98,7 @@ const VpaidNonLinear = class {
    * @param {Object} environmentVars Runtime variables associated with the
    *     creative like the slot and video slot.
    */
-  initAd(
-      width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
+  initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
     this.attributes_['width'] = width;
     this.attributes_['height'] = height;
     this.attributes_['viewMode'] = viewMode;
@@ -106,14 +106,21 @@ const VpaidNonLinear = class {
 
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
+    console.log('environmentVars*', environmentVars);
     this.videoSlot_ = environmentVars.videoSlot;
+    console.log('this.videoSlot_ src*$', this.videoSlot_.src);
+    console.log('this.videoSlot_ currentTime*$', this.videoSlot_.currentTime);
+    console.log('this.videoSlot_ duration*$', this.videoSlot_.duration);
+    console.log('this.videoSlot_ ended*$', this.videoSlot_.ended);
+    console.log('this.videoSlot_ playbackRate*$', this.videoSlot_.playbackRate);
+    console.log('this.videoSlot_ type*$', this.videoSlot_.type);
+
+
 
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
-    this.log(
-        'initAd ' + width + 'x' + height + ' ' + viewMode + ' ' +
-        desiredBitrate);
+    this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
     this.callEvent_('AdLoaded');
   }
 
@@ -122,6 +129,7 @@ const VpaidNonLinear = class {
    * @private
    */
   updateVideoPlayerSize_() {
+    console.log('update updateVideoPlayerSize_ call');
     this.videoSlot_.setAttribute('width', this.attributes_['width']);
     this.videoSlot_.setAttribute('height', this.attributes_['height']);
   }
@@ -139,32 +147,74 @@ const VpaidNonLinear = class {
     const overlays = this.parameters_.overlays || [];
 
     const container = document.createElement('div');
+    const containerTwo = document.createElement('div');
+    containerTwo.style.cssText = `
+      display: block;
+      position:absolute;
+      width: 135%;
+      top:5%;
+    `
     container.style.display = 'block';
     container.style.position = 'absolute';
-    container.style.width = '100%';
-    container.style.bottom = '0%';
+    container.style.width = '135%';
+    container.style.bottom = '5%';
     this.slot_.appendChild(container);
-    console.log('this.slot_', this.slot_)
-    // Create a div to serve as a button to go from a non-linear ad to linear.
-    const linearButton = document.createElement('div');
-    linearButton.style.background = 'green';
-    linearButton.style.display = 'block';
-    linearButton.style.margin = 'auto';
-    linearButton.style.textAlign = 'center';
-    linearButton.style.color = 'white';
-    linearButton.style.width = '480px';
-    linearButton.style.fontFamily = 'sans-serif';
-    linearButton.innerHTML = 'Click here to switch to a linear ad';
-    linearButton.addEventListener(
-        'click', this.linearButtonClick_.bind(this), false);
-    container.appendChild(linearButton);
-
+    
+    
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
     const adImg = document.createElement('img');
+    if(this.videoSlot_.nodeName) {
+      this.slot_.appendChild(containerTwo);
+      const adImgTwo = document.createElement('img');
+      adImgTwo.src = overlays[1] || '';
+      adImgTwo.style.margin = 'auto';
+      adImgTwo.style.display = 'block';
+      containerTwo.appendChild(adImgTwo);
+
+      const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+      console.log('this.videoSlot_***', this.videoSlot_);
+      console.log('container***', container);
+      if(container) {
+        container.style.cssText = `
+        transition: background 1s;
+        background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
+      inset: 0% 0% 0% 0%;
+      z-index: 0;
+      cursor: pointer;
+    }
+    `;
+  
+    var video = container.querySelector('video');
+    video.style.cssText = `
+    width: auto;
+    right: 0;
+    top: 25%;
+    left :auto;
+    height: 175px;
+    position: absolute;
+    border: 2px solid yellow;
+    z-index: 2;
+
+`;
+    console.log('video____', video);
+    // video.style.width = 'auto';
+    // video.style.right = '0';
+    // video.style.top = '25%';
+    // video.style.left = 'auto';
+    // video.style.height = '175px';
+      }
+
+    } else {
+      console.log('type node name**', this.videoSlot_.nodeName);
+      console.log('no instanceof element', this.videoSlot_);
+    }
+    console.log('overlays[1]', overlays[1]);
+    console.log('overlays[0]', overlays[0]);
     adImg.src = overlays[0] || '';
     adImg.style.margin = 'auto';
     adImg.style.display = 'block';
+    // adImg.style.marginBottom = '20px';
     adImg.addEventListener('click', this.adClick_.bind(this), false);
     container.appendChild(adImg);
 
@@ -205,17 +255,14 @@ const VpaidNonLinear = class {
       // Choose the first video with a supported mimetype.
       if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
         this.videoSlot_.setAttribute('src', videos[i].url);
-
+        console.log('this.videoSlot_* src$', this.videoSlot_.src);
         // Set start time of linear ad to calculate remaining time.
         const date = new Date();
         this.startTime_ = date.getTime();
 
-        this.videoSlot_.addEventListener(
-            'timeupdate', this.timeUpdateHandler_.bind(this), false);
-        this.videoSlot_.addEventListener(
-            'loadedmetadata', this.loadedMetadata_.bind(this), false);
-        this.videoSlot_.addEventListener(
-            'ended', this.stopAd.bind(this), false);
+        this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
+        this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
+        this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
 
         this.videoSlot_.play();
 
@@ -235,16 +282,15 @@ const VpaidNonLinear = class {
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) {
       return;
     }
-    const percentPlayed =
-        this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
+    console.log('this.videoSlot_.src = ' + this.videoSlot_.src);
+    const percentPlayed = (this.videoSlot_.currentTime * 100.0) / this.videoSlot_.duration;
     let nextQuartile = this.quartileEvents_[this.nextQuartileIndex_];
     if (percentPlayed >= nextQuartile.value) {
       this.eventsCallbacks_[nextQuartile.event]();
       this.nextQuartileIndex_ += 1;
     }
     if (this.videoSlot_.duration > 0) {
-      this.attributes_['remainingTime'] =
-          this.videoSlot_.duration - this.videoSlot_.currentTime;
+      this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime;
     }
   }
 
@@ -399,8 +445,7 @@ const VpaidNonLinear = class {
   getAdRemainingTime() {
     const date = new Date();
     const currentTime = date.getTime();
-    const remainingTime =
-        this.attributes_.duration - (currentTime - this.startTime_) / 1000.0;
+    const remainingTime = this.attributes_.duration - (currentTime - this.startTime_) / 1000.0;
     return remainingTime;
   }
 
@@ -471,6 +516,6 @@ const VpaidNonLinear = class {
  * Main function called by wrapper to get the VPAID ad.
  * @return {Object} The VPAID compliant ad.
  */
-var getVPAIDAd = function() {
+var getVPAIDAd = function () {
   return new VpaidNonLinear();
 };
