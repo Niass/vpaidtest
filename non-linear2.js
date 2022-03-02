@@ -174,7 +174,7 @@ const VpaidNonLinear = class {
     // Create a div to contain our ad elements.
     const overlays = this.parameters_.overlays || [];
 
-    const container = document.createElement('div');
+    const containerOne = document.createElement('div');
     const containerTwo = document.createElement('div');
     containerTwo.style.cssText = `
       display: block;
@@ -184,11 +184,11 @@ const VpaidNonLinear = class {
       right: 0;
       top: 0;
     `;
-    container.style.display = 'block';
-    container.style.position = 'absolute';
-    container.style.width = '135%';
-    container.style.bottom = '5%';
-    this.slot_.appendChild(container);
+    containerOne.style.display = 'block';
+    containerOne.style.position = 'absolute';
+    containerOne.style.width = '135%';
+    containerOne.style.bottom = '5%';
+    this.slot_.appendChild(containerOne);
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
@@ -201,7 +201,7 @@ const VpaidNonLinear = class {
       adImgTwo.style.display = 'block';
       adImgTwo.style.maxHeight = '100px';
       // containerTwo.appendChild(adImgTwo);
-      container.appendChild(adImg);
+      containerOne.appendChild(adImg);
       containerTwo.appendChild(adImgTwo);
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
