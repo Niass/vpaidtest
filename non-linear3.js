@@ -217,7 +217,6 @@ const VpaidNonLinear = class {
    * @private
    */
   adClick_() {
-    console.log('adClcik vid', this.videoSlot_)
     if ('AdClickThru' in this.eventsCallbacks_) {
       this.eventsCallbacks_['AdClickThru']('', '0', true);
     }
@@ -229,6 +228,7 @@ const VpaidNonLinear = class {
    * @private
    */
   linearButtonClick_() {
+    console.log('adClcik vid', this.videoSlot_)
     this.log('Linear Button Click');
     // This will turn the ad into a linear ad.
     this.attributes_.linear = true;
