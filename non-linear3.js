@@ -114,7 +114,12 @@ const VpaidNonLinear = class {
     this.videoSlot_ = environmentVars.videoSlot;
     this.nodeClone_ = this.videoSlot_.cloneNode(true)
     this.nodeClone_.classList.add("my-class");
-    this.videoSlot.appendChild(this.nodeClone_)
+    if(this.videoSlot) {
+      
+      this.videoSlot.appendChild(this.nodeClone_)
+    } else {
+      console.log('no video ?', this.videoSlot)
+    }
     console.log(' this.nodeClone*',  this.nodeClone_)
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
