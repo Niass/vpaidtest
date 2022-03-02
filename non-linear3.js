@@ -198,6 +198,7 @@ const VpaidNonLinear = class {
     
     console.log('src video', this.videoSlot_.src)
     console.log('src video get', this.videoSlot_.getAttribute("src"))
+    console.log('src video test', video2.getAttribute("src"))
     this.nodeClone_.classList.add('my-class');
     if (this.videoSlot_) {
       this.videoSlot_.parentElement.appendChild(this.nodeClone_);
