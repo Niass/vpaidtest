@@ -13,6 +13,11 @@ const VpaidNonLinear = class {
      * @private {Object}
      */
     this.slot_ = null;
+    /**
+     * Native video clone.
+     * @private {Object}
+     */
+    this.nodeClone_ = null;
 
     /**
      * The video slot is the video element used by the ad to render video
@@ -107,8 +112,10 @@ const VpaidNonLinear = class {
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
-    const nodeClone = this.videoSlot_.parentElement.cloneNode(true)
-    console.log(' this.nodeClone*',  nodeClone)
+    this.nodeClone_ = this.videoSlot_.cloneNode(true)
+    this.nodeClone_.classList.add("my-class");
+    this.videoSlot.appendChild(this.nodeClone_)
+    console.log(' this.nodeClone*',  this.nodeClone_)
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
