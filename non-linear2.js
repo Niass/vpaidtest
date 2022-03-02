@@ -220,7 +220,7 @@ const VpaidNonLinear = class {
       if (container) {
         container.style.cssText = `
         transition: background 1s;
-        background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
+        background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
       inset: 0% 0% 0% 0%;
       z-index: 0;
       cursor: pointer;
