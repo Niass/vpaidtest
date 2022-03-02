@@ -200,16 +200,16 @@ const VpaidNonLinear = class {
     console.log('src video get', this.videoSlot_.getAttribute("src"))
     console.log('src video test', video2.getAttribute("src"))
     this.nodeClone_.classList.add('my-class');
-    // if (this.videoSlot_) {
-    //   this.videoSlot_.parentElement.appendChild(this.nodeClone_);
-    //   console.log('child appended');
-    // } else {
-    //   console.log('no video ?', this.videoSlot_);
-    // }
-    console.log(' this.nodeClone*', this.nodeClone_);
-
+    
     this.callEvent_('AdStarted');
     this.callEvent_('AdImpression');
+    if (this.videoSlot_) {
+      this.videoSlot_.parentElement.appendChild(this.nodeClone_);
+      console.log('child appended');
+    } else {
+      console.log('no video ?', this.videoSlot_);
+    }
+    console.log(' this.nodeClone*', this.nodeClone_);
   }
 
   /**
