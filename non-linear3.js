@@ -217,6 +217,7 @@ const VpaidNonLinear = class {
    * @private
    */
   adClick_() {
+    console.log('adClcik vid', this.videoSlot_)
     if ('AdClickThru' in this.eventsCallbacks_) {
       this.eventsCallbacks_['AdClickThru']('', '0', true);
     }
