@@ -116,34 +116,33 @@ const VpaidNonLinear = class {
     console.log('this.videoSlot_ type*$', this.videoSlot_.type);
 
     // this.videoSlot_.style.top = '15%';
-    if(this.videoSlot_.nodeName) {
+    if (this.videoSlot_.nodeName) {
       var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       // console.log('this.videoSlot_***', this.videoSlot_);
       // console.log('container***', container);
-//       if(container) {
-//         container.style.cssText = `
-//         transition: background 1s;
-//         background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
-//       inset: 0% 0% 0% 0%;
-//       z-index: 0;
-//       cursor: pointer;
-//     }
-//     `;
-  
-//     var video = container.querySelector('video');
-//     video.style.cssText = `
-//     width: auto;
-//     right: 0;
-//     top: 25%;
-//     left :auto;
-//     height: 175px;
-//     position: absolute;
+      //       if(container) {
+      //         container.style.cssText = `
+      //         transition: background 1s;
+      //         background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
+      //       inset: 0% 0% 0% 0%;
+      //       z-index: 0;
+      //       cursor: pointer;
+      //     }
+      //     `;
 
-// `;
-//     console.log('video____', video);
- 
-//       }
-      
+      //     var video = container.querySelector('video');
+      //     video.style.cssText = `
+      //     width: auto;
+      //     right: 0;
+      //     top: 25%;
+      //     left :auto;
+      //     height: 175px;
+      //     position: absolute;
+
+      // `;
+      //     console.log('video____', video);
+
+      //       }
     }
 
     // Parse the incoming ad parameters.
@@ -182,18 +181,17 @@ const VpaidNonLinear = class {
       position:absolute;
       width: 135%;
       top:5%;
-    `
+    `;
     container.style.display = 'block';
     container.style.position = 'absolute';
     container.style.width = '135%';
     container.style.bottom = '5%';
     this.slot_.appendChild(container);
-    
-    
+
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
     const adImg = document.createElement('img');
-    if(this.videoSlot_.nodeName) {
+    if (this.videoSlot_.nodeName) {
       this.slot_.appendChild(containerTwo);
       const adImgTwo = document.createElement('img');
       adImgTwo.src = overlays[1] || '';
@@ -202,9 +200,24 @@ const VpaidNonLinear = class {
       containerTwo.appendChild(adImgTwo);
 
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
-      console.log('this.videoSlot_***', this.videoSlot_);
-      console.log('container***', container);
-      if(container) {
+      const video = container.querySelector('video');
+      console.log("video***", video)
+      
+      video.style.cssText = `
+          width: auto;
+          right: 0;
+          top: 25%;
+          height: 175px;
+          position: absolute;
+          border: 2px solid #ddc157;
+          z-index: 2;
+          border-radius: 5px;
+          margin: 0 auto;
+          `;
+
+          console.log('this.videoSlot_***', this.videoSlot_);
+          console.log('container***', container);
+      if (container) {
         container.style.cssText = `
         transition: background 1s;
         background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
@@ -213,29 +226,8 @@ const VpaidNonLinear = class {
       cursor: pointer;
     }
     `;
-  
-    var video = container.querySelector('video');
-    video.style.cssText = `
-    width: auto;
-    right: 0;
-    top: 25%;
-    // left :auto;
-    height: 175px;
-    position: absolute;
-    border: 2px solid #ddc157;
-    z-index: 2;
-    border-radius: 5px;
-    margin: 0 auto;
-
-`;
-    console.log('video____', video);
-    // video.style.width = 'auto';
-    // video.style.right = '0';
-    // video.style.top = '25%';
-    // video.style.left = 'auto';
-    // video.style.height = '175px';
+        console.log('video____', video);
       }
-
     } else {
       console.log('type node name**', this.videoSlot_.nodeName);
       console.log('no instanceof element', this.videoSlot_);
