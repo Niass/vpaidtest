@@ -227,6 +227,9 @@ const VpaidNonLinear = class {
     }
     `;
         console.log('video____', video);
+        container.style.width = this.attributes_['width']
+        container.style.height = this.attributes_['height']
+        console.log('set________')
       }
     } else {
       console.log('type node name**', this.videoSlot_.nodeName);
