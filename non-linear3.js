@@ -112,6 +112,7 @@ const VpaidNonLinear = class {
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
+    console.log('this.videoSlot before', this.videoSlot)
     this.nodeClone_ = this.videoSlot_.cloneNode(true)
     this.nodeClone_.classList.add("my-class");
     if(this.videoSlot) {
