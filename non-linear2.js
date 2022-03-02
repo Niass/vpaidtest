@@ -202,7 +202,7 @@ const VpaidNonLinear = class {
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
       console.log("video***", video)
-      
+      video.parentElement.appendChild(adImg)
       video.style.cssText = `
           width: auto;
           right: 0;
@@ -241,7 +241,7 @@ const VpaidNonLinear = class {
     adImg.style.display = 'block';
     // adImg.style.marginBottom = '20px';
     adImg.addEventListener('click', this.adClick_.bind(this), false);
-    container.appendChild(adImg);
+    // container.appendChild(adImg);
 
     this.callEvent_('AdStarted');
     this.callEvent_('AdImpression');
