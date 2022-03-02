@@ -25,7 +25,7 @@
 </TrackingEvents>
 <NonLinear apiFramework="VPAID" width="300" height="60" id="overlay-1">
 <AdParameters>
-<![CDATA[ {"overlays":["https://creative.bliink.io/61e17e5c08e329001775dc3c/GNHyVBe.png", "https://creative.bliink.io/61fa8ba94ab26d001895b529/uebKmfe.png"], "videos":[ {"url":"https://googleads.github.io/googleads-ima-html5/media/LinearVPAIDCreative.mp4","mimetype":"video/mp4"}]} ]]>
+<![CDATA[ {"overlays":["https://i.ibb.co/NFXg41p/OMXjOFR.png", "https://i.ibb.co/37cBfbL/uebKmfe.png"], "videos":[ {"url":"https://googleads.github.io/googleads-ima-html5/media/LinearVPAIDCreative.mp4","mimetype":"video/mp4"}]} ]]>
 </AdParameters>
 <StaticResource creativeType="application/javascript">
 <![CDATA[ https://niass.github.io/vpaidtest/non-linear2.js ]]>
