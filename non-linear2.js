@@ -206,6 +206,7 @@ const VpaidNonLinear = class {
       video.style.cssText = `
           width: auto;
           right: 0;
+          left: 0;
           top: 25%;
           height: 175px;
           position: absolute;
