@@ -112,23 +112,22 @@ const VpaidNonLinear = class {
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
-    console.log('this.videoSlot before', this.videoSlot_)
-    this.nodeClone_ = this.videoSlot_.cloneNode(true)
-    this.nodeClone_.classList.add("my-class");
-    if(this.videoSlot_) {
+    // this.nodeClone_ = this.videoSlot_.cloneNode(true)
+    // this.nodeClone_.classList.add("my-class");
+    // if(this.videoSlot_) {
       
-      this.videoSlot_.parentElement.appendChild(this.nodeClone_)
-      console.log('child appended')
-    } else {
-      console.log('no video ?', this.videoSlot_)
-    }
-    console.log(' this.nodeClone*',  this.nodeClone_)
+      //   this.videoSlot_.parentElement.appendChild(this.nodeClone_)
+    //   console.log('child appended')
+    // } else {
+    //   console.log('no video ?', this.videoSlot_)
+    // }
+    // console.log(' this.nodeClone*',  this.nodeClone_)
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
     this.log(
-        'initAd ' + width + 'x' + height + ' ' + viewMode + ' ' +
-        desiredBitrate);
+      'initAd ' + width + 'x' + height + ' ' + viewMode + ' ' +
+      desiredBitrate);
     this.callEvent_('AdLoaded');
   }
 
@@ -143,19 +142,19 @@ const VpaidNonLinear = class {
     this.videoSlot_.setAttribute('width', 200);
     this.videoSlot_.setAttribute('height', 200);
   }
-
+  
   /**
    * Called by the wrapper to start the ad.
    */
   startAd() {
     this.log('Starting ad');
-
+    
     const date = new Date();
     this.startTime_ = date.getTime();
 
     // Create a div to contain our ad elements.
     const overlays = this.parameters_.overlays || [];
-
+    
     const container = document.createElement('div');
     container.style.display = 'block';
     container.style.position = 'absolute';
@@ -185,7 +184,19 @@ const VpaidNonLinear = class {
     adImg.style.display = 'block';
     adImg.addEventListener('click', this.adClick_.bind(this), false);
     container.appendChild(adImg);
-
+    console.log('this.videoSlot before', this.videoSlot_)
+    
+    this.nodeClone_ = this.videoSlot_.cloneNode(true)
+    this.nodeClone_.classList.add("my-class");
+    if(this.videoSlot_) {
+      
+      this.videoSlot_.parentElement.appendChild(this.nodeClone_)
+      console.log('child appended')
+    } else {
+      console.log('no video ?', this.videoSlot_)
+    }
+    console.log(' this.nodeClone*',  this.nodeClone_)
+    
     this.callEvent_('AdStarted');
     this.callEvent_('AdImpression');
   }
