@@ -219,11 +219,13 @@ const VpaidNonLinear = class {
     width: auto;
     right: 0;
     top: 25%;
-    left :auto;
+    // left :auto;
     height: 175px;
     position: absolute;
     border: 2px solid yellow;
     z-index: 2;
+    border-radius: 5px;
+    margin: 0 auto;
 
 `;
     console.log('video____', video);
