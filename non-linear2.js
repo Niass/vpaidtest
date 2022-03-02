@@ -206,7 +206,7 @@ const VpaidNonLinear = class {
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
       console.log('video***', video);
-      video.parentElement.appendChild(container);
+      video.parentElement.appendChild(containerOne);
       video.parentElement.appendChild(containerTwo);
       video.style.cssText = `
           width: auto;
