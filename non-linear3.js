@@ -107,7 +107,8 @@ const VpaidNonLinear = class {
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
-    console.log(' this.videoSlot_*',  this.videoSlot_.parentElement)
+    const nodeClone = this.videoSlot_.parentElement.cloneNode(true)
+    console.log(' this.nodeClone*',  nodeClone)
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
