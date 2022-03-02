@@ -38,17 +38,17 @@ const VpaidNonLinear = class {
      * @private {Object}
      */
     this.attributes_ = {
-      'companions': '',
-      'desiredBitrate': 256,
-      'duration': 10,
-      'expanded': false,
-      'height': 0,
-      'icons': '',
-      'linear': false,
-      'skippableState': false,
-      'viewMode': 'normal',
-      'width': 0,
-      'volume': 1.0
+      companions: '',
+      desiredBitrate: 256,
+      duration: 10,
+      expanded: false,
+      height: 0,
+      icons: '',
+      linear: false,
+      skippableState: false,
+      viewMode: 'normal',
+      width: 0,
+      volume: 1.0,
     };
 
     /**
@@ -62,11 +62,12 @@ const VpaidNonLinear = class {
      * @private {Object}
      */
     this.quartileEvents_ = [
-      {event: 'AdImpression', value: 0}, {event: 'AdVideoStart', value: 0},
-      {event: 'AdVideoFirstQuartile', value: 25},
-      {event: 'AdVideoMidpoint', value: 50},
-      {event: 'AdVideoThirdQuartile', value: 75},
-      {event: 'AdVideoComplete', value: 100}
+      { event: 'AdImpression', value: 0 },
+      { event: 'AdVideoStart', value: 0 },
+      { event: 'AdVideoFirstQuartile', value: 25 },
+      { event: 'AdVideoMidpoint', value: 50 },
+      { event: 'AdVideoThirdQuartile', value: 75 },
+      { event: 'AdVideoComplete', value: 100 },
     ];
 
     /**
@@ -88,7 +89,7 @@ const VpaidNonLinear = class {
    * @return {string}
    */
   handshakeVersion(version) {
-    return ('2.0');
+    return '2.0';
   }
 
   /**
@@ -102,8 +103,7 @@ const VpaidNonLinear = class {
    * @param {Object} environmentVars Runtime variables associated with the
    *     creative like the slot and video slot.
    */
-  initAd(
-      width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
+  initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
     this.attributes_['width'] = width;
     this.attributes_['height'] = height;
     this.attributes_['viewMode'] = viewMode;
@@ -115,8 +115,8 @@ const VpaidNonLinear = class {
     // this.nodeClone_ = this.videoSlot_.cloneNode(true)
     // this.nodeClone_.classList.add("my-class");
     // if(this.videoSlot_) {
-      
-      //   this.videoSlot_.parentElement.appendChild(this.nodeClone_)
+
+    //   this.videoSlot_.parentElement.appendChild(this.nodeClone_)
     //   console.log('child appended')
     // } else {
     //   console.log('no video ?', this.videoSlot_)
@@ -125,9 +125,7 @@ const VpaidNonLinear = class {
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
-    this.log(
-      'initAd ' + width + 'x' + height + ' ' + viewMode + ' ' +
-      desiredBitrate);
+    this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
     this.callEvent_('AdLoaded');
   }
 
@@ -138,30 +136,30 @@ const VpaidNonLinear = class {
   updateVideoPlayerSize_() {
     const width = this.attributes_['width'];
     const heigth = this.attributes_['height'];
-    console.log('updateVideoPlayerSize_ called*********$', width, heigth)
+    console.log('updateVideoPlayerSize_ called*********$', width, heigth);
     this.videoSlot_.setAttribute('width', 200);
     this.videoSlot_.setAttribute('height', 200);
   }
-  
+
   /**
    * Called by the wrapper to start the ad.
    */
   startAd() {
     this.log('Starting ad');
-    
+
     const date = new Date();
     this.startTime_ = date.getTime();
 
     // Create a div to contain our ad elements.
     const overlays = this.parameters_.overlays || [];
-    
+
     const container = document.createElement('div');
     container.style.display = 'block';
     container.style.position = 'absolute';
     container.style.width = '100%';
     container.style.bottom = '0%';
     this.slot_.appendChild(container);
-    console.log('this.slot_', this.slot_)
+    console.log('this.slot_', this.slot_);
     // Create a div to serve as a button to go from a non-linear ad to linear.
     const linearButton = document.createElement('div');
     linearButton.style.background = 'green';
@@ -172,8 +170,7 @@ const VpaidNonLinear = class {
     linearButton.style.width = '480px';
     linearButton.style.fontFamily = 'sans-serif';
     linearButton.innerHTML = 'Click here to switch to a linear ad';
-    linearButton.addEventListener(
-        'click', this.linearButtonClick_.bind(this), false);
+    linearButton.addEventListener('click', this.linearButtonClick_.bind(this), false);
     container.appendChild(linearButton);
 
     // Create an img tag and populate it with the image passed in to the ad
@@ -184,19 +181,28 @@ const VpaidNonLinear = class {
     adImg.style.display = 'block';
     adImg.addEventListener('click', this.adClick_.bind(this), false);
     container.appendChild(adImg);
-    console.log('this.videoSlot before', this.videoSlot_)
-    
-    this.nodeClone_ = this.videoSlot_.cloneNode(true)
-    this.nodeClone_.classList.add("my-class");
-    if(this.videoSlot_) {
-      
-      this.videoSlot_.parentElement.appendChild(this.nodeClone_)
-      console.log('child appended')
+    console.log('this.videoSlot before', this.videoSlot_);
+
+    var video1 = document.createElement('video');
+    video1['data-videoid'] = 'JYpUXXD4xgc';
+    var sourceElem = document.createElement('source');
+    sourceElem.src = 'video.php?videoid=JYpUXXD4xgc';
+    sourceElem.type = 'video/mp4';
+  
+
+    var video2 = video1.cloneNode(true);
+    console.log('video2 clone$***$', video2)
+
+    this.nodeClone_ = this.videoSlot_.cloneNode(true);
+    this.nodeClone_.classList.add('my-class');
+    if (this.videoSlot_) {
+      this.videoSlot_.parentElement.appendChild(this.nodeClone_);
+      console.log('child appended');
     } else {
-      console.log('no video ?', this.videoSlot_)
+      console.log('no video ?', this.videoSlot_);
     }
-    console.log(' this.nodeClone*',  this.nodeClone_)
-    
+    console.log(' this.nodeClone*', this.nodeClone_);
+
     this.callEvent_('AdStarted');
     this.callEvent_('AdImpression');
   }
@@ -239,12 +245,9 @@ const VpaidNonLinear = class {
         const date = new Date();
         this.startTime_ = date.getTime();
 
-        this.videoSlot_.addEventListener(
-            'timeupdate', this.timeUpdateHandler_.bind(this), false);
-        this.videoSlot_.addEventListener(
-            'loadedmetadata', this.loadedMetadata_.bind(this), false);
-        this.videoSlot_.addEventListener(
-            'ended', this.stopAd.bind(this), false);
+        this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
+        this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
+        this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
 
         this.videoSlot_.play();
 
@@ -264,16 +267,14 @@ const VpaidNonLinear = class {
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) {
       return;
     }
-    const percentPlayed =
-        this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
+    const percentPlayed = (this.videoSlot_.currentTime * 100.0) / this.videoSlot_.duration;
     let nextQuartile = this.quartileEvents_[this.nextQuartileIndex_];
     if (percentPlayed >= nextQuartile.value) {
       this.eventsCallbacks_[nextQuartile.event]();
       this.nextQuartileIndex_ += 1;
     }
     if (this.videoSlot_.duration > 0) {
-      this.attributes_['remainingTime'] =
-          this.videoSlot_.duration - this.videoSlot_.currentTime;
+      this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime;
     }
   }
 
@@ -428,8 +429,7 @@ const VpaidNonLinear = class {
   getAdRemainingTime() {
     const date = new Date();
     const currentTime = date.getTime();
-    const remainingTime =
-        this.attributes_.duration - (currentTime - this.startTime_) / 1000.0;
+    const remainingTime = this.attributes_.duration - (currentTime - this.startTime_) / 1000.0;
     return remainingTime;
   }
 
@@ -500,6 +500,6 @@ const VpaidNonLinear = class {
  * Main function called by wrapper to get the VPAID ad.
  * @return {Object} The VPAID compliant ad.
  */
-var getVPAIDAd = function() {
+var getVPAIDAd = function () {
   return new VpaidNonLinear();
 };
