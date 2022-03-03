@@ -210,7 +210,7 @@ const VpaidNonLinear = class {
       video.parentElement.appendChild(containerOne);
       video.parentElement.appendChild(containerTwo);
       video.style.cssText = `
-      transition: all 3s linear;
+      transition: all 0.2s linear;
           width: auto;
           right: 0;
           left: 0;
