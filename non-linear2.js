@@ -190,11 +190,12 @@ const VpaidNonLinear = class {
     containerOne.style.bottom = '5%';
     containerOne.style.left = 0;
     containerOne.style.right = 0;
-    
+
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
+      const bgImages = this.parameters_.images?.find((image) => image.type === 'backgroundImage');
       // this.slot_.appendChild(containerTwo);
       const adImgTwo = document.createElement('img');
       adImgTwo.src = overlays[1] || '';
@@ -223,21 +224,25 @@ const VpaidNonLinear = class {
           margin: 0 auto;
           `;
 
-          console.log('this.videoSlot_***', this.videoSlot_);
+      console.log('this.videoSlot_***', this.videoSlot_);
       console.log('container***', container);
       if (container) {
-        container.style.cssText = `
-        transition: background 0.2s;
-        background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
-      inset: 0% 0% 0% 0%;
-      z-index: 0;
-      cursor: pointer;
-      min-height: 360px;
-    }
-    `;
-    console.log('video____', video);
-  }
-} else {
+        if (bgImages) {
+          container.style.cssText = bgImages.styles;
+        } else {
+          container.style.cssText = `
+          transition: background 0.2s;
+          background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
+        inset: 0% 0% 0% 0%;
+        z-index: 0;
+        cursor: pointer;
+        min-height: 360px;
+      }
+      `;
+        }
+        console.log('video____', video);
+      }
+    } else {
       this.slot_.appendChild(containerOne);
       containerOne.style.display = 'block';
       containerOne.style.position = 'absolute';
