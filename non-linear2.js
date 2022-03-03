@@ -228,8 +228,10 @@ const VpaidNonLinear = class {
       console.log('container***', container);
       if (container) {
         if (bgImages) {
+          console.log("found____")
           container.style.cssText = bgImages.styles;
         } else {
+          console.log("not found____")
           container.style.cssText = `
           transition: background 0.2s;
           background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
