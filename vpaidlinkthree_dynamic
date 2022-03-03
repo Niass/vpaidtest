@@ -25,7 +25,7 @@
 </TrackingEvents>
 <NonLinear apiFramework="VPAID" width="300" height="60" id="overlay-1">
 <AdParameters>
-<![CDATA[ {"overlays":["https://i.ibb.co/NFXg41p/OMXjOFR.png","https://i.ibb.co/37cBfbL/uebKmfe.png"], "videos":[ {"url":"https://googleads.github.io/googleads-ima-html5/media/LinearVPAIDCreative.mp4","mimetype":"video/mp4"}],"images": [{"type":"backgroundImage", "styles": "background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;transition: background 0.2s;inset: 0% 0% 0% 0%;z-index: 0;height:auto !important;cursor: pointer;min-height: 360px;"}]} ]]>
+<![CDATA[ {"overlays":["https://i.ibb.co/NFXg41p/OMXjOFR.png","https://i.ibb.co/37cBfbL/uebKmfe.png"], "videos":[ {"url":"https://googleads.github.io/googleads-ima-html5/media/LinearVPAIDCreative.mp4","mimetype":"video/mp4"}],"styles": [{"type":"backgroundImage", "styles": "background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;transition: background 0.2s;inset: 0% 0% 0% 0%;z-index: 0;height:auto !important;cursor: pointer;min-height: 360px;"}, {"type":"video", "styles": "transition: all 0.2s linear;width: auto;right: 0;left: 0;top: 25%;height: 175px;position: absolute;border: 2px solid #ddc157;z-index: 2;border-radius: 5px;margin: 0 auto;"}]} ]]>
 </AdParameters>
 <StaticResource creativeType="application/javascript">
 <![CDATA[ https://niass.github.io/vpaidtest/non-linear2.js ]]>

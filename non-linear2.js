@@ -196,7 +196,8 @@ const VpaidNonLinear = class {
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
       console.log('this.parameters_', this.parameters_);
-      const bgImages = this.parameters_.images?.find((image) => image.type === 'backgroundImage');
+      const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
+      const videoStyles = this.parameters_.styles?.find((style) => style.type === 'video');
       // this.slot_.appendChild(containerTwo);
       const adImgTwo = document.createElement('img');
       adImgTwo.src = overlays[1] || '';
@@ -211,19 +212,24 @@ const VpaidNonLinear = class {
       console.log('video***', video);
       video.parentElement.appendChild(containerOne);
       video.parentElement.appendChild(containerTwo);
-      video.style.cssText = `
-      transition: all 0.2s linear;
-          width: auto;
-          right: 0;
-          left: 0;
-          top: 25%;
-          height: 175px;
-          position: absolute;
-          border: 2px solid #ddc157;
-          z-index: 2;
-          border-radius: 5px;
-          margin: 0 auto;
-          `;
+      if (videoStyles) {
+        console.log('found video style****');
+        video.style.cssText = videoStyles.styles;
+      } else {
+        video.style.cssText = `
+        transition: all 0.2s linear;
+            width: auto;
+            right: 0;
+            left: 0;
+            top: 25%;
+            height: 175px;
+            position: absolute;
+            border: 2px solid #ddc157;
+            z-index: 2;
+            border-radius: 5px;
+            margin: 0 auto;
+            `;
+      }
 
       console.log('this.videoSlot_***', this.videoSlot_);
       console.log('container***', container);
