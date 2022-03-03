@@ -190,8 +190,7 @@ const VpaidNonLinear = class {
     containerOne.style.bottom = '5%';
     containerOne.style.left = 0;
     containerOne.style.right = 0;
-    this.slot_.appendChild(containerOne);
-
+    
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
     const adImg = document.createElement('img');
@@ -211,7 +210,7 @@ const VpaidNonLinear = class {
       video.parentElement.appendChild(containerOne);
       video.parentElement.appendChild(containerTwo);
       video.style.cssText = `
-          transition: all 3s linear;
+      transition: all 3s linear;
           width: auto;
           right: 0;
           left: 0;
@@ -224,7 +223,7 @@ const VpaidNonLinear = class {
           margin: 0 auto;
           `;
 
-      console.log('this.videoSlot_***', this.videoSlot_);
+          console.log('this.videoSlot_***', this.videoSlot_);
       console.log('container***', container);
       if (container) {
         container.style.cssText = `
@@ -236,9 +235,15 @@ const VpaidNonLinear = class {
       min-height: 360px;
     }
     `;
-        console.log('video____', video);
-      }
-    } else {
+    console.log('video____', video);
+  }
+} else {
+      this.slot_.appendChild(containerOne);
+      containerOne.style.display = 'block';
+      containerOne.style.position = 'absolute';
+      containerOne.style.width = '100%';
+      containerOne.style.bottom = '0%';
+      containerOne.appendChild(adImg);
       console.log('type node name**', this.videoSlot_.nodeName);
       console.log('no instanceof element', this.videoSlot_);
     }
