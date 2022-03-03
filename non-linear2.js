@@ -195,7 +195,7 @@ const VpaidNonLinear = class {
     // parameters.
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
-      console.log('this.parameters_.images', this.parameters_.images);
+      console.log('this.parameters_', this.parameters_);
       const bgImages = this.parameters_.images?.find((image) => image.type === 'backgroundImage');
       // this.slot_.appendChild(containerTwo);
       const adImgTwo = document.createElement('img');
