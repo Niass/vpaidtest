@@ -211,6 +211,7 @@ const VpaidNonLinear = class {
       video.parentElement.appendChild(containerOne);
       video.parentElement.appendChild(containerTwo);
       video.style.cssText = `
+          transition: all 3s linear;
           width: auto;
           right: 0;
           left: 0;
@@ -227,7 +228,7 @@ const VpaidNonLinear = class {
       console.log('container***', container);
       if (container) {
         container.style.cssText = `
-        transition: background 1s;
+        transition: background 0.2s;
         background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
       inset: 0% 0% 0% 0%;
       z-index: 0;
