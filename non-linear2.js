@@ -195,6 +195,7 @@ const VpaidNonLinear = class {
     // parameters.
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
+      console.log('this.parameters_.images', this.parameters_.images);
       const bgImages = this.parameters_.images?.find((image) => image.type === 'backgroundImage');
       // this.slot_.appendChild(containerTwo);
       const adImgTwo = document.createElement('img');
@@ -228,10 +229,10 @@ const VpaidNonLinear = class {
       console.log('container***', container);
       if (container) {
         if (bgImages) {
-          console.log("found____")
+          console.log('found____');
           container.style.cssText = bgImages.styles;
         } else {
-          console.log("not found____")
+          console.log('not found____');
           container.style.cssText = `
           transition: background 0.2s;
           background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
