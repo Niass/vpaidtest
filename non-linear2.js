@@ -198,6 +198,8 @@ const VpaidNonLinear = class {
       console.log('this.parameters_', this.parameters_);
       const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
       const videoStyles = this.parameters_.styles?.find((style) => style.type === 'video');
+      const imagesStyles = this.parameters_.styles?.filter((style) => style.type === 'image');
+      console.log('imagesStyles***', imagesStyles)
       // this.slot_.appendChild(containerTwo);
       const adImgTwo = document.createElement('img');
       adImgTwo.src = overlays[1] || '';
