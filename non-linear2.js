@@ -212,8 +212,17 @@ const VpaidNonLinear = class {
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
       console.log('video***', video);
-      video.parentElement.appendChild(containerOne);
-      video.parentElement.appendChild(containerTwo);
+      // video.parentElement.appendChild(containerOne);
+      // video.parentElement.appendChild(containerTwo);
+      imagesStyles.forEach((style) => {
+        const container = document.createElement('div');
+        container.style.cssText = style.containerStyles
+        const image = document.createElement('img');
+        container.appendChild(image);
+        image.style.cssText = style.imageStyles
+        image.src = style.src || '';
+        video.parentElement.appendChild(container);
+      })
       if (videoStyles) {
         console.log('found video style****');
         video.style.cssText = videoStyles.styles;
