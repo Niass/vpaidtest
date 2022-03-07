@@ -264,11 +264,12 @@ const VpaidNonLinear = class {
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
       dynamicImages.forEach((data, idx) => {
+        const defaultAsset = data?.image?.defaultAsset
         const stylesFormat = this.stylesFormatter(data, creaWrapper.size)
         console.log('stylesFormat', stylesFormat)
        
         if (data?.image?.displayType === 'cover') {
-          if (!data?.image?.defaultAsset) {
+          if (!defaultAsset) {
               return 'defaultAsset is missing in attribute </br>'
           }
           const domElet =  `<div data-type="${data.type}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${idx};"></div>`
