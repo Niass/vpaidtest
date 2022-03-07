@@ -273,8 +273,8 @@ const VpaidNonLinear = class {
               return 'defaultAsset is missing in attribute </br>'
           }
           const domElet =  `<div data-type="${data.type}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${idx};"></div>`
-
-          video.parentElement.appendChild(domElet)
+          video.parentElement.insertAdjacentHTML('beforeend', domElet);
+          // video.parentElement.appendChild(domElet)
       }
      
       });
