@@ -193,7 +193,7 @@ const VpaidNonLinear = class {
       bottom: initialParentSize.height - elementSize.height - (elementSize.yAxis ?? 0),
     };
 
-    const size = isSizingSystem(attribute, parentSize, absolutePosition);
+    const size = this.isSizingSystem(attribute, parentSize, absolutePosition);
 
     const cssStyles = {
       position: 'absolute',
