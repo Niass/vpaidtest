@@ -263,6 +263,8 @@ const VpaidNonLinear = class {
       const dynamicImages = dynamicData.filter((data) => data.type === 'image');
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
+      video.parentElement.style.minHeight = creaWrapper.size.height;
+      video.parentElement.style.minwidth = creaWrapper.size.width;
       dynamicImages.forEach((data, idx) => {
         const defaultAsset = data?.image?.defaultAsset;
         const stylesFormat = this.stylesFormatter(data, creaWrapper.size);
