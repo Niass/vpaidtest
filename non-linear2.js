@@ -195,7 +195,7 @@ const VpaidNonLinear = class {
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
-    `<div ${transitionDataAttribute} data-type="${attribute.type}" class="${className}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${ImageDisplayType.Cover};${stylesFormat}; z-index: ${options.attributeIndex};"></div>`
+    // `<div ${transitionDataAttribute} data-type="${attribute.type}" class="${className}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${ImageDisplayType.Cover};${stylesFormat}; z-index: ${options.attributeIndex};"></div>`
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
       console.log('this.parameters_', this.parameters_);
