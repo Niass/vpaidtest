@@ -129,6 +129,14 @@ const VpaidNonLinear = class {
   pixelToPercentage(pos, frameSize) {
     return (pos * 100) / frameSize;
   }
+
+   formattingSizing = (value, unit) => {
+    if (typeof value === 'number') {
+        return `${Math.round(value)}${unit}`
+    }
+
+    return `${value}`
+}
   isSizingSystem = (attribute, parentFrameSize, absolutePosition) => {
     const units = {
       top: '%',
@@ -149,15 +157,15 @@ const VpaidNonLinear = class {
     };
 
     return {
-      width: formattingSizing(sizing.width, units.width),
+      width: this.formattingSizing(sizing.width, units.width),
       height:
         attribute?.image?.displayType === 'cover'
           ? 'auto !important'
-          : formattingSizing(sizing.height, units.height),
-      top: formattingSizing(sizing.top, units.top),
-      bottom: formattingSizing(sizing.bottom, units.bottom),
-      left: formattingSizing(sizing.left, units.left),
-      right: formattingSizing(sizing.right, units.right),
+          : this.formattingSizing(sizing.height, units.height),
+      top: this.formattingSizing(sizing.top, units.top),
+      bottom: this.formattingSizing(sizing.bottom, units.bottom),
+      left: this.formattingSizing(sizing.left, units.left),
+      right: this.formattingSizing(sizing.right, units.right),
     };
   };
 
