@@ -304,24 +304,24 @@ const VpaidNonLinear = class {
         image.src = style.src || '';
         video.parentElement.appendChild(container);
       });
-      if (videoStyles) {
-        console.log('found video style****');
-        video.style.cssText = videoStyles.styles;
-      } else {
-        video.style.cssText = `
-        transition: all 0.2s linear;
-            width: auto;
-            right: 0;
-            left: 0;
-            top: 25%;
-            height: 175px;
-            position: absolute;
-            border: 2px solid #ddc157;
-            z-index: 2;
-            border-radius: 5px;
-            margin: 0 auto;
-            `;
-      }
+      // if (videoStyles) {
+      //   console.log('found video style****');
+      //   video.style.cssText = videoStyles.styles;
+      // } else {
+      //   video.style.cssText = `
+      //   transition: all 0.2s linear;
+      //       width: auto;
+      //       right: 0;
+      //       left: 0;
+      //       top: 25%;
+      //       height: 175px;
+      //       position: absolute;
+      //       border: 2px solid #ddc157;
+      //       z-index: 2;
+      //       border-radius: 5px;
+      //       margin: 0 auto;
+      //       `;
+      // }
 
       console.log('this.videoSlot_***', this.videoSlot_);
       console.log('container***', container);
