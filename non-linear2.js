@@ -1,3 +1,5 @@
+const dynamicData = require('./vpaid.json')
+console.log('data', data)
 /**
  * @fileoverview A sample non-linear VPAID ad useful for testing a VPAID JS
  * enabled player. This ad will show a non-linear ad which can also enter linear
@@ -196,6 +198,8 @@ const VpaidNonLinear = class {
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
       console.log('this.parameters_', this.parameters_);
+      const dynamicImages = dynamicData.attributes.filter(data => data.type === 'image');
+      console.log('dynamicImages**____', dynamicImages)
       const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
       const videoStyles = this.parameters_.styles?.find((style) => style.type === 'video');
       const imagesStyles = this.parameters_.styles?.filter((style) => style.type === 'image');
