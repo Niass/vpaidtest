@@ -268,7 +268,7 @@ const VpaidNonLinear = class {
         console.log('stylesFormat', stylesFormat)
        
         if (data?.image?.displayType === 'cover') {
-          if (!attribute?.image?.defaultAsset) {
+          if (!data?.image?.defaultAsset) {
               return 'defaultAsset is missing in attribute </br>'
           }
           const domElet =  `<div data-type="${data.type}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${idx};"></div>`
