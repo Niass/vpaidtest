@@ -280,7 +280,7 @@ const VpaidNonLinear = class {
           // video.parentElement.appendChild(domElet)
         } else {
           domElet = `<div  data-type="${
-            attribute.type
+            data.type
           }" style="${stylesFormat};"> <img  src="${
             defaultAsset?.size < 40000 && defaultAsset?.encodedImage
             ? defaultAsset?.encodedImage
