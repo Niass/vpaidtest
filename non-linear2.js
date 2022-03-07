@@ -174,6 +174,7 @@ const VpaidNonLinear = class {
 
     // Create a div to contain our ad elements.
     const overlays = this.parameters_.overlays || [];
+    const dynamicData = this.parameters_.dynamicData || [];
 
     const containerOne = document.createElement('div');
     const containerTwo = document.createElement('div');
@@ -197,8 +198,8 @@ const VpaidNonLinear = class {
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
       console.log('this.parameters_', this.parameters_);
-      // const dynamicImages = dynamicData.attributes.filter(data => data.type === 'image');
-      // console.log('dynamicImages**____', dynamicImages)
+      const dynamicImages = dynamicData.filter(data => data.type === 'image');
+      console.log('dynamicImages**____', dynamicImages)
       const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
       const videoStyles = this.parameters_.styles?.find((style) => style.type === 'video');
       const imagesStyles = this.parameters_.styles?.filter((style) => style.type === 'image');
