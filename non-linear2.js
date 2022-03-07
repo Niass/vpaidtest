@@ -195,10 +195,17 @@ const VpaidNonLinear = class {
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
+    `<div ${transitionDataAttribute} data-type="${attribute.type}" class="${className}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${ImageDisplayType.Cover};${stylesFormat}; z-index: ${options.attributeIndex};"></div>`
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
       console.log('this.parameters_', this.parameters_);
+      const creaWrapper = dynamicData.find(data => data.type === 'wrapper');
+      console.log('creaWrapper***', creaWrapper)
       const dynamicImages = dynamicData.filter(data => data.type === 'image');
+      dynamicImages.forEach((data => {
+        const container = document.createElement('div');
+        container.style.cssText = ''
+      }))
       console.log('dynamicImages**____', dynamicImages)
       const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
       const videoStyles = this.parameters_.styles?.find((style) => style.type === 'video');
