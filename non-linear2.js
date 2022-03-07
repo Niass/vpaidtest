@@ -261,10 +261,20 @@ const VpaidNonLinear = class {
       const creaWrapper = dynamicData.find((data) => data.type === 'wrapper');
       console.log('creaWrapper***', creaWrapper);
       const dynamicImages = dynamicData.filter((data) => data.type === 'image');
-      dynamicImages.forEach((data) => {
+      const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+      const video = container.querySelector('video');
+      dynamicImages.forEach((data, idx) => {
         const stylesFormat = this.stylesFormatter(data, creaWrapper.size)
         console.log('stylesFormat', stylesFormat)
-        const container = document.createElement('div');
+       
+        if (data?.image?.displayType === ImageDisplayType.Cover) {
+          if (!attribute?.image?.defaultAsset) {
+              return 'defaultAsset is missing in attribute </br>'
+          }
+          const domElet =  `<div data-type="${data.type}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${ImageDisplayType.Cover};${stylesFormat}; z-index: ${idx};"></div>`
+
+          video.parentElement.appendChild(domElet)
+      }
      
       });
       console.log('dynamicImages**____', dynamicImages);
@@ -281,8 +291,6 @@ const VpaidNonLinear = class {
       // containerTwo.appendChild(adImgTwo);
       containerOne.appendChild(adImg);
       containerTwo.appendChild(adImgTwo);
-      const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
-      const video = container.querySelector('video');
       console.log('video***', video);
       // video.parentElement.appendChild(containerOne);
       // video.parentElement.appendChild(containerTwo);
