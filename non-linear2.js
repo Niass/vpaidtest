@@ -130,13 +130,13 @@ const VpaidNonLinear = class {
     return (pos * 100) / frameSize;
   }
 
-   formattingSizing = (value, unit) => {
+  formattingSizing = (value, unit) => {
     if (typeof value === 'number') {
-        return `${Math.round(value)}${unit}`
+      return `${Math.round(value)}${unit}`;
     }
 
-    return `${value}`
-}
+    return `${value}`;
+  };
   isSizingSystem = (attribute, parentFrameSize, absolutePosition) => {
     const units = {
       top: '%',
@@ -254,7 +254,7 @@ const VpaidNonLinear = class {
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
-  
+
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
       console.log('this.parameters_', this.parameters_);
@@ -264,19 +264,31 @@ const VpaidNonLinear = class {
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
       dynamicImages.forEach((data, idx) => {
-        const defaultAsset = data?.image?.defaultAsset
-        const stylesFormat = this.stylesFormatter(data, creaWrapper.size)
-        console.log('stylesFormat', stylesFormat)
-       
+        const defaultAsset = data?.image?.defaultAsset;
+        const stylesFormat = this.stylesFormatter(data, creaWrapper.size);
+        console.log('stylesFormat', stylesFormat);
+        let domElet
         if (data?.image?.displayType === 'cover') {
           if (!defaultAsset) {
-              return 'defaultAsset is missing in attribute </br>'
+            return 'defaultAsset is missing in attribute </br>';
           }
-          const domElet =  `<div data-type="${data.type}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${idx};"></div>`
-          video.parentElement.insertAdjacentHTML('beforeend', domElet);
+           domElet = `<div data-type="${data.type}" style="background: url(${
+            defaultAsset?.url
+          }) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${
+            idx - 1
+          };"></div>`;
           // video.parentElement.appendChild(domElet)
-      }
-     
+        } else {
+          domElet = `<div  data-type="${
+            attribute.type
+          }" style="${stylesFormat};"> <img  src="${
+            defaultAsset?.size < 40000 && defaultAsset?.encodedImage
+            ? defaultAsset?.encodedImage
+            : defaultAsset?.url
+          }" alt="" style="z-index: ${idx - 1}; height: 100%; width: 100%;"/></div>`;
+        }
+        video.parentElement.insertAdjacentHTML('beforeend', domElet);
+
       });
       console.log('dynamicImages**____', dynamicImages);
       const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
@@ -295,15 +307,15 @@ const VpaidNonLinear = class {
       console.log('video***', video);
       // video.parentElement.appendChild(containerOne);
       // video.parentElement.appendChild(containerTwo);
-      imagesStyles.forEach((style) => {
-        const container = document.createElement('div');
-        container.style.cssText = style.containerStyles;
-        const image = document.createElement('img');
-        container.appendChild(image);
-        image.style.cssText = style.imageStyles;
-        image.src = style.src || '';
-        video.parentElement.appendChild(container);
-      });
+      // imagesStyles.forEach((style) => {
+      //   const container = document.createElement('div');
+      //   container.style.cssText = style.containerStyles;
+      //   const image = document.createElement('img');
+      //   container.appendChild(image);
+      //   image.style.cssText = style.imageStyles;
+      //   image.src = style.src || '';
+      //   video.parentElement.appendChild(container);
+      // });
       if (videoStyles) {
         console.log('found video style****');
         // video.style.cssText = videoStyles.styles;
@@ -338,24 +350,24 @@ const VpaidNonLinear = class {
 
       console.log('this.videoSlot_***', this.videoSlot_);
       console.log('container***', container);
-      if (container) {
-        if (bgImages) {
-          console.log('found____');
-          container.style.cssText = bgImages.styles;
-        } else {
-          console.log('not found____');
-          container.style.cssText = `
-          transition: background 0.2s;
-          background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
-        inset: 0% 0% 0% 0%;
-        z-index: 0;
-        cursor: pointer;
-        min-height: 360px;
-      }
-      `;
-        }
-        console.log('video____', video);
-      }
+      // if (container) {
+      //   if (bgImages) {
+      //     console.log('found____');
+      //     container.style.cssText = bgImages.styles;
+      //   } else {
+      //     console.log('not found____');
+      //     container.style.cssText = `
+      //     transition: background 0.2s;
+      //     background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
+      //   inset: 0% 0% 0% 0%;
+      //   z-index: 0;
+      //   cursor: pointer;
+      //   min-height: 360px;
+      // }
+      // `;
+      //   }
+      //   console.log('video____', video);
+      // }
     } else {
       this.slot_.appendChild(containerOne);
       containerOne.style.display = 'block';
