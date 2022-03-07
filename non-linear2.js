@@ -1,4 +1,3 @@
-
 /**
  * @fileoverview A sample non-linear VPAID ad useful for testing a VPAID JS
  * enabled player. This ad will show a non-linear ad which can also enter linear
@@ -119,31 +118,6 @@ const VpaidNonLinear = class {
     // this.videoSlot_.style.top = '15%';
     if (this.videoSlot_.nodeName) {
       var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
-      // console.log('this.videoSlot_***', this.videoSlot_);
-      // console.log('container***', container);
-      //       if(container) {
-      //         container.style.cssText = `
-      //         transition: background 1s;
-      //         background: url(https://creative.bliink.io/61fa8ba94ab26d001895b529/899fyB3.jpg) center center / cover no-repeat;
-      //       inset: 0% 0% 0% 0%;
-      //       z-index: 0;
-      //       cursor: pointer;
-      //     }
-      //     `;
-
-      //     var video = container.querySelector('video');
-      //     video.style.cssText = `
-      //     width: auto;
-      //     right: 0;
-      //     top: 25%;
-      //     left :auto;
-      //     height: 175px;
-      //     position: absolute;
-
-      // `;
-      //     console.log('video____', video);
-
-      //       }
     }
 
     // Parse the incoming ad parameters.
@@ -152,7 +126,84 @@ const VpaidNonLinear = class {
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
     this.callEvent_('AdLoaded');
   }
+  pixelToPercentage(pos, frameSize) {
+    return (pos * 100) / frameSize;
+  }
+  isSizingSystem = (attribute, parentFrameSize, absolutePosition) => {
+    const units = {
+      top: '%',
+      bottom: '%',
+      left: '%',
+      right: '%',
+      width: '%',
+      height: '%',
+    };
 
+    const sizing = {
+      top: this.pixelToPercentage(absolutePosition.top, parentFrameSize.height),
+      bottom: this.pixelToPercentage(absolutePosition.bottom, parentFrameSize.height),
+      left: this.pixelToPercentage(absolutePosition.left, parentFrameSize.width),
+      right: this.pixelToPercentage(absolutePosition.right, parentFrameSize.width),
+      width: (absolutePosition.width / parentFrameSize.width) * 100,
+      height: (absolutePosition.height / parentFrameSize.height) * 100,
+    };
+
+    return {
+      width: formattingSizing(sizing.width, units.width),
+      height:
+        attribute?.image?.displayType === 'cover'
+          ? 'auto !important'
+          : formattingSizing(sizing.height, units.height),
+      top: formattingSizing(sizing.top, units.top),
+      bottom: formattingSizing(sizing.bottom, units.bottom),
+      left: formattingSizing(sizing.left, units.left),
+      right: formattingSizing(sizing.right, units.right),
+    };
+  };
+
+  /**
+   * Helper function to update the size of the video player.
+   * @private
+   */
+
+  stylesFormatter = (attribute, parentSize) => {
+    if (!parentSize) return '';
+
+    const elementSize = {
+      ...{
+        xAxis: 0,
+        yAxis: 0,
+        width: 100,
+        height: 100,
+      },
+      ...attribute.size,
+    };
+
+    const initialParentSize = {
+      ...{ width: 580, height: 435, xAxis: 0, yAxis: 0 },
+      ...parentSize,
+    };
+
+    const absolutePosition = {
+      left: elementSize.xAxis ?? 0,
+      top: elementSize.yAxis ?? 0,
+      height: elementSize.height,
+      width: elementSize.width,
+      right: initialParentSize.width - elementSize.width - (elementSize.xAxis ?? 0),
+      bottom: initialParentSize.height - elementSize.height - (elementSize.yAxis ?? 0),
+    };
+
+    const size = isSizingSystem(attribute, parentSize, absolutePosition);
+
+    const cssStyles = {
+      position: 'absolute',
+      ...size,
+    };
+
+    return Object.entries(cssStyles)
+      .map(([key, value]) => `${key}: ${value}; `)
+      .join('');
+  };
   /**
    * Helper function to update the size of the video player.
    * @private
@@ -195,22 +246,24 @@ const VpaidNonLinear = class {
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
-    // `<div ${transitionDataAttribute} data-type="${attribute.type}" class="${className}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${ImageDisplayType.Cover};${stylesFormat}; z-index: ${options.attributeIndex};"></div>`
+  
     const adImg = document.createElement('img');
     if (this.videoSlot_.nodeName) {
       console.log('this.parameters_', this.parameters_);
-      const creaWrapper = dynamicData.find(data => data.type === 'wrapper');
-      console.log('creaWrapper***', creaWrapper)
-      const dynamicImages = dynamicData.filter(data => data.type === 'image');
-      dynamicImages.forEach((data => {
+      const creaWrapper = dynamicData.find((data) => data.type === 'wrapper');
+      console.log('creaWrapper***', creaWrapper);
+      const dynamicImages = dynamicData.filter((data) => data.type === 'image');
+      dynamicImages.forEach((data) => {
+        const stylesFormat = this.stylesFormatter(data, creaWrapper.size)
+        console.log('stylesFormat', stylesFormat)
         const container = document.createElement('div');
-        container.style.cssText = ''
-      }))
-      console.log('dynamicImages**____', dynamicImages)
+     
+      });
+      console.log('dynamicImages**____', dynamicImages);
       const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
       const videoStyles = this.parameters_.styles?.find((style) => style.type === 'video');
       const imagesStyles = this.parameters_.styles?.filter((style) => style.type === 'image');
-      console.log('imagesStyles***', imagesStyles)
+      console.log('imagesStyles***', imagesStyles);
       // this.slot_.appendChild(containerTwo);
       const adImgTwo = document.createElement('img');
       adImgTwo.src = overlays[1] || '';
@@ -227,13 +280,13 @@ const VpaidNonLinear = class {
       // video.parentElement.appendChild(containerTwo);
       imagesStyles.forEach((style) => {
         const container = document.createElement('div');
-        container.style.cssText = style.containerStyles
+        container.style.cssText = style.containerStyles;
         const image = document.createElement('img');
         container.appendChild(image);
-        image.style.cssText = style.imageStyles
+        image.style.cssText = style.imageStyles;
         image.src = style.src || '';
         video.parentElement.appendChild(container);
-      })
+      });
       if (videoStyles) {
         console.log('found video style****');
         video.style.cssText = videoStyles.styles;
