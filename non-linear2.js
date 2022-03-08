@@ -326,6 +326,7 @@ const VpaidNonLinear = class {
       if (videoStyles) {
         console.log('found video style****');
         video.style.cssText = videoStylesFormat;
+        video.style.zIndex = dynamicData.length;
         // video.style.cssText = `
         // transition: all 0.2s linear;
         //     width: auto;
