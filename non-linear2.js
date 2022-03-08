@@ -108,12 +108,6 @@ const VpaidNonLinear = class {
     this.slot_ = environmentVars.slot;
     console.log('environmentVars*', environmentVars);
     this.videoSlot_ = environmentVars.videoSlot;
-    console.log('this.videoSlot_ src*$', this.videoSlot_.src);
-    console.log('this.videoSlot_ currentTime*$', this.videoSlot_.currentTime);
-    console.log('this.videoSlot_ duration*$', this.videoSlot_.duration);
-    console.log('this.videoSlot_ ended*$', this.videoSlot_.ended);
-    console.log('this.videoSlot_ playbackRate*$', this.videoSlot_.playbackRate);
-    console.log('this.videoSlot_ type*$', this.videoSlot_.type);
 
     // this.videoSlot_.style.top = '15%';
     if (this.videoSlot_.nodeName) {
@@ -236,15 +230,7 @@ const VpaidNonLinear = class {
     const dynamicData = this.parameters_.dynamicData || [];
 
     const containerOne = document.createElement('div');
-    const containerTwo = document.createElement('div');
-    containerTwo.style.cssText = `
-      display: block;
-      position:absolute;
-      // width: 135%;
-      left: 0;
-      right: 0;
-      top: 0;
-    `;
+
     containerOne.style.display = 'block';
     containerOne.style.position = 'absolute';
     // containerOne.style.width = '135%';
@@ -308,38 +294,11 @@ const VpaidNonLinear = class {
       adImgTwo.style.margin = 'auto';
       adImgTwo.style.display = 'block';
       adImgTwo.style.maxHeight = '100px';
-      // containerTwo.appendChild(adImgTwo);
-      containerOne.appendChild(adImg);
-      containerTwo.appendChild(adImgTwo);
-      console.log('video***', video);
-      // video.parentElement.appendChild(containerOne);
-      // video.parentElement.appendChild(containerTwo);
-      // imagesStyles.forEach((style) => {
-      //   const container = document.createElement('div');
-      //   container.style.cssText = style.containerStyles;
-      //   const image = document.createElement('img');
-      //   container.appendChild(image);
-      //   image.style.cssText = style.imageStyles;
-      //   image.src = style.src || '';
-      //   video.parentElement.appendChild(container);
-      // });
+  
       if (videoStyles) {
         console.log('found video style****');
         video.style.cssText = videoStylesFormat;
         video.style.zIndex = dynamicData.length;
-        // video.style.cssText = `
-        // transition: all 0.2s linear;
-        //     width: auto;
-        //     right: 0;
-        //     left: 0;
-        //     top: 25%;
-        //     height: 175px;
-        //     position: absolute;
-        //     border: 2px solid #ddc157;
-        //     z-index: 2;
-        //     border-radius: 5px;
-        //     margin: 0 auto;
-        //     `;
       } else {
         video.style.cssText = `
         transition: all 0.2s linear;
@@ -358,24 +317,7 @@ const VpaidNonLinear = class {
 
       console.log('this.videoSlot_***', this.videoSlot_);
       console.log('container***', container);
-      // if (container) {
-      //   if (bgImages) {
-      //     console.log('found____');
-      //     container.style.cssText = bgImages.styles;
-      //   } else {
-      //     console.log('not found____');
-      //     container.style.cssText = `
-      //     transition: background 0.2s;
-      //     background: url(https://i.ibb.co/DCs08Kq/899fyB3.jpg) center center / cover no-repeat;
-      //   inset: 0% 0% 0% 0%;
-      //   z-index: 0;
-      //   cursor: pointer;
-      //   min-height: 360px;
-      // }
-      // `;
-      //   }
-      //   console.log('video____', video);
-      // }
+    
     } else {
       this.slot_.appendChild(containerOne);
       containerOne.style.display = 'block';
@@ -407,47 +349,6 @@ const VpaidNonLinear = class {
     if ('AdClickThru' in this.eventsCallbacks_) {
       this.eventsCallbacks_['AdClickThru']('', '0', true);
     }
-  }
-
-  /**
-   * Called when the linear overlay is clicked.  Plays the video passed in the
-   * parameters.
-   * @private
-   */
-  linearButtonClick_() {
-    this.log('Linear Button Click');
-    // This will turn the ad into a linear ad.
-    this.attributes_.linear = true;
-    this.callEvent_('AdLinearChange');
-    // Remove all elements.
-    while (this.slot_.firstChild) {
-      this.slot_.removeChild(this.slot_.firstChild);
-    }
-
-    this.updateVideoPlayerSize_();
-
-    // Start a video.
-    const videos = this.parameters_.videos || [];
-    for (let i = 0; i < videos.length; i++) {
-      // Choose the first video with a supported mimetype.
-      if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
-        this.videoSlot_.setAttribute('src', videos[i].url);
-        console.log('this.videoSlot_* src$', this.videoSlot_.src);
-        // Set start time of linear ad to calculate remaining time.
-        const date = new Date();
-        this.startTime_ = date.getTime();
-
-        this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
-        this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
-        this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
-
-        this.videoSlot_.play();
-
-        return;
-      }
-    }
-    // Haven't found a video, so error.
-    this.callEvent_('AdError');
   }
 
   /**
