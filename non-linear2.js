@@ -280,11 +280,11 @@ const VpaidNonLinear = class {
            domElet = `<div data-type="${data.type}" style="background: url(${
             defaultAsset?.url
           }) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${
-            idx - 1
+            idx
           };"></div>`;
           // video.parentElement.appendChild(domElet)
         } else if(data?.image?.displayType === 'contain') {
-          domElet = `<div data-type="${data.type}"  style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx-1};"></div>`
+          domElet = `<div data-type="${data.type}"  style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx};"></div>`
         } else {
           domElet = `<div  data-type="${
             data.type
@@ -292,7 +292,7 @@ const VpaidNonLinear = class {
             defaultAsset?.size < 40000 && defaultAsset?.encodedImage
             ? defaultAsset?.encodedImage
             : defaultAsset?.url
-          }" alt="" style="z-index: ${idx - 1}; height: 100%; width: 100%;"/></div>`;
+          }" alt="" style="z-index: ${idx}; height: 100%; width: 100%;"/></div>`;
         }
         video.parentElement.insertAdjacentHTML('beforeend', domElet);
 
