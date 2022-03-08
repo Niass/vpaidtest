@@ -259,6 +259,9 @@ const VpaidNonLinear = class {
     if (this.videoSlot_.nodeName) {
       console.log('this.parameters_', this.parameters_);
       const creaWrapper = dynamicData.find((data) => data.type === 'wrapper');
+      const creaVideo = dynamicData.find((data) => data.type === 'video');
+      const videoStylesFormat = this.stylesFormatter(creaVideo, creaWrapper.size);
+      console.log('videoStylesFormat', videoStylesFormat)
       console.log('creaWrapper***', creaWrapper);
       const dynamicImages = dynamicData.filter((data) => data.type === 'image');
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
