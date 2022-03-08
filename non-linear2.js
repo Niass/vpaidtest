@@ -200,7 +200,7 @@ const VpaidNonLinear = class {
       right: initialParentSize.width - elementSize.width - (elementSize.xAxis ?? 0),
       bottom: initialParentSize.height - elementSize.height - (elementSize.yAxis ?? 0),
     };
-
+    console.log('absolutePosition', absolutePosition, parentSize);
     const size = this.isSizingSystem(attribute, parentSize, absolutePosition);
 
     const cssStyles = {
@@ -280,6 +280,8 @@ const VpaidNonLinear = class {
             idx - 1
           };"></div>`;
           // video.parentElement.appendChild(domElet)
+        } else if(data?.image?.displayType === 'contain') {
+          domElet = `<div data-type="${data.type}" class="${className}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx-1};"></div>`
         } else {
           domElet = `<div  data-type="${
             data.type
