@@ -281,7 +281,7 @@ const VpaidNonLinear = class {
           };"></div>`;
           // video.parentElement.appendChild(domElet)
         } else if(data?.image?.displayType === 'contain') {
-          domElet = `<div data-type="${data.type}" class="${className}" style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx-1};"></div>`
+          domElet = `<div data-type="${data.type}"  style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx-1};"></div>`
         } else {
           domElet = `<div  data-type="${
             data.type
