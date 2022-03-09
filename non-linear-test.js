@@ -6,6 +6,13 @@
  function sayHi () {
   console.log('hi!!!!!!!!!!!!!!!!!!')
 }
+const formattingSizing = (value, unit) => {
+  if (typeof value === 'number') {
+    return `${Math.round(value)}${unit}`;
+  }
+
+  return `${value}`;
+};
 const  isSizingSystem = (attribute, parentFrameSize, absolutePosition) => {
   const units = {
     top: '%',
@@ -17,24 +24,24 @@ const  isSizingSystem = (attribute, parentFrameSize, absolutePosition) => {
   };
 
   const sizing = {
-    top: this.pixelToPercentage(absolutePosition.top, parentFrameSize.height),
-    bottom: this.pixelToPercentage(absolutePosition.bottom, parentFrameSize.height),
-    left: this.pixelToPercentage(absolutePosition.left, parentFrameSize.width),
-    right: this.pixelToPercentage(absolutePosition.right, parentFrameSize.width),
+    top: pixelToPercentage(absolutePosition.top, parentFrameSize.height),
+    bottom: pixelToPercentage(absolutePosition.bottom, parentFrameSize.height),
+    left: pixelToPercentage(absolutePosition.left, parentFrameSize.width),
+    right: pixelToPercentage(absolutePosition.right, parentFrameSize.width),
     width: (absolutePosition.width / parentFrameSize.width) * 100,
     height: (absolutePosition.height / parentFrameSize.height) * 100,
   };
 
   return {
-    width: this.formattingSizing(sizing.width, units.width),
+    width: formattingSizing(sizing.width, units.width),
     height:
       attribute?.image?.displayType === 'cover'
         ? 'auto !important'
-        : this.formattingSizing(sizing.height, units.height),
-    top: this.formattingSizing(sizing.top, units.top),
-    bottom: this.formattingSizing(sizing.bottom, units.bottom),
-    left: this.formattingSizing(sizing.left, units.left),
-    right: this.formattingSizing(sizing.right, units.right),
+        : formattingSizing(sizing.height, units.height),
+    top: formattingSizing(sizing.top, units.top),
+    bottom: formattingSizing(sizing.bottom, units.bottom),
+    left: formattingSizing(sizing.left, units.left),
+    right: formattingSizing(sizing.right, units.right),
   };
 };
 
@@ -338,6 +345,10 @@ const testData = [
     "animations": []
   }
 ]
+
+const  pixelToPercentage = (pos, frameSize) =>{
+    return (pos * 100) / frameSize;
+  }
 
 const vpaidArray = testData.map((data, idx) => {
   const defaultAsset = data?.image?.defaultAsset;
