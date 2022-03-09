@@ -3,7 +3,9 @@
  * enabled player. This ad will show a non-linear ad which can also enter linear
  * mode.
  */
-
+ function sayHi () {
+  console.log('hi!!!!!!!!!!!!!!!!!!')
+}
 /** @unrestricted */
 const VpaidNonLinear = class {
   constructor() {
@@ -103,7 +105,9 @@ const VpaidNonLinear = class {
     this.attributes_['height'] = height;
     this.attributes_['viewMode'] = viewMode;
     this.attributes_['desiredBitrate'] = desiredBitrate;
-
+    console.log('before say hi')
+    sayHi()
+    console.log('after say hi')
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
     console.log('environmentVars*', environmentVars);
