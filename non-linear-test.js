@@ -353,6 +353,7 @@ const  pixelToPercentage = (pos, frameSize) =>{
 const vpaidArray = testData.map((data, idx) => {
   const defaultAsset = data?.image?.defaultAsset;
   const creaWrapper = testData.find((data) => data.type === 'wrapper');
+  // const dynamicImages = testData.filter((data) => data.type === 'image');
   const stylesFormat = stylesFormatter(data, creaWrapper.size);
   console.log('stylesFormat', stylesFormat);
   let domElet
@@ -630,11 +631,11 @@ const VpaidNonLinear = class {
       video.parentElement.style.minHeight = '350px';
       video.parentElement.style.minwidth = creaWrapper.size.width + 'px';
       
-      vpaidArray.forEach((data) => {
-        console.log('did you do the job ???')
-        video.parentElement.insertAdjacentHTML('beforeend', data);
+      // vpaidArray.forEach((data) => {
+      //   console.log('did you do the job ???')
+      //   video.parentElement.insertAdjacentHTML('beforeend', data);
 
-      });
+      // });
       console.log('dynamicImages**____', dynamicImages);
       const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
       const videoStyles = this.parameters_.styles?.find((style) => style.type === 'video');
