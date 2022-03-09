@@ -341,6 +341,7 @@ const testData = [
 
 const vpaidArray = testData.map((data, idx) => {
   const defaultAsset = data?.image?.defaultAsset;
+  const creaWrapper = testData.find((data) => data.type === 'wrapper');
   const stylesFormat = this.stylesFormatter(data, creaWrapper.size);
   console.log('stylesFormat', stylesFormat);
   let domElet
