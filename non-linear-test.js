@@ -65,7 +65,7 @@ const stylesFormatter = (attribute, parentSize) => {
     bottom: initialParentSize.height - elementSize.height - (elementSize.yAxis ?? 0),
   };
   console.log('absolutePosition', absolutePosition, parentSize);
-  const size = this.isSizingSystem(attribute, parentSize, absolutePosition);
+  const size = isSizingSystem(attribute, parentSize, absolutePosition);
 
   const cssStyles = {
     position: 'absolute',
@@ -342,7 +342,7 @@ const testData = [
 const vpaidArray = testData.map((data, idx) => {
   const defaultAsset = data?.image?.defaultAsset;
   const creaWrapper = testData.find((data) => data.type === 'wrapper');
-  const stylesFormat = this.stylesFormatter(data, creaWrapper.size);
+  const stylesFormat = stylesFormatter(data, creaWrapper.size);
   console.log('stylesFormat', stylesFormat);
   let domElet
   if (data?.image?.displayType === 'cover') {
