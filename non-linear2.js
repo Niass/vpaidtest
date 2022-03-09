@@ -3,6 +3,9 @@
  * enabled player. This ad will show a non-linear ad which can also enter linear
  * mode.
  */
+function sayHi () {
+  console.log('hi!!!!!!!!!!!!!!!!!!')
+}
 
 /** @unrestricted */
 const VpaidNonLinear = class {
@@ -233,7 +236,7 @@ const VpaidNonLinear = class {
    */
   startAd() {
     this.log('Starting ad');
-
+    sayHi()
     const date = new Date();
     this.startTime_ = date.getTime();
 
