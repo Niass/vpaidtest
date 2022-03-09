@@ -103,21 +103,33 @@ const VpaidNonLinear = class {
     this.attributes_['height'] = height;
     this.attributes_['viewMode'] = viewMode;
     this.attributes_['desiredBitrate'] = desiredBitrate;
-
+  
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
-    console.log('environmentVars*', environmentVars);
     this.videoSlot_ = environmentVars.videoSlot;
-
-    // this.videoSlot_.style.top = '15%';
-    if (this.videoSlot_.nodeName) {
-      var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
-    }
-
+    console.log('this.videoSlot_', this.videoSlot_);
+  
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
-
+  
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
+  
+  
+   
+    var parent = this.videoSlot_.parentElement;
+    const bgImages = this.parameters_.images?.find(image => image.type === "backgroundImage")
+    console.log('bgImages****', bgImages);
+    if(bgImages) {
+  
+      parent.style.cssText = bgImages.styles
+    }
+  
+    const htmlVideo = parent.querySelector('video');
+    this.updateVideoSlot_();
+    this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
+    this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
+    this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
+    this.slot_.addEventListener('click', this.clickAd_.bind(this), false);
     this.callEvent_('AdLoaded');
   }
   pixelToPercentage(pos, frameSize) {
@@ -221,124 +233,69 @@ const VpaidNonLinear = class {
    */
   startAd() {
     this.log('Starting ad');
-
-    const date = new Date();
-    this.startTime_ = date.getTime();
-
-    // Create a div to contain our ad elements.
-    const overlays = this.parameters_.overlays || [];
-    const dynamicData = this.parameters_.dynamicData || [];
-
-    const containerOne = document.createElement('div');
-
-    containerOne.style.display = 'block';
-    containerOne.style.position = 'absolute';
-    // containerOne.style.width = '135%';
-    containerOne.style.bottom = '5%';
-    containerOne.style.left = 0;
-    containerOne.style.right = 0;
-
-    // Create an img tag and populate it with the image passed in to the ad
-    // parameters.
-
-    const adImg = document.createElement('img');
-    if (this.videoSlot_.nodeName) {
-      console.log('this.parameters_', this.parameters_);
-      const creaWrapper = dynamicData.find((data) => data.type === 'wrapper');
-      const creaVideo = dynamicData.find((data) => data.type === 'video');
-      const videoStylesFormat = this.stylesFormatter(creaVideo, creaWrapper.size);
-      console.log('videoStylesFormat', videoStylesFormat)
-      console.log('creaWrapper***', creaWrapper);
-      const dynamicImages = dynamicData.filter((data) => data.type === 'image');
-      const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
-      const video = container.querySelector('video');
-      video.parentElement.style.minHeight = '350px';
-      video.parentElement.style.minwidth = creaWrapper.size.width + 'px';
-      dynamicImages.forEach((data, idx) => {
-        const defaultAsset = data?.image?.defaultAsset;
-        const stylesFormat = this.stylesFormatter(data, creaWrapper.size);
-        console.log('stylesFormat', stylesFormat);
-        let domElet
-        if (data?.image?.displayType === 'cover') {
-          if (!defaultAsset) {
-            return 'defaultAsset is missing in attribute </br>';
-          }
-           domElet = `<div data-type="${data.type}" style="background: url(${
-            defaultAsset?.url
-          }) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${
-            idx
-          };"></div>`;
-          // video.parentElement.appendChild(domElet)
-        } else if(data?.image?.displayType === 'contain') {
-          domElet = `<div data-type="${data.type}"  style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx};"></div>`
-        } else {
-          domElet = `<div  data-type="${
-            data.type
-          }" style="${stylesFormat};"> <img  src="${
-            defaultAsset?.size < 40000 && defaultAsset?.encodedImage
-            ? defaultAsset?.encodedImage
-            : defaultAsset?.url
-          }" alt="" style="z-index: ${idx}; height: 100%; width: 100%;"/></div>`;
-        }
-        video.parentElement.insertAdjacentHTML('beforeend', domElet);
-
-      });
-      console.log('dynamicImages**____', dynamicImages);
-      const bgImages = this.parameters_.styles?.find((style) => style.type === 'backgroundImage');
-      const videoStyles = this.parameters_.styles?.find((style) => style.type === 'video');
-      const imagesStyles = this.parameters_.styles?.filter((style) => style.type === 'image');
-      console.log('imagesStyles***', imagesStyles);
-      // this.slot_.appendChild(containerTwo);
-      const adImgTwo = document.createElement('img');
-      adImgTwo.src = overlays[1] || '';
-      adImgTwo.style.margin = 'auto';
-      adImgTwo.style.display = 'block';
-      adImgTwo.style.maxHeight = '100px';
-  
-      if (videoStyles) {
-        console.log('found video style****');
-        video.style.cssText = videoStylesFormat;
-        video.style.zIndex = dynamicData.length;
-      } else {
-        video.style.cssText = `
-        transition: all 0.2s linear;
-            width: auto;
-            right: 0;
-            left: 0;
-            top: 25%;
-            height: 175px;
-            position: absolute;
-            border: 2px solid #ddc157;
-            z-index: 2;
-            border-radius: 5px;
-            margin: 0 auto;
-            `;
-      }
-
-      console.log('this.videoSlot_***', this.videoSlot_);
-      console.log('container***', container);
-    
-    } else {
-      this.slot_.appendChild(containerOne);
-      containerOne.style.display = 'block';
-      containerOne.style.position = 'absolute';
-      containerOne.style.width = '100%';
-      containerOne.style.bottom = '0%';
-      containerOne.appendChild(adImg);
-      console.log('type node name**', this.videoSlot_.nodeName);
-      console.log('no instanceof element', this.videoSlot_);
+  this.videoSlot_.play();
+  var div = document.createElement('div');
+  div.classList.add('blink-square');
+  div.style.width = '30px';
+  div.style.height = '30px';
+  var squareColor = this.parameters_.color || '';
+  var pubIframme = this.parameters_.pubIframme || '';
+  div.style.border = `1px solid ${squareColor}`;
+  div.style.backgroundColor = squareColor;
+  div.style.cursor = 'pointer';
+  if (squareColor) {
+    this.slot_.appendChild(div);
+  }
+  const prepareFrame = () => {
+    var ifrm = document.createElement('iframe');
+    ifrm.setAttribute('src', pubIframme);
+    ifrm.style.width = '150px';
+    ifrm.style.height = '150px';
+    if (pubIframme) {
+      this.slot_.appendChild(ifrm);
     }
-    console.log('overlays[1]', overlays[1]);
-    console.log('overlays[0]', overlays[0]);
-    adImg.src = overlays[0] || '';
-    adImg.style.margin = 'auto';
-    adImg.style.display = 'block';
-    // adImg.style.marginBottom = '20px';
-    adImg.addEventListener('click', this.adClick_.bind(this), false);
-    // container.appendChild(adImg);
+  };
+  const imageOne = (elt, styles) => {
+    const div = document.createElement('div');
+    div.style.cssText = `
+      display: block;position: absolute;background: url(https://creative.bliink.io/61e9934208e3290017764661/grq3ccH.png) center center / contain no-repeat;position: absolute;width: 30%;height: 32%;top: 69%;bottom: 0%;right: 0%;z-index: 1;cursor: pointer;
+  }
+`;
+    this.slot_.appendChild(div);
+  };
+  const imageTwo = (elt, styles) => {
+    const div = document.createElement('div');
+    div.style.cssText = `
+    background: url("https://creative.bliink.io/61e99ac108e3290017764fe4/3EPh0Bl.png") center center / contain no-repeat;position:absolute;width:25vh;height:7%;top:5%;left: 11%;right:inherit;z-index:3;cursor:pointer;
+  }
+`;
+    this.slot_.appendChild(div);
+  };
+  // imageTwo()
+  const buttonOne = (elt, styles) => {
+    const div = document.createElement('div');
+    div.style.cssText = `
+    background: url("https://creative.bliink.io/61e9934208e3290017764661/vhRdHcg.png") center center / contain no-repeat;
+    position: absolute;
+    width: 15vh;
+    height: 15%;
+    bottom: 5%;
+    left: 19%;
+    right: inherit;
+    z-index: 2;
+    cursor: pointer;
+  }
+`;
+    this.slot_.appendChild(div);
+  };
+  buttonOne();
 
-    this.callEvent_('AdStarted');
-    this.callEvent_('AdImpression');
+  // imageOne();
+  prepareFrame();
+
+  div.addEventListener('click', this.overlayOnClick_.bind(this), false);
+
+  this.callEvent_('AdStarted');
   }
 
   /**
