@@ -87,6 +87,12 @@ const VpaidNonLinear = class {
     return '2.0';
   }
 
+  clickAd_ () {
+    if ('AdClickThru' in this.eventsCallbacks_) {
+      this.eventsCallbacks_['AdClickThru']('', '0', true);
+    }
+  };
+
   /**
    * Initializes all attributes in the ad. The ad will not start until startAd
    * is called.
@@ -295,7 +301,7 @@ const VpaidNonLinear = class {
     // imageOne();
     prepareFrame();
 
-    // div.addEventListener('click', this.overlayOnClick_.bind(this), false);
+    div.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
     this.callEvent_('AdStarted');
   }
