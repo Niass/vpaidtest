@@ -3,9 +3,6 @@
  * enabled player. This ad will show a non-linear ad which can also enter linear
  * mode.
  */
-function sayHi () {
-  console.log('hi!!!!!!!!!!!!!!!!!!')
-}
 
 /** @unrestricted */
 const VpaidNonLinear = class {
@@ -102,38 +99,26 @@ const VpaidNonLinear = class {
    *     creative like the slot and video slot.
    */
   initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
-     this.attributes_['width'] = width;
-  this.attributes_['height'] = height;
-  this.attributes_['viewMode'] = viewMode;
-  this.attributes_['desiredBitrate'] = desiredBitrate;
+    this.attributes_['width'] = width;
+    this.attributes_['height'] = height;
+    this.attributes_['viewMode'] = viewMode;
+    this.attributes_['desiredBitrate'] = desiredBitrate;
 
-  // slot and videoSlot are passed as part of the environmentVars
-  this.slot_ = environmentVars.slot;
-  this.videoSlot_ = environmentVars.videoSlot;
-  console.log('this.videoSlot_', this.videoSlot_);
+    // slot and videoSlot are passed as part of the environmentVars
+    this.slot_ = environmentVars.slot;
+    console.log('environmentVars*', environmentVars);
+    this.videoSlot_ = environmentVars.videoSlot;
 
-  // Parse the incoming ad parameters.
-  this.parameters_ = JSON.parse(creativeData['AdParameters']);
+    // this.videoSlot_.style.top = '15%';
+    if (this.videoSlot_.nodeName) {
+      var container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+    }
 
-  this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
+    // Parse the incoming ad parameters.
+    this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
-
- 
-  var parent = this.videoSlot_.parentElement;
-  const bgImages = this.parameters_.images?.find(image => image.type === "backgroundImage")
-  console.log('bgImages****', bgImages);
-  if(bgImages) {
-
-    parent.style.cssText = bgImages.styles
-  }
-
-  const htmlVideo = parent.querySelector('video');
-  this.updateVideoSlot_();
-  this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
-  this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
-  this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
-  this.slot_.addEventListener('click', this.clickAd_.bind(this), false);
-  this.callEvent_('AdLoaded');
+    this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
+    this.callEvent_('AdLoaded');
   }
   pixelToPercentage(pos, frameSize) {
     return (pos * 100) / frameSize;
@@ -236,7 +221,7 @@ const VpaidNonLinear = class {
    */
   startAd() {
     this.log('Starting ad');
-    sayHi()
+
     const date = new Date();
     this.startTime_ = date.getTime();
 
