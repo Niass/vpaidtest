@@ -226,6 +226,10 @@ const VpaidNonLinear = class {
     this.videoSlot_.setAttribute('height', this.attributes_['height']);
   }
 
+  overlayOnClick_ () {
+    this.callEvent_('AdClickThru');
+  };
+
   /**
    * Called by the wrapper to start the ad.
    */
