@@ -275,7 +275,6 @@ const VpaidNonLinear = class {
       console.log('container***', container);
     }
 
-    div.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
     this.callEvent_('AdStarted');
   }
