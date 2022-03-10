@@ -87,11 +87,11 @@ const VpaidNonLinear = class {
     return '2.0';
   }
 
-  clickAd_ () {
+  clickAd_() {
     if ('AdClickThru' in this.eventsCallbacks_) {
       this.eventsCallbacks_['AdClickThru']('', '0', true);
     }
-  };
+  }
 
   /**
    * Initializes all attributes in the ad. The ad will not start until startAd
@@ -232,9 +232,9 @@ const VpaidNonLinear = class {
     this.videoSlot_.setAttribute('height', this.attributes_['height']);
   }
 
-  overlayOnClick_ () {
+  overlayOnClick_() {
     this.callEvent_('AdClickThru');
-  };
+  }
 
   /**
    * Called by the wrapper to start the ad.
@@ -242,44 +242,7 @@ const VpaidNonLinear = class {
   startAd() {
     this.log('Starting ad');
     this.videoSlot_.play();
-    var div = document.createElement('div');
-    div.classList.add('blink-square');
-    div.style.width = '30px';
-    div.style.height = '30px';
-    var squareColor = this.parameters_.color || '';
-    var pubIframme = this.parameters_.pubIframme || '';
-    div.style.border = `1px solid ${squareColor}`;
-    div.style.backgroundColor = squareColor;
-    div.style.cursor = 'pointer';
-    if (squareColor) {
-      this.slot_.appendChild(div);
-    }
-    const prepareFrame = () => {
-      var ifrm = document.createElement('iframe');
-      ifrm.setAttribute('src', pubIframme);
-      ifrm.style.width = '150px';
-      ifrm.style.height = '150px';
-      if (pubIframme) {
-        this.slot_.appendChild(ifrm);
-      }
-    };
-    const imageOne = (elt, styles) => {
-      const div = document.createElement('div');
-      div.style.cssText = `
-      display: block;position: absolute;background: url(https://creative.bliink.io/61e9934208e3290017764661/grq3ccH.png) center center / contain no-repeat;position: absolute;width: 30%;height: 32%;top: 69%;bottom: 0%;right: 0%;z-index: 1;cursor: pointer;
-  }
-`;
-      this.slot_.appendChild(div);
-    };
-    const imageTwo = (elt, styles) => {
-      const div = document.createElement('div');
-      div.style.cssText = `
-    background: url("https://creative.bliink.io/61e99ac108e3290017764fe4/3EPh0Bl.png") center center / contain no-repeat;position:absolute;width:25vh;height:7%;top:5%;left: 11%;right:inherit;z-index:3;cursor:pointer;
-  }
-`;
-      this.slot_.appendChild(div);
-    };
-    // imageTwo()
+
     const buttonOne = (elt, styles) => {
       const div = document.createElement('div');
       div.style.cssText = `
@@ -297,9 +260,6 @@ const VpaidNonLinear = class {
       this.slot_.appendChild(div);
     };
     buttonOne();
-
-    // imageOne();
-    prepareFrame();
 
     div.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
