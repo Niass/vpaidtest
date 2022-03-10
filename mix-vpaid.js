@@ -239,6 +239,7 @@ const VpaidNonLinear = class {
   /**
    * Called by the wrapper to start the ad.
    */
+  
   startAd() {
     this.log('Starting ad');
     this.videoSlot_.play();
