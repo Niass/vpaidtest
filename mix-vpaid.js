@@ -120,14 +120,14 @@ const VpaidNonLinear = class {
 
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
 
-    var parent = this.videoSlot_.parentElement;
-    const bgImages = this.parameters_.images?.find((image) => image.type === 'backgroundImage');
-    console.log('bgImages****', bgImages);
-    if (bgImages) {
-      parent.style.cssText = bgImages.styles;
-    }
+    // var parent = this.videoSlot_.parentElement;
+    // const bgImages = this.parameters_.images?.find((image) => image.type === 'backgroundImage');
+    // console.log('bgImages****', bgImages);
+    // if (bgImages) {
+    //   parent.style.cssText = bgImages.styles;
+    // }
 
-    const htmlVideo = parent.querySelector('video');
+    // const htmlVideo = parent.querySelector('video');
     this.updateVideoSlot_();
     this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
     this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
