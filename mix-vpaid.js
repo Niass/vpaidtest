@@ -243,6 +243,7 @@ const VpaidNonLinear = class {
   startAd() {
     this.log('Starting ad');
     this.videoSlot_.play();
+    const dynamicData = this.parameters_.dynamicData || [];
     if (this.videoSlot_.nodeName) {
       console.log('game in*****')
       console.log('this.parameters_', this.parameters_);
