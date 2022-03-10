@@ -295,7 +295,6 @@ const VpaidNonLinear = class {
       console.log('dynamicImages**____', dynamicImages);
 
       
-      console.log('imagesStyles***', imagesStyles);
       // this.slot_.appendChild(containerTwo);
    
   
