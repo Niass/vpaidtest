@@ -250,6 +250,9 @@ const VpaidNonLinear = class {
       const creaWrapper = dynamicData.find((data) => data.type === 'wrapper');
       const creaVideo = dynamicData.find((data) => data.type === 'video');
       const videoStylesFormat = this.stylesFormatter(creaVideo, creaWrapper.size);
+      // video.style.cssText = videoStylesFormat;
+      this.videoSlot_.style.cssText = videoStylesFormat;
+      this.videoSlot_.style.zIndex = dynamicData.length;
       console.log('videoStylesFormat', videoStylesFormat)
       console.log('creaWrapper***', creaWrapper);
       const dynamicImages = dynamicData.filter((data) => data.type === 'image');
@@ -367,6 +370,8 @@ const VpaidNonLinear = class {
       this.slot_.appendChild(this.videoSlot_);
     }
     this.updateVideoPlayerSize_();
+    const dynamicData = this.parameters_.dynamicData || [];
+    const videoStylesFormat = this.stylesFormatter(creaVideo, creaWrapper.size);
     var foundSource = false;
     var videos = this.parameters_.mediaFiles || [];
     for (var i = 0; i < videos.length; i++) {
@@ -374,9 +379,9 @@ const VpaidNonLinear = class {
       if (this.videoSlot_.canPlayType(videos[i].type) != '') {
         this.videoSlot_.setAttribute('src', videos[i].uri);
         foundSource = true;
-        if (videos[i].styles) {
-          this.videoSlot_.style.cssText = videos[i].styles;
-        }
+        // if (videos[i].styles) {
+        //   this.videoSlot_.style.cssText = videos[i].styles;
+        // }
         break;
       }
     }
