@@ -370,8 +370,6 @@ const VpaidNonLinear = class {
       this.slot_.appendChild(this.videoSlot_);
     }
     this.updateVideoPlayerSize_();
-    const dynamicData = this.parameters_.dynamicData || [];
-    const videoStylesFormat = this.stylesFormatter(creaVideo, creaWrapper.size);
     var foundSource = false;
     var videos = this.parameters_.mediaFiles || [];
     for (var i = 0; i < videos.length; i++) {
