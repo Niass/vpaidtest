@@ -238,13 +238,10 @@ const VpaidNonLinear = class {
       // video.style.cssText = videoStylesFormat;
       this.videoSlot_.style.cssText = videoStylesFormat;
       this.videoSlot_.style.zIndex = dynamicData.length;
-      console.log('videoStylesFormat', videoStylesFormat);
-      console.log('creaWrapper***', creaWrapper);
+
       const dynamicImages = dynamicData.filter((data) => data.type === 'image');
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
-      const video = container.querySelector('video');
-      video.parentElement.style.minHeight = '350px';
-      video.parentElement.style.minwidth = creaWrapper.size.width + 'px';
+ 
       const domSlot = this.slot_;
       dynamicImages.forEach((data, idx) => {
         const defaultAsset = data?.image?.defaultAsset;
