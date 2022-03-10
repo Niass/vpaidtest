@@ -1,7 +1,7 @@
 /**
  * @fileoverview A sample VPAID ad useful for testing a VPAID JS enabled player.
  * This ad will just play a video.
- *
+ **
  */
 
 /**
