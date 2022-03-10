@@ -284,7 +284,8 @@ const VpaidNonLinear = class {
             : defaultAsset?.url
           }" alt="" style="z-index: ${idx}; height: 100%; width: 100%;"/></div>`;
         }
-          domSlot.appendChild(domElet);
+          // domSlot.appendChild(domElet);
+          domSlot.insertAdjacentHTML('beforeend', domElet);
         // video.parentElement.insertAdjacentHTML('beforeend', domElet);
 
       });
