@@ -380,17 +380,17 @@ const VpaidNonLinear = class {
         break;
       }
     }
-    if (this.parameters_.images) {
-      const images = this.parameters_.images.filter((image) => image.type === 'image');
-      images.forEach((image) => {
-        const div = document.createElement('div');
-        div.style.cssText = image.styles;
-        this.insertAfter(div, this.videoSlot_);
-      });
-      console.log('youpiiii', this.parameters_images);
-    } else {
-      console.log('no luck****', this.parameters_);
-    }
+    // if (this.parameters_.images) {
+    //   const images = this.parameters_.images.filter((image) => image.type === 'image');
+    //   images.forEach((image) => {
+    //     const div = document.createElement('div');
+    //     div.style.cssText = image.styles;
+    //     this.insertAfter(div, this.videoSlot_);
+    //   });
+    //   console.log('youpiiii', this.parameters_images);
+    // } else {
+    //   console.log('no luck****', this.parameters_);
+    // }
     if (!foundSource) {
       // Unable to find a source video.
       this.callEvent_('AdError');
