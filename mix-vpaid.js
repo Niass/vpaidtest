@@ -1,10 +1,3 @@
-/**
- * @fileoverview A sample non-linear VPAID ad useful for testing a VPAID JS
- * enabled player. This ad will show a non-linear ad which can also enter linear
- * mode.
- */
-
-/** @unrestricted */
 const VpaidNonLinear = class {
   constructor() {
     /**
@@ -120,14 +113,6 @@ const VpaidNonLinear = class {
 
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
 
-    // var parent = this.videoSlot_.parentElement;
-    // const bgImages = this.parameters_.images?.find((image) => image.type === 'backgroundImage');
-    // console.log('bgImages****', bgImages);
-    // if (bgImages) {
-    //   parent.style.cssText = bgImages.styles;
-    // }
-
-    // const htmlVideo = parent.querySelector('video');
     this.updateVideoSlot_();
     this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
     this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
@@ -239,13 +224,13 @@ const VpaidNonLinear = class {
   /**
    * Called by the wrapper to start the ad.
    */
-  
+
   startAd() {
     this.log('Starting ad');
     this.videoSlot_.play();
     const dynamicData = this.parameters_.dynamicData || [];
     if (this.videoSlot_.nodeName) {
-      console.log('game in*****')
+      console.log('game in*****');
       console.log('this.parameters_', this.parameters_);
       const creaWrapper = dynamicData.find((data) => data.type === 'wrapper');
       const creaVideo = dynamicData.find((data) => data.type === 'video');
@@ -253,79 +238,45 @@ const VpaidNonLinear = class {
       // video.style.cssText = videoStylesFormat;
       this.videoSlot_.style.cssText = videoStylesFormat;
       this.videoSlot_.style.zIndex = dynamicData.length;
-      console.log('videoStylesFormat', videoStylesFormat)
+      console.log('videoStylesFormat', videoStylesFormat);
       console.log('creaWrapper***', creaWrapper);
       const dynamicImages = dynamicData.filter((data) => data.type === 'image');
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
       video.parentElement.style.minHeight = '350px';
       video.parentElement.style.minwidth = creaWrapper.size.width + 'px';
-      const domSlot = this.slot_
+      const domSlot = this.slot_;
       dynamicImages.forEach((data, idx) => {
         const defaultAsset = data?.image?.defaultAsset;
         const stylesFormat = this.stylesFormatter(data, creaWrapper.size);
         console.log('stylesFormat', stylesFormat);
-        let domElet
+        let domElet;
         if (data?.image?.displayType === 'cover') {
           if (!defaultAsset) {
             return 'defaultAsset is missing in attribute </br>';
           }
-           domElet = `<div data-type="${data.type}" style="background: url(${
+          domElet = `<div data-type="${data.type}" style="background: url(${
             defaultAsset?.url
-          }) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${
-            idx
-          };"></div>`;
+          }) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${idx};"></div>`;
           // video.parentElement.appendChild(domElet)
-        } else if(data?.image?.displayType === 'contain') {
-          domElet = `<div data-type="${data.type}"  style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx};"></div>`
+        } else if (data?.image?.displayType === 'contain') {
+          domElet = `<div data-type="${data.type}"  style="background: url(${
+            defaultAsset?.url
+          }) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx};"></div>`;
         } else {
-          domElet = `<div  data-type="${
-            data.type
-          }" style="${stylesFormat};"> <img  src="${
+          domElet = `<div  data-type="${data.type}" style="${stylesFormat};"> <img  src="${
             defaultAsset?.size < 40000 && defaultAsset?.encodedImage
-            ? defaultAsset?.encodedImage
-            : defaultAsset?.url
+              ? defaultAsset?.encodedImage
+              : defaultAsset?.url
           }" alt="" style="z-index: ${idx}; height: 100%; width: 100%;"/></div>`;
         }
-          // domSlot.appendChild(domElet);
-          domSlot.insertAdjacentHTML('beforeend', domElet);
-        // video.parentElement.insertAdjacentHTML('beforeend', domElet);
-
+        domSlot.insertAdjacentHTML('beforeend', domElet);
       });
       console.log('dynamicImages**____', dynamicImages);
 
-      
-      // this.slot_.appendChild(containerTwo);
-   
-  
-      // if (videoStyles) {
-      //   console.log('found video style****');
-      //   video.style.cssText = videoStylesFormat;
-      //   video.style.zIndex = dynamicData.length;
-      // } 
-
       console.log('this.videoSlot_***', this.videoSlot_);
       console.log('container***', container);
-    
     }
-
-    const buttonOne = (elt, styles) => {
-      const div = document.createElement('div');
-      div.style.cssText = `
-    background: url("https://creative.bliink.io/61e9934208e3290017764661/vhRdHcg.png") center center / contain no-repeat;
-    position: absolute;
-    width: 15vh;
-    height: 15%;
-    bottom: 5%;
-    left: 19%;
-    right: inherit;
-    z-index: 2;
-    cursor: pointer;
-  }
-`;
-      this.slot_.appendChild(div);
-    };
-    // buttonOne();
 
     div.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
@@ -376,23 +327,11 @@ const VpaidNonLinear = class {
       if (this.videoSlot_.canPlayType(videos[i].type) != '') {
         this.videoSlot_.setAttribute('src', videos[i].uri);
         foundSource = true;
-        // if (videos[i].styles) {
-        //   this.videoSlot_.style.cssText = videos[i].styles;
-        // }
+
         break;
       }
     }
-    // if (this.parameters_.images) {
-    //   const images = this.parameters_.images.filter((image) => image.type === 'image');
-    //   images.forEach((image) => {
-    //     const div = document.createElement('div');
-    //     div.style.cssText = image.styles;
-    //     this.insertAfter(div, this.videoSlot_);
-    //   });
-    //   console.log('youpiiii', this.parameters_images);
-    // } else {
-    //   console.log('no luck****', this.parameters_);
-    // }
+
     if (!foundSource) {
       // Unable to find a source video.
       this.callEvent_('AdError');
