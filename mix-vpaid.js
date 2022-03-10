@@ -243,24 +243,85 @@ const VpaidNonLinear = class {
   startAd() {
     this.log('Starting ad');
     this.videoSlot_.play();
+    if (this.videoSlot_.nodeName) {
+      console.log('game in*****')
+      console.log('this.parameters_', this.parameters_);
+      const creaWrapper = dynamicData.find((data) => data.type === 'wrapper');
+      const creaVideo = dynamicData.find((data) => data.type === 'video');
+      const videoStylesFormat = this.stylesFormatter(creaVideo, creaWrapper.size);
+      console.log('videoStylesFormat', videoStylesFormat)
+      console.log('creaWrapper***', creaWrapper);
+      const dynamicImages = dynamicData.filter((data) => data.type === 'image');
+      const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+      const video = container.querySelector('video');
+      video.parentElement.style.minHeight = '350px';
+      video.parentElement.style.minwidth = creaWrapper.size.width + 'px';
+      const domSlot = this.slot_
+      dynamicImages.forEach((data, idx) => {
+        const defaultAsset = data?.image?.defaultAsset;
+        const stylesFormat = this.stylesFormatter(data, creaWrapper.size);
+        console.log('stylesFormat', stylesFormat);
+        let domElet
+        if (data?.image?.displayType === 'cover') {
+          if (!defaultAsset) {
+            return 'defaultAsset is missing in attribute </br>';
+          }
+           domElet = `<div data-type="${data.type}" style="background: url(${
+            defaultAsset?.url
+          }) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${
+            idx
+          };"></div>`;
+          // video.parentElement.appendChild(domElet)
+        } else if(data?.image?.displayType === 'contain') {
+          domElet = `<div data-type="${data.type}"  style="background: url(${defaultAsset?.url}) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx};"></div>`
+        } else {
+          domElet = `<div  data-type="${
+            data.type
+          }" style="${stylesFormat};"> <img  src="${
+            defaultAsset?.size < 40000 && defaultAsset?.encodedImage
+            ? defaultAsset?.encodedImage
+            : defaultAsset?.url
+          }" alt="" style="z-index: ${idx}; height: 100%; width: 100%;"/></div>`;
+        }
+          domSlot.appendChild(domElet);
+        // video.parentElement.insertAdjacentHTML('beforeend', domElet);
 
-//     const buttonOne = (elt, styles) => {
-//       const div = document.createElement('div');
-//       div.style.cssText = `
-//     background: url("https://creative.bliink.io/61e9934208e3290017764661/vhRdHcg.png") center center / contain no-repeat;
-//     position: absolute;
-//     width: 15vh;
-//     height: 15%;
-//     bottom: 5%;
-//     left: 19%;
-//     right: inherit;
-//     z-index: 2;
-//     cursor: pointer;
-//   }
-// `;
-//       this.slot_.appendChild(div);
-//     };
-//     buttonOne();
+      });
+      console.log('dynamicImages**____', dynamicImages);
+
+      
+      console.log('imagesStyles***', imagesStyles);
+      // this.slot_.appendChild(containerTwo);
+   
+  
+      // if (videoStyles) {
+      //   console.log('found video style****');
+      //   video.style.cssText = videoStylesFormat;
+      //   video.style.zIndex = dynamicData.length;
+      // } 
+
+      console.log('this.videoSlot_***', this.videoSlot_);
+      console.log('container***', container);
+    
+    }
+
+    const buttonOne = (elt, styles) => {
+      const div = document.createElement('div');
+      div.style.cssText = `
+    background: url("https://creative.bliink.io/61e9934208e3290017764661/vhRdHcg.png") center center / contain no-repeat;
+    position: absolute;
+    width: 15vh;
+    height: 15%;
+    bottom: 5%;
+    left: 19%;
+    right: inherit;
+    z-index: 2;
+    cursor: pointer;
+  }
+`;
+      this.slot_.appendChild(div);
+    };
+    // buttonOne();
 
     div.addEventListener('click', this.overlayOnClick_.bind(this), false);
 
