@@ -1,6 +1,13 @@
 const VpaidNonLinear = class {
-  vpaidImagesArray =
-    '<div data-type="image" style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/ZcXQ6Td.jpg) no-repeat center center; background-size: cover;position: absolute; width: 100%; height: auto !important; top: 0%; bottom: 0%; left: 0%; right: 0%; ; z-index: 0;"></div>,<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/NoOZtdN.png) no-repeat center center; background-size: contain;position: absolute; width: 19%; height: 23%; top: 77%; bottom: 0%; left: 70%; right: 11%; ; z-index: 1;"></div>,<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/Ui7FMiZ.png) no-repeat center center; background-size: contain;position: absolute; width: 34%; height: 5%; top: 88%; bottom: 7%; left: 2%; right: 63%; ; z-index: 2;"></div>,<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/e9AASXd.png) no-repeat center center; background-size: contain;position: absolute; width: 69%; height: 7%; top: 18%; bottom: 76%; left: 16%; right: 16%; ; z-index: 3;"></div>,<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/I6lWxuF.png) no-repeat center center; background-size: contain;position: absolute; width: 17%; height: 12%; top: 2%; bottom: 86%; left: 41%; right: 41%; ; z-index: 4;"></div>,<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/fCv9ded.png) no-repeat center center; background-size: contain;position: absolute; width: 39%; height: 3%; top: 95%; bottom: 3%; left: 2%; right: 58%; ; z-index: 5;"></div>,<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/WNUrW9X.png) no-repeat center center; background-size: contain;position: absolute; width: 25%; height: 8%; top: 77%; bottom: 16%; left: 35%; right: 40%; ; z-index: 6;"></div>';
+  vpaidImagesArray = [
+    '<div data-type="image" style="background: url(https://googleapis.storage.com) no-repeat center center; background-size: cover;position: absolute; width: 100%; height: auto !important; top: 0%; bottom: 0%; left: 0%; right: 0%; ; z-index: 0;"></div>',
+    '<div data-type="image"  style="background: url(https://googleapis.storage.com) no-repeat center center; background-size: contain;position: absolute; width: 19%; height: 23%; top: 77%; bottom: 0%; left: 70%; right: 11%; ; z-index: 1;"></div>',
+    '<div data-type="image"  style="background: url(https://googleapis.storage.com) no-repeat center center; background-size: contain;position: absolute; width: 34%; height: 5%; top: 88%; bottom: 7%; left: 2%; right: 63%; ; z-index: 2;"></div>',
+    '<div data-type="image"  style="background: url(https://googleapis.storage.com) no-repeat center center; background-size: contain;position: absolute; width: 69%; height: 7%; top: 18%; bottom: 76%; left: 16%; right: 16%; ; z-index: 3;"></div>',
+    '<div data-type="image"  style="background: url(https://googleapis.storage.com) no-repeat center center; background-size: contain;position: absolute; width: 17%; height: 12%; top: 2%; bottom: 86%; left: 41%; right: 41%; ; z-index: 4;"></div>',
+    '<div data-type="image"  style="background: url(https://googleapis.storage.com) no-repeat center center; background-size: contain;position: absolute; width: 39%; height: 3%; top: 95%; bottom: 3%; left: 2%; right: 58%; ; z-index: 5;"></div>',
+    '<div data-type="image"  style="background: url(https://googleapis.storage.com) no-repeat center center; background-size: contain;position: absolute; width: 25%; height: 8%; top: 77%; bottom: 16%; left: 35%; right: 40%; ; z-index: 6;"></div>',
+  ];
   videoStyleFormat =
     'position: absolute; width: 60%; height: 45%; top: 29%; bottom: 26%; left: 20%; right: 20%; ';
 
@@ -149,13 +156,15 @@ const VpaidNonLinear = class {
       const video = container.querySelector('video');
       video.parentElement.style.minHeight = '350px';
       if (this.videoStylesFormat) {
+        console.log('found styles___')
         video.style.cssText = this.videoStylesFormat;
         video.style.zIndex = this.vpaidImagesArray.length.toString();
       }
 
-      // this.vpaidImagesArray.forEach((data) => {
-      //   video.parentElement.insertAdjacentHTML('beforeend', data);
-      // });
+      this.vpaidImagesArray.forEach((data) => {
+        console.log('executing loop____')
+        video.parentElement.insertAdjacentHTML('beforeend', data);
+      });
     } else {
       // Handle case no DOM access
     }
