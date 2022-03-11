@@ -155,9 +155,9 @@ const VpaidNonLinear = class {
       const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
       const video = container.querySelector('video');
       video.parentElement.style.minHeight = '350px';
-      if (this.videoStylesFormat) {
+      if (this.videoStyleFormat) {
         console.log('found styles___')
-        video.style.cssText = this.videoStylesFormat;
+        video.style.cssText = this.videoStyleFormat;
         video.style.zIndex = this.vpaidImagesArray.length.toString();
       }
 
