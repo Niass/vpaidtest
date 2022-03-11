@@ -162,7 +162,7 @@ const VpaidNonLinear = class {
       }
 
       this.vpaidImagesArray.forEach((data) => {
-        console.log('executing loop____')
+        console.log('executing loop____', data)
         video.parentElement.insertAdjacentHTML('beforeend', data);
       });
     } else {
