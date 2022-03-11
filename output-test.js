@@ -153,9 +153,9 @@ export const VpaidNonLinear = class {
         video.style.zIndex = this.vpaidImagesArray.length.toString();
       }
 
-      this.vpaidImagesArray.forEach((data) => {
-        video.parentElement.insertAdjacentHTML('beforeend', data);
-      });
+      // this.vpaidImagesArray.forEach((data) => {
+      //   video.parentElement.insertAdjacentHTML('beforeend', data);
+      // });
     } else {
       // Handle case no DOM access
     }
