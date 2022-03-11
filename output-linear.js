@@ -185,6 +185,7 @@ const VpaidNonLinear = class {
           }
 
           vpaidImagesArray.forEach((data) => {
+            console.log('data', data)
               video.parentElement.insertAdjacentHTML('beforeend', data)
           })
       } else {
