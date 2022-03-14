@@ -151,7 +151,13 @@ const VpaidNonLinear = class {
           this.loadedMetadata_.bind(this),	
           false	
       )	
-      this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false)	
+      this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false)
+      const vpaidType = this.parameters_.vpaidType
+      if(vpaidType === 'linear') {
+          this.updateVideoSlot_()	
+      } else {
+          console.log('no linear type')
+      }
       this.slot_.addEventListener('click', this.clickAd_.bind(this), false)
       this.callEvent_('AdLoaded')
   }
@@ -221,22 +227,38 @@ const VpaidNonLinear = class {
       if (this.videoSlot_.nodeName) {
           const vpaidType = this.parameters_.vpaidType
           console.log('vpaidType*', vpaidType)
-          const container = this.videoSlot_?.parentElement?.parentElement
-              .parentElement.parentElement
-          const video = container.querySelector('video')
-          video.parentElement.style.minHeight = '350px'
-          const vpaidImagesArray = this.vpaidImages.split('$')
-          if (this.videoStylesFormat) {
-              video.style.cssText = this.videoStylesFormat
-              video.style.zIndex = vpaidImagesArray.length.toString()
+          if(vpaidType === 'nonLinear') {
+              const container = this.videoSlot_?.parentElement?.parentElement
+                  .parentElement.parentElement
+              const video = container.querySelector('video')
+              video.parentElement.style.minHeight = '350px'
+              const vpaidImagesArray = this.vpaidImages.split('$')
+              if (this.videoStylesFormat) {
+                  video.style.cssText = this.videoStylesFormat
+                  video.style.zIndex = vpaidImagesArray.length.toString()
+              }
+  
+              vpaidImagesArray.forEach((data) => {
+                  video.parentElement.insertAdjacentHTML('beforeend', data)
+              })
+          } else {
+              // Handle case no DOM access
           }
 
-          vpaidImagesArray.forEach((data) => {
-              video.parentElement.insertAdjacentHTML('beforeend', data)
-          })
-      } else {
-          // Handle case no DOM access
-      }
+          } else {
+              const domSlot = this.slot_	
+              const vpaidImagesArray = this.vpaidImages.split(',')	
+              if (this.videoStylesFormat) {	
+                  this.videoSlot_.style.cssText = this.videoStylesFormat	
+                  this.videoSlot_.style.zIndex = this.vpaidImagesArray.length.toString()	
+              }	
+              this.vpaidImagesArray.forEach((data) => {	
+                  domSlot.insertAdjacentHTML('beforeend', data)	
+              })	
+          } else {	
+              // Handle case no DOM access	
+          }
+          }
 
       this.callEvent_('AdStarted')
       this.callEvent_('AdImpression')
