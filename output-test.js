@@ -72,7 +72,10 @@ const VpaidNonLinear = class {
      */
     this.parameters_ = {};
   }
-
+  clickAd_() {	
+    if ('AdClickThru' in this.eventsCallbacks_) {	
+        this.eventsCallbacks_['AdClickThru']('', '0', true)	
+    }
   /**
    * Returns the supported VPAID verion.
    * @param {string} version
@@ -108,11 +111,8 @@ const VpaidNonLinear = class {
 
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
 
-    this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
     this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
-    this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
     this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
-    this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
     this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
     this.slot_.addEventListener('click', this.clickAd_.bind(this), false);
     const vpaidType = this.parameters_.vpaidType;
@@ -440,4 +440,4 @@ const VpaidNonLinear = class {
 var getVPAIDAd = function () {
   return new VpaidNonLinear();
 };
-
+      
