@@ -219,6 +219,8 @@ const VpaidNonLinear = class {
       // parameters.
 
       if (this.videoSlot_.nodeName) {
+          const vpaidType = this.parameters_.vpaidType
+          console.log('vpaidType*', vpaidType)
           const container = this.videoSlot_?.parentElement?.parentElement
               .parentElement.parentElement
           const video = container.querySelector('video')
