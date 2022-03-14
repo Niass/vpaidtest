@@ -184,6 +184,7 @@ const VpaidNonLinear = class {
       if (vpaidType === 'linear') {
         const domSlot = this.slot_;
         const vpaidImagesArray = this.vpaidImages.split('$');
+        console.log('vpaidImagesArray1', vpaidImagesArray)
         if (this.videoStylesFormat) {
           this.videoSlot_.style.cssText = this.videoStylesFormat;
           this.videoSlot_.style.zIndex = this.vpaidImagesArray.length.toString();
