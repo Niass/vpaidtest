@@ -156,6 +156,36 @@ const VpaidNonLinear = class {
       this.callEvent_('AdLoaded')
   }
 
+      
+  updateVideoSlot_ = () => {	
+      if (this.videoSlot_ == null) {	
+          this.videoSlot_ = document.createElement('video')	
+          this.log(	
+              'Warning: No video element passed to ad, creating element.'	
+          )	
+          this.slot_.appendChild(this.videoSlot_)	
+      }	
+      this.updateVideoPlayerSize_()	
+      let foundSource = false	
+      const videos = this.parameters_.mediaFiles || []	
+      for (let i = 0; i < videos.length; i++) {	
+          // Choose the first video with a supported mimetype.	
+          if (this.videoSlot_.canPlayType(videos[i].type) != '') {	
+              this.videoSlot_.setAttribute('src', videos[i].uri)	
+              foundSource = true	
+              if (videos[i].styles) {	
+                  this.videoSlot_.style.cssText = videos[i].styles	
+              }	
+              break	
+          }	
+      }	
+      if (!foundSource) {	
+          // Unable to find a source video.	
+          this.callEvent_('AdError')	
+      }	
+  }	
+
+
   /**
    * Helper function to update the size of the video player.
    * @private
