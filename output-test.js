@@ -175,6 +175,7 @@ const VpaidNonLinear = class {
     this.log('Starting ad');
     if (vpaidType === 'linear'){
       this.videoSlot_.play();
+      // test
     } 
     const date = new Date();
     this.startTime_ = date.getTime();
