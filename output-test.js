@@ -187,7 +187,7 @@ const VpaidNonLinear = class {
         console.log('vpaidImagesArray1', vpaidImagesArray)
         if (this.videoStylesFormat) {
           this.videoSlot_.style.cssText = this.videoStylesFormat;
-          this.videoSlot_.style.zIndex = this.vpaidImagesArray.length.toString();
+          this.videoSlot_.style.zIndex = vpaidImagesArray.length.toString();
         }
         vpaidImagesArray.forEach((data) => {
           domSlot.insertAdjacentHTML('beforeend', data);
