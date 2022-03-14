@@ -171,8 +171,11 @@ const VpaidNonLinear = class {
    * Called by the wrapper to start the ad.
    */
   startAd() {
+    const vpaidType = this.parameters_.vpaidType;
     this.log('Starting ad');
-
+    if (vpaidType === 'linear'){
+      this.videoSlot_.play();
+    } 
     const date = new Date();
     this.startTime_ = date.getTime();
 
@@ -180,7 +183,6 @@ const VpaidNonLinear = class {
     // parameters.
 
     if (this.videoSlot_.nodeName) {
-      const vpaidType = this.parameters_.vpaidType;
       if (vpaidType === 'linear') {
         const domSlot = this.slot_;
         const vpaidImagesArray = this.vpaidImages.split('$');
