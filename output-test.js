@@ -184,15 +184,18 @@ const Vpaid = class {
 
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
-        const domSlot = this.slot_;
+        const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+        const video = container.querySelector('video');
+        video.parentElement.style.minHeight = '350px';
         const vpaidImagesArray = this.vpaidImages.split('$');
-        console.log('vpaidImagesArray1', vpaidImagesArray);
+        console.log('vpaidImagesArray', vpaidImagesArray);
         if (this.videoStylesFormat) {
-          this.videoSlot_.style.cssText = this.videoStylesFormat;
-          this.videoSlot_.style.zIndex = vpaidImagesArray.length.toString();
+          video.style.cssText = this.videoStylesFormat;
+          video.style.zIndex = vpaidImagesArray.length.toString();
         }
+
         vpaidImagesArray.forEach((data) => {
-          domSlot.insertAdjacentHTML('beforeend', data);
+          video.parentElement.insertAdjacentHTML('beforeend', data);
         });
       } else {
         const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
