@@ -1,0 +1,29 @@
+<VAST version="3.0">
+  <Ad id="bliink">
+  <InLine>
+  <AdSystem>
+  <![CDATA[ BLIINK ]]>
+  </AdSystem>
+  <AdTitle>
+  <![CDATA[ Q4 - Malaika ]]>
+  </AdTitle>
+  <Creatives>
+  <Creative>
+  <NonLinearAds>
+    <NonLinear apiFramework="VPAID" width="300" height="60" id="overlay-1">
+    <AdParameters>
+    <![CDATA[ {"vpaidType":"nonLinear","overlays":["https://i.ibb.co/NFXg41p/OMXjOFR.png","https://i.ibb.co/37cBfbL/uebKmfe.png"]} ]]>
+    </AdParameters>
+    <StaticResource creativeType="application/javascript">
+    <![CDATA[ https://niass.github.io/vpaidtest/output-test.js ]]>
+    </StaticResource>
+    <NonLinearClickThrough id="GDFP">
+    <![CDATA[ http://google.com ]]>
+    </NonLinearClickThrough>
+    </NonLinear>
+    </NonLinearAds>
+  </Creative>
+  </Creatives>
+  </InLine>
+  </Ad>
+  </VAST>
