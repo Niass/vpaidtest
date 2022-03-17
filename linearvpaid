@@ -1,50 +1,29 @@
 <VAST version="3.0">
-<Ad id="bliink">
-<InLine>
-<AdSystem>
-<![CDATA[ BLIINK ]]>
-</AdSystem>
-<AdTitle>
-<![CDATA[ Q4 - Malaika ]]>
-</AdTitle>
-<Impression>
-<![CDATA[ https://ad.doubleclick.net/ddm/trackimp/N444803.3298035BLIINK/B26986687.325615461;dc_trk_aid=517660175;dc_trk_cid=164508533;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=? ]]>
-</Impression>
-<Impression>
-<![CDATA[ https://unified.adsafeprotected.com/pixel.png?eyJ0eXBlIjoiU0VDT05EQVJZX0lNUFJFU1NJT04iLCJwdWJsaXNoZXJVdWlkIjoiYTVkYjAyYjAtMmI3OC00OWEzLTg0ZmYtMDA1NTlkNjk3Y2I5Iiwic2l0ZVV1aWQiOiJhZmRkZWY1ZC1jMjA0LTQwYTktYjRmYi05NjVhMTQ1ZDA2OTYiLCJjdXN0b20iOnsiY3VzdG9tMSI6IiIsImN1c3RvbTIiOiIzLjAiLCJjdXN0b20zIjoiMy4wIiwiY3VzdG9tNyI6IjkxODk1MyIsImN1c3RvbTgiOiI2MDIzNjgzOCIsInhzaWQiOiI2ZTRjN2JlOC03M2FmLTQ1ZDQtYjE2NS0xYTEzMjgzZjg1ZDMifSwiaGVhZGVycyI6eyJoZWFkZXIxMiI6InZhc3QuYmxpaW5rLmlvIiwiaGVhZGVyMyI6IltPTUlEUEFSVE5FUl0iLCJoZWFkZXI0IjoiW0FQSUZSQU1FV09SS1NdIiwiaGVhZGVyNSI6IltCVU5ETEVJRF0iLCJoZWFkZXI4IjoiaWFzbyIsImhlYWRlcjkiOiIifSwiY2IiOiIxNjQzMzYzNDMxMTk3OTE2MDk5IiwiaWFzU2luZ2xldGFnIjp0cnVlLCJpYXNTaW5nbGV0YWdPdXRjb21lIjoiT1VUQ09NRV9BIn0=&advEntityId=918953&pubEntityId=60236838&key1=ROKU_ADS_APP_ID&key2=$APP_STOREURL ]]>
-</Impression>
-<Impression>
-<![CDATA[ https://pixel.adsafeprotected.com/rfw/st/918953/60236838/skeleton.gif?xmtp=v&xmapp=0&xsId=6e4c7be8-73af-45d4-b165-1a13283f85d3&ias_dspId=64&ias_xappb=[ctv_appid] ]]>
-</Impression>
-<Creatives>
-<Creative>
-<Linear>
-<Duration>00:00:15</Duration>
-<AdParameters>
-<![CDATA[ {"mediaFiles":[{"delivery":"progressive","type":"video/mp4","bitrate":500,"width":640,"height":480,"uri":"https://creative.bliink.io/61e99ac108e3290017764fe4/ebqPsff.mp4", "styles": "background-color: #000;position:absolute;width:auto;height: 200px;left:10px;top:0px;bottom:0px;margin-top:auto;margin-bottom:auto;"}],"clickThroughUrl":"https://ad.doubleclick.net/ddm/trackclk/N444803.3298035BLIINK/B26986687.325615461;dc_trk_aid=517660175;dc_trk_cid=164508533;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=","clickTrackingUrl":["https://unified.adsafeprotected.com/pixel.png?eyJ0eXBlIjoiQ0xJQ0tfVFJBQ0tJTkciLCJwdWJsaXNoZXJVdWlkIjoiYTVkYjAyYjAtMmI3OC00OWEzLTg0ZmYtMDA1NTlkNjk3Y2I5Iiwic2l0ZVV1aWQiOiJhZmRkZWY1ZC1jMjA0LTQwYTktYjRmYi05NjVhMTQ1ZDA2OTYiLCJjdXN0b20iOnsiY2xpY2tfdHJhY2tpbmciOiJ0cnVlIiwiY3VzdG9tMSI6IiIsImN1c3RvbTIiOiIzLjAiLCJjdXN0b20zIjoiMy4wIiwiY3VzdG9tNyI6IjkxODk1MyIsImN1c3RvbTgiOiI2MDIzNjgzOCIsImN1c3RvbTkiOiJvdHQiLCJ4c2lkIjoiNmU0YzdiZTgtNzNhZi00NWQ0LWIxNjUtMWExMzI4M2Y4NWQzIn0sImhlYWRlcnMiOnsiaGVhZGVyMTEiOiJCTElJTksiLCJoZWFkZXIxMiI6InZhc3QuYmxpaW5rLmlvIiwiaGVhZGVyMyI6IltPTUlEUEFSVE5FUl0iLCJoZWFkZXI0IjoiW0FQSUZSQU1FV09SS1NdIiwiaGVhZGVyNSI6IltCVU5ETEVJRF0iLCJoZWFkZXI4IjoiaWFzbyIsImhlYWRlcjkiOiIifSwiY2IiOiIxNjQzMzYzNDMxMTk3NTEyMDY1IiwiaWFzU2luZ2xldGFnIjp0cnVlLCJpYXNTaW5nbGV0YWdPdXRjb21lIjoiT1VUQ09NRV9BIn0=&advEntityId=918953&pubEntityId=60236838"],"duration":15,"wrapperId":"zvkvfy2j","customDimensions":{"190":"FW","197":"918953","198":"60236838","182":"%2Fias%2Fv1%2Fvpaid.2022.01.27-12.28-0cd20cb.js","188":"lon1","189":"droplet"},"trackingHost":"unified.adsafeprotected.com","plugins":[{"id":"ias","config":{"apiframeworks":"[APIFRAMEWORKS]","bundleId":"[BUNDLEID]","ias_dspId":"64","ias_xappb":"[ctv_appid]","isMonitoring":"true","partner":"iaso","xmapp":0,"xmtp":"v","xsId":"6e4c7be8-73af-45d4-b165-1a13283f85d3"}},{"id":"ias.fw","config":{"advEntityId":"918953","pubEntityId":"60236838"}},{"id":"play","config":{"acceptMedia":"^video/"}},{"id":"skip","config":{"acceptMedia":"^video/"}}],"blockedAdTracking":"","ias_singletag":true,"ias_singletag_outcome":1, "images": [{"type":"backgroundImage", "styles": "background: url(https://creative.bliink.io/61e99ac108e3290017764fe4/Wh4Mqpa.png);position: absolute;inset: 0% 0% 0% 0%;z-index: 0;height:auto !important;cursor: pointer;display: flex;flex-direction: column;justify-content: space-around;background-position-x: inherit;background-position-y: inherit;background-size: cover;background-repeat-x: no-repeat;background-repeat-y: no-repeat;"}]} ]]>
-</AdParameters>
-<MediaFiles>
-<MediaFile delivery="progressive" type="application/javascript" width="640" height="480" apiFramework="VPAID">
-<![CDATA[ https://niass.github.io/vpaidtest/test3.js ]]>
-</MediaFile>
-<MediaFile delivery="progressive" type="video/mp4" bitrate="500" width="640" height="480">
-<![CDATA[ https://storage.googleapis.com/bliink-video/audi/q4-malaika.mp4 ]]>
-</MediaFile>
-</MediaFiles>
-</Linear>
-</Creative>
-</Creatives>
-<Extensions>
-<Extension type="AdVerifications">
-<AdVerifications>
-<Verification vendor="IAS">
-<JavaScriptResource apiFramework="omid" browserOptional="true">
-<![CDATA[ https://fw.adsafeprotected.com/rjss/st/918953/60236838/skeleton.js?ias_xpc=iaso&xsId=6e4c7be8-73af-45d4-b165-1a13283f85d3&xmtp=v&omidPartner=[OMIDPARTNER]&apiframeworks=[APIFRAMEWORKS]&ias_bundleId=[BUNDLEID]&ias_xappb=[ctv_appid]&ias_dspID=64 ]]>
-</JavaScriptResource>
-</Verification>
-</AdVerifications>
-</Extension>
-</Extensions>
-</InLine>
-</Ad>
-</VAST>
+  <Ad id="bliink">
+  <InLine>
+  <AdSystem>
+  <![CDATA[ BLIINK ]]>
+  </AdSystem>
+  <AdTitle>
+  <![CDATA[ Q4 - Malaika ]]>
+  </AdTitle>
+  <Creatives>
+  <Creative>
+    <Linear>
+  <AdParameters>
+  <![CDATA[ {"vpaidType":"linear", "mediaFiles":[{"delivery":"progressive","type":"video/mp4","bitrate":500,"width":640,"height":480,"uri":"https://creative.bliink.io/61e99ac108e3290017764fe4/ebqPsff.mp4"}]} ]]>
+  </AdParameters>
+  <MediaFiles>
+  <MediaFile delivery="progressive" type="application/javascript" width="640" height="480" apiFramework="VPAID">
+  <![CDATA[ https://niass.github.io/vpaidtest/output-test.js ]]>
+  </MediaFile>
+  <MediaFile delivery="progressive" type="video/mp4" bitrate="500" width="640" height="480">
+  <![CDATA[ https://storage.googleapis.com/bliink-video/audi/q4-malaika.mp4 ]]>
+  </MediaFile>
+  </MediaFiles>
+  </Linear>
+  </Creative>
+  </Creatives>
+  </InLine>
+  </Ad>
+  </VAST>
