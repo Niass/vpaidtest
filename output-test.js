@@ -188,6 +188,7 @@ const Vpaid = class {
         const vpaidImagesArray = this.vpaidImages.split('$');
         console.log('vpaidImagesArray1', vpaidImagesArray);
         if (this.videoStylesFormat) {
+          this.videoSlot_.style.transition =  'width 1s ease-in-out';
           this.videoSlot_.style.cssText = this.videoStylesFormat;
           this.videoSlot_.style.zIndex = vpaidImagesArray.length.toString();
         }
