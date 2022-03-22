@@ -1,5 +1,5 @@
 /* AdRiver javascript VPAID container. Version: 1.11.8 Developed by Alexander Nikolaev. */
-var _ = {
+var _ =  {
   isObject: function(t) {
       var e = typeof t;
       return "function" === e || "object" === e && !!t
