@@ -1,4 +1,4 @@
-/* AdRiver javascript VPAID container. Version: 1.11.8 Developed by Alexander Nikolaev. */
+/* AdRiver javascript VPAID container. Version: 1.11.8 Developed by Alexander Nikolaev. **/
 var _ =  {
   isObject: function(t) {
       var e = typeof t;
