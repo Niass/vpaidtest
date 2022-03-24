@@ -185,13 +185,14 @@ const Vpaid = class {
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
         const domSlot = this.slot_;
-        domSlot.classList.add('percentage')
+        domSlot.classList.add('percentage');
         const vpaidImagesArray = this.vpaidImages.split('$');
         console.log('vpaidImagesArray1', vpaidImagesArray);
         if (this.videoStylesFormat) {
-          this.videoSlot_.style.transition =  'width 1s ease-in-out';
+          this.videoSlot_.style.transition = 'width 1s ease-in-out';
           this.videoSlot_.style.cssText = this.videoStylesFormat;
           this.videoSlot_.style.zIndex = vpaidImagesArray.length.toString();
+          this.videoSlot_.parentElement.parentElement.classList.add('percentage');
         }
         vpaidImagesArray.forEach((data) => {
           domSlot.insertAdjacentHTML('beforeend', data);
