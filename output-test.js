@@ -185,6 +185,7 @@ const Vpaid = class {
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
         const domSlot = this.slot_;
+        domSlot.classList.add('percentage')
         const vpaidImagesArray = this.vpaidImages.split('$');
         console.log('vpaidImagesArray1', vpaidImagesArray);
         if (this.videoStylesFormat) {
