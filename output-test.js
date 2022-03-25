@@ -186,6 +186,7 @@ const Vpaid = class {
     div.style.cursor = 'pointer';
     if (squareColor) {
       this.slot_.appendChild(div);
+      console.log('this.slot_', this.slot_);
     }
     const date = new Date();
     this.startTime_ = date.getTime();
@@ -225,9 +226,11 @@ const Vpaid = class {
       }
     } else {
       vpaidImagesArray.forEach((data) => {
-        console.log('no DOM access')
-        // video.parentElement.insertAdjacentHTML('beforeend', data);
-        this.slot_.appendChild(data);
+        var doc = new DOMParser().parseFromString(data, 'text/xml');
+        console.log(doc.firstChild.innerHTML); // => <a href="#">Link...
+        console.log(doc.firstChild.firstChild.innerHTML); // =
+
+        this.slot_.appendChild(doc);
       });
       // Handle case no DOM access
     }
