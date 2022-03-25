@@ -193,11 +193,11 @@ const Vpaid = class {
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
 
+    const vpaidImagesArray = this.vpaidImages.split('$');
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
         const domSlot = this.slot_;
         domSlot.classList.add('percentage');
-        const vpaidImagesArray = this.vpaidImages.split('$');
         console.log('vpaidImagesArray1', vpaidImagesArray);
         if (this.videoStylesFormat) {
           this.videoSlot_.style.transition = 'width 1s ease-in-out';
@@ -212,7 +212,7 @@ const Vpaid = class {
         const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
         const video = container.querySelector('video');
         video.parentElement.style.minHeight = '350px';
-        const vpaidImagesArray = this.vpaidImages.split('$');
+        // const vpaidImagesArray = this.vpaidImages.split('$');
         console.log('vpaidImagesArray', vpaidImagesArray);
         if (this.videoStylesFormat) {
           video.style.cssText = this.videoStylesFormat;
