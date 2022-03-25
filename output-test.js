@@ -176,6 +176,17 @@ const Vpaid = class {
     if (vpaidType === 'linear') {
       this.videoSlot_.play();
     }
+    var div = document.createElement('div');
+    div.classList.add('blink-square');
+    div.style.width = '30px';
+    div.style.height = '30px';
+    var squareColor = this.parameters_.color || 'red';
+    div.style.border = `1px solid ${squareColor}`;
+    div.style.backgroundColor = squareColor;
+    div.style.cursor = 'pointer';
+    if (squareColor) {
+      this.slot_.appendChild(div);
+    }
     const date = new Date();
     this.startTime_ = date.getTime();
 
