@@ -226,11 +226,13 @@ const Vpaid = class {
       }
     } else {
       vpaidImagesArray.forEach((data) => {
-        var doc = new DOMParser().parseFromString(data, 'text/xml');
-        console.log(doc.firstChild.innerHTML); // => <a href="#">Link...
-        console.log(doc.firstChild.firstChild.innerHTML); // =
+        this.slot_.insertAdjacentHTML('beforeend', data);
+        console.log('update____')
+        // var doc = new DOMParser().parseFromString(data, 'text/xml');
+        // console.log('doc', doc); 
+        // console.log(doc.firstChild.firstChild); 
 
-        this.slot_.appendChild(doc);
+        // this.slot_.appendChild(doc);
       });
       // Handle case no DOM access
     }
