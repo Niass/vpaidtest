@@ -224,6 +224,11 @@ const Vpaid = class {
         });
       }
     } else {
+      vpaidImagesArray.forEach((data) => {
+        console.log('no DOM access')
+        // video.parentElement.insertAdjacentHTML('beforeend', data);
+        this.slot_.appendChild(data);
+      });
       // Handle case no DOM access
     }
 
