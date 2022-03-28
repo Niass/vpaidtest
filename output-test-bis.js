@@ -36,13 +36,13 @@ const Vpaid = class {
       expanded: false,
       height: 0,
       icons: '',
-      linear: false,
+      linear: true,
       skippableState: false,
       viewMode: 'normal',
       width: 0,
       volume: 1.0,
     };
-    
+
 
     /**
      * When the ad was started.
