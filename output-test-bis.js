@@ -293,6 +293,7 @@ const Vpaid = class {
   pauseAd() {
     this.log('pauseAd');
     this.videoSlot_.pause();
+    console.log('ad should pause$$$')
     this.callEvent_('AdPaused');
   }
 
