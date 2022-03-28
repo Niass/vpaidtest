@@ -125,7 +125,6 @@ VpaidVideoPlayer.prototype.initAd = function (
 
   this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
 
-  var parentDiv = this.videoSlot_.parentNode;
 
  
   var parent = this.videoSlot_.parentElement;
@@ -136,7 +135,6 @@ VpaidVideoPlayer.prototype.initAd = function (
     parent.style.cssText = bgImages.styles
   }
 
-  const htmlVideo = parent.querySelector('video');
   this.updateVideoSlot_();
   this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
   this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
