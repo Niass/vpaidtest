@@ -36,7 +36,7 @@ const Vpaid = class {
       expanded: false,
       height: 0,
       icons: '',
-      linear: false,
+      linear: true,
       skippableState: false,
       viewMode: 'normal',
       width: 0,
