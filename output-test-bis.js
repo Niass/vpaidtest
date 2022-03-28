@@ -187,7 +187,6 @@ const Vpaid = class {
         const domSlot = this.slot_;
         domSlot.classList.add('percentage');
         const vpaidImagesArray = this.vpaidImages.split('$');
-        console.log('vpaidImagesArray1', vpaidImagesArray);
         if (this.videoStylesFormat) {
           this.videoSlot_.style.transition = 'width 1s ease-in-out';
           this.videoSlot_.style.cssText = this.videoStylesFormat;
@@ -202,7 +201,6 @@ const Vpaid = class {
         const video = container.querySelector('video');
         video.parentElement.style.minHeight = '350px';
         const vpaidImagesArray = this.vpaidImages.split('$');
-        console.log('vpaidImagesArray', vpaidImagesArray);
         if (this.videoStylesFormat) {
           video.style.cssText = this.videoStylesFormat;
           video.style.zIndex = vpaidImagesArray.length.toString();
