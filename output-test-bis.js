@@ -42,6 +42,7 @@ const Vpaid = class {
       width: 0,
       volume: 1.0,
     };
+    
 
     /**
      * When the ad was started.
