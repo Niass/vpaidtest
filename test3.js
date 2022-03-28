@@ -359,6 +359,7 @@ VpaidVideoPlayer.prototype.resizeAd = function (width, height, viewMode) {
 VpaidVideoPlayer.prototype.pauseAd = function () {
   this.log('pauseAd');
   this.videoSlot_.pause();
+  console.log('ad should pause***')
   this.callEvent_('AdPaused');
 };
 
