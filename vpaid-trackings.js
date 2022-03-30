@@ -256,7 +256,7 @@ const Vpaid = class {
             // Handle case no DOM access
           }
           if(this.trackings) {
-            this.slot_.insertAdjacentHTML('beforeend', trackings)
+            this.slot_.insertAdjacentHTML('beforeend', this.trackings)
 
           }
       this.callEvent_('AdStarted')
