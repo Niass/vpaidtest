@@ -210,27 +210,30 @@ const Vpaid = class {
       // Create an img tag and populate it with the image passed in to the ad
       // parameters.
 
+      const vpaidImagesArray = this.vpaidImages.split('$')
       if (this.videoSlot_.nodeName) {
           if (vpaidType === 'linear') {
               const domSlot = this.slot_
               domSlot.classList.add('percentage')
-              const vpaidImagesArray = this.vpaidImages.split('$')
+              console.log('vpaidImagesArray1', vpaidImagesArray)
               if (this.videoStylesFormat) {
+                  this.videoSlot_.style.transition = 'width 1s ease-in-out'
                   this.videoSlot_.style.cssText = this.videoStylesFormat
                   this.videoSlot_.style.zIndex = vpaidImagesArray.length.toString()
+                  this.videoSlot_.parentElement.parentElement.classList.add(
+                      'percentage'
+                  )
               }
               vpaidImagesArray.forEach((data) => {
                   domSlot.insertAdjacentHTML('beforeend', data)
               })
-              this.videoSlot_.parentElement.parentElement.classList.add(
-                  'percentage'
-              )
           } else {
               const container = this.videoSlot_?.parentElement?.parentElement
                   .parentElement.parentElement
               const video = container.querySelector('video')
               video.parentElement.style.minHeight = '350px'
-              const vpaidImagesArray = this.vpaidImages.split('$')
+              // const vpaidImagesArray = this.vpaidImages.split('$');
+              console.log('vpaidImagesArray', vpaidImagesArray)
               if (this.videoStylesFormat) {
                   video.style.cssText = this.videoStylesFormat
                   video.style.zIndex = vpaidImagesArray.length.toString()
@@ -241,6 +244,15 @@ const Vpaid = class {
               })
           }
       } else {
+          vpaidImagesArray.forEach((data) => {
+              this.slot_.insertAdjacentHTML('beforeend', data)
+              console.log('update____')
+              // var doc = new DOMParser().parseFromString(data, 'text/xml');
+              // console.log('doc', doc);
+              // console.log(doc.firstChild.firstChild);
+
+              // this.slot_.appendChild(doc);
+          })
           // Handle case no DOM access
       }
 
