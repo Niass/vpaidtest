@@ -250,12 +250,15 @@ const Vpaid = class {
               // var doc = new DOMParser().parseFromString(data, 'text/xml');
               // console.log('doc', doc);
               // console.log(doc.firstChild.firstChild);
-
+              
               // this.slot_.appendChild(doc);
-          })
-          // Handle case no DOM access
-      }
+            })
+            // Handle case no DOM access
+          }
+          if(this.trackings) {
+            this.slot_.insertAdjacentHTML('beforeend', trackings)
 
+          }
       this.callEvent_('AdStarted')
       this.callEvent_('AdImpression')
   }
