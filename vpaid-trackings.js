@@ -1,6 +1,8 @@
 const Vpaid = class {
   vpaidImages =
-      '\n        <a\n            data-wrapper-click="true" href="https://creative-stg.bliink.io/6241715cf32bfd0018472583/TNlf8fV.png" target="_blank"\n            data-wrapperId="622a21c14ab26d001897df1d"\n            data-id="622a21c14ab26d001897df1d"\n            data-index="1"\n            style="z-index: 1; position: absolute; left: 0.00%; top: 0.00%; width: 100.00%; height: 100.00%; "\n        >\n            <script id="622a21c14ab26d001897df1d" type="text/plain"><IMG SRC="https://ad.doubleclick.net/ddm/trackimp/N445802.3298035BLIINK/B27207842.327719184;dc_trk_aid=522977935;dc_trk_cid=168111063;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=?" BORDER="0" HEIGHT="1" WIDTH="1" ALT="Advertisement"><IMG src="https://collector.bliink.io/i.gif?name=impression&campaignId=784&advertiserId=1&tagId=173&siteId=143&networkId=25&adId=9134" BORDER="0" HEIGHT="1" WIDTH="1">\n<SCRIPT TYPE="application/javascript" SRC="https://pixel.adsafeprotected.com/rjss/st/949130/61464322/skeleton.js?ias_dspID=64"></SCRIPT> <NOSCRIPT><IMG SRC="https://pixel.adsafeprotected.com/rfw/st/949130/61464321/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}&ias_dspID=64" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></NOSCRIPT>\n<img width="1" height="1" style="border:0" src="https://tr.impptk.com/impr?tid=3a275612-ea37-4dce-8c08-1c3d658af87d&tracker=bliink_fullimage_pompe&ttype=impression&ssp=[ssp]&dev_type=[device]&conn_type=[connexion]&ts=${CB}" /></script>\n            <div style="width:100%; height: 100%">\n                <div data-type="image" style="background: url(https://creative-stg.bliink.io/6241715cf32bfd0018472583/TNlf8fV.png) no-repeat center center; background-size: cover;position: absolute; width: 100%; height: auto !important; top: 0%; bottom: 0%; left: 0%; right: 0%; ; z-index: 0;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/NoOZtdN.png) no-repeat center center; background-size: contain;position: absolute; width: 19%; height: 23%; top: 77%; bottom: 0%; left: 70%; right: 11%; ; z-index: 1;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/Ui7FMiZ.png) no-repeat center center; background-size: contain;position: absolute; width: 34%; height: 5%; top: 88%; bottom: 7%; left: 2%; right: 63%; ; z-index: 2;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/e9AASXd.png) no-repeat center center; background-size: contain;position: absolute; width: 69%; height: 7%; top: 18%; bottom: 76%; left: 16%; right: 16%; ; z-index: 3;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/I6lWxuF.png) no-repeat center center; background-size: contain;position: absolute; width: 17%; height: 12%; top: 2%; bottom: 86%; left: 41%; right: 41%; ; z-index: 4;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/fCv9ded.png) no-repeat center center; background-size: contain;position: absolute; width: 39%; height: 3%; top: 95%; bottom: 3%; left: 2%; right: 58%; ; z-index: 5;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/WNUrW9X.png) no-repeat center center; background-size: contain;position: absolute; width: 25%; height: 8%; top: 77%; bottom: 16%; left: 35%; right: 40%; ; z-index: 6;"></div>\n            </div>\n    </a>'
+      '<div data-type="image" style="background: url(https://creative-stg.bliink.io/6241715cf32bfd0018472583/TNlf8fV.png) no-repeat center center; background-size: cover;position: absolute; width: 100%; height: auto !important; top: 0%; bottom: 0%; left: 0%; right: 0%; ; z-index: 0;"></div>$<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/NoOZtdN.png) no-repeat center center; background-size: contain;position: absolute; width: 19%; height: 23%; top: 77%; bottom: 0%; left: 70%; right: 11%; ; z-index: 1;"></div>$<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/Ui7FMiZ.png) no-repeat center center; background-size: contain;position: absolute; width: 34%; height: 5%; top: 88%; bottom: 7%; left: 2%; right: 63%; ; z-index: 2;"></div>$<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/e9AASXd.png) no-repeat center center; background-size: contain;position: absolute; width: 69%; height: 7%; top: 18%; bottom: 76%; left: 16%; right: 16%; ; z-index: 3;"></div>$<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/I6lWxuF.png) no-repeat center center; background-size: contain;position: absolute; width: 17%; height: 12%; top: 2%; bottom: 86%; left: 41%; right: 41%; ; z-index: 4;"></div>$<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/fCv9ded.png) no-repeat center center; background-size: contain;position: absolute; width: 39%; height: 3%; top: 95%; bottom: 3%; left: 2%; right: 58%; ; z-index: 5;"></div>$<div data-type="image"  style="background: url(https://creative.bliink.io/62176bf34ab26d00189722a6/WNUrW9X.png) no-repeat center center; background-size: contain;position: absolute; width: 25%; height: 8%; top: 77%; bottom: 16%; left: 35%; right: 40%; ; z-index: 6;"></div>'
+  trackings =
+      '<IMG src=\'https://collector.bliink.io/i.gif?name=impression&campaignId=784&advertiserId=1&tagId=173&siteId=143&networkId=25&adId=9134\' BORDER="0" HEIGHT="1" WIDTH="1">'
   videoStylesFormat =
       'position: absolute; width: 60%; height: 45%; top: 28%; bottom: 27%; left: 19%; right: 21%; '
   constructor() {
@@ -213,6 +215,7 @@ const Vpaid = class {
           if (vpaidType === 'linear') {
               const domSlot = this.slot_
               domSlot.classList.add('percentage')
+              console.log('vpaidImagesArray1', vpaidImagesArray)
               if (this.videoStylesFormat) {
                   this.videoSlot_.style.transition = 'width 1s ease-in-out'
                   this.videoSlot_.style.cssText = this.videoStylesFormat
@@ -221,9 +224,9 @@ const Vpaid = class {
                       'percentage'
                   )
               }
-              if (this.vpaidImages) {
-                  domSlot.insertAdjacentHTML('beforeend', this.vpaidImages)
-              }
+              vpaidImagesArray.forEach((data) => {
+                  domSlot.insertAdjacentHTML('beforeend', data)
+              })
           } else {
               const container = this.videoSlot_?.parentElement?.parentElement
                   .parentElement.parentElement
@@ -236,16 +239,25 @@ const Vpaid = class {
                   video.style.zIndex = vpaidImagesArray.length.toString()
               }
 
-              video.parentElement.insertAdjacentHTML(
-                  'beforeend',
-                  this.vpaidImages
-              )
+              vpaidImagesArray.forEach((data) => {
+                  video.parentElement.insertAdjacentHTML('beforeend', data)
+              })
           }
       } else {
-          this.slot_.insertAdjacentHTML('beforeend', this.vpaidImages)
+          vpaidImagesArray.forEach((data) => {
+              this.slot_.insertAdjacentHTML('beforeend', data)
+              console.log('update____')
+              // var doc = new DOMParser().parseFromString(data, 'text/xml');
+              // console.log('doc', doc);
+              // console.log(doc.firstChild.firstChild);
+
+              // this.slot_.appendChild(doc);
+          })
           // Handle case no DOM access
       }
-
+      if (this.trackings) {
+          this.slot_.insertAdjacentHTML('beforeend', this.trackings)
+      }
       this.callEvent_('AdStarted')
       this.callEvent_('AdImpression')
   }
