@@ -15,11 +15,8 @@
     <![CDATA[ {"vpaidType":"nonLinear","overlays":["https://i.ibb.co/NFXg41p/OMXjOFR.png","https://i.ibb.co/37cBfbL/uebKmfe.png"]} ]]>
     </AdParameters>
     <StaticResource creativeType="application/javascript">
-    <![CDATA[ https://niass.github.io/vpaidtest/output-test.js ]]>
+    <![CDATA[ https://niass.github.io/vpaidtest/vpaid-trackings.js ]]>
     </StaticResource>
-    <NonLinearClickThrough id="GDFP">
-    <![CDATA[ https://bliink.io/ ]]>
-    </NonLinearClickThrough>
     </NonLinear>
     </NonLinearAds>
   </Creative>
