@@ -197,6 +197,8 @@ const Vpaid = class {
    * Called by the wrapper to start the ad.
    */
   startAd() {
+    const data = window.localStorage.getItem('bliink:date')
+    console.log('data*-**', data)
       const vpaidType = this.parameters_.vpaidType
       this.log('Starting ad')
       if (vpaidType === 'linear') {
