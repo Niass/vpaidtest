@@ -126,6 +126,7 @@ const Vpaid = class {
   }
 
   updateVideoSlot_ = () => {
+    console.log('update slot called')
     if (this.videoSlot_ == null) {
       this.videoSlot_ = document.createElement('video');
       this.log('Warning: No video element passed to ad, creating element.');
@@ -145,6 +146,7 @@ const Vpaid = class {
         break;
       }
     }
+    console.log('foundSource', foundSource)
     if (!foundSource) {
       // Unable to find a source video.
       console.log('AdError No Video!')
