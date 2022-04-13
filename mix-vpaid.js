@@ -147,7 +147,8 @@ const Vpaid = class {
     }
     if (!foundSource) {
       // Unable to find a source video.
-      this.callEvent_('AdError No Video');
+      console.log('AdError No Video!')
+      this.callEvent_('AdError');
     }
   };
 
