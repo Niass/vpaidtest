@@ -111,7 +111,7 @@ const Vpaid = class {
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
-
+    console.log('this.videoSlot_', this.videoSlot_);
     this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
     this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
     this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
