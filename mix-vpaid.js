@@ -176,7 +176,9 @@ const Vpaid = class {
     }
     const date = new Date();
     this.startTime_ = date.getTime();
-
+    setTimeout(() => {
+      this.stopAd()
+    }, 5000)
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
 
