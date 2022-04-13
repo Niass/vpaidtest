@@ -1,4 +1,6 @@
-const VpaidNonLinear = class {
+const Vpaid = class {
+  vpaidDom = "\n        <div\n            \n            data-wrapperId=\"61e974ca104d3000a139356d\"\n            data-id=\"61e974ca104d3000a139356d\"\n            data-index=\"1\"\n            style=\"z-index: 1; position: absolute; left: 0.00%; top: 0.00%; width: 100.00%; height: 100.00%; \"\n        >   \n            <div style=\"width:100%; height: 100%\">\n                <div data-type=\"image\" style=\"background: url(https://storage.googleapis.com/bliink-creative-web-app-development/61e974c4104d3000a1393561/GYXDoi2.jpeg) no-repeat center center; background-size: cover;position: absolute; width: 103%; height: auto !important; top: 0%; bottom: -1%; left: 0%; right: -3%; ; z-index: 0;\"></div>\n            </div>\n    </div>"
+  videoStylesFormat = '';
   constructor() {
     /**
      * The slot is the div element on the main page that the ad is supposed to
@@ -70,20 +72,18 @@ const VpaidNonLinear = class {
      */
     this.parameters_ = {};
   }
-
+  clickAd_() {
+    if ('AdClickThru' in this.eventsCallbacks_) {
+      this.eventsCallbacks_['AdClickThru']('', '0', true);
+    }
+  }
   /**
    * Returns the supported VPAID verion.
    * @param {string} version
    * @return {string}
    */
-  handshakeVersion(version) {
+  handshakeVersion() {
     return '2.0';
-  }
-
-  clickAd_() {
-    if ('AdClickThru' in this.eventsCallbacks_) {
-      this.eventsCallbacks_['AdClickThru']('', '0', true);
-    }
   }
 
   /**
@@ -106,62 +106,49 @@ const VpaidNonLinear = class {
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
-    console.log('this.videoSlot_', this.videoSlot_);
 
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
 
-    this.updateVideoSlot_();
-    this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
     this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
+    this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
     this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
     this.slot_.addEventListener('click', this.clickAd_.bind(this), false);
+    const vpaidType = this.parameters_.vpaidType;
+    if (vpaidType === 'linear') {
+      this.updateVideoSlot_();
+    } else {
+      console.log('no linear typ');
+    }
     this.callEvent_('AdLoaded');
   }
 
-  pixelToPercentage(pos, frameSize) {
-    return (pos * 100) / frameSize;
-  }
-
-  formattingSizing = (value, unit) => {
-    if (typeof value === 'number') {
-      return `${Math.round(value)}${unit}`;
+  updateVideoSlot_ = () => {
+    if (this.videoSlot_ == null) {
+      this.videoSlot_ = document.createElement('video');
+      this.log('Warning: No video element passed to ad, creating element.');
+      this.slot_.appendChild(this.videoSlot_);
     }
-
-    return `${value}`;
-  };
-  isSizingSystem = (attribute, parentFrameSize, absolutePosition) => {
-    const units = {
-      top: '%',
-      bottom: '%',
-      left: '%',
-      right: '%',
-      width: '%',
-      height: '%',
-    };
-
-    const sizing = {
-      top: this.pixelToPercentage(absolutePosition.top, parentFrameSize.height),
-      bottom: this.pixelToPercentage(absolutePosition.bottom, parentFrameSize.height),
-      left: this.pixelToPercentage(absolutePosition.left, parentFrameSize.width),
-      right: this.pixelToPercentage(absolutePosition.right, parentFrameSize.width),
-      width: (absolutePosition.width / parentFrameSize.width) * 100,
-      height: (absolutePosition.height / parentFrameSize.height) * 100,
-    };
-
-    return {
-      width: this.formattingSizing(sizing.width, units.width),
-      height:
-        attribute?.image?.displayType === 'cover'
-          ? 'auto !important'
-          : this.formattingSizing(sizing.height, units.height),
-      top: this.formattingSizing(sizing.top, units.top),
-      bottom: this.formattingSizing(sizing.bottom, units.bottom),
-      left: this.formattingSizing(sizing.left, units.left),
-      right: this.formattingSizing(sizing.right, units.right),
-    };
+    this.updateVideoPlayerSize_();
+    let foundSource = false;
+    const videos = this.parameters_.mediaFiles || [];
+    for (let i = 0; i < videos.length; i++) {
+      // Choose the first video with a supported mimetype.
+      if (this.videoSlot_.canPlayType(videos[i].type) != '') {
+        this.videoSlot_.setAttribute('src', videos[i].uri);
+        foundSource = true;
+        if (videos[i].styles) {
+          this.videoSlot_.style.cssText = videos[i].styles;
+        }
+        break;
+      }
+    }
+    if (!foundSource) {
+      // Unable to find a source video.
+      this.callEvent_('AdError');
+    }
   };
 
   /**
@@ -169,114 +156,61 @@ const VpaidNonLinear = class {
    * @private
    */
 
-  stylesFormatter = (attribute, parentSize) => {
-    if (!parentSize) return '';
-
-    const elementSize = {
-      ...{
-        xAxis: 0,
-        yAxis: 0,
-        width: 100,
-        height: 100,
-      },
-      ...attribute.size,
-    };
-
-    const initialParentSize = {
-      ...{ width: 580, height: 435, xAxis: 0, yAxis: 0 },
-      ...parentSize,
-    };
-
-    const absolutePosition = {
-      left: elementSize.xAxis ?? 0,
-      top: elementSize.yAxis ?? 0,
-      height: elementSize.height,
-      width: elementSize.width,
-      right: initialParentSize.width - elementSize.width - (elementSize.xAxis ?? 0),
-      bottom: initialParentSize.height - elementSize.height - (elementSize.yAxis ?? 0),
-    };
-    console.log('absolutePosition', absolutePosition, parentSize);
-    const size = this.isSizingSystem(attribute, parentSize, absolutePosition);
-
-    const cssStyles = {
-      position: 'absolute',
-      ...size,
-    };
-
-    return Object.entries(cssStyles)
-      .map(([key, value]) => `${key}: ${value}; `)
-      .join('');
-  };
   /**
    * Helper function to update the size of the video player.
    * @private
    */
   updateVideoPlayerSize_() {
-    console.log('update updateVideoPlayerSize_ call');
     this.videoSlot_.setAttribute('width', this.attributes_['width']);
     this.videoSlot_.setAttribute('height', this.attributes_['height']);
-  }
-
-  overlayOnClick_() {
-    this.callEvent_('AdClickThru');
   }
 
   /**
    * Called by the wrapper to start the ad.
    */
-
   startAd() {
+    const vpaidType = this.parameters_.vpaidType;
     this.log('Starting ad');
-    this.videoSlot_.play();
-    const dynamicData = this.parameters_.dynamicData || [];
+    if (vpaidType === 'linear') {
+      this.videoSlot_.play();
+    }
+    const date = new Date();
+    this.startTime_ = date.getTime();
+
+    // Create an img tag and populate it with the image passed in to the ad
+    // parameters.
+
     if (this.videoSlot_.nodeName) {
-      console.log('game in*****');
-      console.log('this.parameters_', this.parameters_);
-      const creaWrapper = dynamicData.find((data) => data.type === 'wrapper');
-      const creaVideo = dynamicData.find((data) => data.type === 'video');
-      const videoStylesFormat = this.stylesFormatter(creaVideo, creaWrapper.size);
-      // video.style.cssText = videoStylesFormat;
-      this.videoSlot_.style.cssText = videoStylesFormat;
-      this.videoSlot_.style.zIndex = dynamicData.length;
-
-      const dynamicImages = dynamicData.filter((data) => data.type === 'image');
-      const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
- 
-      const domSlot = this.slot_;
-      dynamicImages.forEach((data, idx) => {
-        const defaultAsset = data?.image?.defaultAsset;
-        const stylesFormat = this.stylesFormatter(data, creaWrapper.size);
-        console.log('stylesFormat', stylesFormat);
-        let domElet;
-        if (data?.image?.displayType === 'cover') {
-          if (!defaultAsset) {
-            return 'defaultAsset is missing in attribute </br>';
-          }
-          domElet = `<div data-type="${data.type}" style="background: url(${
-            defaultAsset?.url
-          }) no-repeat center center; background-size: ${'cover'};${stylesFormat}; z-index: ${idx};"></div>`;
-          // video.parentElement.appendChild(domElet)
-        } else if (data?.image?.displayType === 'contain') {
-          domElet = `<div data-type="${data.type}"  style="background: url(${
-            defaultAsset?.url
-          }) no-repeat center center; background-size: ${'contain'};${stylesFormat}; z-index: ${idx};"></div>`;
-        } else {
-          domElet = `<div  data-type="${data.type}" style="${stylesFormat};"> <img  src="${
-            defaultAsset?.size < 40000 && defaultAsset?.encodedImage
-              ? defaultAsset?.encodedImage
-              : defaultAsset?.url
-          }" alt="" style="z-index: ${idx}; height: 100%; width: 100%;"/></div>`;
+      if (vpaidType === 'linear') {
+        const domSlot = this.slot_;
+        domSlot.classList.add('percentage');
+        if (this.videoStylesFormat) {
+          this.videoSlot_.style.transition = 'width 1s ease-in-out';
+          this.videoSlot_.style.cssText = this.videoStylesFormat;
+          this.videoSlot_.style.zIndex = 10;
+          this.videoSlot_.parentElement.parentElement.classList.add('percentage');
         }
-        domSlot.insertAdjacentHTML('beforeend', domElet);
-      });
-      console.log('dynamicImages**____', dynamicImages);
+        if(this.vpaidDom) {
+          domSlot.insertAdjacentHTML('beforeend', this.vpaidDom);
+        }
+      } else {
+        const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
+        const video = container.querySelector('video');
+        video.parentElement.style.minHeight = '350px';
+        if (this.videoStylesFormat) {
+          video.style.cssText = this.videoStylesFormat;
+          video.style.zIndex = 10;
+        }
 
-      console.log('this.videoSlot_***', this.videoSlot_);
-      console.log('container***', container);
+        video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
+      }
+    } else {
+      this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
+      // Handle case no DOM access
     }
 
-
     this.callEvent_('AdStarted');
+    this.callEvent_('AdImpression');
   }
 
   /**
@@ -298,9 +232,8 @@ const VpaidNonLinear = class {
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) {
       return;
     }
-    console.log('this.videoSlot_.src = ' + this.videoSlot_.src);
     const percentPlayed = (this.videoSlot_.currentTime * 100.0) / this.videoSlot_.duration;
-    let nextQuartile = this.quartileEvents_[this.nextQuartileIndex_];
+    const nextQuartile = this.quartileEvents_[this.nextQuartileIndex_];
     if (percentPlayed >= nextQuartile.value) {
       this.eventsCallbacks_[nextQuartile.event]();
       this.nextQuartileIndex_ += 1;
@@ -309,30 +242,6 @@ const VpaidNonLinear = class {
       this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime;
     }
   }
-  updateVideoSlot_ = () => {
-    if (this.videoSlot_ == null) {
-      this.videoSlot_ = document.createElement('video');
-      this.log('Warning: No video element passed to ad, creating element.');
-      this.slot_.appendChild(this.videoSlot_);
-    }
-    this.updateVideoPlayerSize_();
-    var foundSource = false;
-    var videos = this.parameters_.mediaFiles || [];
-    for (var i = 0; i < videos.length; i++) {
-      // Choose the first video with a supported mimetype.
-      if (this.videoSlot_.canPlayType(videos[i].type) != '') {
-        this.videoSlot_.setAttribute('src', videos[i].uri);
-        foundSource = true;
-
-        break;
-      }
-    }
-
-    if (!foundSource) {
-      // Unable to find a source video.
-      this.callEvent_('AdError');
-    }
-  };
 
   /**
    * Called by the video element when video metadata is loaded.
@@ -422,6 +331,7 @@ const VpaidNonLinear = class {
    * @param {string} eventName The callback type.
    * @param {Object} context The context for the callback.
    */
+
   subscribe(callback, eventName, context) {
     this.log('Subscribe ' + eventName);
     this.eventsCallbacks_[eventName] = callback.bind(context);
@@ -486,6 +396,8 @@ const VpaidNonLinear = class {
     const date = new Date();
     const currentTime = date.getTime();
     const remainingTime = this.attributes_.duration - (currentTime - this.startTime_) / 1000.0;
+    console.log('this.attributes_.duration', this.attributes_.duration);
+    console.log('remainingTime', remainingTime);
     return remainingTime;
   }
 
@@ -557,5 +469,6 @@ const VpaidNonLinear = class {
  * @return {Object} The VPAID compliant ad.
  */
 var getVPAIDAd = function () {
-  return new VpaidNonLinear();
+  return new Vpaid();
 };
+      
