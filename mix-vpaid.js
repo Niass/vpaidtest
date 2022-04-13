@@ -200,6 +200,7 @@ const Vpaid = class {
       const vpaidType = this.parameters_.vpaidType
       this.log('Starting ad')
       if (vpaidType === 'linear') {
+        console.log('linear type play???')
           this.videoSlot_?.play()
           if (this.adDuration && !this.videoStylesFormat) {
             console.log('should run ?????')
