@@ -140,6 +140,7 @@ const Vpaid = class {
       if (this.videoSlot_.canPlayType(videos[i].type) != '') {
         this.videoSlot_.setAttribute('src', videos[i].uri);
         foundSource = true;
+        console.log('videos___', videos)
         if (videos[i].styles) {
           this.videoSlot_.style.cssText = videos[i].styles;
         }
