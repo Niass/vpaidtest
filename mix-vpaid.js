@@ -202,9 +202,12 @@ const Vpaid = class {
       if (vpaidType === 'linear') {
           this.videoSlot_?.play()
           if (this.adDuration && !this.videoStylesFormat) {
+            console.log('should run ?????')
               setTimeout(() => {
                   this.stopAd()
               }, this.adDuration)
+          } else {
+            console.log('so---', this.videoStylesFormat)
           }
       }
       const date = new Date()
