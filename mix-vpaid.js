@@ -210,6 +210,8 @@ const Vpaid = class {
           } else {
             console.log('so---', this.videoStylesFormat)
           }
+      } else {
+        console.log('no linear @')
       }
       const date = new Date()
       this.startTime_ = date.getTime()
