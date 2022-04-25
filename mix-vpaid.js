@@ -177,6 +177,7 @@ const Vpaid = class {
       this.videoSlot_?.play();
       if (this.adDuration && !this.videoStylesFormat) {
         setTimeout(() => {
+          console.log('ads stopped******')  
           this.stopAd();
         }, this.adDuration);
       }
