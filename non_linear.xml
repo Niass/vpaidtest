@@ -5,7 +5,7 @@
   <![CDATA[ BLIINK ]]>
   </AdSystem>
   <AdTitle>
-  <![CDATA[ Q4 - Malaika PUB ]]>
+  <![CDATA[ Renault_ARKANA_Janvier_In-Image ]]>
   </AdTitle>
   <Creatives>
   <Creative>
@@ -15,7 +15,7 @@
     <![CDATA[ {"vpaidType":"nonLinear","overlays":["https://i.ibb.co/NFXg41p/OMXjOFR.png","https://i.ibb.co/37cBfbL/uebKmfe.png"]} ]]>
     </AdParameters>
     <StaticResource creativeType="application/javascript">
-    <![CDATA[ https://niass.github.io/vpaidtest/vpaid-trackings.js ]]>
+    <![CDATA[ https://niass.github.io/vpaidtest/mix-vpaid.js ]]>
     </StaticResource>
     </NonLinear>
     </NonLinearAds>
