@@ -216,6 +216,7 @@ const Vpaid = class {
         if (this.videoSlot_.nodeName) {
             if (vpaidType === 'linear') {
                 const domSlot = this.slot_
+                console.log('width#@', domSlot?.style?.width);
                 domSlot.classList.add('percentage')
                 if (this.videoStylesFormat) {
                     this.videoSlot_.style.transition = 'width 1s ease-in-out'
