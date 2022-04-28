@@ -200,11 +200,11 @@ const Vpaid = class {
     startAd() {
         const vpaidType = this.parameters_.vpaidType
         this.log('Starting ad')
-        const wrapper = parent.document.querySelector('.hide')
-        console.log('wrapper***', wrapper)
         console.log('parent.document', parent.document)
-        wrapper.style.transition = "all .8s ease-in-out"
-        wrapper.style.top = "100%"
+        // const wrapper = parent.document.querySelector('.hide')
+        // console.log('wrapper***', wrapper)
+        // wrapper.style.transition = "all .8s ease-in-out"
+        // wrapper.style.top = "100%"
         if (vpaidType === 'linear') {
             this.videoSlot_?.play()
             if (this.adDuration && !this.videoStylesFormat) {
