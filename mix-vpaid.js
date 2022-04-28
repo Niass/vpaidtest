@@ -175,6 +175,7 @@ const Vpaid = class {
     setTimeout(() => {
     console.log('executing_________')
     const wrapper = document.querySelector('.hide')
+    console.log('wrapper***', wrapper)
     wrapper.style.transition = "all .8s ease-in-out"
     wrapper.style.top = "100%"
     },8000)
