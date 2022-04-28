@@ -172,6 +172,12 @@ const Vpaid = class {
    * Called by the wrapper to start the ad.
    */
   startAd() {
+    setTimeout(() => {
+    console.log('executing_________')
+    const wrapper = document.querySelector('.hide')
+    wrapper.style.transition = "all .8s ease-in-out"
+    wrapper.style.top = "100%"
+    },8000)
     const vpaidType = this.parameters_.vpaidType;
     this.log('Starting ad');
     if (vpaidType === 'linear') {
