@@ -210,10 +210,13 @@ const Vpaid = class {
         }
       } else {
         var xmlString = this.vpaidDom;
-        var doc = new DOMParser().parseFromString(xmlString, 'text/xml');
-        console.log(doc.firstChild.innerHTML); // => <a href="#">Link...
-        console.log(doc.firstChild.firstChild.innerHTML); // => Link
-        const finalNode = doc.firstChild.firstChild.innerHTML
+        var tempWrapper = document.createElement('div');
+        tempWrapper.innerHTML = this.vpaidDom;
+        var finalNode = tempWrapper.firstChild;
+        // var doc = new DOMParser().parseFromString(xmlString, 'text/xml');
+        // console.log(doc.firstChild.innerHTML); // => <a href="#">Link...
+        // console.log(doc.firstChild.firstChild.innerHTML); // => Link
+        // const finalNode = doc.firstChild.firstChild.innerHTML;
         const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
         const video = container.querySelector('video');
         video.parentElement.style.minHeight = '350px';
@@ -226,7 +229,7 @@ const Vpaid = class {
         const wrapper_doc = doc.querySelector('.hide');
         console.log('wrapper*****?', wrapper);
         console.log('wrapper_doc*****?', wrapper_doc);
-        video.parentElement.appendChild(finalNode)
+        video.parentElement.appendChild(finalNode);
         // video.parentElement.insertAdjacentHTML('beforeend', finalNode);
         // video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
       }
