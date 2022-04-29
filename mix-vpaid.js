@@ -250,7 +250,7 @@ const Vpaid = class {
                     'beforeend',
                     this.vpaidDom
                 )
-                const wrapper = video.document.querySelector('.hide')
+                const wrapper = video.querySelector('.hide')
                 console.log('wrapper*****?', wrapper)
             }
         } else {
