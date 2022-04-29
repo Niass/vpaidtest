@@ -249,6 +249,8 @@ const Vpaid = class {
                     'beforeend',
                     this.vpaidDom
                 )
+                const wrapper = video.document.querySelector('.hide')
+                console.log('wrapper*****?', wrapper)
             }
         } else {
             this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom)
