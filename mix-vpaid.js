@@ -230,7 +230,7 @@ const Vpaid = class {
         console.log('wrapper*****?', wrapper);
         console.log('finalNode', finalNode)
         console.log('video.parentElement', video.parentElement)
-        video.parentElement.appendChild(finalNode);
+        video.parentElement.appendChild(tempWrapper);
         // video.parentElement.insertAdjacentHTML('beforeend', finalNode);
         // video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
       }
