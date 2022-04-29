@@ -213,6 +213,7 @@ const Vpaid = class {
         var doc = new DOMParser().parseFromString(xmlString, 'text/xml');
         console.log(doc.firstChild.innerHTML); // => <a href="#">Link...
         console.log(doc.firstChild.firstChild.innerHTML); // => Link
+        const finalNode = doc.firstChild.firstChild.innerHTML
         const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
         const video = container.querySelector('video');
         video.parentElement.style.minHeight = '350px';
@@ -225,8 +226,8 @@ const Vpaid = class {
         const wrapper_doc = doc.querySelector('.hide');
         console.log('wrapper*****?', wrapper);
         console.log('wrapper_doc*****?', wrapper_doc);
-        video.parentElement.append(doc)
-        // video.parentElement.insertAdjacentHTML('beforeend', doc);
+        // video.parentElement.append(finalNode)
+        video.parentElement.insertAdjacentHTML('beforeend', finalNode);
         // video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
       }
     } else {
