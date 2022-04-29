@@ -253,6 +253,12 @@ const Vpaid = class {
                 const wrapper = video.parentElement.querySelector('.hide');
                 setTimeout(() => {
                     wrapper.style.top = "100%";
+                    video.style.width ="100%"
+                    video.style.height ="100%"
+                    video.style.top = "0px"
+                    video.style.bottom = "0px"
+                    video.style.left = "0px"
+                    video.style.right = "0px"
                 },5000)
                 console.log('wrapper*****?', wrapper)
             }
