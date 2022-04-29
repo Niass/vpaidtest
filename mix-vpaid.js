@@ -221,11 +221,11 @@ const Vpaid = class {
           video.style.zIndex = 10;
         }
 
-        video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
         const wrapper = video.querySelector('.hide');
         const wrapper_doc = doc.querySelector('.hide');
         console.log('wrapper*****?', wrapper);
         console.log('wrapper_doc*****?', wrapper_doc);
+        video.parentElement.insertAdjacentHTML('beforeend', doc);
       }
     } else {
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
