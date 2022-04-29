@@ -225,7 +225,9 @@ const Vpaid = class {
         const wrapper_doc = doc.querySelector('.hide');
         console.log('wrapper*****?', wrapper);
         console.log('wrapper_doc*****?', wrapper_doc);
-        video.parentElement.insertAdjacentHTML('beforeend', doc);
+        video.parentElement.append(doc)
+        // video.parentElement.insertAdjacentHTML('beforeend', doc);
+        // video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
       }
     } else {
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
