@@ -213,6 +213,7 @@ const Vpaid = class {
         var tempWrapper = document.createElement('div');
         tempWrapper.innerHTML = this.vpaidDom;
         var finalNode = tempWrapper.firstChild;
+        console.log('tempWrapper', tempWrapper)
         // var doc = new DOMParser().parseFromString(xmlString, 'text/xml');
         // console.log(doc.firstChild.innerHTML); // => <a href="#">Link...
         // console.log(doc.firstChild.firstChild.innerHTML); // => Link
