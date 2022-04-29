@@ -175,7 +175,7 @@ const Vpaid = class {
     const vpaidType = this.parameters_.vpaidType;
     this.log('Starting ad');
     console.log('parent.document', parent.document);
-    parent.document.head.innerHTML += '<link rel="stylesheet" href="styles.css" type="text/css"/>';
+    // parent.document.head.innerHTML += '<link rel="stylesheet" href="styles.css" type="text/css"/>';
     // const wrapper = parent.document.querySelector('.hide')
     // console.log('wrapper***', wrapper)
     // wrapper.style.transition = "all .8s ease-in-out"
@@ -223,7 +223,9 @@ const Vpaid = class {
 
         video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
         const wrapper = video.querySelector('.hide');
+        const wrapper_doc = doc.querySelector('.hide');
         console.log('wrapper*****?', wrapper);
+        console.log('wrapper_doc*****?', wrapper_doc);
       }
     } else {
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
