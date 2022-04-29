@@ -221,6 +221,7 @@ const Vpaid = class {
         // parameters.
 
         if (this.videoSlot_.nodeName) {
+            console.log('node access******')
             if (vpaidType === 'linear') {
                 const domSlot = this.slot_
                 domSlot.classList.add('percentage')
@@ -259,6 +260,7 @@ const Vpaid = class {
 
         this.callEvent_('AdStarted')
         this.callEvent_('AdImpression')
+        console.log('ads started???');
     }
 
     /**
