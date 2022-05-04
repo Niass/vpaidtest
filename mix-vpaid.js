@@ -246,6 +246,7 @@ const Vpaid = class {
                 )
                 const wrapper = video.parentElement.querySelector('.hide')
                 setTimeout(() => {
+                    console.log('remove animations')
                     wrapper.style.top = '100%'
                 }, 4000)
             }
