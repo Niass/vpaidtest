@@ -229,7 +229,6 @@ const Vpaid = class {
                 }
                 if (this.vpaidDom) {
                     domSlot.insertAdjacentHTML('beforeend', this.vpaidDom)
-                    const domSlot = this.slot_
                     const wrapper = domSlot.parentElement.querySelector('.hide')
                     console.log('wrapper to remove', wrapper)
                     setTimeout(() => {
