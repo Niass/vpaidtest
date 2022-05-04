@@ -239,7 +239,10 @@ const Vpaid = class {
                         const wrapper = domSlot.parentElement.querySelector(
                             '.full-image'
                         )
-                        const timing = wrapper.dataset.transitionTiming
+                        const nextWrapperId =
+                            wrapper.dataset.transitionNextwrapperid
+                        const timing = +wrapper.dataset.transitionTiming
+                        console.log('nextWrapperId', nextWrapperId)
                         console.log('timing', timing)
                         console.log('wrapper to remove', wrapper)
                         setTimeout(() => {
