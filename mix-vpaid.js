@@ -244,6 +244,10 @@ const Vpaid = class {
                     'beforeend',
                     this.vpaidDom
                 )
+                const wrapper = video.parentElement.querySelector('.hide')
+                setTimeout(() => {
+                    wrapper.style.top = '100%'
+                }, 5000)
             }
         } else {
             this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom)
