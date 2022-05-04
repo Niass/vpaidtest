@@ -218,6 +218,12 @@ const Vpaid = class {
         if (this.videoSlot_.nodeName) {
             if (vpaidType === 'linear') {
                 const domSlot = this.slot_
+                const wrapper = domSlot.querySelector('.hide')
+                console.log('wrapper to remove')
+                setTimeout(() => {
+                    console.log('remove animations')
+                    wrapper?.style?.top = '100%'
+                }, 4000)
                 domSlot.classList.add('percentage')
                 if (this.videoStylesFormat) {
                     this.videoSlot_.style.transition = 'width 1s ease-in-out'
@@ -244,11 +250,6 @@ const Vpaid = class {
                     'beforeend',
                     this.vpaidDom
                 )
-                const wrapper = video.parentElement.querySelector('.hide')
-                setTimeout(() => {
-                    console.log('remove animations')
-                    wrapper.style.top = '100%'
-                }, 4000)
             }
         } else {
             this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom)
