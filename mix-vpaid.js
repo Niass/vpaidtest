@@ -231,7 +231,7 @@ const Vpaid = class {
                         domSlot.insertAdjacentHTML('beforeend', this.vpaidDom)
                     }
                     const wrapper = domSlot.querySelector('.hide')
-                    console.log('wrapper to remove')
+                    console.log('wrapper to remove',wrapper )
                     setTimeout(() => {
                         console.log('remove animations')
                         wrapper.style.top = '100%'
