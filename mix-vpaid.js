@@ -200,12 +200,6 @@ const Vpaid = class {
     startAd() {
         const vpaidType = this.parameters_.vpaidType
         this.log('Starting ad')
-        console.log('parent.document', parent.document)
-        parent.document.head.innerHTML += '<link rel="stylesheet" href="styles.css" type="text/css"/>';
-        // const wrapper = parent.document.querySelector('.hide')
-        // console.log('wrapper***', wrapper)
-        // wrapper.style.transition = "all .8s ease-in-out"
-        // wrapper.style.top = "100%"
         if (vpaidType === 'linear') {
             this.videoSlot_?.play()
             if (this.adDuration && !this.videoStylesFormat) {
@@ -249,21 +243,6 @@ const Vpaid = class {
                     'beforeend',
                     this.vpaidDom
                 )
-                // const wrapper = video.document.querySelector('.hide')
-                const wrapper = video.parentElement.querySelector('.hide');
-                setTimeout(() => {
-                    wrapper.style.top = "100%";
-                    setTimeout(() => {
-                        video.style.width ="100%"
-                        video.style.height ="100%"
-                        video.style.top = "0px"
-                        video.style.bottom = "0px"
-                        video.style.left = "0px"
-                        video.style.right = "0px"
-
-                    }, 1000)
-                },5000)
-                console.log('wrapper*****?', wrapper)
             }
         } else {
             this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom)
@@ -272,7 +251,6 @@ const Vpaid = class {
 
         this.callEvent_('AdStarted')
         this.callEvent_('AdImpression')
-        console.log('ads started');
     }
 
     /**
