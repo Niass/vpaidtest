@@ -234,6 +234,10 @@ const Vpaid = class {
                     setTimeout(() => {
                         console.log('remove animations')
                         wrapper.style.top = '100%'
+                        setTimeout(() => {
+                            console.log('remove opacity')
+                            wrapper.style.opacity = 0
+                        }, 400)
                     }, 4000)
                 }
             } else {
