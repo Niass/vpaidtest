@@ -252,9 +252,9 @@ const Vpaid = class {
                             console.log('remove animations')
                             wrapper.style.top = '100%'
                             wrapper.style.opacity = 0
+                            inImageWrapper.style.opacity = 1
                             setTimeout(() => {
                                 console.log('remove opacity')
-                                // inImageWrapper.style.opacity = 1
                             }, timing)
                         }, timing)
                     }
