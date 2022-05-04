@@ -253,9 +253,6 @@ const Vpaid = class {
                             wrapper.style.top = '100%'
                             wrapper.style.opacity = 0
                             inImageWrapper.style.opacity = 1
-                            setTimeout(() => {
-                                console.log('remove opacity')
-                            }, timing)
                         }, timing)
                     }
                 }
