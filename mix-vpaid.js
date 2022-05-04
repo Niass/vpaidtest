@@ -235,7 +235,7 @@ const Vpaid = class {
                     setTimeout(() => {
                         console.log('remove animations')
                         wrapper.style.top = '100%'
-                    }, 2000)
+                    }, 3000)
             } else {
                 const container = this.videoSlot_?.parentElement?.parentElement
                     .parentElement.parentElement
