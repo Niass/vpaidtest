@@ -237,7 +237,7 @@ const Vpaid = class {
                         setTimeout(() => {
                             console.log('remove opacity')
                             wrapper.style.opacity = 0
-                        }, 100)
+                        }, 50)
                     }, 4000)
                 }
             } else {
