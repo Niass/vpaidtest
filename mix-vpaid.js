@@ -229,6 +229,12 @@ const Vpaid = class {
                 }
                 if (this.vpaidDom) {
                     domSlot.insertAdjacentHTML('beforeend', this.vpaidDom)
+                    if (this.vpaidDomInImage) {
+                        domSlot.insertAdjacentHTML(
+                            'beforeend',
+                            this.vpaidDomInImage
+                        )
+                    }
                     const wrapper = domSlot.parentElement.querySelector('.hide')
                     console.log('wrapper to remove', wrapper)
                     setTimeout(() => {
@@ -254,10 +260,19 @@ const Vpaid = class {
                     'beforeend',
                     this.vpaidDom
                 )
+                if (this.vpaidDomInImage) {
+                    video.parentElement.insertAdjacentHTML(
+                        'beforeend',
+                        this.vpaidDomInImage
+                    )
+                }
             }
         } else {
             this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom)
             // Handle case no DOM access
+            if (this.vpaidDomInImage) {
+                this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
+            }
         }
 
         this.callEvent_('AdStarted')
