@@ -239,6 +239,9 @@ const Vpaid = class {
                         const wrapper = domSlot.parentElement.querySelector(
                             '.full-image'
                         )
+                        const inImageWrapper = domSlot.parentElement.querySelector(
+                            '.in-image'
+                        )
                         const nextWrapperId =
                             wrapper.dataset.transitionNextwrapperid
                         const timing = +wrapper.dataset.transitionTiming
@@ -251,6 +254,7 @@ const Vpaid = class {
                             setTimeout(() => {
                                 console.log('remove opacity')
                                 wrapper.style.opacity = 0
+                                inImageWrapper.style.opacity = 1
                             }, timing + 10)
                         }, timing)
                     }
