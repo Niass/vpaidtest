@@ -255,7 +255,7 @@ const Vpaid = class {
                                 console.log('remove opacity')
                                 wrapper.style.opacity = 0
                                 // inImageWrapper.style.opacity = 1
-                            }, timing + 10)
+                            }, timing)
                         }, timing)
                     }
                 }
