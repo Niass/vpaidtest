@@ -222,7 +222,7 @@ const Vpaid = class {
                 console.log('wrapper to remove')
                 setTimeout(() => {
                     console.log('remove animations')
-                    wrapper?.style?.top = '100%'
+                    wrapper.style.top = '100%'
                 }, 4000)
                 domSlot.classList.add('percentage')
                 if (this.videoStylesFormat) {
