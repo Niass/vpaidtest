@@ -235,16 +235,22 @@ const Vpaid = class {
                             this.vpaidDomInImage
                         )
                     }
-                    const wrapper = domSlot.parentElement.querySelector('.hide')
-                    console.log('wrapper to remove', wrapper)
-                    setTimeout(() => {
-                        console.log('remove animations')
-                        wrapper.style.top = '100%'
+                    if (this.vpaidDomInImage) {
+                        const wrapper = domSlot.parentElement.querySelector(
+                            '.full-image'
+                        )
+                        const timing = wrapper.dataset.transitionTiming
+                        console.log('timing', timing)
+                        console.log('wrapper to remove', wrapper)
                         setTimeout(() => {
-                            console.log('remove opacity')
-                            wrapper.style.opacity = 0
-                        }, 10)
-                    }, 4000)
+                            console.log('remove animations')
+                            wrapper.style.top = '100%'
+                            setTimeout(() => {
+                                console.log('remove opacity')
+                                wrapper.style.opacity = 0
+                            }, timing + 10)
+                        }, timing)
+                    }
                 }
             } else {
                 const container = this.videoSlot_?.parentElement?.parentElement
