@@ -216,12 +216,12 @@ const Vpaid = class {
             const reduceSwitchButton = domSlot.parentElement.querySelector('#bliink-switch');
             if (reduceSwitchButton) {
               console.log('adding event listener');
-              reduceSwitchButton.addEventListener('click', function() {
+              reduceSwitchButton.addEventListener('click', function () {
                 wrapper.style.top = '100%';
                 wrapper.style.opacity = 0;
                 wrapper.style.display = 'none';
                 inImageWrapper.style.opacity = 1;
-                this.style.display = "none"
+                this.style.display = 'none';
                 console.log('button reduce click!!!', this);
               });
             }
@@ -257,12 +257,12 @@ const Vpaid = class {
             video.parentElement.parentElement.querySelector('#bliink-switch');
           if (reduceSwitchButton) {
             console.log('adding event listener');
-            reduceSwitchButton.addEventListener('click', function() {
+            reduceSwitchButton.addEventListener('click', function () {
               wrapper.style.top = '100%';
               wrapper.style.opacity = 0;
               wrapper.style.display = 'none';
               inImageWrapper.style.opacity = 1;
-              this.style.display = "none"
+              this.style.display = 'none';
               console.log('button reduce click!!!', this);
             });
           }
@@ -273,6 +273,11 @@ const Vpaid = class {
             wrapper.style.opacity = 0;
             wrapper.style.display = 'none';
             inImageWrapper.style.opacity = 1;
+            const reduceSwitchButton =
+              video.parentElement.parentElement.querySelector('#bliink-switch');
+            if (reduceSwitchButton) {
+              reduceSwitchButton.style.display = 'none';
+            }
           }, timing);
         }
       }
