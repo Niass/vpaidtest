@@ -227,6 +227,7 @@ const Vpaid = class {
                 inImageWrapper.style.opacity = 1;
                 this.style.display = 'none';
                 console.log('button reduce click!!!', this);
+                console.log('that.buttonCloseSwitch', that.buttonCloseSwitch)
                 domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
                 console.log('added to dom');
               });
@@ -270,7 +271,8 @@ const Vpaid = class {
               inImageWrapper.style.opacity = 1;
               this.style.display = 'none';
               console.log('button reduce click!!!', this);
-              if (this.buttonCloseSwitch) {
+              console.log('that.buttonCloseSwitch', that.buttonCloseSwitch);
+              if (that.buttonCloseSwitch) {
                 video.parentElement.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
                 console.log('added to dom');
               }
