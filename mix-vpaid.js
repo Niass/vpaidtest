@@ -248,7 +248,7 @@ const Vpaid = class {
                         setTimeout(() => {
                             wrapper.style.top = '100%'
                             wrapper.style.opacity = 0
-                            wrapper.style.display = 'none'
+                            // wrapper.style.display = 'none'
                             inImageWrapper.style.opacity = 1
                         }, timing)
                     }
@@ -284,7 +284,7 @@ const Vpaid = class {
                     setTimeout(() => {
                         wrapper.style.top = '100%'
                         wrapper.style.opacity = 0
-                        wrapper.style.display = 'none'
+                        // wrapper.style.display = 'none'
                         inImageWrapper.style.opacity = 1
                     }, timing)
                 }
