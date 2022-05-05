@@ -216,12 +216,12 @@ const Vpaid = class {
             const reduceSwitchButton = domSlot.parentElement.querySelector('#bliink-switch');
             if (reduceSwitchButton) {
               console.log('adding event listener');
-              reduceSwitchButton.addEventListener('click', () => {
-                console.log('button reduce click!!!', this);
+              reduceSwitchButton.addEventListener('click', function() {
                 wrapper.style.top = '100%';
                 wrapper.style.opacity = 0;
                 wrapper.style.display = 'none';
                 inImageWrapper.style.opacity = 1;
+                console.log('button reduce click!!!', this);
               });
             }
             const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
@@ -256,7 +256,7 @@ const Vpaid = class {
             video.parentElement.parentElement.querySelector('#bliink-switch');
           if (reduceSwitchButton) {
             console.log('adding event listener');
-            reduceSwitchButton.addEventListener('click', () => {
+            reduceSwitchButton.addEventListener('click', function() {
               wrapper.style.top = '100%';
               wrapper.style.opacity = 0;
               wrapper.style.display = 'none';
