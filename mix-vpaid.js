@@ -227,6 +227,7 @@ const Vpaid = class {
                 this.style.display = 'none';
                 console.log('button reduce click!!!', this);
                 domSlot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+                console.log('added to dom')
               });
             }
             const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
@@ -269,6 +270,7 @@ const Vpaid = class {
               console.log('button reduce click!!!', this);
               if (this.buttonCloseSwitch) {
                 video.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+                console.log('added to dom')
               }
             });
           }
