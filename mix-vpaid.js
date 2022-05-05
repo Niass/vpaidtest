@@ -218,6 +218,7 @@ const Vpaid = class {
             const wrapper = domSlot.parentElement.querySelector('.full-image');
             const reduceSwitchButton = domSlot.parentElement.querySelector('#bliink-switch');
             if (reduceSwitchButton) {
+              const that = this;
               console.log('adding event listener');
               reduceSwitchButton.addEventListener('click', function () {
                 wrapper.style.top = '100%';
@@ -226,8 +227,8 @@ const Vpaid = class {
                 inImageWrapper.style.opacity = 1;
                 this.style.display = 'none';
                 console.log('button reduce click!!!', this);
-                domSlot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
-                console.log('added to dom')
+                domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
+                console.log('added to dom');
               });
             }
             const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
@@ -260,6 +261,7 @@ const Vpaid = class {
           const reduceSwitchButton =
             video.parentElement.parentElement.querySelector('#bliink-switch');
           if (reduceSwitchButton) {
+            const that = this;
             console.log('adding event listener');
             reduceSwitchButton.addEventListener('click', function () {
               wrapper.style.top = '100%';
@@ -269,8 +271,8 @@ const Vpaid = class {
               this.style.display = 'none';
               console.log('button reduce click!!!', this);
               if (this.buttonCloseSwitch) {
-                video.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
-                console.log('added to dom')
+                video.parentElement.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
+                console.log('added to dom');
               }
             });
           }
