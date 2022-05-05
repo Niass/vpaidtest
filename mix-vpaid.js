@@ -231,10 +231,12 @@ const Vpaid = class {
                 domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
                 const closeSwitchButton =
                   video.parentElement.parentElement.querySelector('#bliink-switch-close');
-                closeSwitchButton.addEventListener('click', function () {
-                  that.stopAd();
-                  this.remove();
-                });
+                  closeSwitchButton.addEventListener('click', function () {
+                    that.stopAd();
+                    const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
+                    this.remove();
+                    inImageWrapper.remove();
+                  });
                 console.log('added to dom');
               });
             }
@@ -284,7 +286,9 @@ const Vpaid = class {
                   video.parentElement.parentElement.querySelector('#bliink-switch-close');
                 closeSwitchButton.addEventListener('click', function () {
                   that.stopAd();
+                  const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
                   this.remove();
+                  inImageWrapper.remove();
                 });
                 console.log('added to dom');
               }
