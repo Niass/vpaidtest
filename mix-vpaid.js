@@ -247,6 +247,15 @@ const Vpaid = class {
               wrapper.style.opacity = 0;
               wrapper.style.display = 'none';
               inImageWrapper.style.opacity = 1;
+              domSlot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+              const closeSwitchButton =
+              video.parentElement.parentElement.querySelector('#bliink-switch-close');
+              closeSwitchButton.addEventListener('click', function () {
+                that.stopAd();
+                const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
+                this.remove();
+                inImageWrapper.remove();
+              });
             }, timing);
           }
         }
@@ -305,6 +314,15 @@ const Vpaid = class {
             if (reduceSwitchButton) {
               reduceSwitchButton.style.display = 'none';
             }
+            video.parentElement.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
+            const closeSwitchButton =
+            video.parentElement.parentElement.querySelector('#bliink-switch-close');
+            closeSwitchButton.addEventListener('click', function () {
+              that.stopAd();
+              const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
+              this.remove();
+              inImageWrapper.remove();
+            });
           }, timing);
         }
       }
