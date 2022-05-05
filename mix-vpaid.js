@@ -287,6 +287,15 @@ const Vpaid = class {
                     const inImageWrapper = video.parentElement.parentElement.querySelector(
                         '.in-image'
                     )
+                    const reduceSwitchButton = video.parentElement.parentElement.querySelector(
+                        '#bliink-switch'
+                    )
+                    if (reduceSwitchButton) {
+                        console.log('adding event listener')
+                        reduceSwitchButton.addEventListener('click', () => {
+                            console.log('button reduce click!!!')
+                        })
+                    }
                     const nextWrapperId =
                         wrapper.dataset.transitionNextwrapperid
                     const timing = +wrapper.dataset.transitionTiming
