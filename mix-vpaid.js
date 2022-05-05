@@ -233,7 +233,7 @@ const Vpaid = class {
                   video.parentElement.parentElement.querySelector('#bliink-switch-close');
                 closeSwitchButton.addEventListener('click', function () {
                   that.stopAd();
-                  this.style.display = 'none';
+                  this.remove();
                 });
                 console.log('added to dom');
               });
@@ -284,7 +284,7 @@ const Vpaid = class {
                   video.parentElement.parentElement.querySelector('#bliink-switch-close');
                 closeSwitchButton.addEventListener('click', function () {
                   that.stopAd();
-                  this.style.display = 'none';
+                  this.remove();
                 });
                 console.log('added to dom');
               }
