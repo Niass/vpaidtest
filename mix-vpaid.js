@@ -221,6 +221,7 @@ const Vpaid = class {
                 wrapper.style.opacity = 0;
                 wrapper.style.display = 'none';
                 inImageWrapper.style.opacity = 1;
+                this.style.display = "none"
                 console.log('button reduce click!!!', this);
               });
             }
@@ -261,6 +262,7 @@ const Vpaid = class {
               wrapper.style.opacity = 0;
               wrapper.style.display = 'none';
               inImageWrapper.style.opacity = 1;
+              this.style.display = "none"
               console.log('button reduce click!!!', this);
             });
           }
