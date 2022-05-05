@@ -231,31 +231,37 @@ const Vpaid = class {
                 domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
                 const closeSwitchButton =
                   video.parentElement.parentElement.querySelector('#bliink-switch-close');
-                  closeSwitchButton.addEventListener('click', function () {
-                    that.stopAd();
-                    const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
-                    this.remove();
-                    inImageWrapper.remove();
-                  });
+                closeSwitchButton.addEventListener('click', function () {
+                  that.stopAd();
+                  const inImageWrapper =
+                    video.parentElement.parentElement.querySelector('.in-image');
+                  this.remove();
+                  inImageWrapper.remove();
+                });
                 console.log('added to dom');
               });
             }
             const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
             const timing = +wrapper.dataset.transitionTiming;
             setTimeout(() => {
+              const closeSwitchButton_ =
+                video.parentElement.parentElement.querySelector('#bliink-switch-close');
               wrapper.style.top = '100%';
               wrapper.style.opacity = 0;
               wrapper.style.display = 'none';
               inImageWrapper.style.opacity = 1;
-              domSlot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
-              const closeSwitchButton =
-              video.parentElement.parentElement.querySelector('#bliink-switch-close');
-              closeSwitchButton.addEventListener('click', function () {
-                that.stopAd();
-                const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
-                this.remove();
-                inImageWrapper.remove();
-              });
+              if (!closeSwitchButton_) {
+                domSlot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+                const closeSwitchButton =
+                  video.parentElement.parentElement.querySelector('#bliink-switch-close');
+                closeSwitchButton.addEventListener('click', function () {
+                  that.stopAd();
+                  const inImageWrapper =
+                    video.parentElement.parentElement.querySelector('.in-image');
+                  this.remove();
+                  inImageWrapper.remove();
+                });
+              }
             }, timing);
           }
         }
@@ -295,7 +301,8 @@ const Vpaid = class {
                   video.parentElement.parentElement.querySelector('#bliink-switch-close');
                 closeSwitchButton.addEventListener('click', function () {
                   that.stopAd();
-                  const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
+                  const inImageWrapper =
+                    video.parentElement.parentElement.querySelector('.in-image');
                   this.remove();
                   inImageWrapper.remove();
                 });
@@ -314,14 +321,18 @@ const Vpaid = class {
             if (reduceSwitchButton) {
               reduceSwitchButton.style.display = 'none';
             }
-            video.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
-            const closeSwitchButton =
-            video.parentElement.parentElement.querySelector('#bliink-switch-close');
-            closeSwitchButton.addEventListener('click', function () {
-              const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
-              this.remove();
-              inImageWrapper.remove();
-            });
+            const closeSwitchButton_ =
+              video.parentElement.parentElement.querySelector('#bliink-switch-close');
+            if (!closeSwitchButton_) {
+              video.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+              const closeSwitchButton =
+                video.parentElement.parentElement.querySelector('#bliink-switch-close');
+              closeSwitchButton.addEventListener('click', function () {
+                const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
+                this.remove();
+                inImageWrapper.remove();
+              });
+            }
           }, timing);
         }
       }
