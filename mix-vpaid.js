@@ -217,7 +217,7 @@ const Vpaid = class {
             if (reduceSwitchButton) {
               console.log('adding event listener');
               reduceSwitchButton.addEventListener('click', () => {
-                console.log('button reduce click!!!');
+                console.log('button reduce click!!!', this);
                 wrapper.style.top = '100%';
                 wrapper.style.opacity = 0;
                 wrapper.style.display = 'none';
@@ -261,7 +261,7 @@ const Vpaid = class {
               wrapper.style.opacity = 0;
               wrapper.style.display = 'none';
               inImageWrapper.style.opacity = 1;
-              console.log('button reduce click!!!');
+              console.log('button reduce click!!!', this);
             });
           }
           const nextWrapperId = wrapper.dataset.transitionNextwrapperid;
