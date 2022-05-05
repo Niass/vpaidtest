@@ -227,8 +227,14 @@ const Vpaid = class {
                 inImageWrapper.style.opacity = 1;
                 this.style.display = 'none';
                 console.log('button reduce click!!!', this);
-                console.log('that.buttonCloseSwitch', that.buttonCloseSwitch)
+                console.log('that.buttonCloseSwitch', that.buttonCloseSwitch);
                 domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
+                const closeSwitchButton =
+                  video.parentElement.parentElement.querySelector('#bliink-switch-close');
+                closeSwitchButton.addEventListener('click', function () {
+                  that.stopAd();
+                  this.style.display = 'none';
+                });
                 console.log('added to dom');
               });
             }
@@ -274,6 +280,12 @@ const Vpaid = class {
               console.log('that.buttonCloseSwitch', that.buttonCloseSwitch);
               if (that.buttonCloseSwitch) {
                 video.parentElement.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
+                const closeSwitchButton =
+                  video.parentElement.parentElement.querySelector('#bliink-switch-close');
+                closeSwitchButton.addEventListener('click', function () {
+                  that.stopAd();
+                  this.style.display = 'none';
+                });
                 console.log('added to dom');
               }
             });
