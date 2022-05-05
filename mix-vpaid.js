@@ -219,15 +219,12 @@ const Vpaid = class {
             const reduceSwitchButton = domSlot.parentElement.querySelector('#bliink-switch');
             if (reduceSwitchButton) {
               const that = this;
-              console.log('adding event listener');
               reduceSwitchButton.addEventListener('click', function () {
                 wrapper.style.top = '100%';
                 wrapper.style.opacity = 0;
                 wrapper.style.display = 'none';
                 inImageWrapper.style.opacity = 1;
                 this.style.display = 'none';
-                console.log('button reduce click!!!', this);
-                console.log('that.buttonCloseSwitch', that.buttonCloseSwitch);
                 domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
                 const closeSwitchButton =
                   video.parentElement.parentElement.querySelector('#bliink-switch-close');
@@ -238,7 +235,6 @@ const Vpaid = class {
                   this.remove();
                   inImageWrapper.remove();
                 });
-                console.log('added to dom');
               });
             }
             const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
@@ -286,15 +282,12 @@ const Vpaid = class {
             video.parentElement.parentElement.querySelector('#bliink-switch');
           if (reduceSwitchButton) {
             const that = this;
-            console.log('adding event listener');
             reduceSwitchButton.addEventListener('click', function () {
               wrapper.style.top = '100%';
               wrapper.style.opacity = 0;
               wrapper.style.display = 'none';
               inImageWrapper.style.opacity = 1;
               this.style.display = 'none';
-              console.log('button reduce click!!!', this);
-              console.log('that.buttonCloseSwitch', that.buttonCloseSwitch);
               if (that.buttonCloseSwitch) {
                 video.parentElement.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
                 const closeSwitchButton =
@@ -306,7 +299,6 @@ const Vpaid = class {
                   this.remove();
                   inImageWrapper.remove();
                 });
-                console.log('added to dom');
               }
             });
           }
