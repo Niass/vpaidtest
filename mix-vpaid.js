@@ -243,6 +243,7 @@ const Vpaid = class {
                             '#bliink-switch'
                         )
                         if (reduceSwitchButton) {
+                            console.log('adding event listener')
                             reduceSwitchButton.addEventListener('click', () => {
                                 console.log('button reduce click!!!')
                             })
