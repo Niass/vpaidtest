@@ -245,13 +245,10 @@ const Vpaid = class {
                         const nextWrapperId =
                             wrapper.dataset.transitionNextwrapperid
                         const timing = +wrapper.dataset.transitionTiming
-                        console.log('nextWrapperId', nextWrapperId)
-                        console.log('timing', timing)
-                        console.log('wrapper to remove', wrapper)
                         setTimeout(() => {
-                            console.log('remove animations')
                             wrapper.style.top = '100%'
                             wrapper.style.opacity = 0
+                            wrapper.style.display = 'none'
                             inImageWrapper.style.opacity = 1
                         }, timing)
                     }
@@ -284,13 +281,10 @@ const Vpaid = class {
                     const nextWrapperId =
                         wrapper.dataset.transitionNextwrapperid
                     const timing = +wrapper.dataset.transitionTiming
-                    console.log('nextWrapperId', nextWrapperId)
-                    console.log('timing', timing)
-                    console.log('wrapper to remove', wrapper)
                     setTimeout(() => {
-                        console.log('remove animations')
                         wrapper.style.top = '100%'
                         wrapper.style.opacity = 0
+                        wrapper.style.display = 'none'
                         inImageWrapper.style.opacity = 1
                     }, timing)
                 }
