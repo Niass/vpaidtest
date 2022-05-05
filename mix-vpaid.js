@@ -314,11 +314,10 @@ const Vpaid = class {
             if (reduceSwitchButton) {
               reduceSwitchButton.style.display = 'none';
             }
-            video.parentElement.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
+            video.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
             const closeSwitchButton =
             video.parentElement.parentElement.querySelector('#bliink-switch-close');
             closeSwitchButton.addEventListener('click', function () {
-              that.stopAd();
               const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
               this.remove();
               inImageWrapper.remove();
