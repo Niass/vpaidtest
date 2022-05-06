@@ -297,6 +297,12 @@ const Vpaid = class {
                             wrapper.style.opacity = 0
                             wrapper.style.display = 'none'
                             inImageWrapper.style.opacity = 1
+                            const reduceSwitchButton = domSlot.parentElement.querySelector(
+                                '#bliink-switch'
+                            )
+                            if (reduceSwitchButton) {
+                                reduceSwitchButton.remove()
+                            }
                             if (!closeSwitchButton_) {
                                 domSlot.insertAdjacentHTML(
                                     'beforeend',
@@ -395,7 +401,7 @@ const Vpaid = class {
                             '#bliink-switch'
                         )
                         if (reduceSwitchButton) {
-                            reduceSwitchButton.style.display = 'none'
+                            reduceSwitchButton.remove()
                         }
                         const closeSwitchButton_ = video.parentElement.parentElement.querySelector(
                             '#bliink-switch-close'
