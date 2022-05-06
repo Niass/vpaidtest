@@ -241,7 +241,7 @@ const Vpaid = class {
                             this.vpaidDomInImage
                         )
                     }
-                    if (this.buttonReduceSwitch) {
+                    if (this.buttonReduceSwitch && this.vpaidDomInImage) {
                         domSlot.insertAdjacentHTML(
                             'beforeend',
                             this.buttonReduceSwitch
@@ -332,7 +332,7 @@ const Vpaid = class {
                     'beforeend',
                     this.vpaidDom
                 )
-                if (this.buttonReduceSwitch) {
+                if (this.buttonReduceSwitch && this.vpaidDomInImage) {
                     video.parentElement.insertAdjacentHTML(
                         'beforeend',
                         this.buttonReduceSwitch
