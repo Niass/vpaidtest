@@ -169,10 +169,12 @@ const Vpaid = class {
         this.updateVideoPlayerSize_()
         let foundSource = false
         const videos = this.parameters_.mediaFiles || []
+        console.log('videos', videos);
         for (let i = 0; i < videos.length; i++) {
             // Choose the first video with a supported mimetype.
             if (this.videoSlot_.canPlayType(videos[i].type) != '') {
                 this.videoSlot_.setAttribute('src', videos[i].uri)
+                console.log('videos[i].uri', videos[i].uri)
                 foundSource = true
                 if (videos[i].styles) {
                     this.videoSlot_.style.cssText = videos[i].styles
