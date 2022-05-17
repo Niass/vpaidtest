@@ -390,6 +390,8 @@ const Vpaid = class {
                                 inImageWrapper.remove()
                             }
                         )
+                    } else {
+                        console.log('no inImageWrapper', inImageWrapper)
                     }
                 }
                 if (this.vpaidDomInImage) {
