@@ -247,6 +247,8 @@ const Vpaid = class {
                         const inImageWrapper = domSlot.parentElement.querySelector(
                             '.in-image'
                         )
+                        inImageWrapper.style.top = 'auto'
+                        inImageWrapper.style.bottom = '0'
                         if (inImageWrapper) {
                             domSlot.insertAdjacentHTML(
                                 'beforeend',
@@ -370,6 +372,8 @@ const Vpaid = class {
                     const inImageWrapper = video.parentElement.parentElement.querySelector(
                         '.in-image'
                     )
+                    inImageWrapper.style.top = 'auto'
+                    inImageWrapper.style.bottom = '0'
                     if (inImageWrapper) {
                         video.parentElement.insertAdjacentHTML(
                             'beforeend',
