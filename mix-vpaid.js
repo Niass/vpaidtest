@@ -244,23 +244,29 @@ const Vpaid = class {
                             this.buttonReduceSwitch
                         )
                     } else if (this.buttonCloseSwitch) {
-                        domSlot.insertAdjacentHTML(
-                            'beforeend',
-                            this.buttonCloseSwitch
+                        const inImageWrapper = domSlot.parentElement.querySelector(
+                            '.in-image'
                         )
-                        const closeSwitchButton = domSlot.parentElement.querySelector(
-                            '#bliink-switch-close'
-                        )
-                        closeSwitchButton.addEventListener(
-                            'click',
-                            function () {
-                                const inImageWrapper = domSlot.parentElement.querySelector(
-                                    '.in-image'
-                                )
-                                this.remove()
-                                inImageWrapper.remove()
-                            }
-                        )
+                        if(inImageWrapper) {
+
+                            domSlot.insertAdjacentHTML(
+                                'beforeend',
+                                this.buttonCloseSwitch
+                            )
+                            const closeSwitchButton = domSlot.parentElement.querySelector(
+                                '#bliink-switch-close'
+                            )
+                            closeSwitchButton.addEventListener(
+                                'click',
+                                function () {
+                                    const inImageWrapper = domSlot.parentElement.querySelector(
+                                        '.in-image'
+                                    )
+                                    this.remove()
+                                    inImageWrapper.remove()
+                                }
+                            )
+                        }
                     }
                     if (this.vpaidDomInImage) {
                         const wrapper = domSlot.parentElement.querySelector(
