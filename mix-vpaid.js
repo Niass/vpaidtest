@@ -368,10 +368,25 @@ const Vpaid = class {
                         this.buttonReduceSwitch
                     )
                 } else if (this.buttonCloseSwitch) {
-                    video.parentElement.insertAdjacentHTML(
-                        'beforeend',
-                        this.buttonCloseSwitch
+                    const inImageWrapper = video.parentElement.parentElement.querySelector(
+                        '.in-image'
                     )
+                    if(inImageWrapper) {
+                        video.parentElement.insertAdjacentHTML(
+                            'beforeend',
+                            this.buttonCloseSwitch
+                        )
+                        const closeSwitchButton = video.parentElement.parentElement.querySelector(
+                            '#bliink-switch-close'
+                        )
+                        closeSwitchButton.addEventListener(
+                            'click',
+                            function () {
+                                this.remove()
+                                inImageWrapper.remove()
+                            }
+                        )
+                    }
                 }
                 if (this.vpaidDomInImage) {
                     video.parentElement.insertAdjacentHTML(
