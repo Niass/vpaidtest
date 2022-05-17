@@ -350,6 +350,7 @@ const Vpaid = class {
                     }
                 }
             } else {
+                console.log('no linear')
                 const container = this.videoSlot_?.parentElement?.parentElement
                     .parentElement.parentElement
                 const video = container.querySelector('video')
