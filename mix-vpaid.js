@@ -369,28 +369,28 @@ const Vpaid = class {
                         this.buttonReduceSwitch
                     )
                 } else if (this.buttonCloseSwitch) {
-                    const inImageWrapper = video.parentElement.parentElement.querySelector(
-                        '.in-image'
-                    )
-                    console.log('inImageWrapper', inImageWrapper)
-                    inImageWrapper.style.top = 'auto'
-                    inImageWrapper.style.bottom = '0'
-                    if (inImageWrapper) {
-                        video.parentElement.insertAdjacentHTML(
-                            'beforeend',
-                            this.buttonCloseSwitch
-                        )
-                        const closeSwitchButton = video.parentElement.parentElement.querySelector(
-                            '#bliink-switch-close'
-                        )
-                        closeSwitchButton.addEventListener(
-                            'click',
-                            function () {
-                                this.remove()
-                                inImageWrapper.remove()
-                            }
-                        )
-                    }
+                    // const inImageWrapper = video.parentElement.parentElement.querySelector(
+                    //     '.in-image'
+                    // )
+                    // console.log('inImageWrapper', inImageWrapper)
+                    // inImageWrapper.style.top = 'auto'
+                    // inImageWrapper.style.bottom = '0'
+                    // if (inImageWrapper) {
+                    //     video.parentElement.insertAdjacentHTML(
+                    //         'beforeend',
+                    //         this.buttonCloseSwitch
+                    //     )
+                    //     const closeSwitchButton = video.parentElement.parentElement.querySelector(
+                    //         '#bliink-switch-close'
+                    //     )
+                    //     closeSwitchButton.addEventListener(
+                    //         'click',
+                    //         function () {
+                    //             this.remove()
+                    //             inImageWrapper.remove()
+                    //         }
+                    //     )
+                    // }
                 }
                 if (this.vpaidDomInImage) {
                     video.parentElement.insertAdjacentHTML(
