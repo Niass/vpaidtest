@@ -372,6 +372,7 @@ const Vpaid = class {
                     const inImageWrapper = video.parentElement.parentElement.querySelector(
                         '.in-image'
                     )
+                    console.log('inImageWrapper', inImageWrapper)
                     inImageWrapper.style.top = 'auto'
                     inImageWrapper.style.bottom = '0'
                     if (inImageWrapper) {
