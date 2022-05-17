@@ -369,7 +369,9 @@ const Vpaid = class {
                         'beforeend',
                         this.buttonReduceSwitch
                     )
+                    console.log('no else button')
                 } else if (this.buttonCloseSwitch) {
+                    console.log('else button')
                     const inImageWrapper = video.parentElement.parentElement.querySelector(
                         '.in-image'
                     )
