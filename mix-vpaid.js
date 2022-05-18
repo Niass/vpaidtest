@@ -418,13 +418,13 @@ const Vpaid = class {
                                 wrapper.style.display = 'none'
                                 inImageWrapper.style.opacity = 1
                                 this.style.display = 'none'
-                                video.style.top = 0;
-                                video.style.left = 0;
-                                video.style.right = 0;
-                                video.style.bottom = 0;
-                                video.style.height = 'auto';
-                                video.style.width = '100%';
-                                video.style.zIndex = 0;
+                                video.style.top = 0
+                                video.style.left = 0
+                                video.style.right = 0
+                                video.style.bottom = 0
+                                video.style.height = 'auto'
+                                video.style.width = '100%'
+                                video.style.zIndex = 0
                                 if (that.buttonCloseSwitch) {
                                     video.parentElement.insertAdjacentHTML(
                                         'beforeend',
@@ -453,18 +453,17 @@ const Vpaid = class {
                         wrapper.style.opacity = 0
                         wrapper.style.display = 'none'
                         inImageWrapper.style.opacity = 1
-
-                        video.style.top = 0;
-                        video.style.left = 0;
-                        video.style.right = 0;
-                        video.style.bottom = 0;
-                        video.style.height = 'auto';
-                        video.style.width = '100%';
-                        video.style.zIndex = 0;
                         const reduceSwitchButton = video.parentElement.parentElement.querySelector(
                             '#bliink-switch'
                         )
                         if (reduceSwitchButton) {
+                            video.style.top = 0
+                            video.style.left = 0
+                            video.style.right = 0
+                            video.style.bottom = 0
+                            video.style.height = 'auto'
+                            video.style.width = '100%'
+                            video.style.zIndex = 0
                             reduceSwitchButton.remove()
                         }
                         const closeSwitchButton_ = video.parentElement.parentElement.querySelector(
