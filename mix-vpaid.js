@@ -418,6 +418,13 @@ const Vpaid = class {
                                 wrapper.style.display = 'none'
                                 inImageWrapper.style.opacity = 1
                                 this.style.display = 'none'
+                                video.style.top = 0;
+                                video.style.left = 0;
+                                video.style.right = 0;
+                                video.style.bottom = 0;
+                                video.style.height = 'auto';
+                                video.style.width = '100';
+                                video.style.zIndex = 0;
                                 if (that.buttonCloseSwitch) {
                                     video.parentElement.insertAdjacentHTML(
                                         'beforeend',
