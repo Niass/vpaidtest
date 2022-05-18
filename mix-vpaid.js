@@ -446,6 +446,13 @@ const Vpaid = class {
                         wrapper.style.opacity = 0
                         wrapper.style.display = 'none'
                         inImageWrapper.style.opacity = 1
+                        
+                        video.style.top = 0;
+                        video.style.left = 0;
+                        video.style.right = 0;
+                        video.style.bottom = 0;
+                        video.style.height = auto;
+                        video.style.zIndex = 0;
                         const reduceSwitchButton = video.parentElement.parentElement.querySelector(
                             '#bliink-switch'
                         )
