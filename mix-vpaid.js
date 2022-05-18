@@ -423,7 +423,7 @@ const Vpaid = class {
                                 video.style.right = 0;
                                 video.style.bottom = 0;
                                 video.style.height = 'auto';
-                                video.style.width = '100';
+                                video.style.width = '100%';
                                 video.style.zIndex = 0;
                                 if (that.buttonCloseSwitch) {
                                     video.parentElement.insertAdjacentHTML(
