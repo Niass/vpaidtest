@@ -326,7 +326,7 @@ body {
   transition: all ease-in-out .3s;
 }
 .in-image.new {
-  top: calc(100% - 18vw);
+  top: calc(100% - 22vw);
 }
 
 /* @media (min-aspect-ratio: 5/3) {
