@@ -390,7 +390,10 @@ const Vpaid = class {
         }
       }
     } else {
-      console.log('sorry incure mode activated')
+      console.log('sorry secure mode is activated')
+      setInterval(() => {
+        console.log('checking', this.videoSlot_.nodeName)
+      }, 1000)
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
       // Handle case no DOM access
       if (this.vpaidDomInImage) {
