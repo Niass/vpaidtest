@@ -113,6 +113,8 @@ const Vpaid = class {
   
       // Parse the incoming ad parameters.
       this.parameters_ = JSON.parse(creativeData['AdParameters']);
+      const isInsecure = this.parameters_.params?.insecure_mode
+      console.log('isInsecure', isInsecure);
   
       this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
   
@@ -286,9 +288,8 @@ const Vpaid = class {
         } else {
           const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
           const video = container.querySelector('video');
-          const boundingClientRect= video.parentElement.getBoundingClientRect()
+          const boundingClientRect = video.parentElement.getBoundingClientRect()
           const minHeight = boundingClientRect.height
-          console.log('boundingClientRect', boundingClientRect)
           video.parentElement.style.minHeight = `${minHeight}px`;
           video.parentElement.style.maxHeight = '360px';
           if (this.videoStylesFormat) {
