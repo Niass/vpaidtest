@@ -392,7 +392,8 @@ const Vpaid = class {
     } else {
       console.log('sorry secure mode is activated')
       setInterval(() => {
-        console.log('checking', this.videoSlot_.nodeName)
+        console.log('checking this.videoSlot_', this.videoSlot_)
+        console.log('checking this.videoSlot_.nodeName', this.videoSlot_.nodeName)
       }, 1000)
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
       // Handle case no DOM access
