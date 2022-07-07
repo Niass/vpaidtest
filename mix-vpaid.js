@@ -287,8 +287,9 @@ const Vpaid = class {
           const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
           const video = container.querySelector('video');
           const boundingClientRect= video.parentElement.getBoundingClientRect()
+          const minHeight = boundingClientRect.height
           console.log('boundingClientRect', boundingClientRect)
-          video.parentElement.style.minHeight = '350px';
+          video.parentElement.style.minHeight = `${minHeight}px`;
           video.parentElement.style.maxHeight = '360px';
           if (this.videoStylesFormat) {
             video.style.cssText = this.videoStylesFormat;
