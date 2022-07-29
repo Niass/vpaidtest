@@ -203,11 +203,13 @@ const Vpaid = class {
           this.videoSlot_.style.zIndex = 10;
           this.videoSlot_.parentElement.parentElement.classList.add('percentage');
         }
+        console.log("this.vpaidDom", this.vpaidDom)
         if (this.vpaidDom) {
           domSlot.insertAdjacentHTML('beforeend', this.vpaidDom);
           if (this.vpaidDomInImage) {
             domSlot.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
           }
+          console.log("this.isBliinkPlayer_", this.isBliinkPlayer_);
           if(this.isBliinkPlayer_) return
           if (this.buttonReduceSwitch && this.vpaidDomInImage) {
             domSlot.insertAdjacentHTML('beforeend', this.buttonReduceSwitch);
