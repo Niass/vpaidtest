@@ -110,7 +110,7 @@ const Vpaid = class {
     // slot and videoSlot are passed as part of the environmentVars
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
-
+    console.log("this.videoSlot_", this.videoSlot_)
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
