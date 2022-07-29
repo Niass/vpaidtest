@@ -196,6 +196,7 @@ const Vpaid = class {
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
         const domSlot = this.slot_;
+        console.log("domSlot", domSlot)
         domSlot.classList.add('percentage');
         if (this.videoStylesFormat) {
           this.videoSlot_.style.transition = 'width 1s ease-in-out';
@@ -217,77 +218,77 @@ const Vpaid = class {
               '.in-image'
               )
               if(this.isBliinkPlayer_) return
-          //     if(inImageWrapper) {
-          //   inImageWrapper.style.top = 'auto'
-          //   inImageWrapper.style.bottom = '0'
-          //     domSlot.insertAdjacentHTML(
-          //         'beforeend',
-          //         this.buttonCloseSwitch
-          //     )
-          //     const closeSwitchButton = domSlot.parentElement.querySelector(
-          //         '#bliink-switch-close'
-          //     )
-          //     closeSwitchButton.addEventListener(
-          //         'click',
-          //         function () {
-          //             const inImageWrapper = domSlot.parentElement.querySelector(
-          //                 '.in-image'
-          //             )
-          //             this.remove()
-          //             inImageWrapper.remove()
-          //         }
-          //     )
-          // }
+              if(inImageWrapper) {
+            inImageWrapper.style.top = 'auto'
+            inImageWrapper.style.bottom = '0'
+              domSlot.insertAdjacentHTML(
+                  'beforeend',
+                  this.buttonCloseSwitch
+              )
+              const closeSwitchButton = domSlot.parentElement.querySelector(
+                  '#bliink-switch-close'
+              )
+              closeSwitchButton.addEventListener(
+                  'click',
+                  function () {
+                      const inImageWrapper = domSlot.parentElement.querySelector(
+                          '.in-image'
+                      )
+                      this.remove()
+                      inImageWrapper.remove()
+                  }
+              )
+          }
           }
           if (this.vpaidDomInImage) {
-            // const wrapper = domSlot.parentElement.querySelector('.full-image');
-            // const reduceSwitchButton = domSlot.parentElement.querySelector('#bliink-switch');
-            // if (reduceSwitchButton) {
-            //   const that = this;
-            //   const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
-            //   reduceSwitchButton.addEventListener('click', function () {
-            //     wrapper.style.top = '100%';
-            //     wrapper.style.opacity = 0;
-            //     wrapper.style.display = 'none';
-            //     inImageWrapper.style.opacity = 1;
-            //     this.style.display = 'none';
-            //     domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
-            //     const closeSwitchButton =
-            //       domSlot.parentElement.querySelector('#bliink-switch-close');
-            //     closeSwitchButton.addEventListener('click', function () {
-            //       const inImageWrapper =
-            //         domSlot.parentElement.querySelector('.in-image');
-            //       this.remove();
-            //       inImageWrapper.remove();
-            //     });
-            //   });
-            // }
-            // const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
-            // const timing = +wrapper.dataset.transitionTiming;
-            // setTimeout(() => {
-            //   const closeSwitchButton_ =
-            //     domSlot.parentElement.querySelector('#bliink-switch-close');
-            //   wrapper.style.top = '100%';
-            //   wrapper.style.opacity = 0;
-            //   wrapper.style.display = 'none';
-            //   inImageWrapper.style.opacity = 1;
-            //   const reduceSwitchButton =
-            //   domSlot.parentElement.querySelector('#bliink-switch');
-            //   if (reduceSwitchButton) {
-            //     reduceSwitchButton.remove();
-            //   }
-            //   if (!closeSwitchButton_) {
-            //     domSlot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
-            //     const closeSwitchButton =
-            //       domSlot.parentElement.querySelector('#bliink-switch-close');
-            //     closeSwitchButton.addEventListener('click', function () {
-            //       const inImageWrapper =
-            //         domSlot.parentElement.querySelector('.in-image');
-            //       this.remove();
-            //       inImageWrapper.remove();
-            //     });
-            //   }
-            // }, timing);
+            const wrapper = domSlot.parentElement.querySelector('.full-image');
+            const reduceSwitchButton = domSlot.parentElement.querySelector('#bliink-switch');
+            if (reduceSwitchButton) {
+              const that = this;
+              const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
+              reduceSwitchButton.addEventListener('click', function () {
+                wrapper.style.top = '100%';
+                wrapper.style.opacity = 0;
+                wrapper.style.display = 'none';
+                inImageWrapper.style.opacity = 1;
+                this.style.display = 'none';
+                domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
+                const closeSwitchButton =
+                  domSlot.parentElement.querySelector('#bliink-switch-close');
+                closeSwitchButton.addEventListener('click', function () {
+                  const inImageWrapper =
+                    domSlot.parentElement.querySelector('.in-image');
+                  this.remove();
+                  inImageWrapper.remove();
+                });
+              });
+            }
+            const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
+            const timing = +wrapper.dataset.transitionTiming;
+            setTimeout(() => {
+              const closeSwitchButton_ =
+                domSlot.parentElement.querySelector('#bliink-switch-close');
+              wrapper.style.top = '100%';
+              wrapper.style.opacity = 0;
+              wrapper.style.display = 'none';
+              inImageWrapper.style.opacity = 1;
+              const reduceSwitchButton =
+              domSlot.parentElement.querySelector('#bliink-switch');
+              if (reduceSwitchButton) {
+                reduceSwitchButton.remove();
+              }
+              if (!closeSwitchButton_) {
+                domSlot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+                const closeSwitchButton =
+                  domSlot.parentElement.querySelector('#bliink-switch-close');
+                closeSwitchButton.addEventListener('click', function () {
+                  const inImageWrapper =
+                    domSlot.parentElement.querySelector('.in-image');
+                  this.remove();
+                  inImageWrapper.remove();
+                });
+              }
+            }, timing);
           }
         }
       } else {
