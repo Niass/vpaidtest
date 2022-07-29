@@ -75,6 +75,7 @@ const Vpaid = class {
      * @private {!Object}
      */
     this.parameters_ = {};
+    this.isBliinkPlayer_ = false;
   }
   clickAd_() {
     if ('AdClickThru' in this.eventsCallbacks_) {
@@ -114,6 +115,7 @@ const Vpaid = class {
     const isBliinkPlayer = this.videoSlot_.classList?.contains("bliink-player__video");
           console.log("isBliinkPlayer", isBliinkPlayer);
     // Parse the incoming ad parameters.
+    this.isBliinkPlayer_ = this.videoSlot_.classList?.contains("bliink-player__video");
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
@@ -206,6 +208,7 @@ const Vpaid = class {
           if (this.vpaidDomInImage) {
             domSlot.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
           }
+          if(this.isBliinkPlayer_) return
           if (this.buttonReduceSwitch && this.vpaidDomInImage) {
             domSlot.insertAdjacentHTML('beforeend', this.buttonReduceSwitch);
           } else if (this.buttonCloseSwitch) {
