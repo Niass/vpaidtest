@@ -210,14 +210,14 @@ const Vpaid = class {
             domSlot.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
           }
           console.log("this.isBliinkPlayer_", this.isBliinkPlayer_);
-          if(this.isBliinkPlayer_) return
           if (this.buttonReduceSwitch && this.vpaidDomInImage) {
             domSlot.insertAdjacentHTML('beforeend', this.buttonReduceSwitch);
           } else if (this.buttonCloseSwitch) {
             const inImageWrapper = domSlot.parentElement.querySelector(
               '.in-image'
-          )
-          if(inImageWrapper) {
+              )
+              if(this.isBliinkPlayer_) return
+              if(inImageWrapper) {
             inImageWrapper.style.top = 'auto'
             inImageWrapper.style.bottom = '0'
               domSlot.insertAdjacentHTML(
