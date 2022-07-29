@@ -111,6 +111,8 @@ const Vpaid = class {
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
     console.log("this.videoSlot_", this.videoSlot_)
+    const isBliinkPlayer = this.videoSlot_.classList.contains("bliink-player__video");
+          console.log("isBliinkPlayer", isBliinkPlayer);
     // Parse the incoming ad parameters.
     this.parameters_ = JSON.parse(creativeData['AdParameters']);
 
