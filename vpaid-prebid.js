@@ -197,8 +197,8 @@ const Vpaid = class {
       if (vpaidType === 'linear') {
         const domSlot = this.slot_;
         console.log("domSlot", domSlot)
-        console.log("domSlot parentElement 1", domSlot.parentElement)
-        console.log("domSlot parentElement2", domSlot.parentElement.parentElement)
+        console.log("domSlot parentElement 1", domSlot?.parentElement)
+        console.log("domSlot parentElement2", domSlot?.parentElement?.parentElement)
         domSlot.classList.add('percentage');
         if (this.videoStylesFormat) {
           this.videoSlot_.style.transition = 'width 1s ease-in-out';
