@@ -231,7 +231,7 @@ const Vpaid = class {
         //   console.log('checking this.videoSlot_', this.videoSlot_)
         //   console.log('checking this.videoSlot_.nodeName', this.videoSlot_.nodeName)
         // }, 1000)
-        const testDom = `<iframe src="https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017"></iframe>`
+        const testDom = `<iframe src="https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017" style="width: 100%; height: 100%; border: none;"></iframe>`
         console.log('sorry secure mode is activated', testDom, iframe)
       // this.slot_.insertAdjacentHTML('beforeend', iframe)
       this.slot_.insertAdjacentHTML('beforeend', testDom)
