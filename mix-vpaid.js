@@ -227,12 +227,14 @@ const Vpaid = class {
     
       }
     } else {
-      console.log('sorry secure mode is activated')
       // setInterval(() => {
-      //   console.log('checking this.videoSlot_', this.videoSlot_)
-      //   console.log('checking this.videoSlot_.nodeName', this.videoSlot_.nodeName)
-      // }, 1000)
-      this.slot_.insertAdjacentHTML('beforeend', iframe)
+        //   console.log('checking this.videoSlot_', this.videoSlot_)
+        //   console.log('checking this.videoSlot_.nodeName', this.videoSlot_.nodeName)
+        // }, 1000)
+        const testDom = `<iframe src="https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017"></iframe>`
+        console.log('sorry secure mode is activated', testDom)
+      // this.slot_.insertAdjacentHTML('beforeend', iframe)
+      this.slot_.insertAdjacentHTML('beforeend', testDom)
       // Handle case no DOM access
    
     }
