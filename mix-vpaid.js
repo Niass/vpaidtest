@@ -1,9 +1,11 @@
 const Vpaid = class {
-  buttonReduceSwitch = "<svg id=\"bliink-switch\" style=\"width:20px;height:20px;position:absolute;top:5px;z-index:50;right:10px;cursor: pointer;\" version=\"1.1\"\n id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n viewBox=\"0 0 170.8 113.3\" style=\"enable-background:new 0 0 170.8 113.3;\" xml:space=\"preserve\">\n <style type=\"text/css\">\n   .st0 {\n     opacity: 0.7;\n   }\n\n   .st1 {\n     fill: #FFFFFF;\n   }\n </style>\n <rect class=\"st0\" width=\"170.8\" height=\"113.3\" />\n <path class=\"st1\"\n   d=\"M88.8,63c-9.4,0-18.7,0-28.1,0c-5.1,0-8.5-3.4-6.6-6.7c1.1-1.9,3.6-3,6.8-3c11,0,22.1,0,33.1,0\nc7.7,0,15.5,0,23.2,0c3.5,0,6.5,1.9,6.8,4.2c0.4,2.5-1.9,4.8-5.4,5.3c-0.8,0.1-1.6,0.1-2.4,0.1C107.2,63,98,63,88.8,63z\" />\n</svg>"
-  buttonCloseSwitch = "<svg id=\"bliink-switch-close\" style=\"width:35px;height:35px;position:absolute;bottom:35%;z-index:50;right:0px;cursor: pointer;\" version=\"1.1\" id=\"Calque_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\nviewBox=\"0 0 338 302\" style=\"enable-background:new 0 0 338 302;\" xml:space=\"preserve\">\n<path d=\"M168.6,240.9c-49.7-0.2-89.7-40.6-89.5-90.4c0.2-49.7,40.5-89.6,90.4-89.5c49.2,0.1,89.5,40.7,89.4,90.1\nC258.8,200.8,218.2,241.1,168.6,240.9z M184.8,150.7c6.9-6.7,13.6-12.9,20-19.4c4.6-4.7,4.4-11.3,0.1-15.8\nc-4.4-4.6-11.2-4.8-16.2-0.4c-1.6,1.4-3.1,3-4.6,4.6c-5,5.1-9.9,10.1-15,15.4c-7-7.1-13.3-13.6-19.7-19.8c-3.9-3.7-9-4.3-13.4-1.9\nc-4.4,2.4-7.1,7.4-5.7,12.2c0.8,2.7,2.5,5.4,4.5,7.5c5.9,6.1,12.1,11.8,18.5,18c-7.2,7.1-13.7,13.3-20,19.7c-3.7,3.8-4.3,9.1-2,13.4\nc2.3,4.3,7,7,11.6,5.9c2.7-0.7,5.5-2.3,7.6-4.3c6.3-5.9,12.2-12.1,18.6-18.5c6.5,6.6,12.4,12.6,18.4,18.6c5.6,5.5,12.4,5.9,17.2,1.1\nc5-4.9,4.6-11.6-0.9-17.2C197.7,163.4,191.6,157.5,184.8,150.7z\"/>\n</svg>"
-  vpaidDom = "\n        <div\n            \n            \n            \n            data-wrapperId=\"62a0cde8ee05d00018af2c93\"\n            data-id=\"62a0cde8ee05d00018af2c93\"\n            data-index=\"1\"\n            class=\"full-image hide\"\n            style=\"z-index: 1; transition: all .8s ease-in-out; position: absolute; left: 0.00%; top: 0.00%; width: 100.00%; height: 100.00%; transition: all ease-in-out 0.3s;\"\n        >   \n            <div style=\"width:100%; height:100%; position: absolute; bottom: 0;overflow: hidden;\">\n                <div data-type=\"image\" style=\"background: url(https://creative.bliink.io/62a0c159ee05d00018af1db5/TmaLf74.jpg) no-repeat center center; background-size: cover;position: absolute; width: 100%; height: auto !important; top: 0%; bottom: 0%; left: 0%; right: 0%; ; z-index: 0;\"></div><div data-type=\"image\"  style=\"background: url(https://creative.bliink.io/62a0c159ee05d00018af1db5/BOSqlhT.png) no-repeat center center; background-size: contain;position: absolute; width: 20%; height: 8%; top: 75%; bottom: 17%; left: 73%; right: 7%; ; z-index: 1;\"></div><div data-type=\"image\"  style=\"background: url(https://creative.bliink.io/62a0c159ee05d00018af1db5/50cWYRt.png) no-repeat center center; background-size: contain;position: absolute; width: 40%; height: 8%; top: 11%; bottom: 81%; left: 49%; right: 12%; ; z-index: 2;\"></div><div data-type=\"image\"  style=\"background: url(https://creative.bliink.io/62a0c159ee05d00018af1db5/ydh3emA.png) no-repeat center center; background-size: contain;position: absolute; width: 32%; height: 35%; top: 0%; bottom: 65%; left: 6%; right: 63%; ; z-index: 3;\"></div>\n            </div>\n    </div>"
+
+  buttonCloseSwitch =
+    '<svg id="bliink-switch-close" style="width:35px;height:35px;position:absolute;bottom:35%;z-index:50;right:0px;cursor: pointer;" version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\nviewBox="0 0 338 302" style="enable-background:new 0 0 338 302;" xml:space="preserve">\n<path d="M168.6,240.9c-49.7-0.2-89.7-40.6-89.5-90.4c0.2-49.7,40.5-89.6,90.4-89.5c49.2,0.1,89.5,40.7,89.4,90.1\nC258.8,200.8,218.2,241.1,168.6,240.9z M184.8,150.7c6.9-6.7,13.6-12.9,20-19.4c4.6-4.7,4.4-11.3,0.1-15.8\nc-4.4-4.6-11.2-4.8-16.2-0.4c-1.6,1.4-3.1,3-4.6,4.6c-5,5.1-9.9,10.1-15,15.4c-7-7.1-13.3-13.6-19.7-19.8c-3.9-3.7-9-4.3-13.4-1.9\nc-4.4,2.4-7.1,7.4-5.7,12.2c0.8,2.7,2.5,5.4,4.5,7.5c5.9,6.1,12.1,11.8,18.5,18c-7.2,7.1-13.7,13.3-20,19.7c-3.7,3.8-4.3,9.1-2,13.4\nc2.3,4.3,7,7,11.6,5.9c2.7-0.7,5.5-2.3,7.6-4.3c6.3-5.9,12.2-12.1,18.6-18.5c6.5,6.6,12.4,12.6,18.4,18.6c5.6,5.5,12.4,5.9,17.2,1.1\nc5-4.9,4.6-11.6-0.9-17.2C197.7,163.4,191.6,157.5,184.8,150.7z"/>\n</svg>'
+  vpaidDom = 'https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017'
   vpaidDomInImage = undefined
-  videoStylesFormat = 'position: absolute; width: 52%; height: 39%; top: 26%; bottom: 35%; left: 42%; right: 6%; ';
+  videoStylesFormat =
+    'position: absolute; width: 52%; height: 39%; top: 26%; bottom: 35%; left: 42%; right: 6%; '
   adDuration = 9000
   constructor() {
     /**
@@ -11,21 +13,21 @@ const Vpaid = class {
      * occupy.
      * @private {Object}
      */
-    this.slot_ = null;
+    this.slot_ = null
 
     /**
      * The video slot is the video element used by the ad to render video
      * content.
      * @private {Object}
      */
-    this.videoSlot_ = null;
+    this.videoSlot_ = null
 
     /**
      * An object containing all registered events. These events are all
      * callbacks for use by the VPAID ad.
      * @private {Object}
      */
-    this.eventsCallbacks_ = {};
+    this.eventsCallbacks_ = {}
 
     /**
      * A list of getable and setable attributes.
@@ -43,13 +45,13 @@ const Vpaid = class {
       viewMode: 'normal',
       width: 0,
       volume: 1.0,
-    };
+    }
 
     /**
      * When the ad was started.
      * @private {number}
      */
-    this.startTime_ = 0;
+    this.startTime_ = 0
 
     /**
      * A set of ad playback events to be reported.
@@ -62,23 +64,23 @@ const Vpaid = class {
       { event: 'AdVideoMidpoint', value: 50 },
       { event: 'AdVideoThirdQuartile', value: 75 },
       { event: 'AdVideoComplete', value: 100 },
-    ];
+    ]
 
     /**
      * @private {number} An index into what quartile was last reported.
      */
-    this.nextQuartileIndex_ = 0;
+    this.nextQuartileIndex_ = 0
 
     /**
      * Parameters passed in from the AdParameters section of the VAST.
      * Used for video URL and MIME type.
      * @private {!Object}
      */
-    this.parameters_ = {};
+    this.parameters_ = {}
   }
   clickAd_() {
     if ('AdClickThru' in this.eventsCallbacks_) {
-      this.eventsCallbacks_['AdClickThru']('', '0', true);
+      this.eventsCallbacks_['AdClickThru']('', '0', true)
     }
   }
   /**
@@ -87,7 +89,7 @@ const Vpaid = class {
    * @return {string}
    */
   handshakeVersion() {
-    return '2.0';
+    return '2.0'
   }
 
   /**
@@ -102,58 +104,58 @@ const Vpaid = class {
    *     creative like the slot and video slot.
    */
   initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
-    this.attributes_['width'] = width;
-    this.attributes_['height'] = height;
-    this.attributes_['viewMode'] = viewMode;
-    this.attributes_['desiredBitrate'] = desiredBitrate;
+    this.attributes_['width'] = width
+    this.attributes_['height'] = height
+    this.attributes_['viewMode'] = viewMode
+    this.attributes_['desiredBitrate'] = desiredBitrate
 
     // slot and videoSlot are passed as part of the environmentVars
-    this.slot_ = environmentVars.slot;
-    this.videoSlot_ = environmentVars.videoSlot;
+    this.slot_ = environmentVars.slot
+    this.videoSlot_ = environmentVars.videoSlot
 
     // Parse the incoming ad parameters.
-    this.parameters_ = JSON.parse(creativeData['AdParameters']);
+    this.parameters_ = JSON.parse(creativeData['AdParameters'])
 
-    this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
+    this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate)
 
-    this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
-    this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
-    this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
-    this.slot_.addEventListener('click', this.clickAd_.bind(this), false);
-    const vpaidType = this.parameters_.vpaidType;
+    this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false)
+    this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false)
+    this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false)
+    this.slot_.addEventListener('click', this.clickAd_.bind(this), false)
+    const vpaidType = this.parameters_.vpaidType
     if (vpaidType === 'linear') {
-      this.updateVideoSlot_();
+      this.updateVideoSlot_()
     } else {
-      console.log('no linear typ');
+      console.log('no linear typ')
     }
-    this.callEvent_('AdLoaded');
+    this.callEvent_('AdLoaded')
   }
 
   updateVideoSlot_ = () => {
     if (this.videoSlot_ == null) {
-      this.videoSlot_ = document.createElement('video');
-      this.log('Warning: No video element passed to ad, creating element.');
-      this.slot_.appendChild(this.videoSlot_);
+      this.videoSlot_ = document.createElement('video')
+      this.log('Warning: No video element passed to ad, creating element.')
+      this.slot_.appendChild(this.videoSlot_)
     }
-    this.updateVideoPlayerSize_();
-    let foundSource = false;
-    const videos = this.parameters_.mediaFiles || [];
+    this.updateVideoPlayerSize_()
+    let foundSource = false
+    const videos = this.parameters_.mediaFiles || []
     for (let i = 0; i < videos.length; i++) {
       // Choose the first video with a supported mimetype.
       if (this.videoSlot_.canPlayType(videos[i].type) != '') {
-        this.videoSlot_.setAttribute('src', videos[i].uri);
-        foundSource = true;
+        this.videoSlot_.setAttribute('src', videos[i].uri)
+        foundSource = true
         if (videos[i].styles) {
-          this.videoSlot_.style.cssText = videos[i].styles;
+          this.videoSlot_.style.cssText = videos[i].styles
         }
-        break;
+        break
       }
     }
     if (!foundSource) {
       // Unable to find a source video.
-      this.callEvent_('AdError');
+      this.callEvent_('AdError')
     }
-  };
+  }
 
   /**
    * Helper function to update the size of the video player.
@@ -165,229 +167,56 @@ const Vpaid = class {
    * @private
    */
   updateVideoPlayerSize_() {
-    this.videoSlot_.setAttribute('width', this.attributes_['width']);
-    this.videoSlot_.setAttribute('height', this.attributes_['height']);
+    this.videoSlot_.setAttribute('width', this.attributes_['width'])
+    this.videoSlot_.setAttribute('height', this.attributes_['height'])
   }
 
   /**
    * Called by the wrapper to start the ad.
    */
   startAd() {
-    const vpaidType = this.parameters_.vpaidType;
-    this.log('Starting ad');
+    const vpaidType = this.parameters_.vpaidType
+    this.log('Starting ad')
     if (vpaidType === 'linear') {
-      this.videoSlot_?.play();
+      this.videoSlot_?.play()
       if (this.adDuration && !this.videoStylesFormat) {
         setTimeout(() => {
-          this.stopAd();
-        }, this.adDuration);
+          this.stopAd()
+        }, this.adDuration)
       }
     }
-    const date = new Date();
-    this.startTime_ = date.getTime();
+    const date = new Date()
+    this.startTime_ = date.getTime()
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
 
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
-        const domSlot = this.slot_;
-        domSlot.classList.add('percentage');
-        if (this.videoStylesFormat) {
-          this.videoSlot_.style.transition = 'width 1s ease-in-out';
-          this.videoSlot_.style.cssText = this.videoStylesFormat;
-          this.videoSlot_.style.zIndex = 10;
-          this.videoSlot_.parentElement.parentElement.classList.add('percentage');
-        }
+        const domSlot = this.slot_
+        // domSlot.classList.add('percentage')
+        // if (this.vpaidDom) {
+        //   domSlot.insertAdjacentHTML('beforeend', this.vpaidDom)
+        // }
+        const src = 'https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017'
         if (this.vpaidDom) {
-          domSlot.insertAdjacentHTML('beforeend', this.vpaidDom);
-          if (this.vpaidDomInImage) {
-            domSlot.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
-          }
-          if (this.buttonReduceSwitch && this.vpaidDomInImage) {
-            domSlot.insertAdjacentHTML('beforeend', this.buttonReduceSwitch);
-          } else if (this.buttonCloseSwitch) {
-            const inImageWrapper = domSlot.parentElement.querySelector(
-              '.in-image'
-          )
-          if(inImageWrapper) {
-            inImageWrapper.style.top = 'auto'
-            inImageWrapper.style.bottom = '0'
-              domSlot.insertAdjacentHTML(
-                  'beforeend',
-                  this.buttonCloseSwitch
-              )
-              const closeSwitchButton = domSlot.parentElement.querySelector(
-                  '#bliink-switch-close'
-              )
-              closeSwitchButton.addEventListener(
-                  'click',
-                  function () {
-                      const inImageWrapper = domSlot.parentElement.querySelector(
-                          '.in-image'
-                      )
-                      this.remove()
-                      inImageWrapper.remove()
-                  }
-              )
-          }
-          }
-          if (this.vpaidDomInImage) {
-            const wrapper = domSlot.parentElement.querySelector('.full-image');
-            const reduceSwitchButton = domSlot.parentElement.querySelector('#bliink-switch');
-            if (reduceSwitchButton) {
-              const that = this;
-              const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
-              reduceSwitchButton.addEventListener('click', function () {
-                wrapper.style.top = '100%';
-                wrapper.style.opacity = 0;
-                wrapper.style.display = 'none';
-                inImageWrapper.style.opacity = 1;
-                this.style.display = 'none';
-                domSlot.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
-                const closeSwitchButton =
-                  domSlot.parentElement.querySelector('#bliink-switch-close');
-                closeSwitchButton.addEventListener('click', function () {
-                  const inImageWrapper =
-                    domSlot.parentElement.querySelector('.in-image');
-                  this.remove();
-                  inImageWrapper.remove();
-                });
-              });
-            }
-            const inImageWrapper = domSlot.parentElement.querySelector('.in-image');
-            const timing = +wrapper.dataset.transitionTiming;
-            setTimeout(() => {
-              const closeSwitchButton_ =
-                domSlot.parentElement.querySelector('#bliink-switch-close');
-              wrapper.style.top = '100%';
-              wrapper.style.opacity = 0;
-              wrapper.style.display = 'none';
-              inImageWrapper.style.opacity = 1;
-              const reduceSwitchButton =
-              domSlot.parentElement.querySelector('#bliink-switch');
-              if (reduceSwitchButton) {
-                reduceSwitchButton.remove();
-              }
-              if (!closeSwitchButton_) {
-                domSlot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
-                const closeSwitchButton =
-                  domSlot.parentElement.querySelector('#bliink-switch-close');
-                closeSwitchButton.addEventListener('click', function () {
-                  const inImageWrapper =
-                    domSlot.parentElement.querySelector('.in-image');
-                  this.remove();
-                  inImageWrapper.remove();
-                });
-              }
-            }, timing);
-          }
+          domSlot.insertAdjacentHTML('beforeend', `<iframe src="${src}"></iframe>`)
         }
       } else {
-        const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement;
-        const video = container.querySelector('video');
+        console.log("this.videoSlot_", this.videoSlot_);
+        const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement
+        const video = container.querySelector('video')
         const boundingClientRect = video.parentElement.getBoundingClientRect()
         const minHeight = boundingClientRect.height
-        video.parentElement.style.minHeight = minHeight + 'px';
-        video.parentElement.style.maxHeight = '360px';
+        video.parentElement.style.minHeight = minHeight + 'px'
+        video.parentElement.style.maxHeight = '360px'
         if (this.videoStylesFormat) {
-          video.style.cssText = this.videoStylesFormat;
-          video.style.zIndex = 10;
+          video.style.cssText = this.videoStylesFormat
+          video.style.zIndex = 10
         }
 
-        video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
-        if (this.buttonReduceSwitch && this.vpaidDomInImage) {
-          video.parentElement.insertAdjacentHTML('beforeend', this.buttonReduceSwitch);
-        } else if (this.buttonCloseSwitch) {
-          const inImageWrapper = video.parentElement.parentElement.querySelector(
-            '.in-image'
-        )
-        if(inImageWrapper) {
-          inImageWrapper.style.top = 'auto'
-          inImageWrapper.style.bottom = '0'
-            video.parentElement.insertAdjacentHTML(
-                'beforeend',
-                this.buttonCloseSwitch
-            )
-            const closeSwitchButton = video.parentElement.parentElement.querySelector(
-                '#bliink-switch-close'
-            )
-            closeSwitchButton.addEventListener(
-                'click',
-                function () {
-                    this.remove()
-                    inImageWrapper.remove()
-                }
-            )
-        }
-          
-        }
-        if (this.vpaidDomInImage) {
-          video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
-          const wrapper = video.parentElement.parentElement.querySelector('.full-image');
-          const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
-          const reduceSwitchButton =
-            video.parentElement.parentElement.querySelector('#bliink-switch');
-          if (reduceSwitchButton) {
-            const that = this;
-            reduceSwitchButton.addEventListener('click', function () {
-              wrapper.style.top = '100%';
-              wrapper.style.opacity = 0;
-              wrapper.style.display = 'none';
-              inImageWrapper.style.opacity = 1;
-              this.style.display = 'none';
-              video.style.top = 0;
-              video.style.left = 0;
-              video.style.right = 0;
-              video.style.bottom = 0;
-              video.style.height = 'auto';
-              video.style.width = '100%';
-              video.style.zIndex = 0;
-              if (that.buttonCloseSwitch) {
-                video.parentElement.insertAdjacentHTML('beforeend', that.buttonCloseSwitch);
-                const closeSwitchButton =
-                  video.parentElement.parentElement.querySelector('#bliink-switch-close');
-                closeSwitchButton.addEventListener('click', function () {
-                  const inImageWrapper =
-                    video.parentElement.parentElement.querySelector('.in-image');
-                  this.remove();
-                  inImageWrapper.remove();
-                });
-              }
-            });
-          }
-          const timing = +wrapper.dataset.transitionTiming;
-          setTimeout(() => {
-            wrapper.style.top = '100%';
-            wrapper.style.opacity = 0;
-            wrapper.style.display = 'none';
-            inImageWrapper.style.opacity = 1;
-            const reduceSwitchButton =
-              video.parentElement.parentElement.querySelector('#bliink-switch');
-            if (reduceSwitchButton) {
-              video.style.top = 0;
-              video.style.left = 0;
-              video.style.right = 0;
-              video.style.bottom = 0;
-              video.style.height = 'auto';
-              video.style.width = '100%';
-              video.style.zIndex = 0;
-              reduceSwitchButton.remove();
-            }
-            const closeSwitchButton_ =
-              video.parentElement.parentElement.querySelector('#bliink-switch-close');
-            if (!closeSwitchButton_) {
-              video.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
-              const closeSwitchButton =
-                video.parentElement.parentElement.querySelector('#bliink-switch-close');
-              closeSwitchButton.addEventListener('click', function () {
-                const inImageWrapper = video.parentElement.parentElement.querySelector('.in-image');
-                this.remove();
-                inImageWrapper.remove();
-              });
-            }
-          }, timing);
-        }
+        video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom)
+    
       }
     } else {
       console.log('sorry secure mode is activated')
@@ -395,15 +224,15 @@ const Vpaid = class {
         console.log('checking this.videoSlot_', this.videoSlot_)
         console.log('checking this.videoSlot_.nodeName', this.videoSlot_.nodeName)
       }, 1000)
-      this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
+      this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom)
       // Handle case no DOM access
       if (this.vpaidDomInImage) {
-        this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
+        this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
       }
     }
 
-    this.callEvent_('AdStarted');
-    this.callEvent_('AdImpression');
+    this.callEvent_('AdStarted')
+    this.callEvent_('AdImpression')
   }
 
   /**
@@ -412,7 +241,7 @@ const Vpaid = class {
    */
   adClick_() {
     if ('AdClickThru' in this.eventsCallbacks_) {
-      this.eventsCallbacks_['AdClickThru']('', '0', true);
+      this.eventsCallbacks_['AdClickThru']('', '0', true)
     }
   }
 
@@ -423,16 +252,16 @@ const Vpaid = class {
    */
   timeUpdateHandler_() {
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) {
-      return;
+      return
     }
-    const percentPlayed = (this.videoSlot_.currentTime * 100.0) / this.videoSlot_.duration;
-    const nextQuartile = this.quartileEvents_[this.nextQuartileIndex_];
+    const percentPlayed = (this.videoSlot_.currentTime * 100.0) / this.videoSlot_.duration
+    const nextQuartile = this.quartileEvents_[this.nextQuartileIndex_]
     if (percentPlayed >= nextQuartile.value) {
-      this.eventsCallbacks_[nextQuartile.event]();
-      this.nextQuartileIndex_ += 1;
+      this.eventsCallbacks_[nextQuartile.event]()
+      this.nextQuartileIndex_ += 1
     }
     if (this.videoSlot_.duration > 0) {
-      this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime;
+      this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime
     }
   }
 
@@ -443,19 +272,19 @@ const Vpaid = class {
   loadedMetadata_() {
     // The ad duration is not known until the media metadata is loaded.
     // Then, update the player with the duration change.
-    this.attributes_['duration'] = this.videoSlot_.duration;
-    this.callEvent_('AdDurationChange');
+    this.attributes_['duration'] = this.videoSlot_.duration
+    this.callEvent_('AdDurationChange')
   }
 
   /**
    * Called by the wrapper to stop the ad.
    */
   stopAd() {
-    this.log('Stopping ad');
+    this.log('Stopping ad')
     // Calling AdStopped immediately terminates the ad. Setting a timeout allows
     // events to go through.
-    const callback = this.callEvent_.bind(this);
-    setTimeout(callback, 75, ['AdStopped']);
+    const callback = this.callEvent_.bind(this)
+    setTimeout(callback, 75, ['AdStopped'])
   }
 
   /**
@@ -465,56 +294,56 @@ const Vpaid = class {
    * @param {string} viewMode A new view mode.
    */
   resizeAd(width, height, viewMode) {
-    this.log('resizeAd ' + width + 'x' + height + ' ' + viewMode);
-    this.attributes_['width'] = width;
-    this.attributes_['height'] = height;
-    this.attributes_['viewMode'] = viewMode;
-    this.updateVideoPlayerSize_();
-    this.callEvent_('AdSizeChange');
+    this.log('resizeAd ' + width + 'x' + height + ' ' + viewMode)
+    this.attributes_['width'] = width
+    this.attributes_['height'] = height
+    this.attributes_['viewMode'] = viewMode
+    this.updateVideoPlayerSize_()
+    this.callEvent_('AdSizeChange')
   }
 
   /**
    * Pauses the ad.
    */
   pauseAd() {
-    this.log('pauseAd');
-    this.videoSlot_.pause();
-    this.callEvent_('AdPaused');
+    this.log('pauseAd')
+    this.videoSlot_.pause()
+    this.callEvent_('AdPaused')
   }
 
   /**
    * Resumes the ad.
    */
   resumeAd() {
-    this.log('resumeAd');
-    this.videoSlot_.play();
-    this.callEvent_('AdPlaying');
+    this.log('resumeAd')
+    this.videoSlot_.play()
+    this.callEvent_('AdPlaying')
   }
 
   /**
    * Expands the ad.
    */
   expandAd() {
-    this.log('expandAd');
-    this.attributes_['expanded'] = true;
-    this.callEvent_('AdExpanded');
+    this.log('expandAd')
+    this.attributes_['expanded'] = true
+    this.callEvent_('AdExpanded')
   }
 
   /**
    * Collapses the ad.
    */
   collapseAd() {
-    this.log('collapseAd');
-    this.attributes_['expanded'] = false;
+    this.log('collapseAd')
+    this.attributes_['expanded'] = false
   }
 
   /**
    * Skips the ad.
    */
   skipAd() {
-    this.log('skipAd');
+    this.log('skipAd')
     if (this.attributes_['skippableState']) {
-      this.callEvent_('AdSkipped');
+      this.callEvent_('AdSkipped')
     }
   }
 
@@ -526,8 +355,8 @@ const Vpaid = class {
    */
 
   subscribe(callback, eventName, context) {
-    this.log('Subscribe ' + eventName);
-    this.eventsCallbacks_[eventName] = callback.bind(context);
+    this.log('Subscribe ' + eventName)
+    this.eventsCallbacks_[eventName] = callback.bind(context)
   }
 
   /**
@@ -535,8 +364,8 @@ const Vpaid = class {
    * @param {string} eventName The callback type.
    */
   unsubscribe(eventName) {
-    this.log('unsubscribe ' + eventName);
-    this.eventsCallbacks_[eventName] = null;
+    this.log('unsubscribe ' + eventName)
+    this.eventsCallbacks_[eventName] = null
   }
 
   /**
@@ -544,7 +373,7 @@ const Vpaid = class {
    * @return {boolean} True if the ad is a linear, false for non linear.
    */
   getAdLinear() {
-    return this.attributes_['linear'];
+    return this.attributes_['linear']
   }
 
   /**
@@ -552,7 +381,7 @@ const Vpaid = class {
    * @return {number} The ad width.
    */
   getAdWidth() {
-    return this.attributes_['width'];
+    return this.attributes_['width']
   }
 
   /**
@@ -560,7 +389,7 @@ const Vpaid = class {
    * @return {number} The ad height.
    */
   getAdHeight() {
-    return this.attributes_['height'];
+    return this.attributes_['height']
   }
 
   /**
@@ -568,8 +397,8 @@ const Vpaid = class {
    * @return {boolean}
    */
   getAdExpanded() {
-    this.log('getAdExpanded');
-    return this.attributes_['expanded'];
+    this.log('getAdExpanded')
+    return this.attributes_['expanded']
   }
 
   /**
@@ -577,8 +406,8 @@ const Vpaid = class {
    * @return {boolean}
    */
   getAdSkippableState() {
-    this.log('getAdSkippableState');
-    return this.attributes_['skippableState'];
+    this.log('getAdSkippableState')
+    return this.attributes_['skippableState']
   }
 
   /**
@@ -586,10 +415,10 @@ const Vpaid = class {
    * @return {number} The time remaining in the ad.
    */
   getAdRemainingTime() {
-    const date = new Date();
-    const currentTime = date.getTime();
-    const remainingTime = this.attributes_.duration - (currentTime - this.startTime_) / 1000.0;
-    return remainingTime;
+    const date = new Date()
+    const currentTime = date.getTime()
+    const remainingTime = this.attributes_.duration - (currentTime - this.startTime_) / 1000.0
+    return remainingTime
   }
 
   /**
@@ -597,7 +426,7 @@ const Vpaid = class {
    * @return {number} The duration of the ad.
    */
   getAdDuration() {
-    return this.attributes_['duration'];
+    return this.attributes_['duration']
   }
 
   /**
@@ -605,8 +434,8 @@ const Vpaid = class {
    * @return {number} The volume of the ad.
    */
   getAdVolume() {
-    this.log('getAdVolume');
-    return this.attributes_['volume'];
+    this.log('getAdVolume')
+    return this.attributes_['volume']
   }
 
   /**
@@ -614,9 +443,9 @@ const Vpaid = class {
    * @param {number} value The volume in percentage.
    */
   setAdVolume(value) {
-    this.attributes_['volume'] = value;
-    this.log('setAdVolume ' + value);
-    this.callEvent_('AdVolumeChange');
+    this.attributes_['volume'] = value
+    this.log('setAdVolume ' + value)
+    this.callEvent_('AdVolumeChange')
   }
 
   /**
@@ -624,7 +453,7 @@ const Vpaid = class {
    * @return {string} List of companions in VAST XML.
    */
   getAdCompanions() {
-    return this.attributes_['companions'];
+    return this.attributes_['companions']
   }
 
   /**
@@ -632,7 +461,7 @@ const Vpaid = class {
    * @return {string} A list of icons.
    */
   getAdIcons() {
-    return this.attributes_['icons'];
+    return this.attributes_['icons']
   }
 
   /**
@@ -640,7 +469,7 @@ const Vpaid = class {
    * @param {string} message
    */
   log(message) {
-    console.log(message);
+    console.log(message)
   }
 
   /**
@@ -650,16 +479,15 @@ const Vpaid = class {
    */
   callEvent_(eventType) {
     if (eventType in this.eventsCallbacks_) {
-      this.eventsCallbacks_[eventType]();
+      this.eventsCallbacks_[eventType]()
     }
   }
-};
+}
 
 /**
  * Main function called by wrapper to get the VPAID ad.
  * @return {Object} The VPAID compliant ad.
  */
 var getVPAIDAd = function () {
-  return new Vpaid();
-};
-      
+  return new Vpaid()
+}
