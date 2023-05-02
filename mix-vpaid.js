@@ -199,9 +199,15 @@ const Vpaid = class {
         //   domSlot.insertAdjacentHTML('beforeend', this.vpaidDom)
         // }
         const src = 'https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017'
-        if (this.vpaidDom) {
-          domSlot.insertAdjacentHTML('beforeend', `<iframe src="${src}"></iframe>`)
-        }
+      
+        const iframe = document.createElement("iframe");
+        iframe.src = src;
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        domSlot.innerHTML = "";
+        domSlot.appendChild(iframe);
+        console.log("iframe inserted : ", iframe);
       } else {
         console.log("this.videoSlot_", this.videoSlot_);
         const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement
