@@ -234,7 +234,8 @@ const Vpaid = class {
         const testDom = `<iframe src="https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017" style="width: 100%; height: 100%; border: none;"></iframe>`
         console.log('sorry secure mode is activated', testDom, iframe)
       // this.slot_.insertAdjacentHTML('beforeend', iframe)
-      this.slot_.insertAdjacentHTML('beforeend', testDom)
+      this.slot_.appendChild(iframe);
+      // this.slot_.insertAdjacentHTML('beforeend', testDom)
       // Handle case no DOM access
    
     }
