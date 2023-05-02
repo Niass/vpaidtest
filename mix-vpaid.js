@@ -193,6 +193,14 @@ const Vpaid = class {
 
     // Create an img tag and populate it with the image passed in to the ad
     // parameters.
+    const src = 'https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017'
+  
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = "none";
+    domSlot.innerHTML = "";
 
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
@@ -201,14 +209,6 @@ const Vpaid = class {
         // if (this.vpaidDom) {
         //   domSlot.insertAdjacentHTML('beforeend', this.vpaidDom)
         // }
-        const src = 'https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017'
-      
-        const iframe = document.createElement("iframe");
-        iframe.src = src;
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.border = "none";
-        domSlot.innerHTML = "";
         domSlot.appendChild(iframe);
         console.log("iframe inserted : ", iframe);
       } else {
@@ -233,11 +233,9 @@ const Vpaid = class {
       //   console.log('checking this.videoSlot_', this.videoSlot_)
       //   console.log('checking this.videoSlot_.nodeName', this.videoSlot_.nodeName)
       // }, 1000)
-      this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom)
+      this.slot_.insertAdjacentHTML('beforeend', iframe)
       // Handle case no DOM access
-      if (this.vpaidDomInImage) {
-        this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
-      }
+   
     }
 
     this.callEvent_('AdStarted')
