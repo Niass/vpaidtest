@@ -2,7 +2,7 @@ const Vpaid = class {
 
   buttonCloseSwitch =
     '<svg id="bliink-switch-close" style="width:35px;height:35px;position:absolute;bottom:35%;z-index:50;right:0px;cursor: pointer;" version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\nviewBox="0 0 338 302" style="enable-background:new 0 0 338 302;" xml:space="preserve">\n<path d="M168.6,240.9c-49.7-0.2-89.7-40.6-89.5-90.4c0.2-49.7,40.5-89.6,90.4-89.5c49.2,0.1,89.5,40.7,89.4,90.1\nC258.8,200.8,218.2,241.1,168.6,240.9z M184.8,150.7c6.9-6.7,13.6-12.9,20-19.4c4.6-4.7,4.4-11.3,0.1-15.8\nc-4.4-4.6-11.2-4.8-16.2-0.4c-1.6,1.4-3.1,3-4.6,4.6c-5,5.1-9.9,10.1-15,15.4c-7-7.1-13.3-13.6-19.7-19.8c-3.9-3.7-9-4.3-13.4-1.9\nc-4.4,2.4-7.1,7.4-5.7,12.2c0.8,2.7,2.5,5.4,4.5,7.5c5.9,6.1,12.1,11.8,18.5,18c-7.2,7.1-13.7,13.3-20,19.7c-3.7,3.8-4.3,9.1-2,13.4\nc2.3,4.3,7,7,11.6,5.9c2.7-0.7,5.5-2.3,7.6-4.3c6.3-5.9,12.2-12.1,18.6-18.5c6.5,6.6,12.4,12.6,18.4,18.6c5.6,5.5,12.4,5.9,17.2,1.1\nc5-4.9,4.6-11.6-0.9-17.2C197.7,163.4,191.6,157.5,184.8,150.7z"/>\n</svg>'
-  vpaidDom = 'https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017'
+  vpaidDom = `<iframe src="https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017" style="width: 100%; height: 100%; border: none;"></iframe>`
   
   vpaidDomInImage = undefined
   videoStylesFormat =
@@ -16,7 +16,6 @@ const Vpaid = class {
      */
     this.slot_ = null
 
-    this.vpaidDom = `<iframe src="https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017"></iframe>`
 
     /**
      * The video slot is the video element used by the ad to render video
@@ -211,20 +210,20 @@ const Vpaid = class {
         domSlot.appendChild(iframe);
         console.log("iframe inserted : ", iframe);
       } else {
-        console.log("this.videoSlot_", this.videoSlot_);
-        const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement
-        const video = container.querySelector('video')
-        const boundingClientRect = video.parentElement.getBoundingClientRect()
-        const minHeight = boundingClientRect.height
-        video.parentElement.style.minHeight = minHeight + 'px'
-        video.parentElement.style.maxHeight = '360px'
-        if (this.videoStylesFormat) {
-          video.style.cssText = this.videoStylesFormat
-          video.style.zIndex = 10
-        }
+        console.log("this.videoSlot_ non linear", this.videoSlot_);
+        // const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement
+        // const video = container.querySelector('video')
+        // const boundingClientRect = video.parentElement.getBoundingClientRect()
+        // const minHeight = boundingClientRect.height
+        // video.parentElement.style.minHeight = minHeight + 'px'
+        // video.parentElement.style.maxHeight = '360px'
+        // if (this.videoStylesFormat) {
+        //   video.style.cssText = this.videoStylesFormat
+        //   video.style.zIndex = 10
+        // }
 
-        video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom)
-    
+        // video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom)
+        this.slot_.insertAdjacentHTML('beforeend', testDom)
       }
     } else {
       // setInterval(() => {
@@ -234,8 +233,8 @@ const Vpaid = class {
         const testDom = `<iframe src="https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017" style="width: 100%; height: 100%; border: none;"></iframe>`
         console.log('sorry secure mode is activated', testDom, iframe)
       // this.slot_.insertAdjacentHTML('beforeend', iframe)
-      this.slot_.appendChild(iframe);
-      // this.slot_.insertAdjacentHTML('beforeend', testDom)
+      // this.slot_.appendChild(iframe);
+      this.slot_.insertAdjacentHTML('beforeend', testDom)
       // Handle case no DOM access
    
     }
