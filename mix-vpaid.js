@@ -200,15 +200,16 @@ const Vpaid = class {
     iframe.style.height = "100%";
     iframe.style.border = "none";
 
+    this.slot_.appendChild(iframe);
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
-        const domSlot = this.slot_
+        // const domSlot = this.slot_
         // domSlot.classList.add('percentage')
         // if (this.vpaidDom) {
         //   domSlot.insertAdjacentHTML('beforeend', this.vpaidDom)
         // }
-        domSlot.appendChild(iframe);
-        console.log("iframe inserted : ", iframe);
+        // domSlot.appendChild(iframe);
+        // console.log("iframe inserted : ", iframe);
       } else {
         console.log("this.videoSlot_ non linear", this.videoSlot_);
         // const container = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement
@@ -223,7 +224,7 @@ const Vpaid = class {
         // }
 
         // video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom)
-        this.slot_.insertAdjacentHTML('beforeend', testDom)
+        // this.slot_.insertAdjacentHTML('beforeend', testDom)
       }
     } else {
       // setInterval(() => {
@@ -231,10 +232,12 @@ const Vpaid = class {
         //   console.log('checking this.videoSlot_.nodeName', this.videoSlot_.nodeName)
         // }, 1000)
         const testDom = `<iframe src="https://creative-stg.bliink.io/switch_test/index.html?cb=1683043017" style="width: 100%; height: 100%; border: none;"></iframe>`
-        console.log('sorry secure mode is activated', testDom, iframe)
+        console.log('sorry secure mode is activated 1', testDom, iframe)
       // this.slot_.insertAdjacentHTML('beforeend', iframe)
       // this.slot_.appendChild(iframe);
-      this.slot_.insertAdjacentHTML('beforeend', testDom)
+      // this.slot_.insertAdjacentHTML('beforeend', testDom)
+      // this.slot_.appendChild(iframe);
+      // this.slot_.insertAdjacentHTML('beforeend', testDom)
       // Handle case no DOM access
    
     }
