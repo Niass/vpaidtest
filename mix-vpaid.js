@@ -200,7 +200,6 @@ const Vpaid = class {
     iframe.style.width = "100%";
     iframe.style.height = "100%";
     iframe.style.border = "none";
-    domSlot.innerHTML = "";
 
     if (this.videoSlot_.nodeName) {
       if (vpaidType === 'linear') {
