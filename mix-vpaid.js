@@ -28,7 +28,6 @@ const Vpaid = class {
       }),
       (this.startTime_ = 0),
       (this.quartileEvents_ = [
-        { event: 'AdImpression', value: 0 },
         { event: 'AdVideoStart', value: 0 },
         { event: 'AdVideoFirstQuartile', value: 25 },
         { event: 'AdVideoMidpoint', value: 50 },
