@@ -11,7 +11,7 @@ const Vpaid = class {
   constructor() {
     ;(this.slot_ = null),
       this.vpaidDom && (this.vpaidDom = this.vpaidDom.replace(/z-index:s*d+;/g, 'z-index: 999;')),
-      (console.log('this.vpaidDom*', this.vpaidDom)),
+      (console.log('this.vpaidDom**', this.vpaidDom.replace(/z-index:s*d+;/g, 'z-index: 999;'))),
       (this.videoSlot_ = null),
       (this.eventsCallbacks_ = {}),
       (this.attributes_ = {
