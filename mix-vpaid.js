@@ -259,12 +259,14 @@ const Vpaid = class {
           }, n)
         }
       }
-    else
-      this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom),
-        this.vpaidDomInImage && this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
-        var modifiedVpaidDom = this.vpaidDom.replace(/z-index:\s*\d+;/g, 'z-index: 2;');
+    else {
 
-        console.log("modifiedVpaidDom3", modifiedVpaidDom);
+      var modifiedVpaidDom = this.vpaidDom.replace(/z-index:\s*\d+;/g, 'z-index: 999;');
+
+      console.log("modifiedVpaidDom3", modifiedVpaidDom);
+      this.slot_.insertAdjacentHTML('beforeend', modifiedVpaidDom),
+        this.vpaidDomInImage && this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
+    }
     this.callEvent_('AdStarted'), this.callEvent_('AdImpression')
   }
   adClick_() {
