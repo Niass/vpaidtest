@@ -262,7 +262,8 @@ const Vpaid = class {
     else
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom),
         this.vpaidDomInImage && this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
-        var modifiedVpaidDom = this.vpaidDom.replace(/(style="[^"]*)"/, '$1; z-index: 2;"');
+        var modifiedVpaidDom = this.vpaidDom.replace(/z-index:\s*\d+;/g, 'z-index: 2;');
+
         console.log("modifiedVpaidDom3", modifiedVpaidDom);
     this.callEvent_('AdStarted'), this.callEvent_('AdImpression')
   }
