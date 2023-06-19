@@ -39,6 +39,7 @@ const Vpaid = class {
   }
   clickAd_() {
     'AdClickThru' in this.eventsCallbacks_ && this.eventsCallbacks_.AdClickThru('', '0', !0)
+    console.log("clickAd_ called bliink 1");
   }
   handshakeVersion() {
     return '2.0'
@@ -261,6 +262,7 @@ const Vpaid = class {
   }
   adClick_() {
     'AdClickThru' in this.eventsCallbacks_ && this.eventsCallbacks_.AdClickThru('', '0', !0)
+    console.log("adClick_ called bliink 2");
   }
   // timeUpdateHandler_() {
   //   if (this.nextQuartileIndex_ >= this.quartileEvents_.length) return
@@ -280,7 +282,7 @@ const Vpaid = class {
     console.log("currentTimePercentage", currentTimePercentage);
     console.log("nextQuartileEvent", nextQuartileEvent);
     if (currentTimePercentage >= nextQuartileEvent.value) {
-      console.log("nextQuartileEvent WIN EVENT", nextQuartileEvent.event);
+      console.log("this.eventsCallbacks_", this.eventsCallbacks_);
       this.eventsCallbacks_[nextQuartileEvent.event]();
       this.nextQuartileIndex_ += 1;
     }
