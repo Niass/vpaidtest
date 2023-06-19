@@ -39,7 +39,7 @@ const Vpaid = class {
   }
   clickAd_() {
     'AdClickThru' in this.eventsCallbacks_ && this.eventsCallbacks_.AdClickThru('', '0', !0)
-    console.log("clickAd_ called bliink 1");
+    console.log('clickAd_ called bliink 1')
   }
   handshakeVersion() {
     return '2.0'
@@ -106,6 +106,8 @@ const Vpaid = class {
             this.videoSlot_.parentElement.parentElement.classList.add('percentage')),
           this.vpaidDom)
         ) {
+          var modifiedVpaidDom = this.vpaidDom.replace(/(style="[^"]*)"/, '$1; z-index: 2;"')
+          console.log('modifiedVpaidDom', modifiedVpaidDom)
           if (
             (t.insertAdjacentHTML('beforeend', this.vpaidDom),
             this.vpaidDomInImage && t.insertAdjacentHTML('beforeend', this.vpaidDomInImage),
@@ -172,6 +174,8 @@ const Vpaid = class {
         const t = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement,
           e = t.querySelector('video'),
           i = e.parentElement.getBoundingClientRect().height
+        var modifiedVpaidDom = this.vpaidDom.replace(/(style="[^"]*)"/, '$1; z-index: 2;"')
+        console.log('modifiedVpaidDom2', modifiedVpaidDom)
         if (
           ((e.parentElement.style.minHeight = i + 'px'),
           (e.parentElement.style.maxHeight = '360px'),
@@ -258,11 +262,13 @@ const Vpaid = class {
     else
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom),
         this.vpaidDomInImage && this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
+        var modifiedVpaidDom = this.vpaidDom.replace(/(style="[^"]*)"/, '$1; z-index: 2;"');
+        console.log("modifiedVpaidDom3", modifiedVpaidDom);
     this.callEvent_('AdStarted'), this.callEvent_('AdImpression')
   }
   adClick_() {
     'AdClickThru' in this.eventsCallbacks_ && this.eventsCallbacks_.AdClickThru('', '0', !0)
-    console.log("adClick_ called bliink 2");
+    console.log('adClick_ called bliink 2')
   }
   // timeUpdateHandler_() {
   //   if (this.nextQuartileIndex_ >= this.quartileEvents_.length) return
@@ -274,24 +280,24 @@ const Vpaid = class {
   // }
   timeUpdateHandler_() {
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) {
-      return;
+      return
     }
-  
-    const currentTimePercentage = (100 * this.videoSlot_.currentTime) / this.videoSlot_.duration;
-    const nextQuartileEvent = this.quartileEvents_[this.nextQuartileIndex_];
-    console.log("currentTimePercentage", currentTimePercentage);
-    console.log("nextQuartileEvent", nextQuartileEvent);
+
+    const currentTimePercentage = (100 * this.videoSlot_.currentTime) / this.videoSlot_.duration
+    const nextQuartileEvent = this.quartileEvents_[this.nextQuartileIndex_]
+    console.log('currentTimePercentage', currentTimePercentage)
+    console.log('nextQuartileEvent', nextQuartileEvent)
     if (currentTimePercentage >= nextQuartileEvent.value) {
-      console.log("this.eventsCallbacks_", this.eventsCallbacks_);
-      this.eventsCallbacks_[nextQuartileEvent.event]();
-      this.nextQuartileIndex_ += 1;
+      console.log('this.eventsCallbacks_', this.eventsCallbacks_)
+      this.eventsCallbacks_[nextQuartileEvent.event]()
+      this.nextQuartileIndex_ += 1
     }
-  
+
     if (this.videoSlot_.duration > 0) {
-      this.attributes_.remainingTime = this.videoSlot_.duration - this.videoSlot_.currentTime;
+      this.attributes_.remainingTime = this.videoSlot_.duration - this.videoSlot_.currentTime
     }
   }
-  
+
   loadedMetadata_() {
     ;(this.attributes_.duration = this.videoSlot_.duration), this.callEvent_('AdDurationChange')
   }
