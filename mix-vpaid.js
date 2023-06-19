@@ -261,9 +261,10 @@ const Vpaid = class {
       }
     else {
 
-      var modifiedVpaidDom = this.vpaidDom.replace(/z-index:\s*\d+;/g, 'z-index: 999;');
+      // var modifiedVpaidDom = this.vpaidDom.replace(/z-index:\s*\d+;/g, 'z-index: 999;');
+      this.vpaidDom = this.vpaidDom.replace(/z-index:\\s*\\d+;/g, 'z-index: 799;');
 
-      console.log("modifiedVpaidDom3", modifiedVpaidDom);
+      console.log("modifiedVpaidDom3", this.vpaidDom);
       this.slot_.insertAdjacentHTML('beforeend', modifiedVpaidDom),
         this.vpaidDomInImage && this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
     }
