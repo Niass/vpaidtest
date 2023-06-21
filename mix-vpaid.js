@@ -32,7 +32,7 @@ const Vpaid = class {
         { event: 'AdVideoFirstQuartile', value: 25 },
         { event: 'AdVideoMidpoint', value: 50 },
         { event: 'AdVideoThirdQuartile', value: 75 },
-        { event: 'AdVideoComplete', value: 88 },
+        { event: 'AdVideoComplete', value: 99 },
       ]),
       (this.nextQuartileIndex_ = 0),
       (this.parameters_ = {})
