@@ -272,7 +272,7 @@ const Vpaid = class {
     const duration = this.videoSlot_.duration;
     const percentComplete = (100 * currentTime) / duration;
     const nextQuartileEvent = this.quartileEvents_[this.nextQuartileIndex_];
-    console.log("percentComplete", percentComplete, nextQuartileEvent.value);
+    console.log("percentComplete", percentComplete, nextQuartileEvent.value, this.videoSlot_.duration);
     if (percentComplete >= nextQuartileEvent.value) {
       this.eventsCallbacks_[nextQuartileEvent.event]();
       this.nextQuartileIndex_ += 1;
