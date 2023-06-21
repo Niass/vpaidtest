@@ -91,7 +91,7 @@ const Vpaid = class {
           !this.videoStylesFormat &&
           setTimeout(() => {
             console.log("what the fuck???");
-            this.stopAd()
+            // this.stopAd()
           }, this.adDuration))
     const e = new Date()
     if (((this.startTime_ = e.getTime()), this.videoSlot_.nodeName))
