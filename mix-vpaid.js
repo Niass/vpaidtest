@@ -90,6 +90,7 @@ const Vpaid = class {
         this.adDuration &&
           !this.videoStylesFormat &&
           setTimeout(() => {
+            console.log("what the fuck???");
             this.stopAd()
           }, this.adDuration))
     const e = new Date()
