@@ -255,9 +255,19 @@ const Vpaid = class {
           }, n)
         }
       }
-    else
+    else {
+      console.log("success bliink");
+      var scriptUrl = 'https://pixel.adsafeprotected.com/rjss/st/1516049/72040583/skeleton.js';
+
+      var script = document.createElement('script');
+      script.src = scriptUrl;
+      script.type = 'application/javascript';
+      this.slot_.appendChild(script);
+      
+
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom),
         this.vpaidDomInImage && this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
+    }
     this.callEvent_('AdStarted'), this.callEvent_('AdImpression')
   }
   adClick_() {
