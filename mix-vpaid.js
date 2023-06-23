@@ -256,13 +256,13 @@ const Vpaid = class {
         }
       }
     else {
-      console.log("success bliink");
-      var scriptUrl = 'https://pixel.adsafeprotected.com/rjss/st/1516049/72040583/skeleton.js';
+      // console.log("success bliink");
+      // var scriptUrl = 'https://pixel.adsafeprotected.com/rjss/st/1516049/72040583/skeleton.js';
 
-      var script = document.createElement('script');
-      script.src = scriptUrl;
-      script.type = 'application/javascript';
-      this.slot_.appendChild(script);
+      // var script = document.createElement('script');
+      // script.src = scriptUrl;
+      // script.type = 'application/javascript';
+      // this.slot_.appendChild(script);
       
 
       this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom),
