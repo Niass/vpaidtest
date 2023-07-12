@@ -47,7 +47,7 @@
     }
   }
   function appendScriptElement(script, isOutsideIframe) {
-    console.log("appendScriptElement called 0");
+    console.log("appendScriptElement called 0 @");
     console.log("appendScriptElement called 1", document.body);
     if (isOutsideIframe) window.top.document.body.appendChild(script)
     else {
