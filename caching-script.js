@@ -50,7 +50,21 @@
     console.log("appendScriptElement called 0");
     console.log("appendScriptElement called 1", document.body);
     if (isOutsideIframe) window.top.document.body.appendChild(script)
-    else document.body.appendChild(script)
+    else {
+      document.addEventListener('DOMContentLoaded', function() {
+        // Code to run once the DOM is fully loaded
+      
+        // Create a new div element
+        var newDiv = document.createElement('div');
+        newDiv.innerHTML = 'Hello, world!';
+      
+        // Append the div to the body of the iframe
+        document.body.appendChild(newDiv);
+      });
+      // document.body.appendChild(script)
+
+
+    } 
   }
   function createScriptElement(ad, adm, isOutsideIframe) {
     var script = document.createElement('script')
