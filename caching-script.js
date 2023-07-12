@@ -53,17 +53,9 @@
     else {
       document.addEventListener('DOMContentLoaded', function() {
         // Code to run once the DOM is fully loaded
-      
-        // Create a new div element
-        var newDiv = document.createElement('div');
-        newDiv.innerHTML = 'Hello, world!';
-      
         // Append the div to the body of the iframe
-        document.body.appendChild(newDiv);
+        document.body.appendChild(script);
       });
-      // document.body.appendChild(script)
-
-
     } 
   }
   function createScriptElement(ad, adm, isOutsideIframe) {
