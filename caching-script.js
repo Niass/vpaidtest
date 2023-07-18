@@ -37,6 +37,7 @@
           return k
         }
       })()
+  console.log("what ???");
   function e(f) {
     if (!f) return Promise.reject(new Error('Missing params'))
     var g = 'https://e.api.bliink.io/i.gif?token=' + f + '&name=custom&label=scriptLoaded'
