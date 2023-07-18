@@ -6,7 +6,7 @@
     cacheBuster = 1
   function sendEventWithToken(token) {
     if (!token) return Promise.reject(new Error('Missing params'))
-    var urlWithParams = `https://e.api.bliink.io/i.gif?token=${token}&name=custom&label=scriptLoaded`
+    var urlWithParams = \`https://e.api.bliink.io/i.gif?token=${token}&name=custom&label=scriptLoaded`
     return fetch(urlWithParams).then((response) => {
       if (!response.ok) throw new Error('Response not OK')
     })
@@ -52,8 +52,6 @@
     if (isOutsideIframe) window.top.document.body.appendChild(script)
     else {
       document.addEventListener('DOMContentLoaded', function() {
-        // Code to run once the DOM is fully loaded
-        // Append the div to the body of the iframe
         document.body.appendChild(script);
       });
     } 
