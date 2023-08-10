@@ -2,8 +2,10 @@ const adContent = '<iframe src="https://creative-stg.bliink.io/switch_test/index
 
 function renderAd(adContent) {
   window.addEventListener("DOMContentLoaded", function () {
-    var adTextNode = document.createTextNode(adContent);
-    document.body.appendChild(adTextNode);
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = adContent
+    // var adTextNode = document.createTextNode(adContent);
+    document.body.appendChild(tempDiv);
   });
 }
 
