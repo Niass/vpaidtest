@@ -5,7 +5,8 @@ function renderAd(adContent) {
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = adContent
     // var adTextNode = document.createTextNode(adContent);
-    document.body.appendChild(tempDiv);
+    // document.body.appendChild(tempDiv);
+    document.body.innerHTML = tempDiv.innerHTML  
   });
 }
 
