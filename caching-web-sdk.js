@@ -33,7 +33,7 @@ function renderAd(adContent) {
     document.body.appendChild(adContainer);
   
     // Start loading scripts
-    loadScriptsSequentially(0);
+    // loadScriptsSequentially(0);
     console.log("Bliink ne rendering test****** END");
   })
 }
