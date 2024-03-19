@@ -1,0 +1,31 @@
+<VAST version="3.0">
+<Ad id="bliink">
+<InLine>
+<AdSystem>BLIINK</AdSystem>
+<AdTitle>DAIKIN BLIINK AVRIL 2023</AdTitle>
+<Impression>
+<![CDATA[ https://ad.doubleclick.net/ddm/trackimp/N449.3298035BLIINK/B29522419.362240916;dc_trk_aid=552845009;dc_trk_cid=188238265;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1? ]]>
+</Impression>
+<Impression>
+<![CDATA[ https://segment.prod.bidr.io/associate-segment?buzz_key=happydemics&segment_key=happydemics-4227&value=&gdpr_consent=${GDPR_CONSENT_550}&gdpr=${GDPR} ]]>
+</Impression>
+<Creatives>
+<Creative>
+<Linear>
+<Duration>00:00:19</Duration>
+<VideoClicks>
+<ClickThrough>
+<![CDATA[ https://ad.doubleclick.net/ddm/trackclk/N449.3298035BLIINK/B29522419.362240916;dc_trk_aid=552845009;dc_trk_cid=188238265;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=;dc_tdv=1 ]]>
+</ClickThrough>
+</VideoClicks>
+<MediaFiles>
+<MediaFile width="640" height="360" bitrate="500" type="video/mp4" delivery="progressive">
+<![CDATA[ https://video.bliink.io/daikin/PompeChaleur_Pere_Instream.mp4 ]]>
+</MediaFile>
+</MediaFiles>
+</Linear>
+</Creative>
+</Creatives>
+</InLine>
+</Ad>
+</VAST>
