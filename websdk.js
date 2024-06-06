@@ -33,13 +33,13 @@
       a = null !== (t = window.top.bliinkLoadedAds) && void 0 !== t ? t : {},
       e = { window: window.self };
     (e.isIframe = !!window.frameElement),
-      (a["bliink_ad_".concat(null === (d = i.extras) || void 0 === d ? void 0 : "123")] = e),
+      (a["bliink_ad_123".concat(null === (d = i.extras) || void 0 === d ? void 0 : "123")] = e),
       (window.top.bliinkLoadedAds = a);
     var r,
       s,
       c = null === (o = document.currentScript) || void 0 === o ? void 0 : o.parentElement;
     if (!e.isIframe && c)
-      c.classList.add("bliink_ad_".concat(null === (r = i.extras) || void 0 === r ? void 0 : "123")),
+      c.classList.add("bliink_ad_123".concat(null === (r = i.extras) || void 0 === r ? void 0 : "123")),
         (c.dataset.bliinkAd = null === (s = i.extras) || void 0 === s ? void 0 : "123");
   }
   var l = (function (i) {
