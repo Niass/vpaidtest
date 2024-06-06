@@ -24,8 +24,8 @@
     return !1;
   }
   n()
-    ? ((top.bliinkAds = top.bliinkAds || {}), (top.bliinkAds[i.extras.transaction_id] = i))
-    : ((window.bliinkAds = window.bliinkAds || {}), (window.bliinkAds[i.extras.transaction_id] = i));
+    ? ((top.bliinkAds = top.bliinkAds || {}), (top.bliinkAds["123"] = i))
+    : ((window.bliinkAds = window.bliinkAds || {}), (window.bliinkAds["123"] = i));
   if (n()) {
     var t,
       d,
@@ -33,19 +33,19 @@
       a = null !== (t = window.top.bliinkLoadedAds) && void 0 !== t ? t : {},
       e = { window: window.self };
     (e.isIframe = !!window.frameElement),
-      (a["bliink_ad_".concat(null === (d = i.extras) || void 0 === d ? void 0 : d.transaction_id)] = e),
+      (a["bliink_ad_".concat(null === (d = i.extras) || void 0 === d ? void 0 : "123")] = e),
       (window.top.bliinkLoadedAds = a);
     var r,
       s,
       c = null === (o = document.currentScript) || void 0 === o ? void 0 : o.parentElement;
     if (!e.isIframe && c)
-      c.classList.add("bliink_ad_".concat(null === (r = i.extras) || void 0 === r ? void 0 : r.transaction_id)),
-        (c.dataset.bliinkAd = null === (s = i.extras) || void 0 === s ? void 0 : s.transaction_id);
+      c.classList.add("bliink_ad_".concat(null === (r = i.extras) || void 0 === r ? void 0 : "123")),
+        (c.dataset.bliinkAd = null === (s = i.extras) || void 0 === s ? void 0 : "123");
   }
   var l = (function (i) {
     var n = document.createElement("script");
     return (
-      (n.dataset.id = i.extras.transaction_id),
+      (n.dataset.id = "123"),
       (n.type = "text/javascript"),
       (n.async = !0),
       (n.src = "".concat("http://localhost:3000", "/creative.js")),
