@@ -1,15 +1,16 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
 <VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="2.0">
 <Ad id="590779856">
 <Wrapper>
 <AdSystem>DCM</AdSystem>
 <VASTAdTagURI>
-<![CDATA[ https://vast.doubleverify.com/v3/vast?_media=3&ctx=13828804&cmp=32226620&sid=9350195&plc=398820067&crt=218967987&advid=14237467&adsrv=1&blk=1&psf=0&_vast=https://ad.doubleclick.net/ddm/pfadx/N2308387.3848558MATTERKIND/B32226620.398820067%3Bsz%3D0x0%3Bord%3D%2525%2525TTD_CACHEBUSTER%2525%2525%3Bdc_lat%3D%3Bdc_rdid%3D%3Btag_for_child_directed_treatment%3D%3Btfua%3D%3Bdc_tdv%3D1%3Bdcmt%3Dtext/xml%3Bdc_sdk_apis%3D%255BAPIFRAMEWORKS%255D%3Bdc_omid_p%3D%255BOMIDPARTNER%255D%3Bgdpr%3D%24%257BGDPR%257D%3Bgdpr_consent%3D%24%257BGDPR_CONSENT_755%257D%3Bdc_mpos%3D%255BBREAKPOSITION%255D%3Bltd%3D%3Fves%3DdGltZXN0YW1wOiAxNzIxMTIyMzgwMDEyCmNsaWNrX3Rocm91Z2hfdXJsOiAiaHR0cHM6Ly9wYWdlYWQyLmdvb2dsZXN5bmRpY2F0aW9uLmNvbS9wY3MvY2xpY2s_eGFpPUFLQU9qc3ZvODRyUFMyUThkSmNRdzJuUW94SElVVzVDSUJid2NvTkJUdkI0UlRRa1dmUW9CSTZSeTBlNXZiRWd4ZDYzZ0otbDhqN1FtdTA2Wm9wQzJJR1hEajVzMnBDX0NpN05NWk92eEV5bXNPbzUtNTRuQXMzRy1ZRjc4aDI2a2FENFBWZl81Um9sLU5mbnZrc2xyVjZwWGxjZE1NTlhqZi11SmlKalBBUEZkYzZwUHcmc2lnPUNnMEFyS0pTeklYN0trRkRKbE1KRUFFJmNyeT0xJmZic19hZWlkPSU1Qmd3X2Zic2FlaWQlNUQmdXJsZml4PTEmYWR1cmw9aHR0cHM6Ly93d3cuYW1hem9uLmZyL2FtYXpvbnByaW1lIgo%26dc_cid%3D218967987%26dc_adid%3D590779856&blkntf=https://pagead2.googlesyndication.com/pcs/view%3Fxai%3DAKAOjsvxKr-BoZzC2kfWAqRQhVbV2joCshUJsMC80-q05fbmXTU5bal0TMCZkMab5svJTtMRO9iqLZ-dZL0Mw1kGuggT6B8EiHb1CVkqVX2vzFRJ74rvEq_IbSDFBw9KbXq2aH-9Yh4h05rayyb9C2Uyt08mG9MMlN0w2vyeuzM%26sig%3DCg0ArKJSzHLZidAb1e0TEAE%26uach_m%3D%255BUACH%255D%26urlfix%3D1%26vt%3D13%26adurl%3D&dcrr=0&_falcon=1&dvp_cawf=crtwrp&_api=[APIFRAMEWORKS]&_ssm=[SERVERSIDE]&_tsm=[TIMESTAMP]&gdpr=&gdpr_consent=&_abm=[APPBUNDLE]&_pum=[PAGEURL] ]]>
+<![CDATA[ https://vast.doubleverify.com/v3/vast?_media=3&ctx=13828804&cmp=32226620&sid=9350195&plc=398820067&crt=218967987&advid=14237467&adsrv=1&blk=1&psf=0&_vast=https://ad.doubleclick.net/ddm/pfadx/N2308387.3848558MATTERKIND/B32226620.398820067%3Bsz%5B%25E2%2580%25A6%5Dpr_consent%3D%24%257BGDPR_CONSENT_755%257D%3Bdc_mpos%3D%5BBREAKPOSITION%5D%3Bltd%3D%3Fves%3DdGltZXN0YW1wOiAxNzIxMTI0MzI5OTI2CmNsaWNrX3Rocm91Z2hfdXJsOiAiaHR0cHM6Ly9wYWdlYWQyLmdvb2dsZXN5bmRpY2F0aW9uLmNvbS9wY3MvY2xpY2s_eGFpPUFLQU9qc3M5MnJGM1NCNXlxMkc1V3ljYUJkbGdtOEVMT0RLU1RETEhtS1ZYcjlwNW52T1o1VmNUN21wSjNFQTdmaDFnbFppM2U5MVBYQUt0djJDS0hOcmJScFZtMVdMN2wxX1FxWmRJUGJ6SUF5dFdWUmQwUk9OYUM3V1dla25JTVNVQWVMUm1rbFRUeGZZTndIb3hVeXNoYkVUTlhvTDh4R05sS3d3TVRjSkVNUVpvNHcmc2lnPUNnMEFyS0pTek4xOG9xVnAyWExoRUFFJmNyeT0xJmZic19hZWlkPSU1Qmd3X2Zic2FlaWQlNUQmdXJsZml4PTEmYWR1cmw9aHR0cHM6Ly93d3cuYW1hem9uLmZyL2FtYXpvbnByaW1lIgo%26dc_cid%3D218967987%26dc_adid%3D590779856&blkntf=https://pagead2.googlesyndication.com/pcs/view%3Fxai%3DAKAOjsvo-IFghvghVMO5hs9zD1qLxGGxiPoTAW-JJPRJAuF0gUzZykMyUjQOOOkQj5vJUCnxbGCkHJQbpUQEz_mLvbxSgUWkf23xfIWHEC6HCemKYxMYt8GNPaWtbmVX_rN4pOzR4CfSxJb6Lqq3U6YpoXIGoOzC5UPTACQkVHk%26sig%3DCg0ArKJSzFzi_MbS21m5EAE%26uach_m%3D%255BUACH%255D%26urlfix%3D1%26vt%3D13%26adurl%3D&dcrr=0&_falcon=1&dvp_cawf=crtwrp&_api=[APIFRAMEWORKS]&_ssm=[SERVERSIDE]&_tsm=[TIMESTAMP]&gdpr=&gdpr_consent=&_abm=[APPBUNDLE]&_pum=[PAGEURL] ]]>
 </VASTAdTagURI>
 <Error>
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=200015; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=200015; ]]>
 </Error>
 <Impression>
-<![CDATA[ https://pagead2.googlesyndication.com/pcs/view?xai=AKAOjsvxKr-BoZzC2kfWAqRQhVbV2joCshUJsMC80-q05fbmXTU5bal0TMCZkMab5svJTtMRO9iqLZ-dZL0Mw1kGuggT6B8EiHb1CVkqVX2vzFRJ74rvEq_IbSDFBw9KbXq2aH-9Yh4h05rayyb9C2Uyt08mG9MMlN0w2vyeuzM&sig=Cg0ArKJSzHLZidAb1e0TEAE&uach_m=%5BUACH%5D&cry=1&fbs_aeid=%5Bgw_fbsaeid%5D&urlfix=1&adurl= ]]>
+<![CDATA[ https://pagead2.googlesyndication.com/pcs/view?xai=AKAOjsvo-IFghvghVMO5hs9zD1qLxGGxiPoTAW-JJPRJAuF0gUzZykMyUjQOOOkQj5vJUCnxbGCkHJQbpUQEz_mLvbxSgUWkf23xfIWHEC6HCemKYxMYt8GNPaWtbmVX_rN4pOzR4CfSxJb6Lqq3U6YpoXIGoOzC5UPTACQkVHk&sig=Cg0ArKJSzFzi_MbS21m5EAE&uach_m=%5BUACH%5D&cry=1&fbs_aeid=%5Bgw_fbsaeid%5D&urlfix=1&adurl= ]]>
 </Impression>
 <Creatives>
 <Creative id="218967987" AdID="218967987-1" sequence="1">
@@ -17,31 +18,31 @@
 <Duration>00:00:20</Duration>
 <TrackingEvents>
 <Tracking event="start">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=11; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=11; ]]>
 </Tracking>
 <Tracking event="firstQuartile">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=960584; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=960584; ]]>
 </Tracking>
 <Tracking event="midpoint">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=18; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=18; ]]>
 </Tracking>
 <Tracking event="thirdQuartile">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=960585; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=960585; ]]>
 </Tracking>
 <Tracking event="complete">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=13; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=13; ]]>
 </Tracking>
 <Tracking event="mute">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=16; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=16; ]]>
 </Tracking>
 <Tracking event="unmute">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=149645; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=149645; ]]>
 </Tracking>
 <Tracking event="pause">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=15; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=15; ]]>
 </Tracking>
 <Tracking event="fullscreen">
-<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=19; ]]>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI_4iy4qerhwMVAm5BAh3lMhFEEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cAb2qW10lIJrmeXpDfjEwE2IMDP0CESHvgaz4Gr_VjvhZQ0lFYIAmdE5qFkUeWo8u6EsN4tfP3EkXCmX9AVya_TaBW5zp-Fm95ZxWwo;met=1;ecn1=1;etm1=0;eid1=19; ]]>
 </Tracking>
 </TrackingEvents>
 <VideoClicks>
