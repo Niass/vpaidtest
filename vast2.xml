@@ -1,18 +1,78 @@
-<VAST version="4.0">
-<Ad id="528042778">
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="2.0">
+<Ad id="590779856">
 <Wrapper>
-<AdSystem version="4.0">adnxs</AdSystem>
+<AdSystem>DCM</AdSystem>
 <VASTAdTagURI>
-<![CDATA[ https://fra1-ib.adnxs.com/ab?an_audit=0&referrer=https%3A%2F%2Fwww.capital.fr%2Fentreprises-marches%2Ftesla-la-descente-aux-enfers-en-bourse-jusquou-pour-le-geant-de-la-voiture-electrique-1494716&e=wqT_3QK1F_BMtQsAAAMA1gAFAQiXwqazBhDCoIyzg9vaszAYlvK7z-D42NBLKjYJpYP1fw6zAUARHvic5Nxs-T8ZAAAAoHA9HUAhHvic5Nxs-T8ppYMJJPCGMQAAAGC4HgtAMNfQ_Qs45E9AqFtIAlCaluX7AVj0lZsBYABoj8S7AXji1wWAAQGKAQNVU0SSAQNFVVKYAQGgAQGoAQGwAQC4AQPAAQXIAQLQAQnYAQDgAQDwAQCKAmp1ZignYScsIDUxMTkyNjEsIDApO3VmKCdpJywgMTA0MTA0NDQsIDApBRUsZycsIDI2MDk5Mzc5FSoscycsIDMwMDEyMTkzGRYwcicsIDUyODA0Mjc3OAUs8LCSAq0FIVpvOTAyQWlBcDVVZEVKcVc1ZnNCR0FBZzlKV2JBVEFBT0FCQUFFaW9XMURYMFAwTFdBQmdqZ1JvQUhBQWVBQ0FBUUtJQVFDUUFRR1lBUUdnQVFHb0FRR3dBUUM1QVdIVVgyLWNkd0JBd1FHM3g3TlFFTE1CUU1rQkFBQUFBQUFBOERfWkFZUkhHMGVzeGUwXzRBSE1zX3NFOVFFQUFEQkJtQUlBb0FJQnRRSUEBMwh2UUkBB9hBd0FJQ3lBSUEwQUlDMkFJQTRBSUE2QUlBLUFJQWdBTUJtQU1Cb2dNT0NLYUE1em9RQ3hnQ0xRATvwcUM2QXdsR1VrRXhPalV6TURuZ0E4OUdnQVR5a2RNT2lBVGJsZE1Pa0FRQW1BUUJzZ1FLQ0w2bWx3NFE0dXZURGJJRUNnaUhtT2tORU9McjB3MnlCQW9JaHZUdERSRGk2OU1Oc2dRSENBRVE2ZXZJRGNFRQF2CQEIREpCCQkFARgyQVFBOFFRBQwFAXhJZ0Z2U21ZQmRQLWpZOEJxUVdFUnh0SHJNWHRQN0VGBSQFAQhEQkIRN0BDWkF5UVVBQUFCZ3Z2RGRQOTIoAABaFSjwaVBBXzRBVzd3QTNxQlNZSUJCSWlBQUFFbU85ekZuMXk5Q1gzV0VScUpaUVVLZ1Bmc2xVS0U5NVpxbHRpZWRfVHN2QUZzXzI0RFBnRm5icTRBb0lHQTBWVlVvZ0dBSkFHQVpnR0FLRUdBQUEFoixKa0NvQmdTeUJpUUoFEQkBAFIJBwUBAFoFBgkBAGgJBwEBJEM0QmdxQkNKbVoFAlRSRkFpQWdBa0FnQZoCmQEhOVJPaWdROrECLFBTVm13RWdBQ2dBTT0ZBE9nLukBQGxBejBaSmhFY2JSNnpGN1Q5HY0AQh2NAEIdjQRCcAGTCQEEQngJCAEBEEI0QUlrNczwvDhEOC7YAgDgAvunTuoCiAFodHRwczovL3d3dy5jYXBpdGFsLmZyL2VudHJlcHJpc2VzLW1hcmNoZXMvdGVzbGEtbGEtZGVzY2VudGUtYXV4LWVuZmVycy1lbi1ib3Vyc2UtanVzcXVvdS1wb3VyLWxlLWdlYW50LWRlLWxhLXZvaXR1cmUtZWxlY3RyaXF1ZS0xNDk0NzE28gIRCgZBRFZfSUQSBzUxMTkyNjHyAhIKBkNQR19JRBIIMjYwOYE8GPICEgoFQ1ABKAAJlTs88gINCghBRFZfRlJFURIBMQUQNFJFTV9VU0VSEgEw8gIMCSAUQ09ERRIABQ8BWREPEAsKB0NQFQ4wEQoFSU9fSUQSCDEwNIXGAPIBIgRJTxUiOBMKD0NVU1RPTV9NT0RFTAEsFADyAhoKFjIWABxMRUFGX05BTQVyCB4KGjYdAAhBU1QBPhBJRklFRAE-HBUKCFNQTElUAU0Z2vCLgAMAiAMBkAMAmAMUoAMBqgMAwAPgqAHIAwDYA_DjLeADAOgDAfgDA4AEAJIECS9vcGVucnRiMpgEAKIEDTkxLjIwMC4yMDYuODSoBPj_CrIEEggAEAQYgAUg4AMoASgCMAA4BLgEAMAE5sm5IsgEANIEDzExNjg4I0ZSQTE6NTMwOdoEAggB4AQA8ATFODD6BBIJAAAAwIhqSEARwWAwj0IDQIgFAZgFAKAF_xEBuAGqBSQ4NTdlOGUyYS04NGM4LTQ0YjgtYTc1OS0wOWE5Mzc3OGFhMTHABQDJBQAAAQIQ8D_SBQkBWwUBiNgFAeAFAfAFrWT6BQQIABAAkAYBmAYAsgb9B0NQNXFQOEFQBQbwyUFHQUJDRU5BbUVzQVBfZ0FFUGdBQXFJSnZORjdDX19hV05qOFhyMVFmdDBlWTFmOTloenJzUWhCaGFKQTZRRnhMUENzSndWd21Fd05BM29waUlLbUFJRU8xSkFJUUJsSElIVUJRQ0Fhb2dSb1RETVlnR01BQUFBSjZCa2dBTVJVbWRJQ0ZSTm1RbERHUUFZeDNnLVVqYVIyQzROUk52TXhNemdEWVZIbFNNNU5rVXdLQkNSQXg4SUJiSDFZQUFCQUFBQVFnQUFBQUFhrAkBDEJBQUUBBQRBRQkQAQFoQkJJUUFvUUVRQ0NBZ0FRRUFnQlFBZ0FBQUNtyWYRARRDSUlBRkHhGBBnZ1FBZ4E5Zf0IQkNDDSMARQUxAEkFFgkcCQEAUQVvCElBUQUPAGsNKEBLQ0FBQ0FDQU1DRUlBSUlBRQV2BElFAS0cZ2dnQUlBRUMFMwhRQUEBWQEEWgEAQElCUVNCS0FBZ0FCWUFGUUFP4ZjQQkJBRFFBTlFBZUFCRUFDWUFHWUFONEFlZ0FfUUNJQUlrQVN3QW1nQmdBRERBR1VBTzRBZlkBHOhLUUVpQVNVQXFJQmVnRFJBRzBBTndBa1FCUjRDMkFHU0FNekFhd0E1TUtBRUFBMkFJb0JkQUR0eDBDdxmADGdBQmo6gAAERnehmTBaZ0EzZ0I2QUQ4QUlnDYPwWFJnREFBR0dBTW9BYUlBLXdCLWdFVWdJNkFrb0JVUUM4Z0c0QU9vQWZZQklnQ1pJRkhnVWdBcHFCYkFGc3dNakF5UUJsZ0RNd0dzQU9UQWdDQk40ZUFEQUJVAZwoMjVDQWlBQXNBR0khDjxtQUJjQURFQUc4QVBRQWpnIQB4dUFJb0FWRUE2Z0NtZ0ZsQU1qSWdBZ0FWQUppSlFGUUEvDExBQTQBNwRIZ8HACUUARgHCBGlRCb8QS2lBZFEBoHRqd0ZOQUxZZ1pHQmtnRFdBSUFsSUVvQUN3QUtnQWNBGLhER0FHZ0FhZ0E4QUNJQUV3QUtRQVlnQXpBQi1BRVFBS01BWUFBeWdCb2dFZEFKSwGaNHZJQnRBRGNBSFVBUGFBKQkEa0EuaQA8TEFHc0FPVEFlS0JONHFBQwH-KFlBdEFJQUJxQUk0AVMsN2dDOUFIMkFVMEF6YW0ILmZfQekJARC4BgHBBoUiLADwP9AGnkXaBhYKEAkRGQF0EAAYAOAGBPIGAggAgAcBiAcAoAdAyAfi1wXSBw0JESgBJgjaBwaBXtwYAOAHAOoHAggA8Ae-_wOKCAIQAJUIAACAP5gIAsAIANIIDgiBgoSIkKDAgAEQABgA2ggECAAgAA..&s=89ddf5d83fc3800fb363a0e10fea48ea0ca04d8b&pp=1.589078 ]]>
+<![CDATA[ https://vast.doubleverify.com/v3/vast?_media=3&ctx=13828804&cmp=32226620&sid=9350195&plc=398820067&crt=218967987&advid=14237467&adsrv=1&blk=1&psf=0&_vast=https://ad.doubleclick.net/ddm/pfadx/N2308387.3848558MATTERKIND/B32226620.398820067%3Bsz%3D0x0%3Bord%3D%2525%2525TTD_CACHEBUSTER%2525%2525%3Bdc_lat%3D%3Bdc_rdid%3D%3Btag_for_child_directed_treatment%3D%3Btfua%3D%3Bdc_tdv%3D1%3Bdcmt%3Dtext/xml%3Bdc_sdk_apis%3D%255BAPIFRAMEWORKS%255D%3Bdc_omid_p%3D%255BOMIDPARTNER%255D%3Bgdpr%3D%24%257BGDPR%257D%3Bgdpr_consent%3D%24%257BGDPR_CONSENT_755%257D%3Bdc_mpos%3D%255BBREAKPOSITION%255D%3Bltd%3D%3Fves%3DdGltZXN0YW1wOiAxNzIxMTIyMzgwMDEyCmNsaWNrX3Rocm91Z2hfdXJsOiAiaHR0cHM6Ly9wYWdlYWQyLmdvb2dsZXN5bmRpY2F0aW9uLmNvbS9wY3MvY2xpY2s_eGFpPUFLQU9qc3ZvODRyUFMyUThkSmNRdzJuUW94SElVVzVDSUJid2NvTkJUdkI0UlRRa1dmUW9CSTZSeTBlNXZiRWd4ZDYzZ0otbDhqN1FtdTA2Wm9wQzJJR1hEajVzMnBDX0NpN05NWk92eEV5bXNPbzUtNTRuQXMzRy1ZRjc4aDI2a2FENFBWZl81Um9sLU5mbnZrc2xyVjZwWGxjZE1NTlhqZi11SmlKalBBUEZkYzZwUHcmc2lnPUNnMEFyS0pTeklYN0trRkRKbE1KRUFFJmNyeT0xJmZic19hZWlkPSU1Qmd3X2Zic2FlaWQlNUQmdXJsZml4PTEmYWR1cmw9aHR0cHM6Ly93d3cuYW1hem9uLmZyL2FtYXpvbnByaW1lIgo%26dc_cid%3D218967987%26dc_adid%3D590779856&blkntf=https://pagead2.googlesyndication.com/pcs/view%3Fxai%3DAKAOjsvxKr-BoZzC2kfWAqRQhVbV2joCshUJsMC80-q05fbmXTU5bal0TMCZkMab5svJTtMRO9iqLZ-dZL0Mw1kGuggT6B8EiHb1CVkqVX2vzFRJ74rvEq_IbSDFBw9KbXq2aH-9Yh4h05rayyb9C2Uyt08mG9MMlN0w2vyeuzM%26sig%3DCg0ArKJSzHLZidAb1e0TEAE%26uach_m%3D%255BUACH%255D%26urlfix%3D1%26vt%3D13%26adurl%3D&dcrr=0&_falcon=1&dvp_cawf=crtwrp&_api=[APIFRAMEWORKS]&_ssm=[SERVERSIDE]&_tsm=[TIMESTAMP]&gdpr=&gdpr_consent=&_abm=[APPBUNDLE]&_pum=[PAGEURL] ]]>
 </VASTAdTagURI>
+<Error>
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=200015; ]]>
+</Error>
 <Impression>
-<![CDATA[ https://ib.adnxs.com/nop ]]>
+<![CDATA[ https://pagead2.googlesyndication.com/pcs/view?xai=AKAOjsvxKr-BoZzC2kfWAqRQhVbV2joCshUJsMC80-q05fbmXTU5bal0TMCZkMab5svJTtMRO9iqLZ-dZL0Mw1kGuggT6B8EiHb1CVkqVX2vzFRJ74rvEq_IbSDFBw9KbXq2aH-9Yh4h05rayyb9C2Uyt08mG9MMlN0w2vyeuzM&sig=Cg0ArKJSzHLZidAb1e0TEAE&uach_m=%5BUACH%5D&cry=1&fbs_aeid=%5Bgw_fbsaeid%5D&urlfix=1&adurl= ]]>
 </Impression>
 <Creatives>
-<Creative adID="528042778">
-<Linear/>
+<Creative id="218967987" AdID="218967987-1" sequence="1">
+<Linear>
+<Duration>00:00:20</Duration>
+<TrackingEvents>
+<Tracking event="start">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=11; ]]>
+</Tracking>
+<Tracking event="firstQuartile">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=960584; ]]>
+</Tracking>
+<Tracking event="midpoint">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=18; ]]>
+</Tracking>
+<Tracking event="thirdQuartile">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=960585; ]]>
+</Tracking>
+<Tracking event="complete">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=13; ]]>
+</Tracking>
+<Tracking event="mute">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=16; ]]>
+</Tracking>
+<Tracking event="unmute">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=149645; ]]>
+</Tracking>
+<Tracking event="pause">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=15; ]]>
+</Tracking>
+<Tracking event="fullscreen">
+<![CDATA[ https://ade.googlesyndication.com/ddm/activity/dc_oe=ChMI24DNwKCrhwMVhl6kBB1vigGHEAAYACCz37RoSABQOljQnAFgvPquD2jjhZa-AQ;dc_eps=AHas8cDL7_ZCwC2FsFXoued1jBUKRs7rf89nDtzwDA5OM_alpASOiwZN4o7zNKRJONt0qX8ca02zsLiw_eBjxr3toBfQ_Q2RvS3nouJENMQE;met=1;ecn1=1;etm1=0;eid1=19; ]]>
+</Tracking>
+</TrackingEvents>
+<VideoClicks>
+<ClickTracking>
+<![CDATA[ https://s0.2mdn.net/dot.gif ]]>
+</ClickTracking>
+</VideoClicks>
+</Linear>
 </Creative>
 </Creatives>
+<Extensions>
+<Extension type="geo">
+<Country>FR</Country>
+<Bandwidth>0</Bandwidth>
+</Extension>
+<Extension type="dart">
+<AdServingData>
+<DeliveryData>
+<GeoData>
+<![CDATA[ ct=FR&st=&city=0&dma=0&zp=77500&bw=0 ]]>
+</GeoData>
+</DeliveryData>
+</AdServingData>
+</Extension>
+<Extension type="GDCM">
+<UniversalAdId>
+<Id>218967987-1</Id>
+<InCreativeAdId>Yes</InCreativeAdId>
+</UniversalAdId>
+</Extension>
+</Extensions>
 </Wrapper>
 </Ad>
 </VAST>
