@@ -4,10 +4,13 @@ const Vpaid = class {
   buttonCloseSwitch =
     '<svg id="bliink-switch-close" style="width:35px;height:35px;position:absolute;bottom:35%;z-index:50;right:0px;cursor: pointer;" version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\nviewBox="0 0 338 302" style="enable-background:new 0 0 338 302;" xml:space="preserve">\n<path d="M168.6,240.9c-49.7-0.2-89.7-40.6-89.5-90.4c0.2-49.7,40.5-89.6,90.4-89.5c49.2,0.1,89.5,40.7,89.4,90.1\nC258.8,200.8,218.2,241.1,168.6,240.9z M184.8,150.7c6.9-6.7,13.6-12.9,20-19.4c4.6-4.7,4.4-11.3,0.1-15.8\nc-4.4-4.6-11.2-4.8-16.2-0.4c-1.6,1.4-3.1,3-4.6,4.6c-5,5.1-9.9,10.1-15,15.4c-7-7.1-13.3-13.6-19.7-19.8c-3.9-3.7-9-4.3-13.4-1.9\nc-4.4,2.4-7.1,7.4-5.7,12.2c0.8,2.7,2.5,5.4,4.5,7.5c5.9,6.1,12.1,11.8,18.5,18c-7.2,7.1-13.7,13.3-20,19.7c-3.7,3.8-4.3,9.1-2,13.4\nc2.3,4.3,7,7,11.6,5.9c2.7-0.7,5.5-2.3,7.6-4.3c6.3-5.9,12.2-12.1,18.6-18.5c6.5,6.6,12.4,12.6,18.4,18.6c5.6,5.5,12.4,5.9,17.2,1.1\nc5-4.9,4.6-11.6-0.9-17.2C197.7,163.4,191.6,157.5,184.8,150.7z"/>\n</svg>'
   vpaidDom =
-    '\n        <a\n            data-wrapper-click="true" href="https://ad.doubleclick.net/ddm/trackclk/N1053267.3298035BLIINK/B30105233.369632946;dc_trk_aid=560157008;dc_trk_cid=193447726;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=;dc_tdv=1" target="_blank"\n            \n            \n            data-wrapperId="64915d7478bc820010f45978"\n            data-id="64915d7478bc820010f45978"\n            data-index="1"\n            class="full-image hide"\n            style="z-index: 1; transition: all .8s ease-in-out; position: absolute; left: 0.00%; top: 0.00%; width: 110.34%; height: 82.76%; transition: all ease-in-out 0.3s;"\n        >   <IMG SRC="https://ad.doubleclick.net/ddm/trackimp/N1053267.3298035BLIINK/B30105233.369632946;dc_trk_aid=560157008;dc_trk_cid=193447726;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1?" attributionsrc BORDER="0" HEIGHT="1" WIDTH="1" ALT="Advertisement">\n<SCRIPT TYPE="text/javascript" SRC="https://pixel.adsafeprotected.com/rjss/st/1516049/72040583/skeleton.js"></SCRIPT> \n<NOSCRIPT><IMG SRC="https://pixel.adsafeprotected.com/rfw/st/1516049/72040582/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></NOSCRIPT>\n            <div style="width:100%; height:100%; position: absolute; bottom: 0;overflow: hidden;">\n                \n            </div>\n    </a>'
-  vpaidDomInImage = void 0
-  videoStylesFormat = ''
-  adDuration = 2e4
+    '\n        <div\n            \n            data-transition-nextWrapperId="668f8fd6d493cd00181f6e35"\n            data-transition-enable="true" data-transition-wrapperId="668f8f65d493cd00181f6c28" data-transition-timing="7000"\n            data-wrapperId="668f8f65d493cd00181f6c28"\n            data-id="668f8f65d493cd00181f6c28"\n            data-index="1"\n            class="full-image hide"\n            style="z-index: 1; transition: all .8s ease-in-out; transition: all ease-in-out 0.3s;"\n        >   \n            <div style="width:100%; height:100%; position: absolute; bottom: 0;overflow: hidden;">\n                <div data-type="image" style="background: url(https://creative.bliink.io/668f8f65d493cd00181f6c23/F0AMqp2.jpg) no-repeat center center; background-size: cover;position: absolute; width: 100%; height: auto !important; top: 0.00%; bottom: 0.00%; left: 0.00%; right: 0.00%; ; z-index: 0;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/668f8f65d493cd00181f6c23/yLGKNY4.png) no-repeat center center; background-size: contain;position: absolute; width: 59%; height: 20%; top: 3.50%; bottom: 76.25%; left: 37.88%; right: 3.25%; ; z-index: 1;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/668f8f65d493cd00181f6c23/3oAvqvv.png) no-repeat center center; background-size: contain;position: absolute; width: 35%; height: 46vw; top: inherit; bottom: 0.00%; left: 10.38%; right: 55.00%; ; z-index: 2;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/668f8f65d493cd00181f6c23/26LPopY.png) no-repeat center center; background-size: contain;position: absolute; width: 22%; height: 16%; top: 4.00%; bottom: 80.25%; left: 1.88%; right: 76.00%; ; z-index: 3;"></div>\n            </div>\n    </div>'
+  script = ''
+  vpaidDomInImage =
+    '\n        <div\n            \n            \n            \n            data-wrapperId="668f8fd6d493cd00181f6e35"\n            data-id="668f8fd6d493cd00181f6e35"\n            data-index="1"\n            class="in-image hide"\n            style="z-index: 1; transition: all .8s ease-in-out; overflow:hidden;opacity: 1;transition: all ease-in-out 0.3s;opacity:0;"\n        >   \n            <div style="width:100%; height:35%; position: absolute; bottom: 0;overflow: hidden;">\n                <div data-type="image" style="background: url(https://creative.bliink.io/668f8f65d493cd00181f6c23/c3067nM.jpg) no-repeat center center; background-size: cover;position: absolute; width: 100%; height: auto !important; top: 10.63%; bottom: -12.50%; left: 0.13%; right: -0.13%; ; z-index: 0;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/668f8f65d493cd00181f6c23/26LPopY.png) no-repeat center center; background-size: contain;position: absolute; width: 22%; height: 39%; top: 30.31%; bottom: 30.31%; left: 2.00%; right: 75.88%; ; z-index: 1;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/668f8f65d493cd00181f6c23/3oAvqvv.png) no-repeat center center; background-size: contain;position: absolute; width: 15%; height: 98%; top: 1.88%; bottom: 0.63%; left: 80.75%; right: 4.50%; ; z-index: 2;"></div><div data-type="image"  style="background: url(https://creative.bliink.io/668f8f65d493cd00181f6c23/AlC2FSY.png) no-repeat center center; background-size: contain;position: absolute; width: 49%; height: 86%; top: 13.75%; bottom: 0.63%; left: 25.56%; right: 25.56%; ; z-index: 3;"></div>\n            </div>\n    </div>'
+  videoStylesFormat =
+    'position: absolute; width: 62%; height: 69%; top: 27.25%; bottom: 3.50%; left: 36.63%; right: 1.88%; '
+  adDuration = 1e4
   constructor() {
     ;(this.slot_ = null),
       this.vpaidDom && (this.vpaidDom = this.vpaidDom.replace(/z-index:\s*\d+;/g, 'z-index: 999;')),
@@ -43,15 +46,15 @@ const Vpaid = class {
   handshakeVersion() {
     return '2.0'
   }
-  initAd(t, e, i, s, n, l) {
+  initAd(t, e, i, n, s, o) {
     ;(this.attributes_.width = t),
       (this.attributes_.height = e),
       (this.attributes_.viewMode = i),
-      (this.attributes_.desiredBitrate = s),
-      (this.slot_ = l.slot),
-      (this.videoSlot_ = l.videoSlot),
-      (this.parameters_ = JSON.parse(n.AdParameters)),
-      this.log('initAd ' + t + 'x' + e + ' ' + i + ' ' + s),
+      (this.attributes_.desiredBitrate = n),
+      (this.slot_ = o.slot),
+      (this.videoSlot_ = o.videoSlot),
+      (this.parameters_ = JSON.parse(s.AdParameters)),
+      this.log('initAd ' + t + 'x' + e + ' ' + i + ' ' + n),
       this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), !1),
       this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), !1),
       this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), !1),
@@ -83,216 +86,213 @@ const Vpaid = class {
       this.videoSlot_.setAttribute('height', this.attributes_.height)
   }
   startAd() {
-    const t = this.parameters_.vpaidType
-    this.log('Starting ad'),
-      'linear' === t &&
-        (this.videoSlot_?.play(),
-        this.adDuration &&
-          !this.videoStylesFormat &&
-          setTimeout(() => {
-            console.log("what the fuck???@");
-            // this.stopAd()
-          }, this.adDuration))
-    const e = new Date()
-    if (((this.startTime_ = e.getTime()), this.videoSlot_.nodeName))
-      if ('linear' === t) {
-        const t = this.slot_
-        if (
-          (t.classList.add('percentage'),
-          this.videoStylesFormat &&
-            ((this.videoSlot_.style.transition = 'width 1s ease-in-out'),
-            (this.videoSlot_.style.cssText = this.videoStylesFormat),
-            (this.videoSlot_.style.zIndex = 10),
-            this.videoSlot_.parentElement.parentElement.classList.add('percentage')),
-          this.vpaidDom)
-        ) {
-          if (
-            (t.insertAdjacentHTML('beforeend', this.vpaidDom),
-            this.vpaidDomInImage && t.insertAdjacentHTML('beforeend', this.vpaidDomInImage),
-            this.buttonReduceSwitch && this.vpaidDomInImage)
-          )
-            t.insertAdjacentHTML('beforeend', this.buttonReduceSwitch)
-          else if (this.buttonCloseSwitch) {
-            const e = t.parentElement.querySelector('.in-image')
-            if (e) {
-              ;(e.style.top = 'auto'),
-                (e.style.bottom = '0'),
-                t.insertAdjacentHTML('beforeend', this.buttonCloseSwitch)
-              t.parentElement
-                .querySelector('#bliink-switch-close')
-                .addEventListener('click', function () {
-                  const e = t.parentElement.querySelector('.in-image')
-                  this.remove(), e.remove()
-                })
-            }
-          }
-          if (this.vpaidDomInImage) {
-            const e = t.parentElement.querySelector('.full-image'),
-              i = t.parentElement.querySelector('#bliink-switch')
-            if (i) {
-              const s = this,
-                n = t.parentElement.querySelector('.in-image')
-              i.addEventListener('click', function () {
-                ;(e.style.top = '100%'),
-                  (e.style.opacity = 0),
-                  (e.style.display = 'none'),
-                  (n.style.opacity = 1),
-                  (this.style.display = 'none'),
-                  t.insertAdjacentHTML('beforeend', s.buttonCloseSwitch)
-                t.parentElement
-                  .querySelector('#bliink-switch-close')
-                  .addEventListener('click', function () {
-                    const e = t.parentElement.querySelector('.in-image')
-                    this.remove(), e.remove()
-                  })
-              })
-            }
-            const s = t.parentElement.querySelector('.in-image'),
-              n = +e.dataset.transitionTiming
-            setTimeout(() => {
-              const i = t.parentElement.querySelector('#bliink-switch-close')
-              ;(e.style.top = '100%'),
-                (e.style.opacity = 0),
-                (e.style.display = 'none'),
-                (s.style.opacity = 1)
-              const n = t.parentElement.querySelector('#bliink-switch')
-              if ((n && n.remove(), !i)) {
-                t.insertAdjacentHTML('beforeend', this.buttonCloseSwitch)
-                t.parentElement
-                  .querySelector('#bliink-switch-close')
-                  .addEventListener('click', function () {
-                    const e = t.parentElement.querySelector('.in-image')
-                    this.remove(), e.remove()
-                  })
-              }
-            }, n)
-          }
-        }
-      } else {
-        const t = this.videoSlot_?.parentElement?.parentElement.parentElement.parentElement,
-          e = t.querySelector('video'),
-          i = e.parentElement.getBoundingClientRect().height
-        if (
-          ((e.parentElement.style.minHeight = i + 'px'),
-          (e.parentElement.style.maxHeight = '360px'),
-          this.videoStylesFormat &&
-            ((e.style.cssText = this.videoStylesFormat), (e.style.zIndex = 10)),
-          e.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom),
-          this.buttonReduceSwitch && this.vpaidDomInImage)
-        )
-          e.parentElement.insertAdjacentHTML('beforeend', this.buttonReduceSwitch)
-        else if (this.buttonCloseSwitch) {
-          const t = e.parentElement.parentElement.querySelector('.in-image')
-          if (t) {
-            ;(t.style.top = 'auto'),
-              (t.style.bottom = '0'),
-              e.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch)
-            e.parentElement.parentElement
-              .querySelector('#bliink-switch-close')
-              .addEventListener('click', function () {
-                this.remove(), t.remove()
-              })
-          }
-        }
-        if (this.vpaidDomInImage) {
-          e.parentElement.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
-          const t = e.parentElement.parentElement.querySelector('.full-image'),
-            i = e.parentElement.parentElement.querySelector('.in-image'),
-            s = e.parentElement.parentElement.querySelector('#bliink-switch')
-          if (s) {
-            const n = this
-            s.addEventListener('click', function () {
-              if (
-                ((t.style.top = '100%'),
-                (t.style.opacity = 0),
-                (t.style.display = 'none'),
-                (i.style.opacity = 1),
-                (this.style.display = 'none'),
-                (e.style.top = 0),
-                (e.style.left = 0),
-                (e.style.right = 0),
-                (e.style.bottom = 0),
-                (e.style.height = 'auto'),
-                (e.style.width = '100%'),
-                (e.style.zIndex = 0),
-                n.buttonCloseSwitch)
-              ) {
-                e.parentElement.insertAdjacentHTML('beforeend', n.buttonCloseSwitch)
-                e.parentElement.parentElement
-                  .querySelector('#bliink-switch-close')
-                  .addEventListener('click', function () {
-                    const t = e.parentElement.parentElement.querySelector('.in-image')
-                    this.remove(), t.remove()
-                  })
-              }
-            })
-          }
-          const n = +t.dataset.transitionTiming
-          setTimeout(() => {
-            ;(t.style.top = '100%'),
-              (t.style.opacity = 0),
-              (t.style.display = 'none'),
-              (i.style.opacity = 1)
-            const s = e.parentElement.parentElement.querySelector('#bliink-switch')
-            s &&
-              ((e.style.top = 0),
-              (e.style.left = 0),
-              (e.style.right = 0),
-              (e.style.bottom = 0),
-              (e.style.height = 'auto'),
-              (e.style.width = '100%'),
-              (e.style.zIndex = 0),
-              s.remove())
-            if (!e.parentElement.parentElement.querySelector('#bliink-switch-close')) {
-              e.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch)
-              e.parentElement.parentElement
-                .querySelector('#bliink-switch-close')
-                .addEventListener('click', function () {
-                  const t = e.parentElement.parentElement.querySelector('.in-image')
-                  this.remove(), t.remove()
-                })
-            }
-          }, n)
-        }
-      }
-    else {
-      // console.log("success bliink");
-      // var scriptUrl = 'https://pixel.adsafeprotected.com/rjss/st/1516049/72040583/skeleton.js';
-
-      // var script = document.createElement('script');
-      // script.src = scriptUrl;
-      // script.type = 'application/javascript';
-      // this.slot_.appendChild(script);
-      
-
-      this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom),
-        this.vpaidDomInImage && this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage)
+    const vpaidType = this.parameters_.vpaidType;
+    this.log('Starting ad');
+    
+    // Play video if the ad is linear
+    if (vpaidType === 'linear' && this.videoSlot_) {
+        this.videoSlot_.play();
     }
-    this.callEvent_('AdStarted'), this.callEvent_('AdImpression')
-  }
+
+    // Record the start time
+    this.startTime_ = new Date().getTime();
+
+    // Process linear ads
+    console.log("this.videoSlot", this.videoSlot, this.videoSlot_?.nodeName);
+    if (this.videoSlot_ && this.videoSlot_.nodeName) {
+        if (vpaidType === 'linear') {
+            const slot = this.slot_;
+            slot.classList.add('percentage');
+
+            if (this.videoStylesFormat) {
+                this.applyVideoStyles(this.videoSlot_, slot);
+            }
+
+            if (this.vpaidDom) {
+                this.injectVpaidDom(slot);
+            }
+
+            if (this.buttonReduceSwitch && this.vpaidDomInImage) {
+                slot.insertAdjacentHTML('beforeend', this.buttonReduceSwitch);
+            } else if (this.buttonCloseSwitch) {
+                this.addCloseButton(slot);
+            }
+
+            if (this.vpaidDomInImage) {
+                this.handleInImageAds(slot);
+            }
+        } else {
+            this.handleNonLinearAds();
+        }
+    } else {
+        this.insertNonLinearAd();
+    }
+
+    // Trigger events for ad start and impression
+    this.callEvent_('AdStarted');
+    this.callEvent_('AdImpression');
+}
+
+applyVideoStyles(videoSlot, slot) {
+    videoSlot.style.transition = 'width 1s ease-in-out';
+    videoSlot.style.cssText = this.videoStylesFormat;
+    videoSlot.style.zIndex = 10;
+    videoSlot.parentElement.parentElement.classList.add('percentage');
+}
+
+injectVpaidDom(slot) {
+    if (this.script) {
+        slot.insertAdjacentHTML('beforeend', this.script);
+        this.processScripts(slot);
+    }
+    if (this.vpaidDomInImage) {
+        slot.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
+    }
+}
+
+processScripts(container) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = this.script;
+    const scripts = tempDiv.querySelectorAll('script');
+    const images = tempDiv.querySelectorAll('img');
+
+    scripts.forEach(script => {
+        const newScript = document.createElement('script');
+        newScript.src = script.src;
+        newScript.type = 'application/javascript';
+        container.appendChild(newScript);
+        script.remove();
+    });
+
+    images.forEach(image => {
+        const newImage = document.createElement('img');
+        newImage.src = image.src;
+        newImage.style.width = '0';
+        newImage.style.height = '0';
+        container.appendChild(newImage);
+        image.remove();
+    });
+
+    container.appendChild(tempDiv);
+}
+
+addCloseButton(slot) {
+    const inImageAd = slot.parentElement.querySelector('.in-image');
+    if (inImageAd) {
+        inImageAd.style.top = 'auto';
+        inImageAd.style.bottom = '0';
+        slot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+        slot.parentElement.querySelector('#bliink-switch-close')
+            .addEventListener('click', function() {
+                inImageAd.remove();
+                this.remove();
+            });
+    }
+}
+
+handleInImageAds(slot) {
+    const fullImageAd = slot.parentElement.querySelector('.full-image');
+    const inImageAd = slot.parentElement.querySelector('.in-image');
+    const switchButton = slot.parentElement.querySelector('#bliink-switch');
+
+    if (switchButton) {
+        switchButton.addEventListener('click', () => {
+            fullImageAd.style.top = '100%';
+            fullImageAd.style.opacity = 0;
+            fullImageAd.style.display = 'none';
+            inImageAd.style.opacity = 1;
+            switchButton.style.display = 'none';
+            slot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+
+            slot.parentElement.querySelector('#bliink-switch-close')
+                .addEventListener('click', function() {
+                    inImageAd.remove();
+                    this.remove();
+                });
+        });
+    }
+
+    const transitionTiming = +fullImageAd.dataset.transitionTiming;
+    setTimeout(() => {
+        fullImageAd.style.top = '100%';
+        fullImageAd.style.opacity = 0;
+        fullImageAd.style.display = 'none';
+        inImageAd.style.opacity = 1;
+
+        const closeSwitch = slot.parentElement.querySelector('#bliink-switch-close');
+        if (!closeSwitch) {
+            slot.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+            slot.parentElement.querySelector('#bliink-switch-close')
+                .addEventListener('click', function() {
+                    inImageAd.remove();
+                    this.remove();
+                });
+        }
+    }, transitionTiming);
+}
+
+handleNonLinearAds() {
+    const parentContainer = this.videoSlot_.parentElement.parentElement.parentElement.parentElement;
+    const video = parentContainer.querySelector('video');
+    const containerHeight = video.parentElement.getBoundingClientRect().height;
+
+    video.parentElement.style.minHeight = containerHeight + 'px';
+    video.parentElement.style.maxHeight = '360px';
+
+    if (this.videoStylesFormat) {
+        video.style.cssText = this.videoStylesFormat;
+        video.style.zIndex = 10;
+    }
+
+    video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
+    if (this.script) {
+        this.processScripts(video.parentElement);
+    }
+
+    if (this.buttonReduceSwitch && this.vpaidDomInImage) {
+        video.parentElement.insertAdjacentHTML('beforeend', this.buttonReduceSwitch);
+    } else if (this.buttonCloseSwitch) {
+        const inImageAd = video.parentElement.parentElement.querySelector('.in-image');
+        if (inImageAd) {
+            inImageAd.style.top = 'auto';
+            inImageAd.style.bottom = '0';
+            video.parentElement.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+            video.parentElement.parentElement.querySelector('#bliink-switch-close')
+                .addEventListener('click', function() {
+                    inImageAd.remove();
+                    this.remove();
+                });
+        }
+    }
+
+    if (this.vpaidDomInImage) {
+        video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
+        this.handleInImageAds(video.parentElement);
+    }
+}
+
+insertNonLinearAd() {
+    this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
+    if (this.script) {
+        this.processScripts(this.slot_);
+    }
+
+    if (this.vpaidDomInImage) {
+        this.slot_.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
+    }
+}
+
   adClick_() {
     'AdClickThru' in this.eventsCallbacks_ && this.eventsCallbacks_.AdClickThru('', '0', !0)
   }
   timeUpdateHandler_() {
-    if (this.nextQuartileIndex_ >= this.quartileEvents_.length) {
-      return;
-    }
-  
-    const currentTime = this.videoSlot_.currentTime;
-    const duration = this.videoSlot_.duration;
-    const percentComplete = (100 * currentTime) / duration;
-    const nextQuartileEvent = this.quartileEvents_[this.nextQuartileIndex_];
-    console.log("percentComplete", percentComplete, nextQuartileEvent.value, this.videoSlot_.duration);
-    if (percentComplete >= nextQuartileEvent.value) {
-      this.eventsCallbacks_[nextQuartileEvent.event]();
-      this.nextQuartileIndex_ += 1;
-    }
-  
-    if (duration > 0) {
-      this.attributes_.remainingTime = duration - currentTime;
-    }
+    if (this.nextQuartileIndex_ >= this.quartileEvents_.length) return
+    const t = (100 * this.videoSlot_.currentTime) / this.videoSlot_.duration,
+      e = this.quartileEvents_[this.nextQuartileIndex_]
+    t >= e.value && (this.eventsCallbacks_[e.event](), (this.nextQuartileIndex_ += 1)),
+      this.videoSlot_.duration > 0 &&
+        (this.attributes_.remainingTime = this.videoSlot_.duration - this.videoSlot_.currentTime)
   }
-  
   loadedMetadata_() {
     ;(this.attributes_.duration = this.videoSlot_.duration), this.callEvent_('AdDurationChange')
   }
