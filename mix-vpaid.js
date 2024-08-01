@@ -236,6 +236,7 @@ handleInImageAds(slot) {
 }
 
 handleNonLinearAds() {
+  console.log("handleNonLinearAds ???");
     const parentContainer = this.videoSlot_.parentElement.parentElement.parentElement.parentElement;
     const video = parentContainer.querySelector('video');
     const containerHeight = video.parentElement.getBoundingClientRect().height;
@@ -245,7 +246,7 @@ handleNonLinearAds() {
 
     if (this.videoStylesFormat) {
         video.style.cssText = this.videoStylesFormat;
-        video.style.zIndex = 10;
+        video.style.zIndex = 9999;
     }
 
     video.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
