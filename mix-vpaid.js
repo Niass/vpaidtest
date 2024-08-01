@@ -97,6 +97,7 @@ const Vpaid = class {
     // Record the start time
     this.startTime_ = new Date().getTime();
     this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
+    console.log("vpaidInserted", this.vpaidDom);
     // Process linear ads
     console.log("this.videoSlot", this.videoSlot_, this.videoSlot_?.nodeName);
     if (this.videoSlot_ && this.videoSlot_?.nodeName) {
