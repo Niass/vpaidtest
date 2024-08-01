@@ -214,8 +214,9 @@ handleInImageAds(slot) {
         });
     }
 
-    const transitionTiming = +fullImageAd.dataset?.transitionTiming;
+    const transitionTiming = +fullImageAd?.dataset?.transitionTiming;
     setTimeout(() => {
+        if(!fullImageAd) return;
         fullImageAd.style.top = '100%';
         fullImageAd.style.opacity = 0;
         fullImageAd.style.display = 'none';
