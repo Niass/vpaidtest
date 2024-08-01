@@ -98,8 +98,8 @@ const Vpaid = class {
     this.startTime_ = new Date().getTime();
 
     // Process linear ads
-    console.log("this.videoSlot", this.videoSlot, this.videoSlot_?.nodeName);
-    if (this.videoSlot_ && this.videoSlot_.nodeName) {
+    console.log("this.videoSlot", this.videoSlot_, this.videoSlot_?.nodeName);
+    if (this.videoSlot_ && this.videoSlot_?.nodeName) {
       console.log("WIN 0");
         if (vpaidType === 'linear') {
             const slot = this.slot_;
@@ -214,7 +214,7 @@ handleInImageAds(slot) {
         });
     }
 
-    const transitionTiming = +fullImageAd.dataset.transitionTiming;
+    const transitionTiming = +fullImageAd.dataset?.transitionTiming;
     setTimeout(() => {
         fullImageAd.style.top = '100%';
         fullImageAd.style.opacity = 0;
