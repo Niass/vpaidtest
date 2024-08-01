@@ -292,6 +292,7 @@ insertNonLinearAd() {
     'AdClickThru' in this.eventsCallbacks_ && this.eventsCallbacks_.AdClickThru('', '0', !0)
   }
   timeUpdateHandler_() {
+    console.log("timeUpdateHandler_ called", this.videoSlot_.duration);
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) return
     const t = (100 * this.videoSlot_.currentTime) / this.videoSlot_.duration,
       e = this.quartileEvents_[this.nextQuartileIndex_]
