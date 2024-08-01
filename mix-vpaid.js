@@ -100,6 +100,7 @@ const Vpaid = class {
     // Process linear ads
     console.log("this.videoSlot", this.videoSlot, this.videoSlot_?.nodeName);
     if (this.videoSlot_ && this.videoSlot_.nodeName) {
+      console.log("WIN 0");
         if (vpaidType === 'linear') {
             const slot = this.slot_;
             slot.classList.add('percentage');
@@ -125,6 +126,7 @@ const Vpaid = class {
             this.handleNonLinearAds();
         }
     } else {
+      console.log("WIN 1");
         this.insertNonLinearAd();
     }
 
