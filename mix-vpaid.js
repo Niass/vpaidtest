@@ -42,6 +42,7 @@ const Vpaid = class {
   }
   clickAd_() {
     'AdClickThru' in this.eventsCallbacks_ && this.eventsCallbacks_.AdClickThru('', '0', !0)
+    console.log("ad clicked !!!");
   }
   handshakeVersion() {
     return '2.0'
@@ -96,12 +97,11 @@ const Vpaid = class {
 
     // Record the start time
     this.startTime_ = new Date().getTime();
-    this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
-    console.log("vpaidInserted", this.vpaidDom);
     // Process linear ads
     console.log("this.videoSlot", this.videoSlot_, this.videoSlot_?.nodeName);
     if (this.videoSlot_ && this.videoSlot_?.nodeName) {
       console.log("WIN 0");
+      this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
         if (vpaidType === 'linear') {
             const slot = this.slot_;
             slot.classList.add('percentage');
@@ -216,6 +216,7 @@ handleInImageAds(slot) {
     }
 
     const transitionTiming = +fullImageAd?.dataset?.transitionTiming;
+    console.log("transitionTiming", transitionTiming);
     setTimeout(() => {
         if(!fullImageAd) return;
         fullImageAd.style.top = '100%';
