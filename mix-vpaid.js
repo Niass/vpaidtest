@@ -139,7 +139,7 @@ const Vpaid = class {
 applyVideoStyles(videoSlot, slot) {
     videoSlot.style.transition = 'width 1s ease-in-out';
     videoSlot.style.cssText = this.videoStylesFormat;
-    videoSlot.style.zIndex = 10;
+    videoSlot.style.zIndex = 9999;
     videoSlot.parentElement.parentElement.classList.add('percentage');
 }
 
