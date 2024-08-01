@@ -216,7 +216,7 @@ handleInImageAds(slot) {
     }
 
     const transitionTiming = +fullImageAd?.dataset?.transitionTiming;
-    console.log("transitionTiming", transitionTiming, this.videoSlot_.duration);
+    console.log("transitionTiming 2", transitionTiming, this.videoSlot_?.duration);
     setTimeout(() => {
         if(!fullImageAd) return;
         fullImageAd.style.top = '100%';
