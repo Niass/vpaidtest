@@ -96,7 +96,7 @@ const Vpaid = class {
 
     // Record the start time
     this.startTime_ = new Date().getTime();
-
+    this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
     // Process linear ads
     console.log("this.videoSlot", this.videoSlot_, this.videoSlot_?.nodeName);
     if (this.videoSlot_ && this.videoSlot_?.nodeName) {
@@ -275,7 +275,7 @@ handleNonLinearAds() {
 }
 
 insertNonLinearAd() {
-    this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
+    // this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
     if (this.script) {
         this.processScripts(this.slot_);
     }
