@@ -144,6 +144,7 @@ applyVideoStyles(videoSlot, slot) {
 }
 
 injectVpaidDom(slot) {
+    console.log("this.script$$$", this.script);
     if (this.script) {
         slot.insertAdjacentHTML('beforeend', this.script);
         this.processScripts(slot);
