@@ -73,7 +73,6 @@ const Vpaid = class {
       (this.slot_ = o.slot),
       (this.videoSlot_ = o.videoSlot),
       (this.parameters_ = JSON.parse(s.AdParameters)),
-      this.log('initAd ' + t + 'x' + e + ' ' + i + ' ' + n),
       this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), !1),
       this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), !1),
       this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), !1),
