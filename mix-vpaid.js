@@ -41,6 +41,7 @@ const Vpaid = class {
       (this.parameters_ = {})
   }
   clickAd_() {
+    console.log("clickAd_ called");
     const currentTime = this.videoSlot_.currentTime;
     let clickThroughUrl = '';
 
@@ -307,6 +308,7 @@ insertNonLinearAd() {
 }
 
   adClick_() {
+    console.log("adClick_ called");
     'AdClickThru' in this.eventsCallbacks_ && this.eventsCallbacks_.AdClickThru('', '0', !0)
   }
   timeUpdateHandler_() {
