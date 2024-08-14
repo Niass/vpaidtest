@@ -1,3 +1,9 @@
+// Ajoutez ces variables au début de la classe Vpaid
+const urlRedirect1 = 'https://example.com/redirect1'; // 0 à 5 secondes
+const urlRedirect2 = 'https://example.com/redirect2'; // 5 à 10 secondes
+const urlRedirect3 = 'https://example.com/redirect3'; // 10 secondes et plus
+
+
 const Vpaid = class {
   buttonReduceSwitch =
     '<svg id="bliink-switch" style="width:20px;height:20px;position:absolute;top:5px;z-index:50;right:10px;cursor: pointer;" version="1.1"\n id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\n viewBox="0 0 170.8 113.3" style="enable-background:new 0 0 170.8 113.3;" xml:space="preserve">\n <style type="text/css">\n   .st0 {\n     opacity: 0.7;\n   }\n\n   .st1 {\n     fill: #FFFFFF;\n   }\n </style>\n <rect class="st0" width="170.8" height="113.3" />\n <path class="st1"\n   d="M88.8,63c-9.4,0-18.7,0-28.1,0c-5.1,0-8.5-3.4-6.6-6.7c1.1-1.9,3.6-3,6.8-3c11,0,22.1,0,33.1,0\nc7.7,0,15.5,0,23.2,0c3.5,0,6.5,1.9,6.8,4.2c0.4,2.5-1.9,4.8-5.4,5.3c-0.8,0.1-1.6,0.1-2.4,0.1C107.2,63,98,63,88.8,63z" />\n</svg>'
@@ -295,12 +301,25 @@ insertNonLinearAd() {
   timeUpdateHandler_() {
     console.log("timeUpdateHandler_ called", this.videoSlot_.duration);
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) return
+    
     const t = (100 * this.videoSlot_.currentTime) / this.videoSlot_.duration,
-      e = this.quartileEvents_[this.nextQuartileIndex_]
+          e = this.quartileEvents_[this.nextQuartileIndex_];
+    
+    // Redirection en fonction du temps écoulé
+    if (this.videoSlot_.currentTime < 5) {
+        window.location.href = urlRedirect1; // Redirige entre 0 et 5 secondes
+    } else if (this.videoSlot_.currentTime >= 5 && this.videoSlot_.currentTime < 10) {
+        window.location.href = urlRedirect2; // Redirige entre 5 et 10 secondes
+    } else if (this.videoSlot_.currentTime >= 10) {
+        window.location.href = urlRedirect3; // Redirige après 10 secondes
+    }
+
+    // Gestion des événements de quartiles
     t >= e.value && (this.eventsCallbacks_[e.event](), (this.nextQuartileIndex_ += 1)),
-      this.videoSlot_.duration > 0 &&
+    this.videoSlot_.duration > 0 &&
         (this.attributes_.remainingTime = this.videoSlot_.duration - this.videoSlot_.currentTime)
-  }
+}
+
   loadedMetadata_() {
     ;(this.attributes_.duration = this.videoSlot_.duration), this.callEvent_('AdDurationChange')
   }
