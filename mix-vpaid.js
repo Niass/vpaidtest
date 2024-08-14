@@ -45,13 +45,12 @@ const Vpaid = class {
     const currentTime = this.videoSlot_.currentTime;
     let clickThroughUrl = '';
 
-    // Définir l'URL de redirection en fonction du temps écoulé
-    if (currentTime < 5) {
-        clickThroughUrl = 'https://example.com/redirect1';
-    } else if (currentTime >= 5 && currentTime < 10) {
-        clickThroughUrl = 'https://example.com/redirect2';
-    } else if (currentTime >= 10) {
-        clickThroughUrl = 'https://example.com/redirect3';
+    // Trouver l'URL de redirection appropriée en fonction du temps écoulé
+    for (const redirect of this.clickThroughUrls) {
+        if (currentTime >= redirect.start && currentTime < redirect.end) {
+            clickThroughUrl = redirect.url;
+            break;
+        }
     }
 
     // Déclencher l'événement AdClickThru avec l'URL appropriée
@@ -73,6 +72,7 @@ const Vpaid = class {
       (this.slot_ = o.slot),
       (this.videoSlot_ = o.videoSlot),
       (this.parameters_ = JSON.parse(s.AdParameters)),
+      (this.clickThroughUrls = this.parameters_.clickThroughUrls || []),
       this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), !1),
       this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), !1),
       this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), !1),
