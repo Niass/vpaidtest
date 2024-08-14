@@ -78,7 +78,7 @@ const Vpaid = class {
       this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), !1),
       this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), !1),
       this.slot_.addEventListener('click', this.clickAd_.bind(this), !1)
-      console.log("initAd called and clickAd_ attached on", this.slot_);
+      this.log("initAd called and clickAd_ attached on", this.slot_);
     'linear' === this.parameters_.vpaidType
       ? this.updateVideoSlot_()
       : console.log('no linear typ'),
