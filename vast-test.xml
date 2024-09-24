@@ -77,18 +77,8 @@
 <AdEventId>CI227Y_224gDFXlZ9ggdojs83A</AdEventId>
 </Extension>
 <Extension type="ShowAdTracking">
-<CustomTracking>
-<Tracking event="show_ad">
-<![CDATA[ https://pagead2.googlesyndication.com/pcs/view?xai=AKAOjssyrjt2fMLB4bbLKbVgWjiJkU8CfoqYvTnmkqOjat_CMi2Yi1lE_Rf-l5hHD119Vphyt_7Hw9nDzdfnDwz0yZsaMbmDMDxsCqfis1ywZiqnaG_sFV0yAWAzY4_ala86RQkqGudnLCmX-dH2D05fqRO1N2yEdjVypgN1PJegMV5CHw3_XH8gU_yll-dBexo9V151QuUfI2MUJ3-ta45G-M_RkwHWznRN0tKLIxuqB9wEU-9dwfUuAELHUyiensV0eHZwWZ5ASGEF3XJ1oGAsa0BAcbaNLU58bZpf099n8fvGqVs09hmaWe5iYA3DKwX4cVSaYWkeW9qpQ5jcPwg6PySygm1HIkDkEHB4Hfs6gW5OIRGZpi-UrzziSqTBFZ0epF5iAhMciyhflwiFmfM36h_M64sMriWZYg&sig=Cg0ArKJSzCkWGw8n3FMZEAE&uach_m=%5BUACH%5D&adurl= ]]>
-</Tracking>
-</CustomTracking>
 </Extension>
 <Extension type="video_ad_loaded">
-<CustomTracking>
-<Tracking event="loaded">
-<![CDATA[ https://pagead2.googlesyndication.com/pagead/interaction/?ai=BVP6KZd7yZs3vCvmy2fcPovfw4Q2f4LWVRgAAABABII64hW84AViV8drBgwRg--n5gogKugEKNzI4eDkwX3htbMgBBcACAuACAOoCLi8yMTc3NTc0NDkyMy9leHRlcm5hbC9zaW5nbGVfcHJlcm9sbF9za2lwcGFibGX4AvDRHoADAZADyAaYA-ADqAMB4AQB0gUGEMrbhIoWoAYjqAe4vrECqAeaBqgH89EbqAeW2BuoB6qbsQKoB4OtsQKoB-C9sQKoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIkeGAcBABGB0yB-uLgO6_gAE6EYHQgICAgIQIgICAgICUruADSL39wTpYifvsj_bbiAPYCAKACgWYCwGqDQJGUuoNEwi7zO2P9tuIAxV5WfYIHaI7PNzQFQH4FgGAFwE&sigh=r2yiAW8w7ro&label=video_ad_loaded ]]>
-</Tracking>
-</CustomTracking>
 </Extension>
 <Extension type="esp">
 <EspLibrary LibraryName="uidapi.com" LibraryUrl=""/>
@@ -98,14 +88,6 @@
 <EspLibrary LibraryName="liveintent.com" LibraryUrl=""/>
 </Extension>
 <Extension type="heavy_ad_intervention">
-<CustomTracking>
-<Tracking event="heavy_ad_intervention_cpu">
-<![CDATA[ https://pagead2.googlesyndication.com/pagead/interaction/?ai=BVP6KZd7yZs3vCvmy2fcPovfw4Q2f4LWVRgAAABABII64hW84AViV8drBgwRg--n5gogKugEKNzI4eDkwX3htbMgBBcACAuACAOoCLi8yMTc3NTc0NDkyMy9leHRlcm5hbC9zaW5nbGVfcHJlcm9sbF9za2lwcGFibGX4AvDRHoADAZADyAaYA-ADqAMB4AQB0gUGEMrbhIoWoAYjqAe4vrECqAeaBqgH89EbqAeW2BuoB6qbsQKoB4OtsQKoB-C9sQKoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIkeGAcBABGB0yB-uLgO6_gAE6EYHQgICAgIQIgICAgICUruADSL39wTpYifvsj_bbiAPYCAKACgWYCwGqDQJGUuoNEwi7zO2P9tuIAxV5WfYIHaI7PNzQFQH4FgGAFwE&sigh=r2yiAW8w7ro&label=heavy_ad_intervention_cpu ]]>
-</Tracking>
-<Tracking event="heavy_ad_intervention_network">
-<![CDATA[ https://pagead2.googlesyndication.com/pagead/interaction/?ai=BVP6KZd7yZs3vCvmy2fcPovfw4Q2f4LWVRgAAABABII64hW84AViV8drBgwRg--n5gogKugEKNzI4eDkwX3htbMgBBcACAuACAOoCLi8yMTc3NTc0NDkyMy9leHRlcm5hbC9zaW5nbGVfcHJlcm9sbF9za2lwcGFibGX4AvDRHoADAZADyAaYA-ADqAMB4AQB0gUGEMrbhIoWoAYjqAe4vrECqAeaBqgH89EbqAeW2BuoB6qbsQKoB4OtsQKoB-C9sQKoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIkeGAcBABGB0yB-uLgO6_gAE6EYHQgICAgIQIgICAgICUruADSL39wTpYifvsj_bbiAPYCAKACgWYCwGqDQJGUuoNEwi7zO2P9tuIAxV5WfYIHaI7PNzQFQH4FgGAFwE&sigh=r2yiAW8w7ro&label=heavy_ad_intervention_network ]]>
-</Tracking>
-</CustomTracking>
 </Extension>
 <Extension type="IconClickFallbackImages">
 <IconClickFallbackImages program="GoogleWhyThisAd">
