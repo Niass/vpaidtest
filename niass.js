@@ -7,8 +7,6 @@ const Vpaid = class {
     '\n        <div\n            \n            \n            \n            data-wrapperId="66db2dcbec62a7001845d703"\n            data-id="66db2dcbec62a7001845d703"\n            data-index="1"\n            class="full-image hide"\n            style="z-index: 1; transition: all .8s ease-in-out; position: absolute; left: 0.00%; top: 0.00%; width: 100%; height: 100%; transition: all ease-in-out 0.3s;"\n        >   \n            <div style="width:100%; height:100%; position: absolute; bottom: 0;overflow: hidden;">\n                \n            </div>\n    </div>'
   script = ''
   vpaidDomInImage = void 0
-  videoStylesFormat =
-    'position: absolute; width: 640px; height: 361px; top: 0px; bottom: -1px; left: 0px; right: 0px; '
   adDuration = 2e4
   constructor() {
     ;(this.slot_ = null),
