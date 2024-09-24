@@ -139,8 +139,6 @@ const Vpaid = class {
           const t = e.parentElement.getBoundingClientRect().height
           ;(e.parentElement.style.minHeight = t + 'px'),
             (e.parentElement.style.maxHeight = '360px'),
-            this.videoStylesFormat &&
-              ((e.style.cssText = this.videoStylesFormat), (e.style.zIndex = 9999)),
             e.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom),
             this.handleScriptAndImages(e.parentElement),
             this.handleButtonSwitch(e.parentElement)
