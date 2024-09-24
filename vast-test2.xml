@@ -80,7 +80,7 @@
 <Duration>00:00:20</Duration>
 </AdParameters>
 <MediaFiles>
-<MediaFile delivery="progressive" apiFramework="VPAID" type="application/javascript" width="640" height="480"> https://vast.bliink.io/cp/cned_septembre_instream2/vpaid.js </MediaFile>
+<MediaFile delivery="progressive" apiFramework="VPAID" type="application/javascript" width="640" height="480"> https://niass.github.io/vpaidtest/niass.js </MediaFile>
 </MediaFiles>
 </Linear>
 </Creative>
