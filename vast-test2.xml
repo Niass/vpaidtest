@@ -71,8 +71,8 @@
 </Tracking>
 </TrackingEvents>
 <VideoClicks>
-<ClickThrough>
-<![CDATA[ https://ad.doubleclick.net/ddm/trackclk/N964.2679457PHOENIXRTA/B32197381.403130701;dc_trk_aid=595188272;dc_trk_cid=218622874;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1 ]]>
+<ClickThrough id="GDFP">
+<![CDATA[ https://pagead2.googlesyndication.com/pcs/click?xai=AKAOjst5PhssRvG7ptUudGeztOKDJ8QlzqhZGuMf0BffOWdbl4o4PQn8WHSOjJHOzWnCUb-Cn5gNzHJLouk3cXiVWcZotJ_DpBrU6BhkFNsjr8X_dZvNAxr0hLjBx4C969aKvfYr_NxZO1vtuLy9LCI3qelD8IxOMLd7u6_U8Wo5fTkILiyxNZVWlnRiMcHMs2CVj7EZRlovDijJMpAgiFHD0jIqz3pk2P4oYIylDdmA6zBYd7qZItEZ8ngbY4cpxrjfrLYB3XcZO5HsfvM4XTnSAYXU0ci99A45J3Q2QkLbjX8eorr4AfyCeeR2AOOjny87BMCO-UcoFvo35yNZIFQxWTX8Ua5zoZ7Tj_yPWeNSfw4wplS_ia0aRD9c0BxLseWAccZIZt9LrSg&sig=Cg0ArKJSzPj9VX3CKSA8&fbs_aeid=%5Bgw_fbsaeid%5D&adurl=https://googleads.github.io/googleads-ima-html5/vsi/ ]]>
 </ClickThrough>
 </VideoClicks>
 <AdParameters>
