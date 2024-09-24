@@ -55,63 +55,6 @@
 <Creative id="138381056765" sequence="1">
 </Creative>
 </Creatives>
-<Extensions>
-<Extension type="waterfall" fallback_index="0"/>
-<Extension type="geo">
-<Country>FR</Country>
-<Bandwidth>0</Bandwidth>
-</Extension>
-<Extension type="DFP">
-<SkippableAdType>Generic</SkippableAdType>
-</Extension>
-<Extension type="metrics">
-<FeEventId>Zd7yZqa6CbGN2fcPyLm04As</FeEventId>
-<AdEventId>CI227Y_224gDFXlZ9ggdojs83A</AdEventId>
-</Extension>
-<Extension type="ShowAdTracking">
-</Extension>
-<Extension type="video_ad_loaded">
-</Extension>
-<Extension type="esp">
-<EspLibrary LibraryName="uidapi.com" LibraryUrl=""/>
-<EspLibrary LibraryName="euid.eu" LibraryUrl=""/>
-<EspLibrary LibraryName="liveramp.com" LibraryUrl=""/>
-<EspLibrary LibraryName="esp.criteo.com" LibraryUrl=""/>
-<EspLibrary LibraryName="liveintent.com" LibraryUrl=""/>
-</Extension>
-<Extension type="heavy_ad_intervention">
-</Extension>
-<Extension type="IconClickFallbackImages">
-<IconClickFallbackImages program="GoogleWhyThisAd">
-<IconClickFallbackImage width="1920" height="1080">
-<AltText>Why this ad? This ad is based on: * General factors like the app you're using, the time of day, or your approximate location. You can update your options for ads in this device's settings.</AltText>
-<StaticResource creativeType="image/png">
-<![CDATA[ https://pubads.g.doubleclick.net/ata-qr?url=aHR0cHM6Ly9hZHNzZXR0aW5ncy5nb29nbGUuY29tL3doeXRoaXNhZD9zb3VyY2U9ZGlzcGxheSZyZWFzb25zPUFYUlhycWx5RE1DdDJZOWdwZWFlc09XM3FuRktkVTdYOGdKSmV6dzVaX1gxTXlfdUNrdExSV1BIX04tZFdpMllsZmZIbXRTcXFEQU9vRjllczhGR3BtR002N2xrWW5HUGVqaGZDUGF1Y3BLY3pKWTBUdWY0anc0WFN2ZWk0SGp6Q0lwUEJsbGszSElhR3h0SGxKSFNSdk1weF82d01nX1RqR28xWms0d2JZX2VTWkk2YS1jNTRneFY2Mk5Zb0NrR0gxSkc4Q1gyNGM0S29JdVVTM2Z1Mm8xWGdrYlBxanUwcUhTWkZzVGpESTlDY281dEtwVU9tWEhNLU9oQ1RDVHBSOTNLOWQwMV8xWlRoOVBqbk5HLVVTVlRfVmUtcEgzTGxrUDJPc2hiYlFFcUZmRlk0WTgzRnd5NHI2NURLWGtTdklmdXRrMFRwVWJfaDlmQXhUQkRnblg3eDFQYmlFeDdMTWExaVJyWnc1Y1JnSWZueXJ1b2tFWjRJbk9DNV9tUXZ4TFNUM2ZXZWt3MGFiMER6Y2M2NzJrVkFHN2E4NndXbFFtdkFxMHZyLXdIcmhsRkJJR1Aya3Rqd3BveWw5VU8wb01jTl9PdThmT2RZLWhYNmlMMWZSbVJDRm9BQlNiNS1jeEJjVGMySGl4ZlpiN3p5Wm02UkRiVTJoOWtpbWdfMnpLNWVBNDJBWm1xb2piSEZ1MGJCWjN5WEM5VkRLYkQ0eTVCSlN3OTF6a2pENllhMTViR3EzdENBNkpOQnd4UjFFdTNhZ0t1ejhWMlNTUjJSemg3cTYxaExnU0s1ZEdUdVlocUdUOF9Lb2ZBalFNUWlIdkx4LVdIT1Y2TUtmT2JMYXQ4Q2k4WTdEbVQyTk1IcjZhcWxZMkxNTXU2czJqdk5UYmFjbWgwTEJ0U2ZkZE81ZVY3QUdsYTBNTDl6dmwwMVYzR2c2QUJyM2NXUW1kZlRtOEFNX0hJaHJUTDBzLXdCeW1qTFpEMlFscHBvUndMNFhiM1NfYVBQellKYkdPMFNQV0JtTFdpLXdmbjdHWUZDYk1CcVpOc2tMSkJHQXA5aTR1TjlQckVhWDJJTlF2NnVhZXN6djBaN09wamdTeTJJN3dnbS1mRWpqUUtkYW1aRXpTazRiSkx2X01ZcmhiNEp3RGlRMzczZHJuVGdZRjdxTlBjV3U0Zkc5M0FSZXJjRTFMWEwyVVRDZyZvcGk9MTIyNzE1ODM3&hl=fr&wp=ca-pub-9939518381636264&p=1&gqi=Zd7yZqa6CbGN2fcPyLm04As ]]>
-</StaticResource>
-</IconClickFallbackImage>
-</IconClickFallbackImages>
-</Extension>
-<Extension type="companion_about_this_ad">
-<Icon program="GoogleWhyThisAd" width="18" height="18" xPosition="right" yPosition="bottom">
-<StaticResource creativeType="image/png">
-<![CDATA[ https://imasdk.googleapis.com/formats/wta/help_outline_white_24dp_with_3px_trbl_padding.png?wp=ca-pub-9939518381636264 ]]>
-</StaticResource>
-<IconClicks>
-<IconClickThrough>
-<![CDATA[ https://adssettings.google.com/whythisad?source=display&reasons=AXRXrqlwOA7SDvRPHuk2NGo6ifpWUO_3ptR_f3aCUY5kcRGdHx1WnucOFyodtu2aWY4W4akqEK9P5JQ_sSpERq7rCREiy3PDGINvkL8vhX3UzdCEuzgMij3fI8npJRGqp4FP3onMuvnRc9ORstfhHpyQugnSBV3smtcGWLmv844IK_J6GF4CNLGCQZlC20UkZSgxdVHRBAJA4OySrFdaDrjITD9ogQSCO63BMSCwnvpXebSHtuybV8eqGgHXvuAu1Ciro_x1HrjfgiYNcUxyOLSU8BV7l1D5w9X0FzkXjAuhlcAi-GjndAXnHkiPjFQbKRHXXy1k6NpEkrlnx79QCsTcc4eOXux2RiWSlBahqI2ePhgbqfX6yDlxeOa3hOfeFJXiUTKM9xsumHlWS3Lg3pE8vXxs1ZPYsFOs953OqV-nSH1UT4C_H1Ln49ZN3jFnj8Np3CdXoXRGbFzXD4PjsE5lA_W8nPrQXuppTHwRZ6YOCdJld1zd3fSoD6LajPGiwauOFNb1CTqsCWsNZxkkhUUycIJ4X8jTypjKYRZQ6p9XCD87g2lPMd1fQ0yaW0UmdltTLqt6cmxxpWdmjsL8O6KzluVA6Nuq1T46pwe-gPz70LhLj95TM12WifY3mehCSZdrb0SHXfWZRqwP79aySFZz2AzhucIlsmtI5ZIym2ladqu65nME4JN3hOaSl2ZVNScKfKxRf6OLHmcSa7sTsk857xfoIGe4C61yaNElPQ9IQMEDPLYBUPioT9aUGnFh-H2-hRego_VzLE6OcYf0Ze_qHFhRVMAzxnYsBLzNshdPmsX1NSiDYpTGpf_lJcrEkpEGGft-rbjtMD5IzrOsB09ECZ_VIl-WFQxcfSlFN9B7M40pQ08lXtZlUjDMas3AH1s-sZiajg&opi=122715837 ]]>
-</IconClickThrough>
-<IconClickFallbackImages>
-<IconClickFallbackImage width="640" height="226">
-<AltText>Why this ad? This ad is based on: * General factors like the app you're using, the time of day, or your approximate location. You can update your options for ads in this device's settings.</AltText>
-<StaticResource creativeType="image/png">
-<![CDATA[ https://imasdk.googleapis.com/formats/wta/contextual_bks.png?wp=ca-pub-9939518381636264 ]]>
-</StaticResource>
-</IconClickFallbackImage>
-</IconClickFallbackImages>
-</IconClicks>
-</Icon>
-</Extension>
-</Extensions>
 </InLine>
 </Ad>
 </VAST>
