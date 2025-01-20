@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Prebid Server</title>
+    <script async src="//clickiocmp.com/t/consent_236053.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.3/video-js.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-ima/2.1.0/videojs.ima.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .ad-container {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            background: #f9f9f9;
+        }
+
+        .banner-container {
+            min-height: 90px;
+        }
+
+        .native-container {
+            min-height: 250px;
+        }
+
+        .video-container {
+            min-height: 400px;
+        }
+
+        .ad-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #status-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .native-ad-template {
+            display: none;
+        }
+
+        .native-ad {
+            padding: 10px;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .native-ad img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .native-ad-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .native-ad-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .native-ad-cta {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Page de test Prebid Server</h1>
+        
+        <!-- Banner Ad -->
+        <div class="ad-container banner-container">
+            <div class="ad-label">Banner Ad (728x90)</div>
+            <div id="banner-ad"></div>
+        </div>
+
+        <!-- Native Ad -->
+        <div class="ad-container native-container">
+            <div class="ad-label">Native Ad</div>
+            <div id="native-ad"></div>
+        </div>
+
+        <!-- Template for Native Ad -->
+        <template class="native-ad-template">
+            <div class="native-ad">
+                <img class="native-ad-image" src="" alt="">
+                <div class="native-ad-title"></div>
+                <div class="native-ad-desc"></div>
+                <a class="native-ad-cta" href="" target="_blank"></a>
+            </div>
+        </template>
+
+        <!-- Video Ad -->
+        <div class="ad-container video-container">
+            <div class="ad-label">Video Ad</div>
+            <div id="video-ad">
+                <video id="video-player" 
+                       class="video-js vjs-default-skin" 
+                       controls 
+                       width="640" 
+                       height="360">
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <div id="status-panel">
+        <div>Status: <span id="status">En attente du consentement...</span></div>
+        <div>Latence: <span id="latency">-</span></div>
+    </div>
+
+    <!-- Video.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.3/video.min.js"></script>
+    <!-- Plugin Videojs Contrib Ads (OBLIGATOIRE pour utiliser videojs-ima) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.9.0/videojs-contrib-ads.min.js"></script>
+    <!-- IMA SDK -->
+    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <!-- VideoJS-IMA -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-ima/2.1.0/videojs.ima.min.js"></script>
+
+    <script>
+        class PrebidServerTest {
+            constructor() {
+                this.endpoints = {
+                    auction: 'https://am-prebid.bliink.io/openrtb2/auction'
+                };
+                this.adUnits = {
+                    'banner-ad': {
+                        tagid: 'TELELOISIRS_HEADER',
+                        type: 'banner',
+                        sizes: [[728, 90]]
+                    },
+                    'native-ad': {
+                        tagid: 'TELELOISIRS_ARTICLE',  // On utilise un tagid supporté
+                        type: 'native',
+                        nativeConfig: {
+                            title: { required: true, len: 80 },
+                            image: { required: true, sizes: [1200, 627] },
+                            sponsoredBy: { required: true },
+                            clickUrl: { required: true },
+                            body: { required: true },
+                            cta: { required: true }
+                        }
+                    },
+                    'video-ad': {
+                        tagid: 'TELELOISIRS_FOOTER',  // On utilise un tagid supporté
+                        type: 'video',
+                        playerSize: [640, 360],
+                        context: 'instream',
+                        mimes: ['video/mp4', 'video/webm'],
+                        protocols: [2, 3, 5, 6],
+                        api: [2],
+                        maxduration: 30,
+                        linearity: 1,
+                        skip: 1
+                    }
+                };
+                this.initTime = Date.now();
+                this.videoPlayer = null;
+            }
+
+            async init() {
+                this.updateStatus('Vérification du consentement...');
+                if (typeof window.__tcfapi !== 'function') {
+                    this.updateStatus('Erreur: CMP non disponible', true);
+                    return;
+                }
+
+                try {
+                    const tcData = await this.getTCFConsent();
+                    // S'assurer que VideoJS est chargé avant d'initialiser le player
+                    if (typeof videojs === 'undefined') {
+                        throw new Error('VideoJS n\'est pas chargé');
+                    }
+                    
+                    // Initialiser le player avant la requête
+                    await this.initVideoPlayer();
+                    this.updateStatus('Consentement obtenu, envoi de la requête...');
+                    await this.requestAds(tcData);
+                } catch (error) {
+                    this.updateStatus(`Erreur: ${error.message}`, true);
+                    console.error(error);
+                }
+            }
+
+            async initVideoPlayer() {
+                return new Promise((resolve) => {
+                    // Attendre que le DOM soit prêt
+                    if (document.readyState === 'complete') {
+                        this.setupVideoPlayer();
+                        resolve();
+                    } else {
+                        window.addEventListener('load', () => {
+                            this.setupVideoPlayer();
+                            resolve();
+                        });
+                    }
+                });
+            }
+
+            setupVideoPlayer() {
+                const player = videojs('video-player', {
+                    controls: true,
+                    fluid: true
+                });
+                
+                // Initialiser IMA après que le player est prêt
+                player.ready(() => {
+                    try {
+                        if (typeof google !== 'undefined' && google.ima) {
+                            player.ima({
+                                adTagUrl: ''  // Sera mis à jour lors du rendu de la pub
+                            });
+                            this.videoPlayer = player;
+                        } else {
+                            console.error('IMA SDK non chargé');
+                        }
+                    } catch (error) {
+                        console.error('Erreur lors de l\'initialisation IMA:', error);
+                    }
+                });
+            }
+
+            getTCFConsent() {
+                return new Promise((resolve, reject) => {
+                    window.__tcfapi('getTCData', 2, (tcData, success) => {
+                        if (success) {
+                            resolve(tcData);
+                        } else {
+                            reject(new Error('Impossible d\'obtenir le consentement'));
+                        }
+                    });
+                });
+            }
+
+            buildRequest(tcData) {
+                const domain = window.location.hostname;
+                return {
+                    id: `request-${Date.now()}`,
+                    cur: ['EUR'],
+                    ssp: "ss-DailyMotion",
+                    imp: Object.entries(this.adUnits).map(([id, unit]) => {
+                        const imp = {
+                            id,
+                            tagid: unit.tagid,
+                            bidfloor: 0.01,
+                            bidfloorcur: "USD",
+                            secure: 1,
+                            ext: {
+                                data: {
+                                    gpid: `${id}-slot`,
+                                    tagid: unit.tagid
+                                },
+                                prebid: {
+                                    bidder: {
+                                        bliink: {
+                                            publisherId: 1,
+                                            adSlot: `${id}-slot`,
+                                            tagId: unit.tagid,
+                                            imageUrl: "http://sample-image.io"
+                                        }
+                                    },
+                                    adunitcode: id
+                                }
+                            }
+                        };
+
+                        // Add format-specific configurations
+                        switch(unit.type) {
+                            case 'banner':
+                                imp.banner = {
+                                    topframe: 1,
+                                    format: unit.sizes.map(([w, h]) => ({ w, h }))
+                                };
+                                break;
+                            case 'native':
+                                imp.native = {
+                                    request: JSON.stringify({
+                                        ver: "1.2",
+                                        assets: [
+                                            {
+                                                id: 1,
+                                                required: 1,
+                                                title: { len: 80 }
+                                            },
+                                            {
+                                                id: 2,
+                                                required: 1,
+                                                img: {
+                                                    type: 3,
+                                                    w: 1200,
+                                                    h: 627
+                                                }
+                                            },
+                                            {
+                                                id: 3,
+                                                required: 1,
+                                                data: {
+                                                    type: 1,
+                                                    len: 200
+                                                }
+                                            },
+                                            {
+                                                id: 4,
+                                                required: 1,
+                                                data: {
+                                                    type: 2,
+                                                    len: 50
+                                                }
+                                            },
+                                            {
+                                                id: 5,
+                                                required: 1,
+                                                data: {
+                                                    type: 12,
+                                                    len: 20
+                                                }
+                                            }
+                                        ]
+                                    })
+                                };
+                                break;
+                            case 'video':
+                                imp.video = {
+                                    mimes: unit.mimes,
+                                    minduration: 1,
+                                    maxduration: unit.maxduration,
+                                    protocols: unit.protocols,
+                                    w: unit.playerSize[0],
+                                    h: unit.playerSize[1],
+                                    startdelay: 0,
+                                    placement: 1,
+                                    skip: unit.skip,
+                                    skipmin: 5,
+                                    skipafter: 5,
+                                    playbackmethod: [2],
+                                    api: unit.api
+                                };
+                                break;
+                        }
+
+                        return imp;
+                    }),
+                    site: {
+                        domain: domain,
+                        publisher: {
+                            domain: domain,
+                            id: "1"
+                        },
+                        page: window.location.href
+                    },
+                    device: {
+                        w: window.innerWidth,
+                        h: window.innerHeight,
+                        dnt: navigator.doNotTrack === "1" ? 1 : 0,
+                        ua: navigator.userAgent,
+                        language: navigator.language,
+                        ext: {
+                            vpw: document.documentElement.clientWidth,
+                            vph: document.documentElement.clientHeight
+                        },
+                        devicetype: 2,
+                        os: this.getOS(),
+                        osv: this.getOSVersion()
+                    },
+                    user: {
+                        ext: {
+                            consent: tcData.tcString,
+                            ConsentedProvidersSettings: tcData.addtlConsent ? {
+                                consented_providers: tcData.addtlConsent
+                            } : undefined
+                        }
+                    },
+                    regs: {
+                        ext: {
+                            gdpr: tcData.gdprApplies ? 1 : 0
+                        }
+                    },
+                    test: 0,
+                    ext: {
+                        prebid: {
+                            auctiontimestamp: Date.now(),
+                            targeting: {
+                                includewinners: true,
+                                includebidderkeys: false
+                            },
+                            channel: {
+                                name: "pbjs",
+                                version: "v9.24.0-pre"
+                            },
+                            createtids: false
+                        },
+                        tmaxmax: 2000
+                    },
+                    tmax: 1000
+                };
+            }
+
+            async requestAds(tcData) {
+                const request = this.buildRequest(tcData);
+                
+                try {
+                    const response = await fetch(this.endpoints.auction, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(request)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    let data = await response.json();
+                    
+                    // MOCK: Ajouter des réponses mock pour native et video si nécessaire
+                    const isDev = window.location.hostname === 'localhost' || 
+                                window.location.hostname === '127.0.0.1';
+                    if (isDev) {
+                        data = this.addMockResponses(data);
+                    }
+                    
+                    this.displayLatency();
+                    this.renderAds(data.seatbid);
+                    this.updateStatus('Publicités chargées avec succès');
+                } catch (error) {
+                    this.updateStatus(`Erreur lors de la requête: ${error.message}`, true);
+                }
+            }
+
+            renderAds(seatbid) {
+                if (!seatbid || !seatbid.length) return;
+                
+                seatbid.forEach(seat => {
+                    seat.bid.forEach(bid => {
+                        const adUnit = this.adUnits[bid.impid];
+                        if (!adUnit) return;
+
+                        // Si c'est une réponse native ou vidéo, on utilise un mock
+                        if (adUnit.type === 'native' || adUnit.type === 'video') {
+                            this.renderMockAd(bid.impid, adUnit.type);
+                        } else {
+                            // Pour les bannières, on utilise la réponse du serveur
+                            this.renderBanner(bid);
+                        }
+                    });
+                });
+            }
+
+            renderMockAd(impid, type) {
+                if (type === 'native') {
+                    const mockNative = {
+                        assets: [
+                            { title: { text: "Publicité Native de Test" } },
+                            { img: { url: "https://placehold.co/1200x627", w: 1200, h: 627 } },
+                            { data: { value: "Description de test pour la publicité native" } },
+                            { data: { value: "Brand Test" } },
+                            { data: { value: "En savoir plus" } }
+                        ],
+                        link: { url: "https://example.com" }
+                    };
+                    const container = document.getElementById(impid);
+                    if (container) {
+                        const template = document.querySelector('.native-ad-template');
+                        const content = template.content.cloneNode(true);
+                        const ad = content.querySelector('.native-ad');
+                        
+                        ad.querySelector('.native-ad-image').src = mockNative.assets[1].img.url;
+                        ad.querySelector('.native-ad-title').textContent = mockNative.assets[0].title.text;
+                        ad.querySelector('.native-ad-desc').textContent = mockNative.assets[2].data.value;
+                        const cta = ad.querySelector('.native-ad-cta');
+                        cta.textContent = mockNative.assets[4].data.value;
+                        cta.href = mockNative.link.url;
+
+                        container.innerHTML = '';
+                        container.appendChild(content);
+                    }
+                } else if (type === 'video') {
+                    const mockVastUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
+                    const container = document.getElementById(impid);
+                    if (container && this.videoPlayer) {
+                        this.videoPlayer.src({ 
+                            type: 'video/mp4',
+                            src: 'https://video.bliink.io/creative-preview.mp4'
+                        });
+                        // Initialiser IMA avec le VAST mock
+                        if (typeof this.videoPlayer.ima === 'function') {
+                            this.videoPlayer.ima({
+                                id: 'video-player',
+                                adTagUrl: mockVastUrl
+                            });
+                        }
+                        if (this.videoPlayer.ima && typeof this.videoPlayer.ima.changeAdTag === 'function') {
+                            this.videoPlayer.ima.changeAdTag(mockVastUrl);
+                            this.videoPlayer.ima.requestAds();
+                        }
+                    }
+                }
+            }
+
+            renderBanner(bid) {
+                const container = document.getElementById(bid.impid);
+                if (!container) return;
+
+                const iframe = document.createElement('iframe');
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+                // Ajout des attributs pour résoudre les problèmes de sécurité
+                iframe.setAttribute('sandbox', 'allow-forms allow-same-origin allow-scripts allow-popups');
+                container.appendChild(iframe);
+
+                const html = bid.adm;
+                const doc = iframe.contentWindow.document;
+                doc.open();
+                doc.write(html);
+                doc.close();
+            }
+
+            renderNative(bid) {
+                const container = document.getElementById(bid.impid);
+                if (!container) return;
+
+                const nativeData = JSON.parse(bid.adm);
+                const template = document.querySelector('.native-ad-template');
+                const content = template.content.cloneNode(true);
+
+                const ad = content.querySelector('.native-ad');
+                ad.querySelector('.native-ad-image').src = nativeData.assets.find(a => a.img)?.img?.url || '';
+                ad.querySelector('.native-ad-title').textContent = nativeData.assets.find(a => a.title)?.title?.text || '';
+                ad.querySelector('.native-ad-desc').textContent = nativeData.assets.find(a => a.data && a.data.type === 2)?.data?.value || '';
+                const cta = ad.querySelector('.native-ad-cta');
+                cta.textContent = nativeData.assets.find(a => a.data && a.data.type === 12)?.data?.value || 'En savoir plus';
+                cta.href = nativeData.link?.url || '#';
+
+                container.innerHTML = '';
+                container.appendChild(content);
+            }
+
+            renderVideo(bid) {
+                const container = document.getElementById(bid.impid);
+                if (!container || !this.videoPlayer) return;
+
+                const vastUrl = bid.vastUrl || bid.adm;
+                if (!vastUrl) {
+                    console.error('No VAST URL or creative found for video ad');
+                    return;
+                }
+
+                // Si le player n'a pas encore d'instance IMA, on l'initialise
+                if (typeof this.videoPlayer.ima === 'function') {
+                    this.videoPlayer.ima({
+                        id: 'video-player',
+                        adTagUrl: vastUrl
+                    });
+                }
+
+                // On utilise l'instance IMA existante
+                this.videoPlayer.ready(() => {
+                    if (this.videoPlayer.ima && typeof this.videoPlayer.ima.changeAdTag === 'function') {
+                        this.videoPlayer.ima.changeAdTag(vastUrl);
+                        this.videoPlayer.ima.requestAds();
+                    }
+                });
+            }
+
+            updateStatus(message, isError = false) {
+                const status = document.getElementById('status');
+                status.textContent = message;
+                status.style.color = isError ? '#ff4444' : '#fff';
+            }
+
+            displayLatency() {
+                const latency = Date.now() - this.initTime;
+                document.getElementById('latency').textContent = `${latency}ms`;
+            }
+
+            getOS() {
+                const userAgent = navigator.userAgent;
+                if (userAgent.includes('Mac OS X')) return 'Mac OS X';
+                if (userAgent.includes('Windows')) return 'Windows';
+                if (userAgent.includes('Linux')) return 'Linux';
+                return 'Unknown';
+            }
+
+            getOSVersion() {
+                const userAgent = navigator.userAgent;
+                const macMatch = userAgent.match(/Mac OS X (\d+[._]\d+[._]\d+)/);
+                if (macMatch) return macMatch[1].replace(/_/g, '.');
+                const windowsMatch = userAgent.match(/Windows NT (\d+\.\d+)/);
+                if (windowsMatch) return windowsMatch[1];
+                return '';
+            }
+
+            addMockResponses(data) {
+                // Clone les données existantes
+                const mockData = {...data};
+                if (!mockData.seatbid) mockData.seatbid = [];
+
+                // Mock pour Native
+                mockData.seatbid.push({
+                    bid: [{
+                        impid: 'native-ad',
+                        price: 3.5,
+                        adm: JSON.stringify({
+                            ver: "1.2",
+                            assets: [
+                                {
+                                    id: 1,
+                                    title: {
+                                        text: "Titre de la publicité native"
+                                    }
+                                },
+                                {
+                                    id: 2,
+                                    img: {
+                                        url: "https://placehold.co/1200x627",
+                                        w: 1200,
+                                        h: 627
+                                    }
+                                },
+                                {
+                                    id: 3,
+                                    data: {
+                                        type: 1,
+                                        value: "Description longue de la publicité native de test"
+                                    }
+                                },
+                                {
+                                    id: 4,
+                                    data: {
+                                        type: 2,
+                                        value: "Brand"
+                                    }
+                                },
+                                {
+                                    id: 5,
+                                    data: {
+                                        type: 12,
+                                        value: "Cliquez ici"
+                                    }
+                                }
+                            ],
+                            link: {
+                                url: "https://example.com"
+                            }
+                        })
+                    }]
+                });
+
+                // Mock pour Video
+                mockData.seatbid.push({
+                    bid: [{
+                        impid: 'video-ad',
+                        price: 4.5,
+                        vastUrl: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
+                    }]
+                });
+
+                return mockData;
+            }
+        }
+
+        // Initialisation au chargement de la page
+        window.addEventListener('load', () => {
+            const prebidTest = new PrebidServerTest();
+            prebidTest.init();
+        });
+    </script>
+</body>
+</html>
