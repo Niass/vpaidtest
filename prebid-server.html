@@ -451,6 +451,7 @@
                     // MOCK: Ajouter des réponses mock pour native et video si nécessaire
                     const isDev = window.location.hostname === 'localhost' || 
                                 window.location.hostname === '127.0.0.1';
+                    console.log("isDev", isDev, window.location.hostname);
                     if (isDev) {
                         data = this.addMockResponses(data);
                     }
