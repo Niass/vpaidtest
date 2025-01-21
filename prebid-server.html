@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,130 +11,331 @@
     <style>
         body {
             margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f0f2f5;
+            color: #1c1e21;
+            line-height: 1.5;
         }
 
-        .ad-container {
-            margin: 20px 0;
-            padding: 10px;
-            border: 1px dashed #ccc;
-            background: #f9f9f9;
+        .site-header {
+            background: linear-gradient(90deg, #4267B2, #5B7BD5);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .banner-container {
-            min-height: 90px;
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .native-container {
-            min-height: 250px;
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
         }
 
-        .video-container {
-            min-height: 400px;
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            opacity: 0.9;
+            transition: opacity 0.2s;
         }
 
-        .ad-label {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 5px;
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .main-content {
+            margin-top: 60px;
+            padding-top: 20px;
+            padding-bottom: 130px;
         }
 
         .content {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        #status-panel {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #333;
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            z-index: 1000;
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 32px;
+            color: #1c1e21;
         }
 
-        .native-ad-template {
-            display: none;
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1c1e21;
+        }
+
+        .section-text {
+            color: #65676b;
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .ad-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+        }
+
+        .ad-label {
+            font-size: 12px;
+            color: #65676b;
+            margin-bottom: 10px;
+            font-weight: 500;
         }
 
         .native-ad {
-            padding: 10px;
+            padding: 15px;
             background: #fff;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .native-ad img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
-            margin-bottom: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
 
         .native-ad-title {
             font-size: 18px;
             font-weight: bold;
-            margin-bottom: 8px;
+            color: #1c1e21;
+            margin-bottom: 10px;
         }
 
         .native-ad-desc {
             font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
+            color: #65676b;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         .native-ad-cta {
             display: inline-block;
-            padding: 8px 16px;
-            background: #007bff;
+            padding: 8px 20px;
+            background: #4267B2;
             color: white;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .native-ad-cta:hover {
+            background: #365899;
+        }
+
+        .footer-ad {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            height: 110px;
+            z-index: 1000;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #65676b;
+            cursor: pointer;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.2s ease;
+        }
+
+        .close-button:hover {
+            background: #f0f2f5;
+        }
+
+        #status-panel {
+            position: fixed;
+            bottom: 130px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        #status-panel.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .video-player-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-js {
+            border-radius: 8px;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
+
 <body>
-    <div class="content">
-        <h1>Page de test Prebid Server</h1>
-        
-        <!-- Banner Ad -->
-        <div class="ad-container banner-container">
-            <div class="ad-label">Banner Ad (728x90)</div>
-            <div id="banner-ad"></div>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="#" class="logo">Prebid Test</a>
+            <nav>
+                <a href="#guide" class="nav-link">Guide d'intégration</a>
+                <a href="#documentation" class="nav-link">Documentation</a>
+            </nav>
         </div>
+    </header>
 
-        <!-- Native Ad -->
-        <div class="ad-container native-container">
-            <div class="ad-label">Native Ad</div>
-            <div id="native-ad"></div>
+    <div class="main-content">
+        <div class="content">
+            <div class="ad-container">
+                <div class="ad-label">Header Ad (728x90)</div>
+                <div id="header-ad"></div>
+            </div>
+
+            <h1 class="page-title">Page de test Prebid Server</h1>
+
+            <section class="section">
+                <h2 class="section-title">À propos de cette page</h2>
+                <p class="section-text">
+                    Cette page de test vous permet de vérifier l'intégration de Prebid Server dans votre environnement.
+                    Elle simule différents types de formats publicitaires (bannière, native, vidéo) et vous aide à
+                    valider votre configuration.
+                </p>
+            </section>
+
+            <div class="ad-container">
+                <div class="ad-label">Banner Ad (728x90)</div>
+                <div id="banner-ad"></div>
+            </div>
+
+            <section class="section">
+                <h2 class="section-title">Formats Publicitaires Disponibles</h2>
+                <p class="section-text">
+                    Nous prenons en charge plusieurs formats publicitaires pour répondre à vos besoins :
+                </p>
+                <ul>
+                    <li>Bannières display standards (728x90, 300x250, etc.)</li>
+                    <li>Publicités natives personnalisables</li>
+                    <li>Publicités vidéo instream et outstream</li>
+                    <li>Formats rich media</li>
+                </ul>
+            </section>
+
+            <div class="ad-container">
+                <div class="ad-container native-container">
+                    <div class="ad-label">Native Ad</div>
+                    <div id="native-ad"></div>
+                </div>
+
+                <!-- Template for Native Ad -->
+                <template class="native-ad-template">
+                    <div class="native-ad">
+                        <img class="native-ad-image" src="" alt="">
+                        <div class="native-ad-title"></div>
+                        <div class="native-ad-desc"></div>
+                        <a class="native-ad-cta" href="" target="_blank"></a>
+                    </div>
+                </template>
+            </div>
+
+            <section class="section">
+                <h2 class="section-title">Intégration Vidéo</h2>
+                <p class="section-text">
+                    Notre solution vidéo utilise le Google IMA SDK pour une expérience publicitaire optimale.
+                    Le player ci-dessous démontre l'intégration d'une publicité pre-roll avec possibilité de skip.
+                </p>
+            </section>
+
+            <div class="ad-container">
+                <div class="ad-label">Video Ad</div>
+                <div id="video-ad">
+                    <div class="video-player-wrapper">
+                        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto" width="640"
+                            height="360">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <section class="section">
+                <h2 class="section-title">Panel de Debug</h2>
+                <p class="section-text">
+                    Le panel de statut en bas à droite affiche des informations en temps réel sur :
+                </p>
+                <ul>
+                    <li>Le statut de chargement des publicités</li>
+                    <li>La latence des requêtes</li>
+                    <li>Les éventuelles erreurs</li>
+                </ul>
+            </section>
         </div>
+    </div>
 
-        <!-- Template for Native Ad -->
-        <template class="native-ad-template">
-            <div class="native-ad">
-                <img class="native-ad-image" src="" alt="">
-                <div class="native-ad-title"></div>
-                <div class="native-ad-desc"></div>
-                <a class="native-ad-cta" href="" target="_blank"></a>
-            </div>
-        </template>
-
-        <!-- Video Ad -->
-        <div class="ad-container video-container">
-            <div class="ad-label">Video Ad</div>
-            <div id="video-ad">
-                <video id="video-player" 
-                       class="video-js vjs-default-skin" 
-                       controls 
-                       width="640" 
-                       height="360">
-                </video>
-            </div>
+    <div class="footer-ad" id="footer-ad-container">
+        <button class="close-button"
+            onclick="document.getElementById('footer-ad-container').classList.add('hidden')">×</button>
+        <div class="ad-container" style="margin: 0; box-shadow: none;">
+            <div class="ad-label">Footer Ad (728x90)</div>
+            <div id="footer-ad"></div>
         </div>
     </div>
 
@@ -158,13 +360,18 @@
                     auction: 'https://am-prebid.bliink.io/openrtb2/auction'
                 };
                 this.adUnits = {
-                    'banner-ad': {
+                    'header-ad': {
                         tagid: 'TELELOISIRS_HEADER',
                         type: 'banner',
                         sizes: [[728, 90]]
                     },
+                    'banner-ad': {
+                        tagid: 'TELELOISIRS_ARTICLE',
+                        type: 'banner',
+                        sizes: [[728, 90]]
+                    },
                     'native-ad': {
-                        tagid: 'TELELOISIRS_ARTICLE',  // On utilise un tagid supporté
+                        tagid: 'TELELOISIRS_ARTICLE',
                         type: 'native',
                         nativeConfig: {
                             title: { required: true, len: 80 },
@@ -176,7 +383,7 @@
                         }
                     },
                     'video-ad': {
-                        tagid: 'TELELOISIRS_FOOTER',  // On utilise un tagid supporté
+                        tagid: 'TELELOISIRS_FOOTER',
                         type: 'video',
                         playerSize: [640, 360],
                         context: 'instream',
@@ -186,10 +393,16 @@
                         maxduration: 30,
                         linearity: 1,
                         skip: 1
+                    },
+                    'footer-ad': {
+                        tagid: 'TELELOISIRS_FOOTER',
+                        type: 'banner',
+                        sizes: [[728, 90]]
                     }
                 };
                 this.initTime = Date.now();
                 this.videoPlayer = null;
+                this.statusPanelTimeout = null;
             }
 
             async init() {
@@ -201,13 +414,7 @@
 
                 try {
                     const tcData = await this.getTCFConsent();
-                    // S'assurer que VideoJS est chargé avant d'initialiser le player
-                    if (typeof videojs === 'undefined') {
-                        throw new Error('VideoJS n\'est pas chargé');
-                    }
-                    
-                    // Initialiser le player avant la requête
-                    await this.initVideoPlayer();
+                    await this.setupVideoPlayer();
                     this.updateStatus('Consentement obtenu, envoi de la requête...');
                     await this.requestAds(tcData);
                 } catch (error) {
@@ -215,42 +422,70 @@
                     console.error(error);
                 }
             }
+            getBannerSizes() {
+                const width = window.innerWidth;
+                // En mobile (<768px), on utilise 300x250 ou 320x50
+                if (width < 768) {
+                    return [[300, 250], [320, 50]];
+                }
+                // Sinon on garde les formats standards
+                return [[728, 90]];
+            }
 
             async initVideoPlayer() {
                 return new Promise((resolve) => {
-                    // Attendre que le DOM soit prêt
                     if (document.readyState === 'complete') {
-                        this.setupVideoPlayer();
-                        resolve();
+                        this.setupVideoPlayer().then(resolve);
                     } else {
                         window.addEventListener('load', () => {
-                            this.setupVideoPlayer();
-                            resolve();
+                            this.setupVideoPlayer().then(resolve);
                         });
                     }
                 });
             }
 
-            setupVideoPlayer() {
-                const player = videojs('video-player', {
-                    controls: true,
-                    fluid: true
-                });
-                
-                // Initialiser IMA après que le player est prêt
-                player.ready(() => {
-                    try {
-                        if (typeof google !== 'undefined' && google.ima) {
-                            player.ima({
-                                adTagUrl: ''  // Sera mis à jour lors du rendu de la pub
-                            });
-                            this.videoPlayer = player;
-                        } else {
-                            console.error('IMA SDK non chargé');
-                        }
-                    } catch (error) {
-                        console.error('Erreur lors de l\'initialisation IMA:', error);
+
+            async setupVideoPlayer() {
+                return new Promise((resolve, reject) => {
+                    if (typeof videojs === 'undefined') {
+                        reject(new Error("VideoJS n'est pas chargé."));
+                        return;
                     }
+
+                    const player = videojs('video-player', {
+                        controls: true,
+                        fluid: true,
+                        preload: 'auto'
+                    });
+
+                    player.ready(() => {
+                        if (typeof google === 'undefined' || !google.ima) {
+                            console.error('IMA SDK non chargé.');
+                            resolve();
+                            return;
+                        }
+
+                        const imaOptions = {
+                            id: 'video-player',
+                            adTagUrl: '', // Ad tag initial (sera mis à jour dans renderMockAd)
+                            debug: true,
+                            loadVideoTimeout: 6000,
+                            vpaidMode: google.ima.ImaSdkSettings.VpaidMode.ENABLED
+                        };
+
+                        player.ima(imaOptions);
+                        this.videoPlayer = player;
+
+                        player.on('ads-error', (err) => {
+                            console.error('Erreur de publicité:', err);
+                        });
+
+                        player.on('error', (e) => {
+                            console.error('Erreur du lecteur vidéo:', e);
+                        });
+
+                        resolve();
+                    });
                 });
             }
 
@@ -299,11 +534,11 @@
                         };
 
                         // Add format-specific configurations
-                        switch(unit.type) {
+                        switch (unit.type) {
                             case 'banner':
                                 imp.banner = {
                                     topframe: 1,
-                                    format: unit.sizes.map(([w, h]) => ({ w, h }))
+                                    format: this.getBannerSizes().map(([w, h]) => ({ w, h }))
                                 };
                                 break;
                             case 'native':
@@ -407,7 +642,7 @@
                     },
                     regs: {
                         ext: {
-                            gdpr:0
+                            gdpr: 0
                         }
                     },
                     test: 0,
@@ -432,7 +667,7 @@
 
             async requestAds(tcData) {
                 const request = this.buildRequest(tcData);
-                
+
                 try {
                     const response = await fetch(this.endpoints.auction, {
                         method: 'POST',
@@ -447,15 +682,14 @@
                     }
 
                     let data = await response.json();
-                    
+
                     // MOCK: Ajouter des réponses mock pour native et video si nécessaire
-                    const isDev = window.location.hostname === 'localhost' || 
-                                window.location.hostname === '127.0.0.1';
-                    console.log("isDev", isDev, window.location.hostname);
+                    const isDev = window.location.hostname === 'localhost' ||
+                        window.location.hostname === '127.0.0.1';
                     if (isDev) {
                         data = this.addMockResponses(data);
                     }
-                    
+
                     this.displayLatency();
                     this.renderAds(data.seatbid);
                     this.updateStatus('Publicités chargées avec succès');
@@ -464,9 +698,10 @@
                 }
             }
 
+
             renderAds(seatbid) {
                 if (!seatbid || !seatbid.length) return;
-                
+
                 seatbid.forEach(seat => {
                     seat.bid.forEach(bid => {
                         const adUnit = this.adUnits[bid.impid];
@@ -495,55 +730,69 @@
                         ],
                         link: { url: "https://example.com" }
                     };
+
                     const container = document.getElementById(impid);
                     if (container) {
                         const template = document.querySelector('.native-ad-template');
-                        const content = template.content.cloneNode(true);
-                        const ad = content.querySelector('.native-ad');
-                        
-                        ad.querySelector('.native-ad-image').src = mockNative.assets[1].img.url;
-                        ad.querySelector('.native-ad-title').textContent = mockNative.assets[0].title.text;
-                        ad.querySelector('.native-ad-desc').textContent = mockNative.assets[2].data.value;
-                        const cta = ad.querySelector('.native-ad-cta');
-                        cta.textContent = mockNative.assets[4].data.value;
-                        cta.href = mockNative.link.url;
+                        if (template) {
+                            const content = template.content.cloneNode(true);
+                            const ad = content.querySelector('.native-ad');
 
-                        container.innerHTML = '';
-                        container.appendChild(content);
+                            ad.querySelector('.native-ad-image').src = mockNative.assets[1].img.url;
+                            ad.querySelector('.native-ad-title').textContent = mockNative.assets[0].title.text;
+                            ad.querySelector('.native-ad-desc').textContent = mockNative.assets[2].data.value;
+
+                            const cta = ad.querySelector('.native-ad-cta');
+                            cta.textContent = mockNative.assets[4].data.value;
+                            cta.href = mockNative.link.url;
+
+                            container.innerHTML = '';
+                            container.appendChild(content);
+                        } else {
+                            console.error("Template de publicité native non trouvée.");
+                        }
+                    } else {
+                        console.error("Conteneur de publicité native non trouvé.");
                     }
                 } else if (type === 'video') {
-                    const mockVastUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
-                    const container = document.getElementById(impid);
-                    if (container && this.videoPlayer) {
-                        this.videoPlayer.src({ 
+                    try {
+                        if (!this.videoPlayer) {
+                            console.error('Lecteur vidéo non initialisé.');
+                            return;
+                        }
+
+                        const mockVastUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
+
+                        this.videoPlayer.ima.changeAdTag(mockVastUrl);
+
+                        this.videoPlayer.src({
                             type: 'video/mp4',
                             src: 'https://video.bliink.io/creative-preview.mp4'
                         });
-                        // Initialiser IMA avec le VAST mock
-                        if (typeof this.videoPlayer.ima === 'function') {
-                            this.videoPlayer.ima({
-                                id: 'video-player',
-                                adTagUrl: mockVastUrl
-                            });
-                        }
-                        if (this.videoPlayer.ima && typeof this.videoPlayer.ima.changeAdTag === 'function') {
-                            this.videoPlayer.ima.changeAdTag(mockVastUrl);
+
+                        this.videoPlayer.one('loadedmetadata', () => {
                             this.videoPlayer.ima.requestAds();
-                        }
+                        });
+                    } catch (error) {
+                        console.error('Erreur dans le rendu de la publicité vidéo:', error);
                     }
                 }
             }
+
 
             renderBanner(bid) {
                 const container = document.getElementById(bid.impid);
                 if (!container) return;
 
                 const iframe = document.createElement('iframe');
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
+                // Utiliser les dimensions de la réponse
+                if (bid.w && bid.h) {
+                    iframe.width = bid.w;
+                    iframe.height = bid.h;
+                }
                 iframe.style.border = 'none';
-                // Ajout des attributs pour résoudre les problèmes de sécurité
-                iframe.setAttribute('sandbox', 'allow-forms allow-same-origin allow-scripts allow-popups');
+                iframe.setAttribute('sandbox', 'allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation');
+                container.innerHTML = '';
                 container.appendChild(iframe);
 
                 const html = bid.adm;
@@ -559,6 +808,7 @@
 
                 const nativeData = JSON.parse(bid.adm);
                 const template = document.querySelector('.native-ad-template');
+                console.log("template", template);
                 const content = template.content.cloneNode(true);
 
                 const ad = content.querySelector('.native-ad');
@@ -601,9 +851,25 @@
             }
 
             updateStatus(message, isError = false) {
+                const statusPanel = document.getElementById('status-panel');
                 const status = document.getElementById('status');
+
+                // Nettoyer le timeout existant
+                if (this.statusPanelTimeout) {
+                    clearTimeout(this.statusPanelTimeout);
+                }
+
+                // Afficher le panel et mettre à jour le message
+                statusPanel.classList.remove('fade-out');
                 status.textContent = message;
                 status.style.color = isError ? '#ff4444' : '#fff';
+
+                // Cacher le panel après 5 secondes si ce n'est pas une erreur
+                if (!isError) {
+                    this.statusPanelTimeout = setTimeout(() => {
+                        statusPanel.classList.add('fade-out');
+                    }, 5000);
+                }
             }
 
             displayLatency() {
@@ -630,7 +896,7 @@
 
             addMockResponses(data) {
                 // Clone les données existantes
-                const mockData = {...data};
+                const mockData = { ...data };
                 if (!mockData.seatbid) mockData.seatbid = [];
 
                 // Mock pour Native
@@ -689,7 +955,7 @@
                     bid: [{
                         impid: 'video-ad',
                         price: 4.5,
-                        vastUrl: "https://vast.bliink.io/vp/bouygues/2024/Instream/vague2.xml"
+                        vastUrl: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
                     }]
                 });
 
@@ -704,4 +970,5 @@
         });
     </script>
 </body>
+
 </html>
