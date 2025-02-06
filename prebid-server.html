@@ -105,6 +105,8 @@
             margin: 20px auto;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             max-width: 1000px;
+            text-align: center;
+            position: relative;/
         }
 
         .ad-label {
@@ -230,6 +232,39 @@
         .hidden {
             display: none;
         }
+
+        #header-ad,
+        #article-ad {
+            width: 100%;
+            /* La largeur s'adapte à l'espace disponible */
+            height: auto;
+            /* La hauteur est définie dynamiquement */
+            background-color: #f0f0f0;
+            /* Couleur de fond pour indiquer la zone */
+            border: 1px dashed #ccc;
+            /* Bordure visible */
+            display: flex;
+            /* Pour centrer le texte ou le contenu */
+            align-items: center;
+            /* Centrer verticalement */
+            justify-content: center;
+            /* Centrer horizontalement */
+            color: #999;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-style: italic;
+            overflow: hidden;
+            /* Éviter les débordements */
+            position: relative;
+            /* Permet de positionner des éléments internes */
+        }
+
+        #header-ad.empty:before,
+        #article-ad.empty:before {
+            content: "Espace publicitaire disponible";
+            font-size: 14px;
+            color: #aaa;
+        }
     </style>
 </head>
 
@@ -264,7 +299,7 @@
 
             <div class="ad-container">
                 <div class="ad-label">Banner Ad (728x90)</div>
-                <div id="banner-ad"></div>
+                <div id="article-ad"></div>
             </div>
 
             <section class="section">
@@ -308,11 +343,6 @@
             <div class="ad-container">
                 <div class="ad-label">Video Ad</div>
                 <div id="video-ad">
-                    <div class="video-player-wrapper">
-                        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto" width="640"
-                            height="360">
-                        </video>
-                    </div>
                 </div>
             </div>
 
@@ -339,11 +369,8 @@
         </div>
     </div>
 
-    <div id="status-panel">
-        <div>Status: <span id="status">En attente du consentement...</span></div>
-        <div>Latence: <span id="latency">-</span></div>
-    </div>
-
+    <!-- Prebid.js -->
+    <script async src="https://niass.github.io/vpaidtest/test-prebid.js"></script>
     <!-- Video.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.3/video.min.js"></script>
     <!-- Plugin Videojs Contrib Ads (OBLIGATOIRE pour utiliser videojs-ima) -->
@@ -354,620 +381,379 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-ima/2.1.0/videojs.ima.min.js"></script>
 
     <script>
-        class PrebidServerTest {
-            constructor() {
-                this.endpoints = {
-                    auction: 'https://am-prebid.bliink.io/openrtb2/auction'
-                };
-                this.adUnits = {
-                    'header-ad': {
-                        tagid: 'TELELOISIRS_HEADER',
-                        type: 'banner',
-                        sizes: [[728, 90]]
-                    },
-                    'banner-ad': {
-                        tagid: 'TELELOISIRS_ARTICLE',
-                        type: 'banner',
-                        sizes: [[728, 90]]
-                    },
-                    'native-ad': {
-                        tagid: 'TELELOISIRS_ARTICLE',
-                        type: 'native',
-                        nativeConfig: {
-                            title: { required: true, len: 80 },
-                            image: { required: true, sizes: [1200, 627] },
-                            sponsoredBy: { required: true },
-                            clickUrl: { required: true },
-                            body: { required: true },
-                            cta: { required: true }
+        var bliink_pbjs = bliink_pbjs || {};
+        bliink_pbjs.que = bliink_pbjs.que || [];
+
+        // Configuration des size mappings
+        const getTagIdFromUrl = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tagId = urlParams.get('tagId');
+            // Valeur par défaut si aucun tagId n'est trouvé dans l'URL
+            return tagId || 'TELELOISIRS_FOOTER';
+        };
+
+        // Configuration des adUnits avec tagId dynamique
+        const tagId = getTagIdFromUrl();
+        // Définition des adUnits avec sizeMapping
+        const adUnits = [
+            {
+                code: 'header-ad',
+                ortb2Imp: {
+                    tagid: tagId,
+                },
+                mediaTypes: {
+                    banner: {
+                        sizes: [[728, 90], [320, 50], [300, 100]]  // toutes les tailles possibles
+                    }
+                },
+                bids: [
+                    {
+                        bidder: 'bliink',
+                        params: {
+                            tagId: tagId,
                         }
                     },
-                    'video-ad': {
-                        tagid: 'TELELOISIRS_FOOTER',
-                        type: 'video',
-                        playerSize: [640, 360],
-                        context: 'instream',
-                        mimes: ['video/mp4', 'video/webm'],
-                        protocols: [2, 3, 5, 6],
-                        api: [2],
-                        maxduration: 30,
-                        linearity: 1,
-                        skip: 1
-                    },
-                    'footer-ad': {
-                        tagid: 'TELELOISIRS_FOOTER',
-                        type: 'banner',
-                        sizes: [[728, 90]]
-                    }
-                };
-                this.initTime = Date.now();
-                this.videoPlayer = null;
-                this.statusPanelTimeout = null;
-            }
+                ],
 
-            async init() {
-                this.updateStatus('Vérification du consentement...');
+            },
+            {
+                code: 'video-ad',
+                mediaTypes: {
+                    video: {
+                        context: 'outstream',
+                        playerSize: [640, 480],
+                        mimes: ['video/mp4'],
+                        protocols: [1, 2, 3, 4, 5, 6, 7],
+                        playbackmethod: [2],
+                        skip: 1,
+                        renderer: {
+                            render: function (bid) {
+                                console.log('Rendering outstream video');
+
+                                const container = document.getElementById(bid.adUnitCode);
+                                if (!container) {
+                                    console.error('Container not found for ad unit:', bid.adUnitCode);
+                                    return;
+                                }
+
+                                const videoContainer = document.createElement('div');
+                                videoContainer.className = 'video-player-wrapper';
+
+                                const videoElement = document.createElement('video');
+                                videoElement.className = 'video-js vjs-default-skin';
+                                videoElement.style.width = '100%';
+                                videoElement.setAttribute('controls', true);
+                                videoElement.setAttribute('playsinline', true);
+                                videoElement.id = 'video-js-outstream-' + new Date().getTime();
+                                videoContainer.appendChild(videoElement);
+
+                                const adContainerDiv = document.createElement('div');
+                                adContainerDiv.id = 'adContainer-' + new Date().getTime();
+                                videoContainer.appendChild(adContainerDiv);
+
+                                container.appendChild(videoContainer);
+
+                                let adsInitialized = false;
+                                const player = videojs(videoElement);
+
+                                player.ready(function () {
+                                    console.log('Player ready, setting up IMA');
+
+                                    player.ima({
+                                        id: videoElement.id,
+                                        adsResponse: bid.vastXml,
+                                        debug: true,
+                                        loadVideoTimeout: 6000,
+                                        vpaidMode: google.ima.ImaSdkSettings.VpaidMode.ENABLED,
+                                        adContainer: adContainerDiv,
+                                        autoPlayAdBreaks: true
+                                    });
+
+                                    player.on('adsready', function () {
+                                        console.log('Ads are ready to be played');
+                                        if (!adsInitialized) {
+                                            adsInitialized = true;
+                                            console.log('First time adsready - starting ad playback');
+                                            player.ima.initializeAdDisplayContainer();
+                                            player.ima.requestAds();
+
+                                            // Force le début de la lecture après un court délai
+                                            setTimeout(() => {
+                                                console.log('Forcing playback start');
+                                                player.play();
+                                            }, 100);
+                                        }
+                                    });
+
+                                    // Événements de debug
+                                    player.on('adstart', function () {
+                                        console.log('Ad playback has started');
+                                    });
+
+                                    player.on('playing', function () {
+                                        console.log('Content/Ad is playing');
+                                    });
+
+                                    player.on('error', function (error) {
+                                        console.error('Player error:', error);
+                                        console.log('Error details:', player.error());
+                                    });
+
+                                    player.on('ima3-error', function (error) {
+                                        console.error('IMA3 error:', error);
+                                    });
+                                });
+                            }
+                        }
+                    }
+                },
+                bids: [{
+                    bidder: 'bliink',
+                    params: {
+                        tagId: tagId
+                    }
+                }]
+            },
+            {
+                code: 'native-ad',
+                ortb2Imp: {
+                    tagid: tagId, // C'est important que ça soit ajouté ic pourque ça soit inclus dans l'objet imp dans le payload et qu'on ait une pub
+                },
+                mediaTypes: {
+                    native: {
+                        title: { required: true, len: 80 },
+                        image: { required: true, sizes: [1200, 627] },
+                        sponsoredBy: { required: true },
+                        clickUrl: { required: true },
+                        body: { required: true },
+                        cta: { required: true }
+                    }
+                },
+                bids: [
+                    {
+                        bidder: 'bliink',
+                        params: {
+                            tagId: tagId,
+                        }
+                    }
+                ],
+            }
+        ];
+
+
+        // 1. Garder les fonctions de l'ancien code pour le mock et les rendus
+        function addMockResponses(bids) {
+            if (window.location.hostname !== 'localhost') return bids;
+
+            // Ajouter les mocks comme dans l'ancienne version
+            return bids.map(bid => {
+                if (bid.adUnitCode === 'native-ad' && !bid.native) {
+                    bid.native = {
+                        // Reprendre le mock native de l'ancienne version
+                    };
+                } else if (bid.adUnitCode === 'video-ad' && !bid.vastUrl) {
+                    bid.vastUrl = "https://vast.bliink.io/vp/bouygues/2024/Instream/vague2.xml";
+                }
+                return bid;
+            });
+        }
+
+        // 2. Setup Prebid.js
+        bliink_pbjs.que.push(() => {
+            // Configuration unique et complète
+            // D'abord déclarer les bidderSettings
+            bliink_pbjs.setConfig({
+                cache: {
+                    url: 'https://prebid.adnxs.com/pbc/v1/cache'
+                },
+                ortb2: {
+                    cur: ['EUR'], // ici tu indiques la ou les devises souhaitées
+                    ssp: 'ss-DailyMotion'
+                },
+                // Configuration Server-to-Server (pour activer les appels au prebid server)
+                s2sConfig: {
+                    accountId: '1',
+                    bidders: ['bliink'],
+                    timeout: 1000,
+                    adapter: 'prebidServer',
+                    enabled: true,
+                    endpoint: 'https://am-prebid.bliink.io/openrtb2/auction',
+                    syncEndpoint: 'https://am-prebid.bliink.io/cookie_sync',
+                    // extPrebid: {
+                    //     bidders: {
+                    //         bliink: {}
+                    //     }
+                    // }
+                },
+                // Configuration du consentement (sera mise à jour avec les données TCF)
+                consentManagement: {
+                    gdpr: {
+                        cmpApi: 'iab',
+                        defaultGdprScope: true,
+                        debug: true
+                    }
+                },
+                debug: true,
+                gvlMapping: {
+                    // Le key doit être exactement le nom du bidder
+                    'bliink': 658 // L'ID GVL si Bliink en a un
+                },
+            });
+
+            // Ajout des adUnits
+            console.log("adUnits@@", adUnits);
+            bliink_pbjs.addAdUnits(adUnits);
+        });
+
+        // 3. Vérification du consentement
+        async function getTCFConsent() {
+            return new Promise((resolve, reject) => {
                 if (typeof window.__tcfapi !== 'function') {
-                    this.updateStatus('Erreur: CMP non disponible', true);
+                    reject(new Error('CMP non disponible'));
                     return;
                 }
-
-                try {
-                    const tcData = await this.getTCFConsent();
-                    await this.setupVideoPlayer();
-                    this.updateStatus('Consentement obtenu, envoi de la requête...');
-                    await this.requestAds(tcData);
-                } catch (error) {
-                    this.updateStatus(`Erreur: ${error.message}`, true);
-                    console.error(error);
-                }
-            }
-            getBannerSizes() {
-                const width = window.innerWidth;
-                // En mobile (<768px), on utilise 300x250 ou 320x50
-                if (width < 768) {
-                    return [[300, 250], [320, 50]];
-                }
-                // Sinon on garde les formats standards
-                return [[728, 90]];
-            }
-
-            async initVideoPlayer() {
-                return new Promise((resolve) => {
-                    if (document.readyState === 'complete') {
-                        this.setupVideoPlayer().then(resolve);
-                    } else {
-                        window.addEventListener('load', () => {
-                            this.setupVideoPlayer().then(resolve);
-                        });
-                    }
+                window.__tcfapi('getTCData', 2, (tcData, success) => {
+                    console.log('TCF data:', tcData);
+                    console.log('Vendor consents:', tcData.vendor.consents);
+                    console.log('Purpose consents:', tcData.purpose.consents);
+                    if (success) resolve(tcData);
+                    else reject(new Error('Impossible d\'obtenir le consentement'));
                 });
+            });
+        }
+
+        // 5. Fonctions de rendu
+        function renderBanner(bid, adUnitCode) {
+            console.log("renderBanner called", bid);
+
+            if (!bid || !bid.adId) {
+                console.error('No valid bid or adId found');
+                return;
             }
 
+            const container = document.getElementById(adUnitCode);
 
-            async setupVideoPlayer() {
-                return new Promise((resolve, reject) => {
-                    if (typeof videojs === 'undefined') {
-                        reject(new Error("VideoJS n'est pas chargé."));
-                        return;
-                    }
-
-                    const player = videojs('video-player', {
-                        controls: true,
-                        fluid: true,
-                        preload: 'auto'
-                    });
-
-                    player.ready(() => {
-                        if (typeof google === 'undefined' || !google.ima) {
-                            console.error('IMA SDK non chargé.');
-                            resolve();
-                            return;
-                        }
-
-                        const imaOptions = {
-                            id: 'video-player',
-                            adTagUrl: '', // Ad tag initial (sera mis à jour dans renderMockAd)
-                            debug: true,
-                            loadVideoTimeout: 6000,
-                            vpaidMode: google.ima.ImaSdkSettings.VpaidMode.ENABLED
-                        };
-
-                        player.ima(imaOptions);
-                        this.videoPlayer = player;
-
-                        player.on('ads-error', (err) => {
-                            console.error('Erreur de publicité:', err);
-                        });
-
-                        player.on('error', (e) => {
-                            console.error('Erreur du lecteur vidéo:', e);
-                        });
-
-                        resolve();
-                    });
-                });
+            if (!container) {
+                console.error(`Container not found for banner ad with ID: ${adUnitCode}`);
+                return;
             }
 
-            getTCFConsent() {
-                return new Promise((resolve, reject) => {
-                    window.__tcfapi('getTCData', 2, (tcData, success) => {
-                        if (success) {
-                            resolve(tcData);
-                        } else {
-                            reject(new Error('Impossible d\'obtenir le consentement'));
-                        }
-                    });
-                });
-            }
-
-            buildRequest(tcData) {
-                const domain = window.location.hostname;
-                return {
-                    id: `request-${Date.now()}`,
-                    cur: ['EUR'],
-                    ssp: "ss-DailyMotion",
-                    imp: Object.entries(this.adUnits).map(([id, unit]) => {
-                        const imp = {
-                            id,
-                            tagid: unit.tagid,
-                            bidfloor: 0.01,
-                            bidfloorcur: "USD",
-                            secure: 1,
-                            ext: {
-                                data: {
-                                    gpid: `${id}-slot`,
-                                    tagid: unit.tagid
-                                },
-                                prebid: {
-                                    bidder: {
-                                        bliink: {
-                                            publisherId: 1,
-                                            adSlot: `${id}-slot`,
-                                            tagId: unit.tagid,
-                                            imageUrl: "http://sample-image.io"
-                                        }
-                                    },
-                                    adunitcode: id
-                                }
-                            }
-                        };
-
-                        // Add format-specific configurations
-                        switch (unit.type) {
-                            case 'banner':
-                                imp.banner = {
-                                    topframe: 1,
-                                    format: this.getBannerSizes().map(([w, h]) => ({ w, h }))
-                                };
-                                break;
-                            case 'native':
-                                imp.native = {
-                                    request: JSON.stringify({
-                                        ver: "1.2",
-                                        assets: [
-                                            {
-                                                id: 1,
-                                                required: 1,
-                                                title: { len: 80 }
-                                            },
-                                            {
-                                                id: 2,
-                                                required: 1,
-                                                img: {
-                                                    type: 3,
-                                                    w: 1200,
-                                                    h: 627
-                                                }
-                                            },
-                                            {
-                                                id: 3,
-                                                required: 1,
-                                                data: {
-                                                    type: 1,
-                                                    len: 200
-                                                }
-                                            },
-                                            {
-                                                id: 4,
-                                                required: 1,
-                                                data: {
-                                                    type: 2,
-                                                    len: 50
-                                                }
-                                            },
-                                            {
-                                                id: 5,
-                                                required: 1,
-                                                data: {
-                                                    type: 12,
-                                                    len: 20
-                                                }
-                                            }
-                                        ]
-                                    })
-                                };
-                                break;
-                            case 'video':
-                                imp.video = {
-                                    mimes: unit.mimes,
-                                    minduration: 1,
-                                    maxduration: unit.maxduration,
-                                    protocols: unit.protocols,
-                                    w: unit.playerSize[0],
-                                    h: unit.playerSize[1],
-                                    startdelay: 0,
-                                    placement: 1,
-                                    skip: unit.skip,
-                                    skipmin: 5,
-                                    skipafter: 5,
-                                    playbackmethod: [2],
-                                    api: unit.api
-                                };
-                                break;
-                        }
-
-                        return imp;
-                    }),
-                    site: {
-                        domain: domain,
-                        publisher: {
-                            domain: domain,
-                            id: "1"
-                        },
-                        page: window.location.href
-                    },
-                    device: {
-                        w: window.innerWidth,
-                        h: window.innerHeight,
-                        dnt: navigator.doNotTrack === "1" ? 1 : 0,
-                        ua: navigator.userAgent,
-                        language: navigator.language,
-                        "ip": "188.65.124.0",
-                        ext: {
-                            vpw: document.documentElement.clientWidth,
-                            vph: document.documentElement.clientHeight
-                        },
-                        devicetype: 2,
-                        os: this.getOS(),
-                        osv: this.getOSVersion()
-                    },
-                    user: {
-                        ext: {
-                            consent: tcData.tcString,
-                            ConsentedProvidersSettings: tcData.addtlConsent ? {
-                                consented_providers: tcData.addtlConsent
-                            } : undefined
-                        }
-                    },
-                    regs: {
-                        ext: {
-                            gdpr: 0
-                        }
-                    },
-                    test: 0,
-                    ext: {
-                        prebid: {
-                            auctiontimestamp: Date.now(),
-                            targeting: {
-                                includewinners: true,
-                                includebidderkeys: false
-                            },
-                            channel: {
-                                name: "pbjs",
-                                version: "v9.24.0-pre"
-                            },
-                            createtids: false
-                        },
-                        tmaxmax: 2000
-                    },
-                    tmax: 1000
-                };
-            }
-
-            async requestAds(tcData) {
-                const request = this.buildRequest(tcData);
-
-                try {
-                    const response = await fetch(this.endpoints.auction, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(request)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-
-                    let data = await response.json();
-
-                    // MOCK: Ajouter des réponses mock pour native et video si nécessaire
-                    const isDev = window.location.hostname === 'localhost' ||
-                        window.location.hostname === '127.0.0.1';
-                    if (isDev) {
-                        data = this.addMockResponses(data);
-                    }
-
-                    this.displayLatency();
-                    this.renderAds(data.seatbid);
-                    this.updateStatus('Publicités chargées avec succès');
-                } catch (error) {
-                    this.updateStatus(`Erreur lors de la requête: ${error.message}`, true);
-                }
-            }
-
-
-            renderAds(seatbid) {
-                if (!seatbid || !seatbid.length) return;
-
-                seatbid.forEach(seat => {
-                    seat.bid.forEach(bid => {
-                        const adUnit = this.adUnits[bid.impid];
-                        if (!adUnit) return;
-
-                        // Si c'est une réponse native ou vidéo, on utilise un mock
-                        if (adUnit.type === 'native' || adUnit.type === 'video') {
-                            this.renderMockAd(bid.impid, adUnit.type);
-                        } else {
-                            // Pour les bannières, on utilise la réponse du serveur
-                            this.renderBanner(bid);
-                        }
-                    });
-                });
-            }
-
-            renderMockAd(impid, type) {
-                if (type === 'native') {
-                    const mockNative = {
-                        assets: [
-                            { title: { text: "Publicité Native de Test" } },
-                            { img: { url: "https://placehold.co/1200x627", w: 1200, h: 627 } },
-                            { data: { value: "Description de test pour la publicité native" } },
-                            { data: { value: "Brand Test" } },
-                            { data: { value: "En savoir plus" } }
-                        ],
-                        link: { url: "https://example.com" }
-                    };
-
-                    const container = document.getElementById(impid);
-                    if (container) {
-                        const template = document.querySelector('.native-ad-template');
-                        if (template) {
-                            const content = template.content.cloneNode(true);
-                            const ad = content.querySelector('.native-ad');
-
-                            ad.querySelector('.native-ad-image').src = mockNative.assets[1].img.url;
-                            ad.querySelector('.native-ad-title').textContent = mockNative.assets[0].title.text;
-                            ad.querySelector('.native-ad-desc').textContent = mockNative.assets[2].data.value;
-
-                            const cta = ad.querySelector('.native-ad-cta');
-                            cta.textContent = mockNative.assets[4].data.value;
-                            cta.href = mockNative.link.url;
-
-                            container.innerHTML = '';
-                            container.appendChild(content);
-                        } else {
-                            console.error("Template de publicité native non trouvée.");
-                        }
-                    } else {
-                        console.error("Conteneur de publicité native non trouvé.");
-                    }
-                } else if (type === 'video') {
-                    try {
-                        if (!this.videoPlayer) {
-                            console.error('Lecteur vidéo non initialisé.');
-                            return;
-                        }
-
-                        const mockVastUrl = "https://vast.bliink.io/vp/bouygues/2024/Instream/vague2.xml";
-
-                        this.videoPlayer.ima.changeAdTag(mockVastUrl);
-
-                        this.videoPlayer.src({
-                            type: 'video/mp4',
-                            src: 'https://video.bliink.io/creative-preview.mp4'
-                        });
-
-                        this.videoPlayer.one('loadedmetadata', () => {
-                            this.videoPlayer.ima.requestAds();
-                        });
-                    } catch (error) {
-                        console.error('Erreur dans le rendu de la publicité vidéo:', error);
-                    }
-                }
-            }
-
-
-            renderBanner(bid) {
-                const container = document.getElementById(bid.impid);
-                if (!container) return;
-
+            try {
+                // Créer l'iframe
                 const iframe = document.createElement('iframe');
-                // Utiliser les dimensions de la réponse
-                if (bid.w && bid.h) {
-                    iframe.width = bid.w;
-                    iframe.height = bid.h;
-                }
-                iframe.style.border = 'none';
-                iframe.setAttribute('sandbox', 'allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation');
+                iframe.frameBorder = '0';
+                iframe.style.width = bid.width || bid.w || '100%';
+                iframe.style.height = bid.height || bid.h || '250px';
+
+                // Vider le conteneur et ajouter l'iframe
                 container.innerHTML = '';
                 container.appendChild(iframe);
 
-                const html = bid.adm;
-                const doc = iframe.contentWindow.document;
-                doc.open();
-                doc.write(html);
-                doc.close();
-            }
+                // Obtenir le document de l'iframe et rendre la publicité
+                const iframeDoc = iframe.contentWindow.document;
+                bliink_pbjs.renderAd(iframeDoc, bid.adId);
 
-            renderNative(bid) {
-                const container = document.getElementById(bid.impid);
-                if (!container) return;
-
-                const nativeData = JSON.parse(bid.adm);
-                const template = document.querySelector('.native-ad-template');
-                console.log("template", template);
-                const content = template.content.cloneNode(true);
-
-                const ad = content.querySelector('.native-ad');
-                ad.querySelector('.native-ad-image').src = nativeData.assets.find(a => a.img)?.img?.url || '';
-                ad.querySelector('.native-ad-title').textContent = nativeData.assets.find(a => a.title)?.title?.text || '';
-                ad.querySelector('.native-ad-desc').textContent = nativeData.assets.find(a => a.data && a.data.type === 2)?.data?.value || '';
-                const cta = ad.querySelector('.native-ad-cta');
-                cta.textContent = nativeData.assets.find(a => a.data && a.data.type === 12)?.data?.value || 'En savoir plus';
-                cta.href = nativeData.link?.url || '#';
-
-                container.innerHTML = '';
-                container.appendChild(content);
-            }
-
-            renderVideo(bid) {
-                const container = document.getElementById(bid.impid);
-                if (!container || !this.videoPlayer) return;
-
-                const vastUrl = bid.vastUrl || bid.adm;
-                if (!vastUrl) {
-                    console.error('No VAST URL or creative found for video ad');
-                    return;
-                }
-
-                // Si le player n'a pas encore d'instance IMA, on l'initialise
-                if (typeof this.videoPlayer.ima === 'function') {
-                    this.videoPlayer.ima({
-                        id: 'video-player',
-                        adTagUrl: vastUrl
-                    });
-                }
-
-                // On utilise l'instance IMA existante
-                this.videoPlayer.ready(() => {
-                    if (this.videoPlayer.ima && typeof this.videoPlayer.ima.changeAdTag === 'function') {
-                        this.videoPlayer.ima.changeAdTag(vastUrl);
-                        this.videoPlayer.ima.requestAds();
-                    }
-                });
-            }
-
-            updateStatus(message, isError = false) {
-                const statusPanel = document.getElementById('status-panel');
-                const status = document.getElementById('status');
-
-                // Nettoyer le timeout existant
-                if (this.statusPanelTimeout) {
-                    clearTimeout(this.statusPanelTimeout);
-                }
-
-                // Afficher le panel et mettre à jour le message
-                statusPanel.classList.remove('fade-out');
-                status.textContent = message;
-                status.style.color = isError ? '#ff4444' : '#fff';
-
-                // Cacher le panel après 5 secondes si ce n'est pas une erreur
-                if (!isError) {
-                    this.statusPanelTimeout = setTimeout(() => {
-                        statusPanel.classList.add('fade-out');
-                    }, 5000);
-                }
-            }
-
-            displayLatency() {
-                const latency = Date.now() - this.initTime;
-                document.getElementById('latency').textContent = `${latency}ms`;
-            }
-
-            getOS() {
-                const userAgent = navigator.userAgent;
-                if (userAgent.includes('Mac OS X')) return 'Mac OS X';
-                if (userAgent.includes('Windows')) return 'Windows';
-                if (userAgent.includes('Linux')) return 'Linux';
-                return 'Unknown';
-            }
-
-            getOSVersion() {
-                const userAgent = navigator.userAgent;
-                const macMatch = userAgent.match(/Mac OS X (\d+[._]\d+[._]\d+)/);
-                if (macMatch) return macMatch[1].replace(/_/g, '.');
-                const windowsMatch = userAgent.match(/Windows NT (\d+\.\d+)/);
-                if (windowsMatch) return windowsMatch[1];
-                return '';
-            }
-
-            addMockResponses(data) {
-                // Clone les données existantes
-                const mockData = { ...data };
-                if (!mockData.seatbid) mockData.seatbid = [];
-
-                // Mock pour Native
-                mockData.seatbid.push({
-                    bid: [{
-                        impid: 'native-ad',
-                        price: 3.5,
-                        adm: JSON.stringify({
-                            ver: "1.2",
-                            assets: [
-                                {
-                                    id: 1,
-                                    title: {
-                                        text: "Titre de la publicité native"
-                                    }
-                                },
-                                {
-                                    id: 2,
-                                    img: {
-                                        url: "https://placehold.co/1200x627",
-                                        w: 1200,
-                                        h: 627
-                                    }
-                                },
-                                {
-                                    id: 3,
-                                    data: {
-                                        type: 1,
-                                        value: "Description longue de la publicité native de test"
-                                    }
-                                },
-                                {
-                                    id: 4,
-                                    data: {
-                                        type: 2,
-                                        value: "Brand"
-                                    }
-                                },
-                                {
-                                    id: 5,
-                                    data: {
-                                        type: 12,
-                                        value: "Cliquez ici"
-                                    }
-                                }
-                            ],
-                            link: {
-                                url: "https://example.com"
-                            }
-                        })
-                    }]
-                });
-
-                // Mock pour Video
-                mockData.seatbid.push({
-                    bid: [{
-                        impid: 'video-ad',
-                        price: 4.5,
-                        vastUrl: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
-                    }]
-                });
-
-                return mockData;
+                console.log("Ad rendered in iframe", bid.adId);
+            } catch (error) {
+                console.error(`Error rendering banner ad for ${adUnitCode}:`, error);
             }
         }
 
-        // Initialisation au chargement de la page
-        window.addEventListener('load', () => {
-            const prebidTest = new PrebidServerTest();
-            prebidTest.init();
-        });
+        function renderNative(bid) {
+            const container = document.getElementById(bid.impid);
+            if (!container) return;
+
+            const nativeData = JSON.parse(bid.adm);
+            const template = document.querySelector('.native-ad-template');
+            console.log("template", template);
+            const content = template.content.cloneNode(true);
+
+            const ad = content.querySelector('.native-ad');
+            ad.querySelector('.native-ad-image').src = nativeData.assets.find(a => a.img)?.img?.url || '';
+            ad.querySelector('.native-ad-title').textContent = nativeData.assets.find(a => a.title)?.title?.text || '';
+            ad.querySelector('.native-ad-desc').textContent = nativeData.assets.find(a => a.data && a.data.type === 2)?.data?.value || '';
+            const cta = ad.querySelector('.native-ad-cta');
+            cta.textContent = nativeData.assets.find(a => a.data && a.data.type === 12)?.data?.value || 'En savoir plus';
+            cta.href = nativeData.link?.url || '#';
+
+            container.innerHTML = '';
+            container.appendChild(content);
+        }
+
+        // 6. Gestion des réponses
+        function handleBidResponses(bidResponses) {
+            console.log("handleBidResponses called", bidResponses);
+
+            // Validation initiale
+            if (!bidResponses || typeof bidResponses !== 'object') {
+                console.error("Invalid bid responses:", bidResponses);
+                return;
+            }
+
+            // Utilisation de bliink_pbjs.getHighestCpmBids() pour obtenir les meilleures enchères
+            const highestBids = bliink_pbjs.getHighestCpmBids();
+            console.log("highestBids$$", highestBids);
+            // Vérification si des enchères valides ont été trouvées
+            if (!highestBids || !Array.isArray(highestBids) || highestBids.length === 0) {
+                console.warn("No valid highest CPM bids found.");
+                return;
+            }
+
+            // Parcourir les meilleures enchères
+            highestBids.forEach((bestBid) => {
+                const adUnitCode = bestBid.adUnitCode;
+
+                // Log détaillé du gagnant
+                console.log(`Winner for ${adUnitCode}:`, {
+                    winningBidder: bestBid.bidderCode,
+                    originalAdapter: bestBid.meta?.adaptercode || 'unknown',
+                    cpm: bestBid.cpm,
+                    mediaType: bestBid.mediaType
+                });
+
+                // Rendre la publicité en fonction du type
+                try {
+                    switch (bestBid.mediaType) {
+                        case 'banner':
+                            renderBanner(bestBid, adUnitCode);
+                            break;
+                        case 'video':
+                            if (bestBid.renderer && typeof bestBid.renderer.render === 'function') {
+                                bestBid.renderer.render(bestBid);
+                            } else {
+                                console.error('No renderer available for video ad');
+                            }
+                        case 'native':
+                            renderNative(bestBid, adUnitCode);
+                            break;
+                        default:
+                            console.warn(`Unsupported media type: ${bestBid.mediaType}`);
+                    }
+                } catch (error) {
+                    console.error(`Error rendering ad for ${adUnitCode}:`, error);
+                }
+            });
+        }
+
+        // 7. Fonction principale d'initialisation
+        async function initPrebidTest() {
+            try {
+                const tcData = await getTCFConsent();
+                console.log("tcData", tcData);
+                bliink_pbjs.que.push(() => {
+                    // Déclencher les enchères
+                    bliink_pbjs.requestBids({
+                        bidsBackHandler: handleBidResponses
+                    });
+                });
+            } catch (error) {
+                console.error('Erreur d\'initialisation:', error);
+            }
+        }
+
+
+        // 8. Démarrage au chargement de la page
+        window.addEventListener('load', initPrebidTest);
     </script>
 </body>
 
