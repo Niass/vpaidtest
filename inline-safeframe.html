@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bliink Ad 300×250</title>
+<style>
+html, body { margin:0; padding:0; height:100%; }
+/* Root container where the SDK will render the creative */
+#div-gpt-ad-1572605268871-0 { width:300px; height:250px; }
+</style>
+</head>
+<body>
+
+
+<!-- Loader snippet (as provided) → loads SDK then calls BLIINK.loadAd -->
+  <script type="text/javascript">
+  (function(){
+      var e = document.getElementsByTagName("script")[0];
+      var script = document.createElement("script");
+      script.src = "http://localhost:3000/library.min.js?cb=" + Date.now();
+      script.async = true;
+      script.defer = true;
+      script.onload = function() {
+        BLIINK.loadAd({ tagId: '248' });
+      };
+      e.parentNode.insertBefore(script, e);
+  })();
+  </script>
+</body>
+</html>
