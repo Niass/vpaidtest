@@ -1,9 +1,12 @@
-/* VPAID JS — version corrigée
- * Corrections majeures :
- * 1) Boutons au-dessus du calque de clic (z-index: 10000)
- * 2) slot positionné en relative pour un stacking context propre
- * 3) Insertion des boutons non conditionnée à vpaidDomInImage / .in-image
- * 4) Calque de clic identifié (#bliink-click-layer)
+/* VPAID JS — version complète (spec 2.0 conservée) + deux boutons de test
+ *
+ * Ce fichier conserve l’interface et le comportement d’origine (events VPAID,
+ * gestion video linéaire, quartiles, getters, resize, pause/resume, etc.)
+ * et ajoute :
+ *  - Fallback d’URL de clic via AdParameters (clickUrl/clickTag/...)
+ *  - Deux boutons de test (cta-primary / cta-secondary) avec URLs distinctes
+ *  - Calque global de clic (#bliink-click-layer) conservé
+ *  - Z-index/position sécurisés pour la cliquabilité
  */
 
 const Vpaid = class {
@@ -27,55 +30,33 @@ const Vpaid = class {
   constructor() {
     this.slot_ = null;
     if (this.vpaidDom) {
-      // Normalise tout z-index trouvé à 999 dans le DOM injecté
-      this.vpaidDom = this.vpaidDom.replace(/z-index:\s*\d+;/g, "z-index: 999;");
+      this.vpaidDom = this.vpaidDom.replace(/z-index:\s*\d+;/g, 'z-index: 999;');
     }
     this.videoSlot_ = null;
     this.eventsCallbacks_ = {};
     this.attributes_ = {
-      companions: "",
-      desiredBitrate: 256,
-      duration: 10,
-      expanded: false,
-      height: 0,
-      icons: "",
-      linear: false,
-      skippableState: false,
-      viewMode: "normal",
-      width: 0,
-      volume: 1,
+      companions: '', desiredBitrate: 256, duration: 10, expanded: false,
+      height: 0, icons: '', linear: false, skippableState: false,
+      viewMode: 'normal', width: 0, volume: 1
     };
     this.startTime_ = 0;
     this.quartileEvents_ = [
-      { event: "AdVideoStart", value: 0 },
-      { event: "AdVideoFirstQuartile", value: 25 },
-      { event: "AdVideoMidpoint", value: 50 },
-      { event: "AdVideoThirdQuartile", value: 75 },
-      { event: "AdVideoComplete", value: 99 },
+      {event:'AdVideoStart', value:0},
+      {event:'AdVideoFirstQuartile', value:25},
+      {event:'AdVideoMidpoint', value:50},
+      {event:'AdVideoThirdQuartile', value:75},
+      {event:'AdVideoComplete', value:99},
     ];
     this.nextQuartileIndex_ = 0;
     this.parameters_ = {};
+    this.clickThroughUrls = [];
+    this.defaultClickUrl = '';
   }
 
-  clickAd_() {
-    console.log("Bliink ad clicked");
-    if (this.clickThroughUrls?.length) {
-      const t = this.videoSlot_.currentTime;
-      let url = "";
-      for (const i of this.clickThroughUrls) {
-        if (t >= i.start && t < i.end) { url = i.url; break; }
-      }
-      if ("AdClickThru" in this.eventsCallbacks_) {
-        this.eventsCallbacks_.AdClickThru(url, "0", true);
-      }
-    } else if ("AdClickThru" in this.eventsCallbacks_) {
-      this.eventsCallbacks_.AdClickThru("", "0", true);
-    }
-  }
+  log(t){ console.log('[VPAID]', t); }
+  handshakeVersion(){ return '2.0'; }
 
-  handshakeVersion() { return "2.0"; }
-
-  initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
+  initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars){
     this.attributes_.width = width;
     this.attributes_.height = height;
     this.attributes_.viewMode = viewMode;
@@ -83,7 +64,6 @@ const Vpaid = class {
     this.slot_ = environmentVars.slot;
     this.videoSlot_ = environmentVars.videoSlot;
 
-    // Assure un stacking context propre pour les éléments en position absolue
     if (this.slot_) {
       this.slot_.style.position = this.slot_.style.position || 'relative';
     }
@@ -91,46 +71,89 @@ const Vpaid = class {
     try {
       this.parameters_ = JSON.parse(creativeData.AdParameters);
       this.clickThroughUrls = this.parameters_.clickThroughUrls || [];
-    } catch (err) {
-      this.log("Error parsing AdParameters: " + err.message);
-      this.callEvent_("AdError");
+      this.defaultClickUrl = this.parameters_.clickUrl || this.parameters_.clickTag || this.parameters_.clickThroughUrl || this.parameters_.landingPage || '';
+    } catch (e) {
+      this.log('Error parsing AdParameters: ' + e.message);
+      this.callEvent_('AdError');
       return;
     }
 
     this.log(`initAd ${width}x${height} ${viewMode} ${desiredBitrate}`);
 
     if (this.videoSlot_) {
-      this.videoSlot_.addEventListener("loadedmetadata", this.loadedMetadata_.bind(this), false);
-      this.videoSlot_.addEventListener("timeupdate", this.timeUpdateHandler_.bind(this), false);
-      this.videoSlot_.addEventListener("ended", this.stopAd.bind(this), false);
+      this.videoSlot_.addEventListener('loadedmetadata', this.loadedMetadata_.bind(this), false);
+      this.videoSlot_.addEventListener('timeupdate', this.timeUpdateHandler_.bind(this), false);
+      this.videoSlot_.addEventListener('ended', this.stopAd.bind(this), false);
     }
 
     if (this.slot_) {
-      const clickLayer = document.createElement("div");
+      const clickLayer = document.createElement('div');
       clickLayer.id = 'bliink-click-layer';
-      clickLayer.style.position = "absolute";
-      clickLayer.style.top = "0";
-      clickLayer.style.left = "0";
-      clickLayer.style.width = "100%";
-      clickLayer.style.height = "100%";
-      clickLayer.style.zIndex = "9999"; // les boutons sont à 10000
-      clickLayer.addEventListener("click", this.clickAd_.bind(this), false);
+      Object.assign(clickLayer.style, {
+        position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', zIndex: '9999', cursor: 'pointer'
+      });
+      clickLayer.addEventListener('click', this.clickAd_.bind(this), false);
       this.slot_.appendChild(clickLayer);
+
+      // Boutons de test (au-dessus du calque global)
+      this.addTestButtons();
     }
 
-    if (this.parameters_.vpaidType === "linear") {
+    if (this.parameters_.vpaidType === 'linear') {
       this.updateVideoSlot_();
     } else {
-      this.log("no linear type");
+      this.log('no linear type');
     }
 
-    this.callEvent_("AdLoaded");
+    this.callEvent_('AdLoaded');
+  }
+
+  addTestButtons(){
+    const makeBtn = (id, text, left, top, url, color) => {
+      const btn = document.createElement('div');
+      btn.id = id;
+      Object.assign(btn.style, {
+        position:'absolute', left, top, padding:'10px 16px', background:color,
+        color:'#fff', font:'bold 13px/1 Inter, sans-serif', borderRadius:'6px', cursor:'pointer', zIndex:'10000', userSelect:'none'
+      });
+      btn.textContent = text;
+      btn.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        this.log(`Click ${id} → ${url}`);
+        if ('AdClickThru' in this.eventsCallbacks_ && typeof this.eventsCallbacks_.AdClickThru === 'function') {
+          this.eventsCallbacks_.AdClickThru(url, id, true);
+        } else {
+          try { window.open(url, '_blank'); } catch(_) { /* noop */ }
+        }
+      });
+      this.slot_.appendChild(btn);
+    };
+    makeBtn('cta-primary',   '➡️ EN SAVOIR PLUS', '35%', '75%', 'https://example.com/primary',   '#2563eb');
+    makeBtn('cta-secondary', '🔥 VOIR L’OFFRE',   '60%', '75%', 'https://example.com/secondary', '#f43f5e');
+  }
+
+  clickAd_(){
+    this.log('Global click');
+    let url = '';
+    if (this.clickThroughUrls?.length && this.videoSlot_) {
+      const t = this.videoSlot_.currentTime || 0;
+      for (const i of this.clickThroughUrls) {
+        if (t >= (i.start||0) && t < (i.end??Infinity)) { url = i.url || ''; break; }
+      }
+    }
+    if (!url) url = this.defaultClickUrl || '';
+    if (!url) { this.log('No clickUrl defined'); return; }
+    if ('AdClickThru' in this.eventsCallbacks_ && typeof this.eventsCallbacks_.AdClickThru === 'function') {
+      this.eventsCallbacks_.AdClickThru(url, 'default', true);
+    } else {
+      try { window.open(url, '_blank'); } catch(_) { /* noop */ }
+    }
   }
 
   updateVideoSlot_ = () => {
     if (!this.videoSlot_) {
-      this.videoSlot_ = document.createElement("video");
-      this.log("Warning: No video element passed to ad, creating element.");
+      this.videoSlot_ = document.createElement('video');
+      this.log('Warning: No video element passed to ad, creating element.');
       if (this.slot_) this.slot_.appendChild(this.videoSlot_);
     }
     this.updateVideoPlayerSize_();
@@ -138,263 +161,128 @@ const Vpaid = class {
     const media = this.parameters_.mediaFiles || [];
     let chosen = false;
     for (let i = 0; i < media.length; i++) {
-      if (this.videoSlot_.canPlayType(media[i].type) !== "") {
-        this.videoSlot_.setAttribute("src", media[i].uri);
+      if (this.videoSlot_.canPlayType(media[i].type) !== '') {
+        this.videoSlot_.setAttribute('src', media[i].uri);
         chosen = true;
         if (media[i].styles) this.videoSlot_.style.cssText = media[i].styles;
         break;
       }
     }
-    if (!chosen) this.callEvent_("AdError");
+    if (!chosen) this.callEvent_('AdError');
   };
 
-  updateVideoPlayerSize_() {
+  updateVideoPlayerSize_(){
     if (!this.videoSlot_) return;
-    this.videoSlot_.setAttribute("width", this.attributes_.width);
-    this.videoSlot_.setAttribute("height", this.attributes_.height);
+    this.videoSlot_.setAttribute('width', this.attributes_.width);
+    this.videoSlot_.setAttribute('height', this.attributes_.height);
   }
 
-  startAd() {
-    this.log("Starting ad");
-    if (this.parameters_.vpaidType === "linear" && this.videoSlot_) {
-      this.videoSlot_.play();
-    }
-    this.startTime_ = new Date().getTime();
-
+  startAd(){
+    this.log('Starting ad');
+    if (this.parameters_.vpaidType === 'linear' && this.videoSlot_) this.videoSlot_.play();
+    this.startTime_ = (new Date).getTime();
     if (this.videoSlot_ && this.videoSlot_.nodeName) {
-      this.slot_.insertAdjacentHTML("beforeend", this.vpaidDom);
-      if (this.parameters_.vpaidType === "linear") this.handleLinearAd();
+      this.slot_.insertAdjacentHTML('beforeend', this.vpaidDom);
+      if (this.parameters_.vpaidType === 'linear') this.handleLinearAd();
       else this.handleNonLinearAd();
     } else if (this.slot_) {
       this.handleScriptAndImages(this.slot_);
     }
-
-    this.callEvent_("AdStarted");
-    this.callEvent_("AdImpression");
+    this.callEvent_('AdStarted');
+    this.callEvent_('AdImpression');
   }
 
-  handleLinearAd() {
+  handleLinearAd(){
     const t = this.slot_;
     if (!t) return;
-    t.classList.add("percentage");
-    t.style.top = "0";
+    t.classList.add('percentage');
+    t.style.top = '0';
     this.handleVpaidDom(t);
     this.handleButtonSwitch(t);
   }
 
-  handleNonLinearAd() {
+  handleNonLinearAd(){
     if (!this.videoSlot_) return;
-    const container = this.videoSlot_.parentElement?.parentElement?.parentElement?.parentElement;
-    if (!container) return;
-    const e = container.querySelector("video");
+    const t = this.videoSlot_.parentElement?.parentElement?.parentElement?.parentElement;
+    if (!t) return;
+    const e = t.querySelector('video');
     if (!e || !e.parentElement) return;
-
     const h = e.parentElement.getBoundingClientRect().height;
-    e.parentElement.style.minHeight = h + "px";
-    e.parentElement.style.maxHeight = "360px";
-    e.parentElement.insertAdjacentHTML("beforeend", this.vpaidDom);
+    e.parentElement.style.minHeight = h + 'px';
+    e.parentElement.style.maxHeight = '360px';
+    e.parentElement.insertAdjacentHTML('beforeend', this.vpaidDom);
     this.handleScriptAndImages(e.parentElement);
     this.handleButtonSwitch(e.parentElement);
   }
 
-  handleVpaidDom(t) {
+  handleVpaidDom(t){
     if (!this.vpaidDom) return;
-    if (this.script) {
-      t.insertAdjacentHTML("beforeend", this.script);
-      this.handleScriptAndImages(t);
-    }
-    if (this.vpaidDomInImage) t.insertAdjacentHTML("beforeend", this.vpaidDomInImage);
+    if (this.script){ t.insertAdjacentHTML('beforeend', this.script); this.handleScriptAndImages(t); }
+    if (this.vpaidDomInImage) t.insertAdjacentHTML('beforeend', this.vpaidDomInImage);
   }
 
-  handleScriptAndImages(t) {
+  handleScriptAndImages(t){
     if (!this.script) return;
-    const tmp = document.createElement("div");
-    tmp.innerHTML = this.script;
-    const scripts = tmp.querySelectorAll("script");
-    const imgs = tmp.querySelectorAll("img");
-
-    scripts.forEach((scr) => {
-      const src = scr.src;
-      const s = document.createElement("script");
-      s.src = src;
-      s.type = "application/javascript";
-      t.appendChild(s);
-      scr.parentNode.removeChild(scr);
-    });
-
-    imgs.forEach((im) => {
-      const src = im.src;
-      const i = document.createElement("img");
-      i.src = src;
-      i.style.width = "0";
-      i.style.height = "0";
-      t.appendChild(i);
-      im.parentNode.removeChild(im);
-    });
-
-    t.appendChild(tmp);
+    const e = document.createElement('div');
+    e.innerHTML = this.script;
+    const scripts = e.querySelectorAll('script');
+    const imgs = e.querySelectorAll('img');
+    scripts.forEach((sc)=>{ const src = sc.src; const s=document.createElement('script'); s.src=src; s.type='application/javascript'; t.appendChild(s); sc.parentNode.removeChild(sc); });
+    imgs.forEach((im)=>{ const src = im.src; const i=document.createElement('img'); i.src=src; i.style.width='0'; i.style.height='0'; t.appendChild(i); im.parentNode.removeChild(im); });
+    t.appendChild(e);
   }
 
-  // ⇣⇣⇣ CORRIGÉ : on insère désormais les boutons sans dépendre de vpaidDomInImage / .in-image
-  handleButtonSwitch(t) {
-    // Bouton reduce / switch
-    if (this.buttonReduceSwitch) {
-      t.insertAdjacentHTML("beforeend", this.buttonReduceSwitch);
-    }
-
-    // Bouton close toujours inséré
+  handleButtonSwitch(t){
+    if (this.buttonReduceSwitch) t.insertAdjacentHTML('beforeend', this.buttonReduceSwitch);
     if (this.buttonCloseSwitch) {
-      t.insertAdjacentHTML("beforeend", this.buttonCloseSwitch);
-      const closeBtn = t.querySelector("#bliink-switch-close");
-      if (closeBtn) {
-        closeBtn.addEventListener("click", function () {
-          const inImg = t.parentElement?.querySelector(".in-image");
-          if (this && inImg) { this.remove(); inImg.remove(); }
-          else { this?.remove?.(); }
-        });
-      }
+      t.insertAdjacentHTML('beforeend', this.buttonCloseSwitch);
+      const close = t.querySelector('#bliink-switch-close');
+      if (close) close.addEventListener('click', function(){ const inImg = t.parentElement?.querySelector('.in-image'); if (this && inImg) { this.remove(); inImg.remove(); } else { this?.remove?.(); } });
     }
 
-    // Comportement spécial si vpaidDomInImage est présent (inchangé)
     if (this.vpaidDomInImage) {
-      const full = t.parentElement.querySelector(".full-image");
-      const inImg = t.parentElement.querySelector(".in-image");
-      const switchBtn = t.parentElement.querySelector("#bliink-switch");
-
-      if (switchBtn) {
-        switchBtn.addEventListener("click", () => {
-          if (full && inImg && switchBtn) {
-            full.style.top = "100%";
-            full.style.opacity = 0;
-            full.style.display = "none";
-            inImg.style.opacity = 1;
-            switchBtn.style.display = "none";
-            if (!t.parentElement.querySelector("#bliink-switch-close")) {
-              t.insertAdjacentHTML("beforeend", this.buttonCloseSwitch);
-              const e = t.parentElement.querySelector("#bliink-switch-close");
-              e && e.addEventListener("click", function () {
-                const ii = t.parentElement.querySelector(".in-image");
-                if (this && ii) { this.remove(); ii.remove(); }
-              });
-            }
-          }
-        });
-      }
-
-      const n = +full?.dataset?.transitionTiming || 0;
-      setTimeout(() => {
-        if (full && inImg) {
-          full.style.top = "100%";
-          full.style.opacity = 0;
-          full.style.display = "none";
-          inImg.style.opacity = 1;
-          if (!t.parentElement.querySelector("#bliink-switch-close")) {
-            t.insertAdjacentHTML("beforeend", this.buttonCloseSwitch);
-            const e = t.parentElement.querySelector("#bliink-switch-close");
-            e && e.addEventListener("click", function () {
-              const ii = t.parentElement.querySelector(".in-image");
-              if (this && ii) { this.remove(); ii.remove(); }
-            });
-          }
-        }
-      }, n);
+      const e = t.parentElement.querySelector('.full-image');
+      const i = t.parentElement.querySelector('.in-image');
+      const s = t.parentElement.querySelector('#bliink-switch');
+      if (s) s.addEventListener('click', ()=>{ if (e && i && s){ e.style.top='100%'; e.style.opacity=0; e.style.display='none'; i.style.opacity=1; s.style.display='none'; if (!t.parentElement.querySelector('#bliink-switch-close')){ t.insertAdjacentHTML('beforeend', this.buttonCloseSwitch); const c=t.parentElement.querySelector('#bliink-switch-close'); c&&c.addEventListener('click', function(){ const ii=t.parentElement.querySelector('.in-image'); if (this && ii){ this.remove(); ii.remove(); } }); } } });
+      const n = +e?.dataset?.transitionTiming || 0;
+      setTimeout(()=>{ if (e && i){ e.style.top='100%'; e.style.opacity=0; e.style.display='none'; i.style.opacity=1; if (!t.parentElement.querySelector('#bliink-switch-close')){ t.insertAdjacentHTML('beforeend', this.buttonCloseSwitch); const c=t.parentElement.querySelector('#bliink-switch-close'); c&&c.addEventListener('click', function(){ const ii=t.parentElement.querySelector('.in-image'); if (this && ii){ this.remove(); ii.remove(); } }); } } }, n);
     }
   }
 
-  timeUpdateHandler_() {
+  timeUpdateHandler_(){
     if (this.nextQuartileIndex_ >= this.quartileEvents_.length) return;
-    const pct = (100 * this.videoSlot_.currentTime) / this.videoSlot_.duration;
-    const q = this.quartileEvents_[this.nextQuartileIndex_];
-    if (pct >= q.value) {
-      if (q.event in this.eventsCallbacks_) this.eventsCallbacks_[q.event]();
-      this.nextQuartileIndex_ += 1;
-    }
-    if (this.videoSlot_.duration > 0) {
-      this.attributes_.remainingTime = this.videoSlot_.duration - this.videoSlot_.currentTime;
-    }
+    const pct = 100 * this.videoSlot_.currentTime / this.videoSlot_.duration;
+    const e = this.quartileEvents_[this.nextQuartileIndex_];
+    if (pct >= e.value){ if (e.event in this.eventsCallbacks_) this.eventsCallbacks_[e.event](); this.nextQuartileIndex_ += 1; }
+    if (this.videoSlot_.duration > 0) this.attributes_.remainingTime = this.videoSlot_.duration - this.videoSlot_.currentTime;
   }
 
-  loadedMetadata_() {
-    this.attributes_.duration = this.videoSlot_.duration;
-    this.callEvent_("AdDurationChange");
-  }
+  loadedMetadata_(){ this.attributes_.duration = this.videoSlot_.duration; this.callEvent_('AdDurationChange'); }
+  stopAd(){ this.log('Stopping ad'); setTimeout(this.callEvent_.bind(this,'AdStopped'), 75); }
+  resizeAd(w,h,vm){ this.log(`resizeAd ${w}x${h} ${vm}`); this.attributes_.width=w; this.attributes_.height=h; this.attributes_.viewMode=vm; this.updateVideoPlayerSize_(); this.callEvent_('AdSizeChange'); }
+  pauseAd(){ this.log('pauseAd'); if (this.videoSlot_){ this.videoSlot_.pause(); this.callEvent_('AdPaused'); } }
+  resumeAd(){ this.log('resumeAd'); if (this.videoSlot_){ this.videoSlot_.play(); this.callEvent_('AdPlaying'); } }
+  expandAd(){ this.log('expandAd'); this.attributes_.expanded = true; this.callEvent_('AdExpanded'); }
+  collapseAd(){ this.log('collapseAd'); this.attributes_.expanded = false; }
+  skipAd(){ this.log('skipAd'); if (this.attributes_.skippableState) this.callEvent_('AdSkipped'); }
 
-  stopAd() {
-    this.log("Stopping ad");
-    setTimeout(this.callEvent_.bind(this, "AdStopped"), 75);
-  }
+  subscribe(cb, ev, ctx){ this.log('Subscribe ' + ev); this.eventsCallbacks_[ev] = cb.bind(ctx); }
+  unsubscribe(ev){ this.log('unsubscribe ' + ev); this.eventsCallbacks_[ev] = null; }
 
-  resizeAd(width, height, viewMode) {
-    this.log(`resizeAd ${width}x${height} ${viewMode}`);
-    this.attributes_.width = width;
-    this.attributes_.height = height;
-    this.attributes_.viewMode = viewMode;
-    this.updateVideoPlayerSize_();
-    this.callEvent_("AdSizeChange");
-  }
+  getAdLinear(){ return this.attributes_.linear; }
+  getAdWidth(){ return this.attributes_.width; }
+  getAdHeight(){ return this.attributes_.height; }
+  getAdExpanded(){ this.log('getAdExpanded'); return this.attributes_.expanded; }
+  getAdSkippableState(){ this.log('getAdSkippableState'); return this.attributes_.skippableState; }
+  getAdRemainingTime(){ const t = (new Date).getTime(); return this.attributes_.duration - (t - this.startTime_) / 1000; }
+  getAdDuration(){ return this.attributes_.duration; }
+  getAdVolume(){ this.log('getAdVolume'); return this.attributes_.volume; }
+  setAdVolume(v){ this.attributes_.volume = v; this.log('setAdVolume ' + v); this.callEvent_('AdVolumeChange'); }
+  getAdCompanions(){ return this.attributes_.companions; }
+  getAdIcons(){ return this.attributes_.icons; }
 
-  pauseAd() {
-    this.log("pauseAd");
-    if (this.videoSlot_) {
-      this.videoSlot_.pause();
-      this.callEvent_("AdPaused");
-    }
-  }
-
-  resumeAd() {
-    this.log("resumeAd");
-    if (this.videoSlot_) {
-      this.videoSlot_.play();
-      this.callEvent_("AdPlaying");
-    }
-  }
-
-  expandAd() {
-    this.log("expandAd");
-    this.attributes_.expanded = true;
-    this.callEvent_("AdExpanded");
-  }
-
-  collapseAd() {
-    this.log("collapseAd");
-    this.attributes_.expanded = false;
-  }
-
-  skipAd() {
-    this.log("skipAd");
-    if (this.attributes_.skippableState) this.callEvent_("AdSkipped");
-  }
-
-  subscribe(callback, eventName, ctx) {
-    this.log("Subscribe " + eventName);
-    this.eventsCallbacks_[eventName] = callback.bind(ctx);
-  }
-
-  unsubscribe(eventName) {
-    this.log("unsubscribe " + eventName);
-    this.eventsCallbacks_[eventName] = null;
-  }
-
-  getAdLinear() { return this.attributes_.linear; }
-  getAdWidth() { return this.attributes_.width; }
-  getAdHeight() { return this.attributes_.height; }
-  getAdExpanded() { this.log("getAdExpanded"); return this.attributes_.expanded; }
-  getAdSkippableState() { this.log("getAdSkippableState"); return this.attributes_.skippableState; }
-  getAdRemainingTime() {
-    const t = new Date().getTime();
-    return this.attributes_.duration - (t - this.startTime_) / 1000;
-  }
-  getAdDuration() { return this.attributes_.duration; }
-  getAdVolume() { this.log("getAdVolume"); return this.attributes_.volume; }
-  setAdVolume(v) { this.attributes_.volume = v; this.log("setAdVolume " + v); this.callEvent_("AdVolumeChange"); }
-  getAdCompanions() { return this.attributes_.companions; }
-  getAdIcons() { return this.attributes_.icons; }
-
-  log(msg) { console.log(msg); }
-
-  callEvent_(name) {
-    if (name in this.eventsCallbacks_) this.eventsCallbacks_[name]();
-  }
+  callEvent_(name){ if (name in this.eventsCallbacks_ && typeof this.eventsCallbacks_[name] === 'function') this.eventsCallbacks_[name](); }
 };
 
-var getVPAIDAd = function () { return new Vpaid(); };
+var getVPAIDAd = function(){ return new Vpaid; };
