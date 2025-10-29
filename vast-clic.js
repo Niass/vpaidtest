@@ -1,247 +1,257 @@
-/* ================================================================
- *  VPAID Secure Mode Demo — full-feature showcase (fixed)
- *  Patch: implements full VPAID 2.0 surface (incl. collapseAd)
- * ================================================================ */
+/* ==================================================================
+ * VPAID 2.0 — Secure Demo (REAL VIDEO + REDUCE/EXPAND + 2 CTAs)
+ * Drop-in file, compatible with sandboxed players.
+ * - Uses environmentVars.slot / environmentVars.videoSlot
+ * - Loads media from AdParameters.mediaFiles[0].uri
+ * - Clicks via AdClickThru(url, id, true)
+ * - Two CTAs (ids: cta-primary / cta-secondary)
+ * - Reduce/Expand animates the video wrapper INSIDE the slot (no parent DOM)
+ * - Full VPAID surface implemented
+ * ================================================================== */
 
 const Vpaid = class {
   constructor() {
-    // === Slots & environment ===
     this.slot_ = null;
     this.videoSlot_ = null;
     this.eventsCallbacks_ = {};
 
-    // === Attributes per spec ===
     this.attributes_ = {
       width: 0,
       height: 0,
+      viewMode: 'normal',
       volume: 1,
       linear: true,
       expanded: false,
       skippableState: false,
       duration: 30,
       remainingTime: 30,
-      viewMode: 'normal',
       companions: '',
       icons: ''
     };
 
     this.parameters_ = {};
     this.defaultClickUrl = '';
+    this.clickThroughUrls = [];
+
     this.isMinimized = false;
     this.startEpoch_ = null;
-
-    // Quartile demo timers (no real video in this demo)
-    this.quartileTimers_ = [];
+    this._quartilesBound = false;
   }
 
-  /* =============================
-   *  VPAID REQUIRED INTERFACE
-   * ============================= */
-  handshakeVersion() { return '2.0'; }
+  /* ================= VPAID API ================= */
+  handshakeVersion(){ return '2.0'; }
 
-  initAd(width, height, viewMode, desiredBitrate, creativeData, env) {
-    // Save attrs
+  initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars){
+    // Save
     this.attributes_.width = width|0;
     this.attributes_.height = height|0;
     this.attributes_.viewMode = viewMode || 'normal';
 
-    this.slot_ = env.slot;
-    this.videoSlot_ = env.videoSlot; // not used in demo, but kept for spec
+    this.slot_ = environmentVars.slot;
+    this.videoSlot_ = environmentVars.videoSlot; // may be null in some players
 
-    // Safe styling inside sandbox
+    // Slot styling (safe inside sandbox)
     if (this.slot_) {
       Object.assign(this.slot_.style, {
         position: 'relative', overflow: 'hidden',
-        background: '#0b1220', borderRadius: '12px', transition: 'all .4s ease'
+        background: '#0b1220', borderRadius: '12px', transition: 'all .35s ease'
       });
     }
 
-    // Parse parameters (fallbacks)
+    // Parse AdParameters
     try {
       this.parameters_ = JSON.parse(creativeData.AdParameters || '{}');
-    } catch (_) { this.parameters_ = {}; }
-    this.defaultClickUrl = this.parameters_.clickUrl || 'https://example.com/default';
+    } catch(_) { this.parameters_ = {}; }
+    this.clickThroughUrls = this.parameters_.clickThroughUrls || [];
+    this.defaultClickUrl = this.parameters_.clickUrl || this.parameters_.clickTag || this.parameters_.clickThroughUrl || this.parameters_.landingPage || '';
 
-    // Build internal UI (secure-safe)
-    this.buildUI();
+    // Ensure video element
+    this.ensureVideo_();
 
-    // Notify player
+    // Build UI (CTAs, toggle, click-layer, wrapper)
+    this.buildUI_();
+
+    // Loaded
     this.safeEmit_('AdLoaded');
   }
 
-  startAd() {
+  startAd(){
     this.startEpoch_ = Date.now();
-    this.installQuartileTimers_();
+    // Autoplay muted to be safe
+    this.tryPlay_();
+    this.bindQuartilesOnce_();
     this.safeEmit_('AdStarted');
     this.safeEmit_('AdImpression');
   }
 
-  stopAd() {
-    this.clearQuartileTimers_();
-    this.safeEmit_('AdStopped');
-  }
+  stopAd(){ this.safeEmit_('AdStopped'); }
+  skipAd(){ if (this.attributes_.skippableState) this.safeEmit_('AdSkipped'); }
 
-  skipAd() {
-    if (this.attributes_.skippableState) this.safeEmit_('AdSkipped');
-  }
-
-  resizeAd(width, height, viewMode) {
+  resizeAd(width, height, viewMode){
     this.attributes_.width = width|0;
     this.attributes_.height = height|0;
     this.attributes_.viewMode = viewMode || this.attributes_.viewMode;
     this.safeEmit_('AdSizeChange');
   }
 
-  pauseAd() {
-    this.safeEmit_('AdPaused');
-  }
+  pauseAd(){ try { this.videoSlot_ && this.videoSlot_.pause(); } catch(_){} this.safeEmit_('AdPaused'); }
+  resumeAd(){ this.tryPlay_(); this.safeEmit_('AdPlaying'); }
 
-  resumeAd() {
-    this.safeEmit_('AdPlaying');
-  }
+  expandAd(){ this.attributes_.expanded = true; this.safeEmit_('AdExpanded'); }
+  collapseAd(){ this.attributes_.expanded = false; }
 
-  expandAd() {
-    this.attributes_.expanded = true;
-    this.safeEmit_('AdExpanded');
-  }
-
-  collapseAd() {
-    this.attributes_.expanded = false;
-    // no dedicated event in spec besides AdExpanded; keep state only
-  }
-
-  /* =============================
-   *  GETTERS / SETTERS per spec
-   * ============================= */
-  getAdLinear() { return this.attributes_.linear; }
-  getAdWidth() { return this.attributes_.width; }
-  getAdHeight() { return this.attributes_.height; }
-  getAdExpanded() { return this.attributes_.expanded; }
-  getAdSkippableState() { return this.attributes_.skippableState; }
-  getAdRemainingTime() {
+  getAdLinear(){ return this.attributes_.linear; }
+  getAdWidth(){ return this.attributes_.width; }
+  getAdHeight(){ return this.attributes_.height; }
+  getAdExpanded(){ return this.attributes_.expanded; }
+  getAdSkippableState(){ return this.attributes_.skippableState; }
+  getAdRemainingTime(){
     if (!this.startEpoch_) return this.attributes_.remainingTime;
     const elapsed = (Date.now() - this.startEpoch_) / 1000;
-    const remain = Math.max(0, this.attributes_.duration - elapsed);
+    const remain = Math.max(0, (this.videoSlot_?.duration || this.attributes_.duration) - elapsed);
     this.attributes_.remainingTime = remain;
     return remain;
   }
-  getAdDuration() { return this.attributes_.duration; }
-  getAdVolume() { return this.attributes_.volume; }
-  setAdVolume(v) { this.attributes_.volume = +v || 0; this.safeEmit_('AdVolumeChange'); }
-  getAdCompanions() { return this.attributes_.companions; }
-  getAdIcons() { return this.attributes_.icons; }
+  getAdDuration(){ return (this.videoSlot_?.duration && isFinite(this.videoSlot_.duration)) ? this.videoSlot_.duration : this.attributes_.duration; }
+  getAdVolume(){ return this.attributes_.volume; }
+  setAdVolume(v){ this.attributes_.volume = +v || 0; if (this.videoSlot_) this.videoSlot_.volume = this.attributes_.volume; this.safeEmit_('AdVolumeChange'); }
+  getAdCompanions(){ return this.attributes_.companions; }
+  getAdIcons(){ return this.attributes_.icons; }
 
-  /* =============================
-   *  SUBSCRIBE / UNSUBSCRIBE
-   * ============================= */
-  subscribe(cb, eventName, ctx) { this.eventsCallbacks_[eventName] = cb && cb.bind ? cb.bind(ctx) : cb; }
-  unsubscribe(eventName) { delete this.eventsCallbacks_[eventName]; }
+  subscribe(cb, eventName, ctx){ this.eventsCallbacks_[eventName] = cb && cb.bind ? cb.bind(ctx) : cb; }
+  unsubscribe(eventName){ delete this.eventsCallbacks_[eventName]; }
 
-  /* =============================
-   *  INTERNAL HELPERS
-   * ============================= */
-  safeEmit_(name, ...args) {
-    try { if (this.eventsCallbacks_[name]) this.eventsCallbacks_[name](...args); } catch (e) { this.log('emit error', name, e); }
+  /* ================= Helpers ================= */
+  log(...a){ console.log('[VPAID]', ...a); }
+  safeEmit_(n, ...args){ try{ this.eventsCallbacks_[n] && this.eventsCallbacks_[n](...args); }catch(e){ this.log('emit error', n, e); } }
+
+  ensureVideo_(){
+    // If no valid video was provided by the player, create one
+    if (!this.videoSlot_ || this.videoSlot_.nodeName !== 'VIDEO') {
+      this.videoSlot_ = document.createElement('video');
+      this.slot_.appendChild(this.videoSlot_);
+    }
+    const v = this.videoSlot_;
+    v.playsInline = true; v.muted = true; v.controls = false; v.preload = 'auto';
+    // style is handled by wrapper; keep basic block
+    v.style.display = 'block'; v.style.width = '100%'; v.style.height = '100%'; v.style.objectFit = 'cover';
+
+    // Source from AdParameters.mediaFiles[0]
+    const mfs = Array.isArray(this.parameters_.mediaFiles) ? this.parameters_.mediaFiles : [];
+    const first = mfs.find(m=> (m.type||'').includes('mp4') && m.uri) || mfs[0];
+    if (first && first.uri) { try { v.src = first.uri; } catch(_){} }
+
+    v.addEventListener('loadedmetadata', ()=>{ if (isFinite(v.duration)) { this.attributes_.duration = v.duration; this.safeEmit_('AdDurationChange'); } });
   }
-  log(...args) { console.log('[SecureVPAID]', ...args); }
 
-  /* =============================
-   *  UI / BEHAVIOR (secure-safe)
-   * ============================= */
-  buildUI() {
-    const container = document.createElement('div');
-    Object.assign(container.style, {
-      position: 'absolute', inset: '0', display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center', color: 'white',
-      fontFamily: 'Inter, system-ui, sans-serif', textAlign: 'center', gap: '12px'
+  buildUI_(){
+    // Wrapper that we animate for reduce/expand
+    const wrap = document.createElement('div');
+    wrap.id = 'bliink-video-wrap';
+    Object.assign(wrap.style, {
+      position: 'absolute', inset: '20px 20px 72px 20px', // leave space for CTAs
+      borderRadius: '12px', overflow: 'hidden',
+      boxShadow: '0 12px 28px rgba(0,0,0,.35)',
+      transition: 'all .35s ease'
     });
 
-    // Video placeholder (could be env.videoSlot)
-    const video = document.createElement('div');
-    Object.assign(video.style, {
-      width: '90%', height: '60%', background: '#1e293b', borderRadius: '8px',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      transition: 'all .4s ease', color: '#94a3b8', fontSize: '18px',
-      boxShadow: '0 8px 24px rgba(0,0,0,.35)'
-    });
-    video.textContent = '🎬 Video Placeholder (secure sandbox)';
+    // Place the video inside the wrapper
+    if (this.videoSlot_.parentElement !== wrap) {
+      // If video already in slot, move it into wrapper
+      wrap.appendChild(this.videoSlot_);
+    }
+
+    // Click layer (fallback global click)
+    const clickLayer = document.createElement('div');
+    Object.assign(clickLayer.style, { position: 'absolute', inset: 0, zIndex: 1 });
+    clickLayer.id = 'bliink-click-layer';
+    clickLayer.addEventListener('click', ()=> this.emitClickThru_(this.resolveClickUrl_(), 'default'));
 
     // CTAs
     const ctas = document.createElement('div');
-    Object.assign(ctas.style, { display: 'flex', gap: '10px', marginTop: '8px' });
+    Object.assign(ctas.style, { position: 'absolute', left: '20px', right: '20px', bottom: '20px', display: 'flex', gap: '10px', justifyContent: 'center', zIndex: 2 });
     ctas.append(
-      this.createCTA('cta-primary', 'EN SAVOIR PLUS', '#2563eb', 'https://example.com/primary'),
-      this.createCTA('cta-secondary', 'VOIR L’OFFRE',   '#f43f5e', 'https://example.com/secondary')
+      this.createCTA_('cta-primary',   'EN SAVOIR PLUS', '#2563eb', 'https://example.com/primary'),
+      this.createCTA_('cta-secondary', 'VOIR L\u2019OFFRE',   '#f43f5e', 'https://example.com/secondary')
     );
 
-    // Reduce / Expand toggle (visual only within slot)
+    // Toggle reduce/expand
     const toggle = document.createElement('div');
-    toggle.textContent = '⬇️ Réduire';
-    Object.assign(toggle.style, { position: 'absolute', top: '8px', right: '10px', cursor: 'pointer', fontSize: '14px' });
-    toggle.addEventListener('click', () => { this.isMinimized = !this.isMinimized; this.animateMini_(video, toggle); });
+    toggle.textContent = '\u2B07\uFE0F Réduire';
+    Object.assign(toggle.style, { position: 'absolute', top: '10px', right: '14px', fontSize: '14px', color: '#fff', cursor: 'pointer', zIndex: 2, textShadow: '0 1px 2px rgba(0,0,0,.4)' });
+    toggle.addEventListener('click', (ev)=>{ ev.stopPropagation(); this.isMinimized = !this.isMinimized; this.animateMini_(wrap, toggle); });
 
-    // Full click layer (fallback to defaultClickUrl)
-    const clickLayer = document.createElement('div');
-    Object.assign(clickLayer.style, { position: 'absolute', inset: 0, zIndex: 1 });
-    clickLayer.addEventListener('click', () => this.emitClickThru_(this.defaultClickUrl, 'default'));
-
-    // Layering
-    container.append(video, ctas, toggle);
-    this.slot_.appendChild(container);
+    // Assemble
+    this.slot_.appendChild(wrap);
     this.slot_.appendChild(clickLayer);
-
-    // Bring CTAs above click layer
-    ctas.style.position = 'relative';
-    ctas.style.zIndex = 2;
-    toggle.style.zIndex = 2;
+    this.slot_.appendChild(ctas);
+    this.slot_.appendChild(toggle);
   }
 
-  createCTA(id, label, color, url) {
+  createCTA_(id, label, color, url){
     const btn = document.createElement('div');
-    Object.assign(btn.style, { background: color, padding: '10px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '14px', userSelect: 'none' });
+    Object.assign(btn.style, { background: color, color: '#fff', padding: '10px 16px', borderRadius: '8px', fontWeight: 600, fontSize: '14px', cursor: 'pointer', userSelect: 'none' });
     btn.textContent = label;
-    btn.addEventListener('click', (ev) => { ev.stopPropagation(); this.emitClickThru_(url, id); this.postToParent_({ type: 'ctaClick', id, url }); });
+    btn.addEventListener('click', (ev)=>{ ev.stopPropagation(); this.emitClickThru_(url, id); });
     return btn;
   }
 
-  emitClickThru_(url, id) {
-    if (!url) return; // avoid empty url per player rules
+  resolveClickUrl_(){
+    if (this.clickThroughUrls?.length && this.videoSlot_) {
+      const t = this.videoSlot_.currentTime || 0;
+      for (const i of this.clickThroughUrls) {
+        const s = i.start||0, e = (i.end==null? Infinity : i.end);
+        if (t >= s && t < e && i.url) return i.url;
+      }
+    }
+    return this.defaultClickUrl || '';
+  }
+
+  emitClickThru_(url, id){
+    if (!url) return;
     if (typeof this.eventsCallbacks_.AdClickThru === 'function') {
-      try { this.eventsCallbacks_.AdClickThru(url, id || 'default', true); } catch (e) { this.log('AdClickThru error', e); }
+      try { this.eventsCallbacks_.AdClickThru(url, id||'default', true); } catch(e){ this.log('AdClickThru error', e); }
     }
   }
 
-  animateMini_(video, toggleBtn) {
-    if (!this.isMinimized) {
-      Object.assign(video.style, { transform: 'scale(1)', width: '90%', height: '60%', opacity: '1' });
-      Object.assign(this.slot_.style, { width: '100%', height: '100%', bottom: '0', right: '0', border: 'none' });
-      toggleBtn.textContent = '⬇️ Réduire';
-      this.postToParent_({ type: 'expand' });
+  animateMini_(wrap, toggleBtn){
+    if (!this.isMinimized){
+      // Expand
+      Object.assign(wrap.style, { inset: '20px 20px 72px 20px' });
+      toggleBtn.textContent = '\u2B07\uFE0F Réduire';
+      this.safeEmit_('AdExpanded');
     } else {
-      Object.assign(video.style, { transform: 'scale(0.5)', opacity: '0.9', width: '160px', height: '90px' });
-      Object.assign(this.slot_.style, { position: 'absolute', width: '180px', height: '100px', bottom: '12px', right: '12px', border: '2px solid #334155', borderRadius: '12px' });
-      toggleBtn.textContent = '⬆️ Agrandir';
-      this.postToParent_({ type: 'reduce' });
+      // Reduce inside slot (bottom-right mini)
+      Object.assign(wrap.style, { inset: 'auto 12px 12px auto', width: '180px', height: '100px' });
+      toggleBtn.textContent = '\u2B06\uFE0F Agrandir';
+      this.attributes_.expanded = false;
     }
   }
 
-  postToParent_(payload) {
-    try { window.parent && window.parent.postMessage && window.parent.postMessage({ source: 'SecureVPAID', ...payload }, '*'); } catch(_) {}
+  tryPlay_(){
+    const v = this.videoSlot_;
+    if (!v) return;
+    try {
+      const p = v.play();
+      if (p && p.then) p.catch(()=>{});
+    } catch(_) {}
   }
 
-  /* =============================
-   *  SIMPLE QUARTILE NOTIFIER (demo)
-   * ============================= */
-  installQuartileTimers_() {
-    this.clearQuartileTimers_();
-    const fire = (name)=>()=>this.safeEmit_(name);
-    this.quartileTimers_.push(setTimeout(fire('AdVideoStart'),          0));
-    this.quartileTimers_.push(setTimeout(fire('AdVideoFirstQuartile'),  7500));
-    this.quartileTimers_.push(setTimeout(fire('AdVideoMidpoint'),      15000));
-    this.quartileTimers_.push(setTimeout(fire('AdVideoThirdQuartile'), 22500));
-    this.quartileTimers_.push(setTimeout(fire('AdVideoComplete'),      30000));
+  bindQuartilesOnce_(){
+    if (this._quartilesBound || !this.videoSlot_) return;
+    this._quartilesBound = true;
+    const v = this.videoSlot_;
+    const marks = [0, .25, .5, .75, .99];
+    const names = ['AdVideoStart','AdVideoFirstQuartile','AdVideoMidpoint','AdVideoThirdQuartile','AdVideoComplete'];
+    let idx = 0;
+    const onTime = ()=>{
+      const dur = (v.duration && isFinite(v.duration)) ? v.duration : this.attributes_.duration;
+      if (!dur) return;
+      const p = v.currentTime / dur;
+      if (idx < marks.length && p >= marks[idx]) { this.safeEmit_(names[idx]); idx++; }
+    };
+    v.addEventListener('timeupdate', onTime);
   }
-  clearQuartileTimers_() { this.quartileTimers_.forEach(clearTimeout); this.quartileTimers_ = []; }
 };
 
-var getVPAIDAd = function () { return new Vpaid(); };
+var getVPAIDAd = function(){ return new Vpaid(); };
