@@ -1,207 +1,247 @@
 /* ================================================================
- *  VPAID Secure Mode Demo — full-feature showcase (2025)
- * ================================================================
- *  Objectif : Montrer tout ce qu’un VPAID peut faire dans un iframe
- *  “secure” (sandbox allow-scripts / allow-same-origin).
- *
- *  ✅ Full interface VPAID 2.0 (AdLoaded, AdStarted, AdClickThru, etc.)
- *  ✅ Vidéo linéaire avec animation et mini-player interne
- *  ✅ Deux CTA cliquables (AdClickThru avec URLs différentes)
- *  ✅ Bouton Réduire / Agrandir avec animation CSS
- *  ✅ Canal postMessage (simulation communication parent)
- *  ✅ 100% safe en sandbox (aucun accès window.top/document.parent)
+ *  VPAID Secure Mode Demo — full-feature showcase (fixed)
+ *  Patch: implements full VPAID 2.0 surface (incl. collapseAd)
  * ================================================================ */
 
 const Vpaid = class {
   constructor() {
-    // === Slots & environnement ===
+    // === Slots & environment ===
     this.slot_ = null;
     this.videoSlot_ = null;
     this.eventsCallbacks_ = {};
 
-    // === États ===
+    // === Attributes per spec ===
     this.attributes_ = {
       width: 0,
       height: 0,
       volume: 1,
       linear: true,
       expanded: false,
+      skippableState: false,
       duration: 30,
-      viewMode: 'normal'
+      remainingTime: 30,
+      viewMode: 'normal',
+      companions: '',
+      icons: ''
     };
 
     this.parameters_ = {};
     this.defaultClickUrl = '';
-
     this.isMinimized = false;
+    this.startEpoch_ = null;
+
+    // Quartile demo timers (no real video in this demo)
+    this.quartileTimers_ = [];
   }
 
-  /* =====================================================
-   *  VPAID Interface — obligatoire pour compatibilité player
-   * ===================================================== */
+  /* =============================
+   *  VPAID REQUIRED INTERFACE
+   * ============================= */
   handshakeVersion() { return '2.0'; }
-  getAdLinear() { return this.attributes_.linear; }
-  getAdExpanded() { return this.attributes_.expanded; }
-  getAdVolume() { return this.attributes_.volume; }
-  setAdVolume(v) { this.attributes_.volume = v; this.callEvent_('AdVolumeChange'); }
-  getAdRemainingTime() { return 10; }
 
-  subscribe(cb, eventName, ctx) { this.eventsCallbacks_[eventName] = cb.bind(ctx); }
-  unsubscribe(eventName) { delete this.eventsCallbacks_[eventName]; }
-
-  callEvent_(name, ...args) {
-    if (this.eventsCallbacks_[name]) this.eventsCallbacks_[name](...args);
-  }
-
-  log(...args) { console.log('[SecureVPAID]', ...args); }
-
-  /* =====================================================
-   *  INIT AD
-   * ===================================================== */
   initAd(width, height, viewMode, desiredBitrate, creativeData, env) {
+    // Save attrs
+    this.attributes_.width = width|0;
+    this.attributes_.height = height|0;
+    this.attributes_.viewMode = viewMode || 'normal';
+
     this.slot_ = env.slot;
-    this.videoSlot_ = env.videoSlot;
+    this.videoSlot_ = env.videoSlot; // not used in demo, but kept for spec
 
-    this.slot_.style.position = 'relative';
-    this.slot_.style.overflow = 'hidden';
-    this.slot_.style.background = '#0b1220';
-    this.slot_.style.borderRadius = '12px';
-    this.slot_.style.transition = 'all .4s ease';
-
-    try {
-      this.parameters_ = JSON.parse(creativeData.AdParameters);
-      this.defaultClickUrl = this.parameters_.clickUrl || 'https://example.com/default';
-    } catch (e) {
-      this.log('No valid AdParameters');
-      this.defaultClickUrl = 'https://example.com/default';
+    // Safe styling inside sandbox
+    if (this.slot_) {
+      Object.assign(this.slot_.style, {
+        position: 'relative', overflow: 'hidden',
+        background: '#0b1220', borderRadius: '12px', transition: 'all .4s ease'
+      });
     }
 
-    // Contenu visuel interne
+    // Parse parameters (fallbacks)
+    try {
+      this.parameters_ = JSON.parse(creativeData.AdParameters || '{}');
+    } catch (_) { this.parameters_ = {}; }
+    this.defaultClickUrl = this.parameters_.clickUrl || 'https://example.com/default';
+
+    // Build internal UI (secure-safe)
     this.buildUI();
 
-    this.callEvent_('AdLoaded');
+    // Notify player
+    this.safeEmit_('AdLoaded');
   }
 
-  /* =====================================================
-   *  BUILD INTERNAL UI
-   * ===================================================== */
+  startAd() {
+    this.startEpoch_ = Date.now();
+    this.installQuartileTimers_();
+    this.safeEmit_('AdStarted');
+    this.safeEmit_('AdImpression');
+  }
+
+  stopAd() {
+    this.clearQuartileTimers_();
+    this.safeEmit_('AdStopped');
+  }
+
+  skipAd() {
+    if (this.attributes_.skippableState) this.safeEmit_('AdSkipped');
+  }
+
+  resizeAd(width, height, viewMode) {
+    this.attributes_.width = width|0;
+    this.attributes_.height = height|0;
+    this.attributes_.viewMode = viewMode || this.attributes_.viewMode;
+    this.safeEmit_('AdSizeChange');
+  }
+
+  pauseAd() {
+    this.safeEmit_('AdPaused');
+  }
+
+  resumeAd() {
+    this.safeEmit_('AdPlaying');
+  }
+
+  expandAd() {
+    this.attributes_.expanded = true;
+    this.safeEmit_('AdExpanded');
+  }
+
+  collapseAd() {
+    this.attributes_.expanded = false;
+    // no dedicated event in spec besides AdExpanded; keep state only
+  }
+
+  /* =============================
+   *  GETTERS / SETTERS per spec
+   * ============================= */
+  getAdLinear() { return this.attributes_.linear; }
+  getAdWidth() { return this.attributes_.width; }
+  getAdHeight() { return this.attributes_.height; }
+  getAdExpanded() { return this.attributes_.expanded; }
+  getAdSkippableState() { return this.attributes_.skippableState; }
+  getAdRemainingTime() {
+    if (!this.startEpoch_) return this.attributes_.remainingTime;
+    const elapsed = (Date.now() - this.startEpoch_) / 1000;
+    const remain = Math.max(0, this.attributes_.duration - elapsed);
+    this.attributes_.remainingTime = remain;
+    return remain;
+  }
+  getAdDuration() { return this.attributes_.duration; }
+  getAdVolume() { return this.attributes_.volume; }
+  setAdVolume(v) { this.attributes_.volume = +v || 0; this.safeEmit_('AdVolumeChange'); }
+  getAdCompanions() { return this.attributes_.companions; }
+  getAdIcons() { return this.attributes_.icons; }
+
+  /* =============================
+   *  SUBSCRIBE / UNSUBSCRIBE
+   * ============================= */
+  subscribe(cb, eventName, ctx) { this.eventsCallbacks_[eventName] = cb && cb.bind ? cb.bind(ctx) : cb; }
+  unsubscribe(eventName) { delete this.eventsCallbacks_[eventName]; }
+
+  /* =============================
+   *  INTERNAL HELPERS
+   * ============================= */
+  safeEmit_(name, ...args) {
+    try { if (this.eventsCallbacks_[name]) this.eventsCallbacks_[name](...args); } catch (e) { this.log('emit error', name, e); }
+  }
+  log(...args) { console.log('[SecureVPAID]', ...args); }
+
+  /* =============================
+   *  UI / BEHAVIOR (secure-safe)
+   * ============================= */
   buildUI() {
     const container = document.createElement('div');
     Object.assign(container.style, {
-      position: 'absolute',
-      top: 0, left: 0, width: '100%', height: '100%',
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      color: 'white', fontFamily: 'Inter, sans-serif', textAlign: 'center'
+      position: 'absolute', inset: '0', display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center', color: 'white',
+      fontFamily: 'Inter, system-ui, sans-serif', textAlign: 'center', gap: '12px'
     });
 
-    // Vidéo mock (tu peux remplacer par this.videoSlot_)
+    // Video placeholder (could be env.videoSlot)
     const video = document.createElement('div');
     Object.assign(video.style, {
       width: '90%', height: '60%', background: '#1e293b', borderRadius: '8px',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      transition: 'all .4s ease', color: '#94a3b8', fontSize: '20px'
+      transition: 'all .4s ease', color: '#94a3b8', fontSize: '18px',
+      boxShadow: '0 8px 24px rgba(0,0,0,.35)'
     });
-    video.textContent = '🎬 Video Placeholder';
+    video.textContent = '🎬 Video Placeholder (secure sandbox)';
 
-    // CTA Buttons
-    const btn1 = this.createCTA('cta-primary', 'EN SAVOIR PLUS', '#2563eb', 'https://example.com/primary');
-    const btn2 = this.createCTA('cta-secondary', 'VOIR L’OFFRE', '#f43f5e', 'https://example.com/secondary');
+    // CTAs
+    const ctas = document.createElement('div');
+    Object.assign(ctas.style, { display: 'flex', gap: '10px', marginTop: '8px' });
+    ctas.append(
+      this.createCTA('cta-primary', 'EN SAVOIR PLUS', '#2563eb', 'https://example.com/primary'),
+      this.createCTA('cta-secondary', 'VOIR L’OFFRE',   '#f43f5e', 'https://example.com/secondary')
+    );
 
-    const ctaWrapper = document.createElement('div');
-    Object.assign(ctaWrapper.style, { marginTop: '20px', display: 'flex', gap: '10px' });
-    ctaWrapper.append(btn1, btn2);
+    // Reduce / Expand toggle (visual only within slot)
+    const toggle = document.createElement('div');
+    toggle.textContent = '⬇️ Réduire';
+    Object.assign(toggle.style, { position: 'absolute', top: '8px', right: '10px', cursor: 'pointer', fontSize: '14px' });
+    toggle.addEventListener('click', () => { this.isMinimized = !this.isMinimized; this.animateMini_(video, toggle); });
 
-    // Réduire / Agrandir
-    const toggleBtn = document.createElement('div');
-    toggleBtn.textContent = '⬇️ Réduire';
-    Object.assign(toggleBtn.style, {
-      position: 'absolute', top: '8px', right: '8px', cursor: 'pointer', fontSize: '14px', color: '#fff'
-    });
+    // Full click layer (fallback to defaultClickUrl)
+    const clickLayer = document.createElement('div');
+    Object.assign(clickLayer.style, { position: 'absolute', inset: 0, zIndex: 1 });
+    clickLayer.addEventListener('click', () => this.emitClickThru_(this.defaultClickUrl, 'default'));
 
-    toggleBtn.addEventListener('click', () => {
-      this.isMinimized = !this.isMinimized;
-      this.animateMiniPlayer(video, container, toggleBtn);
-    });
-
-    container.append(video, ctaWrapper, toggleBtn);
+    // Layering
+    container.append(video, ctas, toggle);
     this.slot_.appendChild(container);
+    this.slot_.appendChild(clickLayer);
+
+    // Bring CTAs above click layer
+    ctas.style.position = 'relative';
+    ctas.style.zIndex = 2;
+    toggle.style.zIndex = 2;
   }
 
-  /* =====================================================
-   *  CTA CREATOR
-   * ===================================================== */
   createCTA(id, label, color, url) {
     const btn = document.createElement('div');
-    Object.assign(btn.style, {
-      background: color,
-      padding: '10px 16px',
-      borderRadius: '8px',
-      cursor: 'pointer',
-      fontWeight: '600',
-      fontSize: '14px'
-    });
+    Object.assign(btn.style, { background: color, padding: '10px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '14px', userSelect: 'none' });
     btn.textContent = label;
-
-    btn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      this.log(`CTA click: ${id} → ${url}`);
-      // PostMessage demo
-      this.postToParent({ type: 'ctaClick', id, url });
-      // Event VPAID standard
-      if ('AdClickThru' in this.eventsCallbacks_) {
-        this.eventsCallbacks_.AdClickThru(url, id, true);
-      }
-    });
+    btn.addEventListener('click', (ev) => { ev.stopPropagation(); this.emitClickThru_(url, id); this.postToParent_({ type: 'ctaClick', id, url }); });
     return btn;
   }
 
-  /* =====================================================
-   *  MINI-PLAYER / ANIMATION
-   * ===================================================== */
-  animateMiniPlayer(video, container, toggleBtn) {
+  emitClickThru_(url, id) {
+    if (!url) return; // avoid empty url per player rules
+    if (typeof this.eventsCallbacks_.AdClickThru === 'function') {
+      try { this.eventsCallbacks_.AdClickThru(url, id || 'default', true); } catch (e) { this.log('AdClickThru error', e); }
+    }
+  }
+
+  animateMini_(video, toggleBtn) {
     if (!this.isMinimized) {
-      // Agrandir
       Object.assign(video.style, { transform: 'scale(1)', width: '90%', height: '60%', opacity: '1' });
-      Object.assign(this.slot_.style, { width: '100%', height: '100%', bottom: '0', right: '0' });
+      Object.assign(this.slot_.style, { width: '100%', height: '100%', bottom: '0', right: '0', border: 'none' });
       toggleBtn.textContent = '⬇️ Réduire';
-      this.postToParent({ type: 'expand' });
+      this.postToParent_({ type: 'expand' });
     } else {
-      // Réduire visuellement (dock interne)
-      Object.assign(video.style, { transform: 'scale(0.5)', opacity: '0.8', width: '160px', height: '90px' });
-      Object.assign(this.slot_.style, {
-        position: 'absolute', width: '180px', height: '100px', bottom: '20px', right: '20px',
-        border: '2px solid #334155', borderRadius: '12px'
-      });
+      Object.assign(video.style, { transform: 'scale(0.5)', opacity: '0.9', width: '160px', height: '90px' });
+      Object.assign(this.slot_.style, { position: 'absolute', width: '180px', height: '100px', bottom: '12px', right: '12px', border: '2px solid #334155', borderRadius: '12px' });
       toggleBtn.textContent = '⬆️ Agrandir';
-      this.postToParent({ type: 'reduce' });
+      this.postToParent_({ type: 'reduce' });
     }
   }
 
-  /* =====================================================
-   *  POSTMESSAGE SIMULATION
-   * ===================================================== */
-  postToParent(payload) {
-    try {
-      window.parent.postMessage({ source: 'SecureVPAID', ...payload }, '*');
-      this.log('postMessage →', payload);
-    } catch (e) {
-      this.log('postMessage error (sandbox)', e.message);
-    }
+  postToParent_(payload) {
+    try { window.parent && window.parent.postMessage && window.parent.postMessage({ source: 'SecureVPAID', ...payload }, '*'); } catch(_) {}
   }
 
-  /* =====================================================
-   *  START / STOP
-   * ===================================================== */
-  startAd() {
-    this.log('Ad started');
-    this.callEvent_('AdStarted');
-    this.callEvent_('AdImpression');
+  /* =============================
+   *  SIMPLE QUARTILE NOTIFIER (demo)
+   * ============================= */
+  installQuartileTimers_() {
+    this.clearQuartileTimers_();
+    const fire = (name)=>()=>this.safeEmit_(name);
+    this.quartileTimers_.push(setTimeout(fire('AdVideoStart'),          0));
+    this.quartileTimers_.push(setTimeout(fire('AdVideoFirstQuartile'),  7500));
+    this.quartileTimers_.push(setTimeout(fire('AdVideoMidpoint'),      15000));
+    this.quartileTimers_.push(setTimeout(fire('AdVideoThirdQuartile'), 22500));
+    this.quartileTimers_.push(setTimeout(fire('AdVideoComplete'),      30000));
   }
-
-  stopAd() {
-    this.log('Ad stopped');
-    this.callEvent_('AdStopped');
-  }
+  clearQuartileTimers_() { this.quartileTimers_.forEach(clearTimeout); this.quartileTimers_ = []; }
 };
 
 var getVPAIDAd = function () { return new Vpaid(); };
